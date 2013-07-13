@@ -1,0 +1,91 @@
+var _buscar = function(){
+	if($("#trBuscar").attr('class')=='oculto'){
+		$("#trBuscar").removeClass('oculto');
+	}else{
+		$("#trBuscar").addClass('oculto');
+	}
+	_filtrar("#descripcion_search", "#reporte", "DESCRIPCIÓN", _cargarPaginacion);
+};
+var _nuevoReg = function(){
+	_ajax("perfiles/ajax/form_add_perfil.php", "", function(html_response){
+		botones = [{
+			text : "Guardar",
+			click : function(){ 
+				_guardarPerfil('addPerfil');				
+			}
+		},{
+			text : "Cancelar",
+			click : function(){ $("#dialog-addPerfil").remove();}
+		}];
+		_dialogo("dialog-addPerfil", "50%", "Nuevo Perfil", botones, html_response)
+		$("#frmPerfil").validationEngine();
+	});
+};
+
+var _editarReg = function(idperfil){
+	_ajax("perfiles/ajax/form_edit_perfil.php", "idperfil="+idperfil, function(html_response){
+		botones = [{
+			text : "Guardar",
+			click : function(){ 
+				_guardarPerfil('editPerfil');				
+			}
+		},{
+			text : "Cancelar",
+			click : function(){ $("#dialog-addPerfil").remove();}
+		}];
+		_dialogo("dialog-addPerfil", "50%", "Nuevo Perfil", botones, html_response)
+		$("#frmPerfil").validationEngine();
+	});
+};
+var _asigPermisos = function(idperfil){
+	_ajax("perfiles/ajax/form_perfil_permisos.php", "idperfil="+idperfil, function(html_response){
+		botones = [{
+			text : "Guardar",
+			click : function(){ 
+				_guardarPerfil('addPermisos');				
+			}
+		},{
+			text : "Cancelar",
+			click : function(){ $("#dialog-addPerfil").remove();}
+		}];
+		_dialogo("dialog-addPerfil", "50%", "Asignar Permisos al Perfil", botones, html_response)
+		$("#frmPerfil").validationEngine();
+	});
+};
+
+var _cargarPaginacion = function(){
+	_paginacion("#pager", "lista", 15,1);
+	//alert('cargarPag');
+};
+var _verPermisos = function(e){
+	if($(e).is(":checked")){
+		//alert('hola');
+		$(".td_"+$(e).val()).show();
+	}else{
+		$(".td_"+$(e).val()).hide();
+	}
+}
+var _guardarPerfil = function(tipo){
+	if($("#frmPerfil").validationEngine('validate') ==true){				
+		_guardar("perfiles/ajax/save.php?type="+tipo, $("#frmPerfil").serialize(), function(html_response){
+			switch(html_response){
+				case '1':
+					alert("Perfil Guardado con Éxito!!");
+					$("#dialog-addPerfil").remove();
+					location.reload();
+				break;
+				default:
+					_msgerror(html_response,"#mensaje");
+				break;
+			}
+		});
+	}
+};
+
+
+$(function(){
+     var headersArray={0: {sorter: false},3: {sorter: false}, 4: {sorter: false},5: {sorter: false}};
+     _dataGriD("#reporte",headersArray,"#pager",1);
+     //$("#pager").removeAttr('style');
+     _cargarPaginacion();
+});

@@ -1,0 +1,154 @@
+<?
+include('../../vigiaAjax.php');
+include('../../libphp/config.inc.php');
+include('../../libphp/mysql.php');
+
+try{
+	switch ($_GET['type']) {
+		case 'addUndAtencion':
+			$bd->ejecutarInsertArray($_POST,"unidad_atencion");
+			echo "1";
+		break;
+		case 'editUndAtencion' : 
+			$idunidad_atencion=$_POST['idunidad_atencion'];
+			unset($_POST['idunidad_atencion']);
+			$bd->ejecutarUpdateArray($_POST,"unidad_atencion", "idunidad_atencion=".$idunidad_atencion);
+			echo "1";
+		break;
+		case 'nullUndAtencion':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"unidad_atencion", "idunidad_atencion=".$_POST['idunidad_atencion']);
+			echo "1";
+		break;
+		/* Unidades*/
+		case 'addUnidad':
+			$bd->ejecutarInsertArray($_POST,"unidad_paciente");
+			echo "1";
+		break;
+		case 'editUnidad' : 
+			$idunidad_atencion=$_POST['idunidad'];
+			unset($_POST['idunidad']);
+			$bd->ejecutarUpdateArray($_POST,"unidad_paciente", "idunidad=".$idunidad_atencion);
+			echo "1";
+		break;
+		case 'nullunidades':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"unidad_paciente", "idunidad=".$_POST['idunidad']);
+			echo "1";
+		break;
+		/* Fin Unidades*/
+		/*Grados */
+		case 'addgrados':
+			$bd->ejecutarInsertArray($_POST,"grado");
+			echo "1";
+		break;
+		case 'editgrados' : 
+			$idgrado=$_POST['idgrado'];
+			unset($_POST['idgrado']);
+			$bd->ejecutarUpdateArray($_POST,"grado", "idgrado=".$idgrado);
+			echo "1";
+		break;
+		case 'nullGrado':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"grado", "idgrado=".$_POST['idgrado']);
+			echo "1";
+		break;
+		/*Fin Grados*/
+		/* Fuerzas*/
+		case 'addfuerza':
+			$bd->ejecutarInsertArray($_POST,"fuerza");
+			echo "1";
+		break;
+		case 'editfuerza' : 
+			$idgrado=$_POST['idfuerza'];
+			unset($_POST['idfuerza']);
+			$bd->ejecutarUpdateArray($_POST,"fuerza", "idfuerza=".$idgrado);
+			echo "1";
+		break;
+		case 'nullFuerza':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"fuerza", "idfuerza=".$_POST['idfuerza']);
+			echo "1";
+		break;
+		/* Fin Fuerzas*/
+		/* Paciente*/
+		case 'addpaciente':
+			$bd->ejecutarInsertArray($_POST,"paciente");
+			echo "1";
+		break;
+		case 'editpaciente' : 
+			$id=$_POST['idpaciente'];
+			unset($_POST['idpaciente']);
+			$bd->ejecutarUpdateArray($_POST,"paciente", "idpaciente=".$id);
+			echo "1";
+		break;
+		case 'nullPaciente':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"paciente", "idpaciente=".$_POST['idpaciente']);
+			echo "1";
+		break;
+		/* Fin Paciente*/
+		/* Proveedor*/
+		case 'addproveedor':
+			$bd->ejecutarInsertArray($_POST,"proveedor");
+			echo "1";
+		break;
+		case 'editproveedor' : 
+			$id=$_POST['idproveedor'];
+			unset($_POST['idproveedor']);
+			$bd->ejecutarUpdateArray($_POST,"proveedor", "idproveedor=".$id);
+			echo "1";
+		break;
+		case 'nullProveedor':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"proveedor", "idproveedor=".$_POST['idproveedor']);
+			echo "1";
+		break;
+		/* Fin Proveedor*/
+		/* facturas*/
+		case 'addfactura':
+			$bd->ejecutarInsertArray($_POST,"factura");
+			echo "1";
+		break;
+		case 'editfactura' : 
+			$id=$_POST['idFactura'];
+			unset($_POST['idFactura']);
+			$bd->ejecutarUpdateArray($_POST,"factura", "idFactura=".$id);
+			echo "1";
+		break;
+		case 'nullfactura':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"factura", "idFactura=".$_POST['idFactura']);
+			echo "1";
+		break;
+		/* Fin Proveedor*/
+		/* contrato*/
+		case 'addcontrato':
+			$bd->ejecutarInsertArray($_POST,"contrato");
+			echo "1";
+		break;
+		case 'editcontrato' : 
+			$id=$_POST['idcontrato'];
+			unset($_POST['idcontrato']);
+			$bd->ejecutarUpdateArray($_POST,"contrato", "idcontrato=".$id);
+			echo "1";
+		break;
+		case 'nullcontrato':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"contrato", "idcontrato=".$_POST['idcontrato']);
+			echo "1";
+		break;
+		/* Fin Contrato*/
+		/* parentesco*/
+		case 'addparentesco':
+			$bd->ejecutarInsertArray($_POST,"parentesco");
+			echo "1";
+		break;
+		case 'editparentesco' : 
+			$id=$_POST['idparentesco'];
+			unset($_POST['idparentesco']);
+			$bd->ejecutarUpdateArray($_POST,"parentesco", "idparentesco=".$id);
+			echo "1";
+		break;
+		case 'nullparentesco':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"parentesco", "idparentesco=".$_POST['idparentesco']);
+			echo "1";
+		break;
+		/* Fin parentesco*/
+	}
+}catch(Exception $e){
+	echo $e->getMessage();
+}
+?>

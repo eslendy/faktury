@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+
+#cabecera{ 
+	width:80%;
+	height:150px !important;
+	margin:0 auto;
+	margin-top: 100px;
+	background-image:url(../imagenes/ejercito.png), url(../imagenes/disan.png), url(../imagenes/welcomeLogin.png);
+	background-position:bottom left, bottom right, top center;
+	background-repeat:no-repeat;
+}
+#article_login{
+	width:80%;
+	margin:0 auto;
+	padding-top:100px;
+}
+#article_login #div_login{
+	width:40%;
+	margin:0 auto;
+	border:#000 2px dotted;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	padding: 20px;
+}
+.divTitulo{
+	border:none !important;
+	width:100% !important;
+	text-align:center;
+	text-transform:uppercase;
+	font-weight: bold !important;
+}
+#mensaje{
+	width:100% !important;
+	border:none !important;
+}
+.tdButton{
+	text-align:center;
+}
+input[type=text], input[type=password]{
+	border:#375000 1px solid;
+}
