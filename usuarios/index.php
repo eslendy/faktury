@@ -91,3 +91,4 @@
     </div>
 </div>
 <script type="text/javascript" src="<? echo $SERVER_NAME; ?>usuarios/js/usuarios.js"></script>
+<script type="text/javascript">var init =<?php echo json_encode(Page::loadVars()) ?></script>  
