@@ -1,13 +1,15 @@
-<!DOCTYPE html >
+<?  
+    require("../libphp/config.inc.php"); 
+?><!DOCTYPE html >
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href="../css/faktury/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
-        <link href="../css/login.css" rel="stylesheet" type="text/css" />
-        <script src="../js/jquery-1.9.1.js" type="text/javascript"></script>
-        <script src="../js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
-        <script src="../js/jGeneral.js" type="text/javascript"></script>
-        <script src="../js/login/login.js" type="text/javascript"></script>
+        <link href="<? echo $SERVER_NAME; ?>css/faktury/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+        <link href="<? echo $SERVER_NAME; ?>css/login.css" rel="stylesheet" type="text/css" />
+        <script src="<? echo $SERVER_NAME; ?>js/jquery-1.9.1.js" type="text/javascript"></script>
+        <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
+        <script src="<? echo $SERVER_NAME; ?>js/jGeneral.js" type="text/javascript"></script>
+        <script src="<? echo $SERVER_NAME; ?>js/login/login.js" type="text/javascript"></script>
         <title>.:Login - Faktury:.</title>
     </head>
     
@@ -62,4 +64,5 @@
         <footer>
         </footer>
     </body>
+    <script type="text/javascript">var init =<?php echo json_encode(Page::loadVars()) ?></script>  
 </html>
