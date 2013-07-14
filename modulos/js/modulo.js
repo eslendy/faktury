@@ -7,7 +7,7 @@ var _buscar = function(){
 	_filtrar("#descripcion_search", "#reporte", "DESCRIPCIÓN", _cargarPaginacion);
 };
 var _nuevoReg = function(){
-	_ajax("modulos/ajax/form_add_modulo.php", "", function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"modulos/ajax/form_add_modulo.php", "", function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -23,7 +23,7 @@ var _nuevoReg = function(){
 };
 
 var _editarReg = function(idmodulo){
-	_ajax("modulos/ajax/form_edit_modulo.php", "idmodulo="+idmodulo, function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"modulos/ajax/form_edit_modulo.php", "idmodulo="+idmodulo, function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -45,7 +45,7 @@ var _cargarPaginacion = function(){
 
 var _guardarPerfil = function(tipo){
 	if($("#frmModulo").validationEngine('validate') ==true){				
-		_guardar("modulos/ajax/save.php?type="+tipo, $("#frmModulo").serialize(), function(html_response){
+		_guardar(init.XNG_WEBSITE_URL+"modulos/ajax/save.php?type="+tipo, $("#frmModulo").serialize(), function(html_response){
 			switch(html_response){
 				case '1':
 					alert("Modulo Guardado con Éxito!!");

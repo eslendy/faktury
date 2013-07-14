@@ -9,7 +9,7 @@
     	<span>Perfiles	</span>
     </div>
     <nav>
-        <?=$menu->menu_lateral($_SESSION['perfil'],base64_decode($_GET['p']));?>
+        <?=$menu->menu_lateral($_SESSION['perfil'],($_GET['c']));?>
     </nav>
 
 </div>
@@ -21,12 +21,12 @@
             <tbody>
             	<tr>
                 	<td>
-                    	<button class="busqueda">
+                    	<button class="busqueda btn btn-success">
                         	Buscar
                     	</button>
                     </td>
                     <td>
-                        <button class="nuevoReg">
+                        <button class="nuevoReg btn btn-primary" >
                             Nuevo Perfil
                         </button>
                     </td>
@@ -84,4 +84,4 @@
         
     </div>
 </div>
-<script type="text/javascript" src="perfiles/js/perfil.js"></script>
+<script type="text/javascript" src="<? echo $SERVER_NAME; ?>perfiles/js/perfil.js"></script>

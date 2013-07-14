@@ -25,7 +25,7 @@ if(isset($_GET['id']) && !empty($_GET['id']) && $_GET['id']!=0){
         </tr>
         <tr>
         	<td rowspan="6" bordercolor="#333333" width="30%">
-            	<?=$menu->DrawMenuList('0',"menu/ajax/form_edit_menu.php");?>
+            	<?=$menu->DrawMenuList('0',$SERVER_NAME."menu/ajax/form_edit_menu.php");?>
             </td>
             <td></td>
             <td></td>
@@ -90,7 +90,7 @@ if(isset($_GET['id']) && !empty($_GET['id']) && $_GET['id']!=0){
     <tr>
         <td colspan="3" align="center">
 
-            <button id="guardar">
+            <button id="guardar" class='btn btn-primary'>
                 Guardar
             </button>
         </td>

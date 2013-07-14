@@ -7,7 +7,7 @@
     $data = $obj->getall();
     //var_dump($dataUsers);
 ?>
-<input type="hidden" id="nombre_archivo" value="radicacion/index_proveedor.php" />
+<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_proveedor.php" />
 <div id="operaciones"> 
 	<table>
     	<thead>
@@ -15,12 +15,12 @@
         <tbody>
         	<tr>
             	<td>
-                	<button class="busqueda">
+                	<button class="busqueda btn btn-success">
                     	Buscar
                 	</button>
                 </td>
                 <td>
-                    <button class="nuevoReg">
+                    <button class="nuevoReg btn btn-primary">
                         Nuevo Proveedor
                     </button>
                 </td>
@@ -80,4 +80,4 @@
     </table>
     
 </div>
-<script type="text/javascript" src="radicacion/js/proveedor.js"></script>
+<script type="text/javascript" src="<? echo $SERVER_NAME?>radicacion/js/proveedor.js"></script>

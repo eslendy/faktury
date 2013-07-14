@@ -1,0 +1,25 @@
+#--------APACHE SETTINGS---#
+DirectoryIndex  index.shtml index.php
+Options -Indexes -Multiviews
+##ErrorDocument 404 /404.php
+
+#--------PHP SETTINGS------#
+php_flag register_globals off
+php_flag magic_quotes_gpc off
+php_flag display_errors off
+php_value upload_max_filesize 1000M
+php_value post_max_size 1000M
+php_value max_execution_time 86400
+
+#--------REWRITE RULES-----#
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_URI} \.(js|css|jpe?g|gif|png|bmp|ico)$ [NC]
+RewriteRule ^(.*)/(.*)/(.*)/$ index.php?c=$1/$2.php&p=$3 [L]
+RewriteRule ^(.*)/(.*)/$ index.php?c=$1/$2.php [L]
+RewriteRule ^(.*)/([a-zA-Z0-9-_]+)$ /$1/$2.php [L]
+RewriteRule ^([a-zA-Z0-9-_]+)/$ index.php?c=$1/index.php&p=$3 [L]
+RewriteRule ^index$ index.php [L]

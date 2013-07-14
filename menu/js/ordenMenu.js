@@ -29,7 +29,7 @@
 			$.ajax({
 				type:'POST',
 				data: valores,
-				url:'menu/ajax/saveOrdenMenu.php',
+				url:init.XNG_WEBSITE_URL+'menu/ajax/saveOrdenMenu.php',
 				success:function(msg){
 					alert(msg);
 					location.reload();

@@ -7,7 +7,7 @@ var _buscar = function(){
 	_filtrar("#descripcion_search", "#reporte", "DESCRIPCIÓN", _cargarPaginacion);
 };
 var _nuevoReg = function(){
-	_ajax("perfiles/ajax/form_add_perfil.php", "", function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"perfiles/ajax/form_add_perfil.php", "", function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -23,7 +23,7 @@ var _nuevoReg = function(){
 };
 
 var _editarReg = function(idperfil){
-	_ajax("perfiles/ajax/form_edit_perfil.php", "idperfil="+idperfil, function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"perfiles/ajax/form_edit_perfil.php", "idperfil="+idperfil, function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -38,7 +38,7 @@ var _editarReg = function(idperfil){
 	});
 };
 var _asigPermisos = function(idperfil){
-	_ajax("perfiles/ajax/form_perfil_permisos.php", "idperfil="+idperfil, function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"perfiles/ajax/form_perfil_permisos.php", "idperfil="+idperfil, function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -67,7 +67,7 @@ var _verPermisos = function(e){
 }
 var _guardarPerfil = function(tipo){
 	if($("#frmPerfil").validationEngine('validate') ==true){				
-		_guardar("perfiles/ajax/save.php?type="+tipo, $("#frmPerfil").serialize(), function(html_response){
+		_guardar(init.XNG_WEBSITE_URL+"perfiles/ajax/save.php?type="+tipo, $("#frmPerfil").serialize(), function(html_response){
 			switch(html_response){
 				case '1':
 					alert("Perfil Guardado con Éxito!!");

@@ -1,6 +1,6 @@
 var _guardarRadicacionMods = function(tipo, frm, mod){
 	if($(frm).validationEngine('validate') ==true){				
-		_guardar("radicacion/ajax/save.php?type="+tipo, $(frm).serialize(), function(html_response){
+		_guardar(init.XNG_WEBSITE_URL+"radicacion/ajax/save.php?type="+tipo, $(frm).serialize(), function(html_response){
 			switch(html_response){
 				case '1':
 					alert(mod+" Guardado con Éxito!!");
@@ -16,7 +16,7 @@ var _guardarRadicacionMods = function(tipo, frm, mod){
 };
 
 var _loadFormulariosAdd = function(caso, tipo, frm, mod){
-	_ajax("radicacion/ajax/form_add_radicacion.php?case="+caso, "", function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"radicacion/ajax/form_add_radicacion.php?case="+caso, "", function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -32,7 +32,7 @@ var _loadFormulariosAdd = function(caso, tipo, frm, mod){
 };
 
 var _loadFormulariosEdit = function(caso, tipo, frm, mod, datosPost){
-	_ajax("radicacion/ajax/form_edit_radicacion.php?case="+caso, datosPost, function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"radicacion/ajax/form_edit_radicacion.php?case="+caso, datosPost, function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -48,7 +48,7 @@ var _loadFormulariosEdit = function(caso, tipo, frm, mod, datosPost){
 };
  var _anularRegRad =function(tipo,datosPost, mod){
  	if(confirm('¿Esta seguro de desactivar este registro?')){
- 		_guardar("radicacion/ajax/save.php?type="+tipo, datosPost, function(html_response){
+ 		_guardar(init.XNG_WEBSITE_URL+"radicacion/ajax/save.php?type="+tipo, datosPost, function(html_response){
 			switch(html_response){
 				case '1':
 					alert(mod+" Desactivado con Éxito!!");
@@ -64,5 +64,5 @@ var _loadFormulariosEdit = function(caso, tipo, frm, mod, datosPost){
  };
 
 $(function(){
-     _loadContenido('radicacion/index_factura.php');
+     _loadContenido(init.XNG_WEBSITE_URL+'radicacion/index_factura.php');
 });

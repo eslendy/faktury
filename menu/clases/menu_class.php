@@ -1,8 +1,17 @@
 <?php
+if(isset($_SERVER) && isset($_SERVER['SERVER_NAME'])){
+	$SERVER_NAME = 'http://'.$_SERVER['SERVER_NAME'].'/';
+        
+        define('XNG_WEBSITE_URL', $SERVER_NAME);
+}
+
 class menu extends BD{
 	public function __construct($conexion){
 		$this->BD($conexion);
+                include($_SERVER['DOCUMENT_ROOT'].'xng/lib/bootstrap.php');
+                $this->Faktury = new \Faktury\Data\FakturyRepository();
 	}
+      
 
 	public function _menu_sql($campos="*", $where="", $groupby="", $orderby=""){
 		$sql="SELECT ".$campos." 
@@ -19,7 +28,9 @@ class menu extends BD{
 
 	private function get_menus($idperfil, $padre){
 		$campos ="m.idmenu, m.descripcion, m.enlace, m.orden";
-		$where="pe.idperfil=".$idperfil." AND m.estado=1 AND p.ver=1 AND m.visible=1 AND m.padre=".$padre;
+		$where="pe.idperfil=".$idperfil." AND m.estado=1 AND p.ver=1 AND m.visible=1";
+                 //   if($padre)
+                        $where .= " AND m.padre=".$padre;
 		$groupby = "m.idmenu";
 		$orderby = "m.orden";
 		return $this->consultar($this->_menu_sql($campos,$where,$groupby,$orderby));
@@ -37,7 +48,7 @@ class menu extends BD{
 		if(!empty($padres)){
 			foreach ($padres as $p) {
 				$html.='<li>';
-				$html.='<a href="'.(($p['enlace']=="")?'#':"index.php?c=".base64_encode($p['enlace'])."&p=".base64_encode($p['idmenu'])).'">'.$p['descripcion'].'</a>';
+				$html.='<a href="'.(($p['enlace']=="")?'#': XNG_WEBSITE_URL .($p['enlace'])).'">'.$p['descripcion'].'</a>';
 				$html.=$this->make_menu($idperfil,$p['idmenu']);
 				$html.='</li>';
 			}
@@ -45,15 +56,21 @@ class menu extends BD{
 		}
 	}
 	public function menu_lateral($idperfil,$padre){
+                
+                $Menu = $this->Faktury->FindIdParentBySeoName(ltrim($_SERVER['REQUEST_URI'], '/'));
+                //var_dump($Menu);
 		$campos ="m.idmenu, m.descripcion, m.enlace, m.orden";
-		$where="pe.idperfil=".$idperfil." AND m.estado=1 AND p.ver=1 AND m.visible=0 AND m.padre=".$padre;
+		$where="pe.idperfil=".$idperfil." AND m.estado=1 AND p.ver=1 AND m.visible=0";
+              //   if($padre)
+                     $where .= " AND m.padre=".$Menu['idmenu'];
 		$groupby = "m.idmenu";
 		$orderby = "m.orden";
-		$padres= $this->consultar($this->_menu_sql($campos,$where,$groupby,$orderby));
+                $padres= $this->consultar($this->_menu_sql($campos,$where,$groupby,$orderby));
 		$html='<ul>';
+                
 		if(!empty($padres)){
 			foreach ($padres as $p) {
-				$html.='<li onclick="cargar_contenido(this)" id="'.$p['enlace'].'" value="'.$p['idmenu'].'">';
+				$html.='<li onclick="cargar_contenido(this)" id="'.XNG_WEBSITE_URL.''.$p['enlace'].'" value="'.$p['idmenu'].'">';
 				$html.='<a>'.$p['descripcion'].'';
 				$html.='<span></span>';
 				$html.='</a>';

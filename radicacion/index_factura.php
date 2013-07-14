@@ -7,7 +7,7 @@
     $dataFacturas = $facturas->getallFacturas();
     //var_dump($dataFacturas);
 ?>
-<input type="hidden" id="nombre_archivo" value="radicacion/index_factura.php" />
+<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_factura.php" />
 <div id="operaciones"> 
 	<table>
     	<thead>
@@ -15,12 +15,12 @@
         <tbody>
         	<tr>
             	<td>
-                	<button class="busqueda">
+                	<button class="busqueda btn btn-success">
                     	Buscar
                 	</button>
                 </td>
                 <td>
-                    <button class="nuevoReg">
+                    <button class="nuevoReg btn btn-primary">
                         Nueva Factura
                     </button>
                 </td>
@@ -88,4 +88,4 @@
     </table>
     
 </div>
-<script type="text/javascript" src="radicacion/js/factura.js"></script>
+<script type="text/javascript" src="<? echo $SERVER_NAME?>radicacion/js/factura.js"></script>

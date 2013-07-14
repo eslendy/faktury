@@ -1,4 +1,5 @@
 <?php
+
     include("../vigiaAjax.php");
     include("../libphp/config.inc.php");
     include("../libphp/mysql.php");
@@ -9,7 +10,7 @@
     $dataFacturas = $facturas->getallFacturas("f.estado=1");
     //var_dump($dataFacturas);
 ?>
-<input type="hidden" id="nombre_archivo" value="auditoria_financiera/index_factura.php" />
+<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>auditoria_financiera/index_factura.php" />
 <div id="operaciones"> 
 	<table>
     	<thead>
@@ -17,7 +18,7 @@
         <tbody>
         	<tr>
             	<td>
-                	<button class="busqueda">
+                	<button class="busqueda btn btn-success">
                     	Buscar
                 	</button>
                 </td>
@@ -94,4 +95,4 @@
     </table>
     
 </div>
-<script type="text/javascript" src="auditoria_financiera/js/factura.js"></script>
+<script type="text/javascript" src="<? echo $SERVER_NAME; ?>auditoria_financiera/js/factura.js"></script>

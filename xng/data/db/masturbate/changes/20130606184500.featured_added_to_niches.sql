@@ -1,0 +1,1 @@
+ALTER TABLE `niches` ADD COLUMN `featured` TINYINT UNSIGNED DEFAULT 1 NOT NULL AFTER `orientation`; 

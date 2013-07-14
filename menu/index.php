@@ -4,7 +4,7 @@
     	<span>Menú	</span>
     </div>
     <nav>
-        <?=$menu->menu_lateral($_SESSION['perfil'],base64_decode($_GET['p']));?>
+        <?=$menu->menu_lateral($_SESSION['perfil'],($_GET['c']));?>
     </nav>
 
 </div>
@@ -18,4 +18,4 @@
 		//endif;?>
     </div>
 </div>
-<script src="menu/js/menu.js"></script>
+<script src="<? echo $SERVER_NAME; ?>menu/js/menu.js"></script>

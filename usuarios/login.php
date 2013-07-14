@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="tdButton">
-                            <button id="btnacceso" name="btnacceso"   >
+                            <button id="btnacceso" name="btnacceso"  class="btn btn-success" >
                                 <span>Entrar</span>
                             </button>
                         </td>

@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS `masturbate.test`;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`masturbate.test` /*!40100 DEFAULT CHARACTER SET latin1 */;

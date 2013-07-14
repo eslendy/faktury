@@ -204,7 +204,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
             <tbody>
                 <tr>
                     <td align="right">
-                        <button class="guardarDaata">
+                        <button class="guardarDaata btn btn-primary">
                             Guardar
                         </button>
                     </td>

@@ -22,7 +22,7 @@ var _anularReg = function(id) {
 }
 var nuevo_reg_load = function(){
 	_fechaFields();
-	_autocompletar("#autoc-idproveedor", "radicacion/ajax/busqueda.php?case=auto_proveedor", function(ui){
+	_autocompletar("#autoc-idproveedor", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=auto_proveedor", function(ui){
 		$("#idproveedor").val(ui.item.id);
 	}, '')
 }

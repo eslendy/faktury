@@ -7,7 +7,7 @@ $(function(){
 			$.ajax({
 				type:'POST',
 				data: $("#frmmenu").serialize(),
-				url:'menu/ajax/editMenu.php',
+				url:init.XNG_WEBSITE_URL+'menu/ajax/editMenu.php',
 				success:function(msg){
 							alert(msg);
 							location.reload();

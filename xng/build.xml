@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Phing build file for Masturbate
+-->
+<project name="Masturbate" basedir="." default="help">
+
+
+    <!-- Set base path  -->
+    <property name="basePath" value="."/>
+
+    <!-- Help screen -->
+    <target name="help">
+        <echo>
+
+        Masturbate's build script
+        =======================================================================
+
+        usage:    phing [target]
+
+        targets:
+                  api      Build API documentation
+                  tests    Run unit tests and generate a code coverage report
+
+        </echo>
+    </target>
+
+
+    <!-- Build API documentation -->
+    <target name="api">
+        <exec command="apigen --source ${basePath}/lib/Masturbate --destination ${basePath}/docs/api --title 'Masturbate' --php no --todo yes" dir="${basePath}" passthru="true" />
+    </target>
+
+
+    <!-- Run unit tests and generate a code coverage report -->
+    <target name="tests">
+        <exec command="phpunit --verbose" dir="${basePath}" passthru="true" />
+    </target>
+
+
+</project>

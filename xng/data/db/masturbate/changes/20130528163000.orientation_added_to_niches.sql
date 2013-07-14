@@ -1,0 +1,1 @@
+ALTER TABLE `niches` ADD COLUMN `orientation` TINYINT(4) UNSIGNED NULL AFTER `record_num`;

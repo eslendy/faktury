@@ -1,4 +1,5 @@
 <?php
+
 	session_start();
 	//verificación de q esxitan las variables de session y q el usuario se haya loegeado
 	if(isset($_SESSION['login']) && $_SESSION['login']==1){

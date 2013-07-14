@@ -8,7 +8,7 @@ var _buscar = function(){
 	_filtrar("#apellido_search", "#reporte", "APELLIDOS", _cargarPaginacion);
 };
 var _nuevoReg = function(){
-	_ajax("usuarios/ajax/form_add_usuario.php", "", function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"usuarios/ajax/form_add_usuario.php", "", function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -23,7 +23,7 @@ var _nuevoReg = function(){
 	});
 };
 var _addPerfil =function(idusuario){
-	_ajax("usuarios/ajax/form_add_perfil.php", "idusuarios="+idusuario, function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"usuarios/ajax/form_add_perfil.php", "idusuarios="+idusuario, function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -39,7 +39,7 @@ var _addPerfil =function(idusuario){
 };
 
 var _editarReg = function(idusuario){
-	_ajax("usuarios/ajax/form_edit_usuario.php", "idusuarios="+idusuario, function(html_response){
+	_ajax(init.XNG_WEBSITE_URL+"usuarios/ajax/form_edit_usuario.php", "idusuarios="+idusuario, function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -61,7 +61,7 @@ var _cargarPaginacion = function(){
 
 var _guardarUsuario = function(tipo){
 	if($("#frmUsuario").validationEngine('validate') ==true){				
-		_guardar("usuarios/ajax/save.php?type="+tipo, $("#frmUsuario").serialize(), function(html_response){
+		_guardar(init.XNG_WEBSITE_URL+"usuarios/ajax/save.php?type="+tipo, $("#frmUsuario").serialize(), function(html_response){
 			switch(html_response){
 				case '1':
 					alert("Usuario Guardado con Éxito!!");

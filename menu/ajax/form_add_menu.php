@@ -74,7 +74,7 @@ try{
         </tr>
         <tr>
         	<td colspan="2" align="center">
-            	<input type="button" value="Guardar" name="guardar" id="guardar"/>
+            	<input type="button" value="Guardar" name="guardar" id="guardar" class='btn btn-primary'/>
                 <input type="reset" value="Limpiar" name="clean" id="clean" />
             </td>
         </tr>

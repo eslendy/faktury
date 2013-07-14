@@ -19,28 +19,28 @@ var _anularReg = function(id) {
 }
 var nuevo_reg_load = function(){
 	_fechaFields();
-	_autocompletar("#autoc-idunidad_atencion", "radicacion/ajax/busqueda.php?case=auto_und_atencion&where=", function(ui){
+	_autocompletar("#autoc-idunidad_atencion", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=auto_und_atencion&where=", function(ui){
 		$("#idunidad_atencion").val(ui.item.id);
 	}, '')
-	_autocompletar("#autoc-idcentralizada", "radicacion/ajax/busqueda.php?case=auto_und_atencion&where= AND centralizada=0", function(ui){
+	_autocompletar("#autoc-idcentralizada", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=auto_und_atencion&where= AND centralizada=0", function(ui){
 		$("#idcentralizada").val(ui.item.id);
 	}, '')
-	_autocompletar("#autoc-idcentralizadora", "radicacion/ajax/busqueda.php?case=auto_und_atencion&where= AND centralizada=1", function(ui){
+	_autocompletar("#autoc-idcentralizadora", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=auto_und_atencion&where= AND centralizada=1", function(ui){
 		$("#idcentralizadora").val(ui.item.id);
 	}, '')
 
-	_autocompletar("#autoc-idpaciente", "radicacion/ajax/busqueda.php?case=auto_paciente", function(ui){
+	_autocompletar("#autoc-idpaciente", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=auto_paciente", function(ui){
 		$("#idpaciente").val(ui.item.id);
 	}, '')
-	_autocompletar("#autoc-idunidad", "radicacion/ajax/busqueda.php?case=auto_und", function(ui){
+	_autocompletar("#autoc-idunidad", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=auto_und", function(ui){
 		$("#idunidad").val(ui.item.id);
 	}, '')
-	_autocompletar("#autoc-idgrado", "radicacion/ajax/busqueda.php?case=auto_grado", function(ui){
+	_autocompletar("#autoc-idgrado", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=auto_grado", function(ui){
 		$("#idgrado").val(ui.item.id);
 	}, '')
-	_autocompletar("#autoc-idproveedor", "radicacion/ajax/busqueda.php?case=auto_proveedor", function(ui){
+	_autocompletar("#autoc-idproveedor", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=auto_proveedor", function(ui){
 		$("#idproveedor").val(ui.item.id);
-		_ajax("radicacion/ajax/busqueda.php?case=select_contrato", "idproveedor="+ui.item.id, function(html_response){
+		_ajax(init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=select_contrato", "idproveedor="+ui.item.id, function(html_response){
 			_llenarEtiqueta("#td_contrato",html_response);
 		});
 	}, '')

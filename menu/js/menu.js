@@ -83,7 +83,7 @@ var _ordenar = function(url_contenido, idmenu, idpadre){
 
 var guardar_menu = function(){
  	if(validar()){		
-		_ajax('menu/ajax/saveMenu.php?type=addmenu', $("#frm_add_menu").serialize(), function(html_response){
+		_ajax(init.XNG_WEBSITE_URL+'menu/ajax/saveMenu.php?type=addmenu', $("#frm_add_menu").serialize(), function(html_response){
 			if(html_response==1){
 				_msgexito("Menú Guardado!!",'#mensaje');
 			}else{
@@ -97,7 +97,7 @@ var guardar_menu = function(){
 var editar_menu = function(){
  	if(validar()){	
  		//alert($("#frm_edit_menu").serialize());	
-		_ajax('menu/ajax/saveMenu.php?type=editmenu', $("#frm_edit_menu").serialize(), function(html_response){
+		_ajax(init.XNG_WEBSITE_URL+'menu/ajax/saveMenu.php?type=editmenu', $("#frm_edit_menu").serialize(), function(html_response){
 			if(html_response==1){
 				_msgexito("Menú Actualizado!!",'#mensaje');
 			}else{
@@ -109,7 +109,7 @@ var editar_menu = function(){
 
 var guardar_orden = function(){
  	if(validar()){	
-		_ajax('menu/ajax/saveMenu.php?type=orden', valores, function(html_response){
+		_ajax(init.XNG_WEBSITE_URL+'menu/ajax/saveMenu.php?type=orden', valores, function(html_response){
 			if(html_response==1){
 				_msgexito("Menú Ordenado!!",'#mensaje');
 			}else{
@@ -159,5 +159,5 @@ var selectF = function(f,e){
 };
 
 $(function(){
-	_agregar('menu/ajax/form_add_menu.php');
+	_agregar(init.XNG_WEBSITE_URL+'menu/ajax/form_add_menu.php');
 });

@@ -41,13 +41,13 @@ $menu2=$menu->consultar($menu->_menu_sql("m.descripcion, m.idmenu, m.orden","m.p
                 	<ul id="sortable">
                     		<li id="1_0" value="0">
                             	<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-                            	<a href="#" onclick="_ordenar('menu/ajax/ordenMenu.php',0,0)">Barra Men&uacute;</a><br />
+                            	<a href="#" onclick="_ordenar('<? echo $SERVER_NAME;?>menu/ajax/ordenMenu.php',0,0)">Barra Men&uacute;</a><br />
                             </li>
                     	<? foreach($menu1 as $m){ ?>
                         	<li id="1_<?=$m['idmenu']?>" value="<?=$m['orden']?>">
                             	<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
 								<?=$m['descripcion']?> 
-                            	<a href="#" onclick="_ordenar('menu/ajax/ordenMenu.php',<?=$m['idmenu']?>,<?=$m['idmenu']?>)">Sub Men&uacute;</a>
+                            	<a href="#" onclick="_ordenar('<? echo $SERVER_NAME;?>menu/ajax/ordenMenu.php',<?=$m['idmenu']?>,<?=$m['idmenu']?>)">Sub Men&uacute;</a>
                             </li>
                         <? }?>
                     </ul>
@@ -58,7 +58,7 @@ $menu2=$menu->consultar($menu->_menu_sql("m.descripcion, m.idmenu, m.orden","m.p
                         	<li id="2_<?=$m['idmenu']?>" value="<?=$m['orden']?>">
                             	<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
 								<?=$m['descripcion']?> 
-                                <a href="#" onclick="_ordenar('menu/ajax/ordenMenu.php',<?=$m['idmenu']?>,<?=$m['idmenu']?>)">Sub Men&uacute;</a>
+                                <a href="#" onclick="_ordenar('<? echo $SERVER_NAME;?>menu/ajax/ordenMenu.php',<?=$m['idmenu']?>,<?=$m['idmenu']?>)">Sub Men&uacute;</a>
                             </li>
                         <? }?>
                     </ul>
@@ -67,7 +67,7 @@ $menu2=$menu->consultar($menu->_menu_sql("m.descripcion, m.idmenu, m.orden","m.p
            
             <tr>
                 <td colspan="3" align="center">
-                    <input type="button" value="Guardar" name="guardar" id="guardar" />
+                    <input type="button" value="Guardar" name="guardar" id="guardar" class='btn btn-primary'/>
                 </td>
             </tr>
             </tbody>

@@ -15,7 +15,7 @@ $dataA = $auditoria->getOne($_GET['idauditoria_financiera'],$_GET['idfactura']);
 $data = $factura->getFactura($_GET['idfactura']);
 //print_r($data);
 ?>
-<input type="hidden" id="nombre_archivo" value="auditoria_financiera/index_factura.php" />
+<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>auditoria_financiera/index_factura.php" />
 <div id="contenido" class="dividido">
 <div class="partes">
     <fieldset>
@@ -42,7 +42,7 @@ $data = $factura->getFactura($_GET['idfactura']);
             <tbody>
                 <tr>
                     <td align="right">
-                        <button class="guardarDaata">
+                        <button class="guardarDaata btn btn-primary">
                             Guardar
                         </button>
                     </td>
