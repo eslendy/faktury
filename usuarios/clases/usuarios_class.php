@@ -15,8 +15,9 @@ class usuarios extends BD{
 		return $sql;
 	}
 	public function getAcceso($pass, $login){
-		$sql= $this->_usuarios_sql("*", "MD5(u.usuario)='".md5($login)."' AND u.password_md5 = '".md5($pass)."' AND u.estado = 1");
-		$rs=$this->consultar($sql);
+		$sql= $this->_usuarios_sql("*", "u.usuario='".$login."' AND u.password_md5 = '".md5($pass)."' AND u.estado = 1");
+		//echo $sql;
+                $rs=$this->consultar($sql);
 		if($rs[0]['idusuarios']>0){
 			return $rs[0];
 		}else{

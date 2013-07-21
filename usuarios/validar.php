@@ -1,15 +1,19 @@
 <?php
+
 	//session_name("pos_sede");
 	session_start();
 	session_set_cookie_params(0,"/",$_SERVER['HTTP_HOST'],0);
 	try{
+           
 		if (isset($_POST["ps"]) && trim($_POST["ps"])!=""){
+                    
 			require("../libphp/config.inc.php");
 			require("../libphp/mysql.php");
 			require("clases/usuarios_class.php");
 			$oUsuario = new usuarios($conexion['local']);	
-			$dataUsuario=$oUsuario->getAcceso($_POST["ps"], $_POST['lg']);	
-		
+                         //var_dump($_POST);
+			$dataUsuario=$oUsuario->getAcceso($_POST["ps"], $_POST["g"]);	
+                        //var_dump($dataUsuario);
 			$_SESSION['timeStart']=date('y-m-d h:i:s');
 			$_SESSION['login']=1;
 			$_SESSION['usrid']=$dataUsuario['idusuarios'];
