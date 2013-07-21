@@ -8,18 +8,7 @@ $dataFacturas = $facturas->getallFacturas();
 //var_dump($dataFacturas);
 ?>
 
-<div class="block-heading">
-    <span class="block-icon pull-right">
-        <button class="busqueda btn btn-success">
-            Buscar
-        </button>
-        <button class="btn btn-primary nuevafactura" onclick="$('#content_').collapse('hide');">
-            Nueva Factura
-        </button>
-    </span>
 
-    <a href="#content_" data-toggle="collapse" class=""> $Table </a>
-</div>
 <div class="collapse in" id="content_">
     <div class="table-option clearfix">
 
@@ -104,32 +93,6 @@ $dataFacturas = $facturas->getallFacturas();
         </table>
 
     </div>
-    <script>
-                                    $(document).ready(function() {
-                                        $('.nuevafactura').click(function() {
-                                            $('.add_factura').fadeIn();
-                                            $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_add_radicacion.php', {case: 'factura'}, function(data) {
-                                                console.log(data)
-                                                $('.load_content_factura').html(data);
-                                            })
-                                        })
-                                    })
-    </script>
+   
     <script type="text/javascript" src="<? echo $SERVER_NAME ?>radicacion/js/factura.js"></script>
-</div>
-<div class="clear"></div>
-<div class="block span12 add_factura" style="display: none">
-    <p class="block-heading">
-        <span class="pull-right">
-
-            <button class="btn btn-danger" onclick="$('.add_factura').fadeOut();
-                                                $('#content_').collapse('show');"> Close <i class="icon-cog"></i></button>
-        </span>
-
-        <span>Nueva Factura</span>
-    </p>                  
-    <div class="block-body">
-        <div class="load_content_factura"></div>
-    </div>
-
 </div>

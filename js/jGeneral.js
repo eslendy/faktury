@@ -237,3 +237,12 @@ var _verOcultarElemento = function(id) {
     }
 };
 
+$(document).ready(function() {
+    $('.nuevo').click(function() {
+        $('.add').fadeIn();
+        $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_add_radicacion.php', {case: 'factura'}, function(data) {
+            console.log(data)
+            $('.load_content').html(data);
+        })
+    })
+})
