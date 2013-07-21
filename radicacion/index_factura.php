@@ -8,24 +8,17 @@ $dataFacturas = $facturas->getallFacturas();
 //var_dump($dataFacturas);
 ?>
 
-
 <div class="block-heading">
-    <a href="#content_" data-toggle="collapse">
-        <span>Table
+    <span class="block-icon pull-right">
+        <button class="busqueda btn btn-success">
+            Buscar
+        </button>
+        <button class="btn btn-primary nuevafactura" onclick="$('#content_').collapse('hide');">
+            Nueva Factura
+        </button>
+    </span>
 
-            <span class="pull-right">
-                <button class="busqueda btn btn-success">
-                    Buscar
-                </button>
-                <button class="btn btn-primary nuevafactura">
-                    Nueva Factura
-                </button>
-                <button data-toggle="modal" class="btn btn-primary" href="#myModal1"><i class="icon-cog"></i></button>
-            </span>
-
-        </span>
-    </a>
-
+    <a href="#content_" data-toggle="collapse" class=""> $Table </a>
 </div>
 <div class="collapse in" id="content_">
     <div class="table-option clearfix">
@@ -129,7 +122,8 @@ $dataFacturas = $facturas->getallFacturas();
     <p class="block-heading">
         <span class="pull-right">
 
-            <button class="btn btn-danger" onclick="$('.add_factura').fadeOut();$('#content_').collapse('show');"> Close <i class="icon-cog"></i></button>
+            <button class="btn btn-danger" onclick="$('.add_factura').fadeOut();
+                                                $('#content_').collapse('show');"> Close <i class="icon-cog"></i></button>
         </span>
 
         <span>Nueva Factura</span>
