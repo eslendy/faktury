@@ -30,9 +30,9 @@
 </div>
 
 <div id="contenido">
-    <table id="reporte" width="80%" align="center" class="tablesorter">
+    <table id="reporte" class="tablesorter table table-hover">
         <thead>
-            <tr id="trBuscar" class="oculto">
+            <? /*<tr id="trBuscar" class="oculto">
                 <td><input type="search" id="numero_contrato_search" placeholder="Buscar x No. Contrato" class="search_txt" /></td>
                 <td><input type="search" id="fecha_contrato_search" placeholder="Buscar x fecha contrato" class="search_txt fecha" /></td>
                 <td><input type="search" id="valor_contrato_search" placeholder="Buscar x valor" class="search_txt" /></td>
@@ -41,7 +41,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>
+            </tr>*/?>
             <tr>
                 <th># CONTRATO</th>
                 <th>FECHA CONTRATO</th>

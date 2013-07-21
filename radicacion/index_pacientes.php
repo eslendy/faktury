@@ -30,9 +30,9 @@
 </div>
 
 <div id="contenido">
-    <table id="reporte" width="80%" align="center" class="tablesorter">
+    <table id="reporte" class="tablesorter table table-hover">
         <thead>
-            <tr id="trBuscar" class="oculto">
+            <? /*<tr id="trBuscar" class="oculto">
                 <td></td>
                 <td><input type="search" id="doc_paciente_search" placeholder="Buscar x docuemnto" class="search_txt fecha" /></td>
                 <td><input type="search" id="nombre_paciente_search" placeholder="Buscar x nombre" class="search_txt fecha" /></td>
@@ -41,7 +41,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>
+            </tr>*/ ?>
             <tr>
                 <th>ID</th>
                 <th>DOCUMENTO</th>

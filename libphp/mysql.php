@@ -44,6 +44,14 @@ class BD{
 			throw new Exception("Error al ejecutar la consulta '".$sql."',  MySQL Error ".mysql_error());
 		}
 	}
+        public function consultar_($sql) {
+		if($rs = mysql_query($sql, $this->conn)){
+			$reg=mysql_fetch_array($rs);
+			return $reg;		
+		}else{
+			throw new Exception("Error al ejecutar la consulta '".$sql."',  MySQL Error ".mysql_error());
+		}
+	}
 	public function ejecutar($sql) {
 		if(mysql_query($sql, $this->conn)){		
 			return true;		

@@ -29,7 +29,7 @@
 </div>
 
 <div id="contenido">
-    <table id="reporte" width="80%" align="center" class="tablesorter">
+    <table id="reporte" class="tablesorter table table-hover">
         <thead>
             <tr id="trBuscar" class="oculto">
                 <td></td>

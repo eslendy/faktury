@@ -29,9 +29,9 @@
 </div>
 
 <div id="contenido">
-    <table id="reporte" width="80%" align="center" class="tablesorter">
+    <table id="reporte" widclass="tablesorter table table-hover">
         <thead>
-            <tr id="trBuscar" class="oculto">
+            <? /*<tr id="trBuscar" class="oculto">
                 <td><input type="search" id="no_rad_search" placeholder="Rad" class="search_txt" size="4" /></td>
                 <td><input type="search" id="fecha_rad_search" placeholder="Buscar x fecha" class="search_txt fecha" /></td>
                 <td><input type="search" id="factura_search" placeholder="Buscar x No. Factura" class="search_txt" /></td>
@@ -40,7 +40,7 @@
                 <td><input type="search" id="paciente_search" placeholder="Buscar x paciente" class="search_txt" /></td>
                 <td></td>
                 <td></td>
-            </tr>
+            </tr> */ ?>
             <tr>
                 <th title="No. Radicado">RAD</th>
                 <th title="Fecha Radicación">FECHA RAD.</th>

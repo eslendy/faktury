@@ -1107,3 +1107,7 @@
     overflow: visible !important;
   }
 }
+
+[class*="span"] {
+    margin-left:0px;
+}

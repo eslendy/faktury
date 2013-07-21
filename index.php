@@ -15,16 +15,15 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 
 require("vigia.php");
-
+//var_dump($_REQUEST);
 //error_reporting(E_ALL & ~E_NOTICE);
 
 try {
     //carge de archivos de configuracion basicos
     require("libphp/config.inc.php");
     require("libphp/mysql.php");
-    
-    require($_SERVER['DOCUMENT_ROOT'].'xng/lib/bootstrap.php');
 
+    require($_SERVER['DOCUMENT_ROOT'] . 'xng/lib/bootstrap.php');
     ?>
     <!DOCTYPE html>
     <html>
@@ -32,8 +31,6 @@ try {
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <title>.·:Faktury:·.</title>        
             <link href="<? echo $SERVER_NAME; ?>css/faktury/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
-            <link href="<? echo $SERVER_NAME; ?>css/main.css" rel="stylesheet" type="text/css" />
-            <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>js/tablesorter/themes/blue/style.css" >
             <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>js/tablesorter/addons/pager/jquery.tablesorter.pager.css"  >
             <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>css/jPages.css">
             <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>css/validationEngine.jquery.css">
@@ -47,8 +44,9 @@ try {
             <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jPages.js"></script>
             <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine-es.js"></script>
             <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine.js"></script>
-            <script type="text/javascript" src="<? echo $SERVER_NAME; ?>bootstrap/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="<? echo $SERVER_NAME; ?>bootstrap/js/bootstrap.min.js"></script>            
             <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>bootstrap/css/bootstrap.css">
+            <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>bootstrap/css/bootstrap-responsive.css">
         </head>
 
 
@@ -57,27 +55,36 @@ try {
         $menu = new menu($conexion['local']);
         ?>
         <body>
-            <header>
-                <div id="encabezado"></div>
-                <div id="usuario"><?= $_SESSION['nombre_usr'] ?></div>
-                <nav id="barra_menu">
-                    <?= $menu->make_menu($_SESSION['perfil'], 0); ?>
-                </nav>
-            </header>
-            <!--<div id="breadcrumbs">
-                    <a href="index.php">INICIO</a><span></span>
-            </div>-->
-            <div id="cuerpo">
-                <?
-               // var_dump($_REQUEST);
-                if (isset($_GET['c']) && !empty($_GET['c']) && ($_GET['c']) != 'index.php') {
-                    include(($_GET['c']));
-                }
-                ?>
-            </div>
-            <footer>
 
-            </footer>
+            <div  class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="brand" href="#">Faktury</a>
+                        <? echo $menu->make_menu($_SESSION['perfil'], 0); ?>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+
+                <header>
+                    <div class="pull-right">Bienvenido, <?= $_SESSION['nombre_usr'] ?></div>
+                </header>
+                
+                <div id="cuerpo">
+                    <?
+                    // var_dump($_REQUEST);
+                    if (isset($_GET['c']) && !empty($_GET['c']) && ($_GET['c']) != 'index.php') {
+                        include(($_GET['c']));
+                    }
+                    ?>
+                </div>
+                <footer>
+
+                </footer>
+
+            </div>
 
         </body>
         <?PHP
@@ -86,6 +93,6 @@ try {
         echo $e->getMessage();
     }
     ?>
-<script type="text/javascript">var init =<?php echo json_encode(Page::loadVars()) ?></script>   
+    <script type="text/javascript">var init =<?php echo json_encode(Page::loadVars()) ?></script>   
 </html>
 

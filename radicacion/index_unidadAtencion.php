@@ -30,15 +30,15 @@
 </div>
 
 <div id="contenido">
-    <table id="reporte" align="center" class="tablesorter">
+    <table id="reporte" class="tablesorter table table-hover">
         <thead>
-            <tr id="trBuscar" class="oculto">
+            <? /*<tr id="trBuscar" class="oculto">
                 <td></td>
                 <td><input type="search" id="descripcion_search" placeholder="Buscar x Descripcion" class="search_txt" /></td>
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>
+            </tr>*/ ?>
             <tr>
                 <th>ID</th>
                 <th>DESCRIPCION</th>
