@@ -2343,7 +2343,7 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) inset;
 
 
 .responsive td, .responsive th {
-    padding: 9px 10px;
+    padding: 0px 10px;
     text-align: left;
 }
 
@@ -3404,4 +3404,11 @@ display: block;
 .row-fluid [class*="span"] {
     margin:0px;
     min-height: 1px;
+}
+
+.block-icon.pull-right .btn{
+    margin-left: 10px;
+}
+.row-fluid .block{
+    margin-top: 20px;
 }
