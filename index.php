@@ -29,7 +29,7 @@ require($_SERVER['DOCUMENT_ROOT'] . 'xng/lib/bootstrap.php');
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Austra - Admin template</title>
+        <title>Faktury - Administracion</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -272,10 +272,10 @@ require($_SERVER['DOCUMENT_ROOT'] . 'xng/lib/bootstrap.php');
                 <div class="container-fluid">
                     <div class="row-fluid">
 
-                        <div class="alert alert-info">
+                       <? /* <div class="alert alert-info">
                             <button data-dismiss="alert" class="close" type="button"><i class="icon-remove"></i></button>
                             <strong>Note :</strong> Add <span class="label label-info">.responsive</span> table to small device.
-                        </div>    
+                        </div>*/ ?>    
                         
                         <div id="menu_secundario" class="pull-left span11">
                             <? echo $menu->menu_lateral($_SESSION['perfil'], ($_GET['c'])); ?>
@@ -283,68 +283,8 @@ require($_SERVER['DOCUMENT_ROOT'] . 'xng/lib/bootstrap.php');
 
                         <div class="row-fluid">
                             <div class="block  block-head-btn span12 unstyled-modal">
-                                <div class="block-heading">
-
-                                    <span class="pull-right">
-                                        <button data-toggle="modal" class="btn btn-primary" href="#myModal1"><i class="icon-cog"></i></button>
-                                    </span>
-
-                                    <div aria-hidden="true" aria-labelledby="myModalLabel1" role="dialog" tabindex="-1" class="modal hide fade" id="myModal1" style="display: none;">
-                                        <div class="modal-header modal-default">
-                                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
-                                            <h3 id="myModalLabel1">Setting</h3>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <form action="#" class="inbox-form">
-
-                                                <table class="responsive table">  
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="td-check"><input type="checkbox"></td>
-                                                            <td class="td-star">Lorem ipsum dolor sit amet, consectetur adipisicing elit!</td>
-                                                        </tr> 
-                                                        <tr>
-                                                            <td class="td-check"><input type="checkbox"></td>
-                                                            <td class="td-star">Similique cumque officia voluptates provident recusandae.</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="td-check"><input type="checkbox"></td>
-                                                            <td class="td-star">Ullam laudantium consectetur at voluptas mollitia saepe in quas provident.</td>
-                                                        </tr> 
-                                                    </tbody>
-                                                </table>                           
-
-                                            </form> 
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button aria-hidden="true" data-dismiss="modal" class="btn btn-primary">Save</button>
-                                        </div>
-                                    </div>  
-
-                                    <a href="#collapse-table-search-dark" data-toggle="collapse">Table</a>
-                                </div>
-                                
-                                <div id="collapse-table-search-dark" class="collapse in">
-
-                                    <div class="table-option clearfix">
-
-                                        <span class="pull-left keywords">
-                                            <form action="#" class="form-inline">
-                                                <input name="q" class="table-form" type="text"  placeholder="Keywords: Ruby, Rails, Django" >
-                                                <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
-                                            </form>
-                                        </span>
-                                        <span class="pull-right">
-                                            <button class="btn btn-danger"><i class="icon-chevron-left"></i></button>
-                                            <button class="btn btn-danger"><i class="icon-chevron-right"></i></button>
-                                        </span>
-
-
-                                    </div>
-
-                                    <div id="cuerpo">
+                                <div id="collapse-table-search-dark">
+                                     <div id="cuerpo">
                                         <?
                                         // var_dump($_REQUEST);
                                         if (isset($_GET['c']) && !empty($_GET['c']) && ($_GET['c']) != 'index.php') {

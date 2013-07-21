@@ -3389,3 +3389,14 @@ display: block;
 #menu_secundario > button.btn{
     margin-left: 15px;
 }
+
+.wrapper-content{
+   margin-top: 23px; 
+}
+
+
+.block .block.span12{
+    margin:0px;
+    border-left: none;
+    border-right: none;
+}

@@ -17,7 +17,7 @@ var _nuevoReg = function(){
 			text : "Cancelar",
 			click : function(){ $("#dialog-addModulo").remove();}
 		}];
-		_dialogo("dialog-addModulo", "50%", "Nuevo Modulo", botones, html_response)
+		//_dialogo("dialog-addModulo", "50%", "Nuevo Modulo", botones, html_response)
 		$("#frmModulo").validationEngine();
 	});
 };

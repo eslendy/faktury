@@ -27,7 +27,7 @@ var _loadFormulariosAdd = function(caso, tipo, frm, mod){
 			click : function(){ $("#dialog-addModRad").remove();}
 		}];
 		_dialogo("dialog-addModRad", "50%", "Agregar "+mod, botones, html_response)
-		$(frm).validationEngine();
+		//$(frm).validationEngine();
 	});
 };
 
