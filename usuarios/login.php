@@ -79,7 +79,7 @@ require($_SERVER['DOCUMENT_ROOT'] . 'xng/lib/bootstrap.php');
             </div>
 
             <div class="social">
-                <p> . </p>
+                <p> FAKTURY </p>
 
                 <a href="#" title="" tabindex="5" class="twitter">
                     <i class="icon-twitter"></i>
