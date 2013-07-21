@@ -277,7 +277,7 @@ require($_SERVER['DOCUMENT_ROOT'] . 'xng/lib/bootstrap.php');
                             <strong>Note :</strong> Add <span class="label label-info">.responsive</span> table to small device.
                         </div>    
                         
-                        <div id="menu_secundario" class="pull-left span12">
+                        <div id="menu_secundario" class="pull-left span11">
                             <? echo $menu->menu_lateral($_SESSION['perfil'], ($_GET['c'])); ?>
                         </div>
 
