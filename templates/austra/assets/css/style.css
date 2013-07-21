@@ -3416,3 +3416,10 @@ display: block;
 .row-fluid .block{
     margin-top: 20px;
 }
+
+form {
+    margin: 0 0 20px;
+    border-left: 1px solid #D3D3D3;
+    border-right: 1px solid #D3D3D3;
+    border-bottom: 1px solid #d3d3d3;
+}
