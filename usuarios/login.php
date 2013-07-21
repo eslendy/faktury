@@ -51,8 +51,8 @@ require($_SERVER['DOCUMENT_ROOT'] . 'xng/lib/bootstrap.php');
         <!-- Page content
                 ================================================== -->
         <section class="signin-container" style="margin-top: 31px;">
-            <a href="dashboard.html" title="AdminFlare" class="header">
-                <img src="/imagenes/disan.png" alt="Sign in to Admin Flare" class="pull-left">
+            <a href="/" title="AdminFlare" class="header">
+                <img src="/imagenes/disan.png" alt="Hospital Militar Regional de Bucaramanga" class="pull-left">
                 <span class="pull-left">
                     Hospital Militar<br>
                     <strong>Regional de Bucaramanga</strong>
@@ -81,15 +81,15 @@ require($_SERVER['DOCUMENT_ROOT'] . 'xng/lib/bootstrap.php');
             <div class="social">
                 <p> . </p>
 
-                <a href="dashboard.html" title="" tabindex="5" class="twitter">
+                <a href="#" title="" tabindex="5" class="twitter">
                     <i class="icon-twitter"></i>
                 </a>
 
-                <a href="dashboard.html" title="" tabindex="6" class="facebook">
+                <a href="#" title="" tabindex="6" class="facebook">
                     <i class="icon-facebook"></i>
                 </a>
 
-                <a href="dashboard.html" title="" tabindex="7" class="google">
+                <a href="#" title="" tabindex="7" class="google">
                     <i class="icon-google-plus"></i>
                 </a>
             </div>
