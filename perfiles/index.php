@@ -15,7 +15,7 @@
 </div>
 <div id="contenedor">
     <div id="operaciones"> 
-    	<table>
+    	<table class="responsive table">
         	<thead>
             </thead>
             <tbody>
@@ -36,7 +36,7 @@
     </div>
     
     <div id="contenido">
-        <table id="reporte" width="80%" align="center" class="tablesorter">
+        <table id="reporte" class="responsive table">
             <thead>
                 <tr id="trBuscar" class="oculto">
                     <td width="5%"></td>

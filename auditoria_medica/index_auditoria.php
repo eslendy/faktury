@@ -10,7 +10,7 @@
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>radicacion/index_factura.php" />
 <div id="operaciones"> 
-	<table>
+	<table class="responsive table">
     	<thead>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@
 </div>
 
 <div id="contenido">
-    <table id="reporte" widclass="tablesorter table table-hover">
+    <table id="reporte" class="responsive table">
         <thead>
             <? /*<tr id="trBuscar" class="oculto">
                 <td><input type="search" id="no_rad_search" placeholder="Rad" class="search_txt" size="4" /></td>

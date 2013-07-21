@@ -1,5 +1,5 @@
 <form id="frmModulo" class="formulario">
-	<table>
+	<table class="responsive table">
 		<thead>
 			<tr>
 				<th colspan="2"><div id="mensaje"></div></th>

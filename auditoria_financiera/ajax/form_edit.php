@@ -24,7 +24,7 @@ $data = $factura->getFactura($_GET['idfactura']);
             <input type="hidden" name="idFactura" id="idFactura" value="<?=$_GET['idfactura']?>" />
             <input type="hidden" name="idusuario" id="idusuario" value="<?=$_SESSION['usrid']?>" />
             <input type="hidden" name="idauditoria_financiera" id="idauditoria_financiera" value="<?=$dataA['idauditoria_financiera']?>" />
-            <table width="100%">
+            <table class="responsive table">
                 <tbody>
                     <tr>
                         <td><label>Auditor Médico</label><br />

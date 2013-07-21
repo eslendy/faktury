@@ -10,7 +10,7 @@ if(isset($_GET['id']) && !empty($_GET['id']) && $_GET['id']!=0){
     $data=$menu->getMenuData("m.idmenu=".$_GET['id']);
 }
 ?>        	
-<form id="frm_edit_menu">
+<form id="frm_edit_menu" class="responsive table">
 	<table align="center" class="tablas_form">
     	<thead>
     	<tr>
@@ -85,7 +85,7 @@ if(isset($_GET['id']) && !empty($_GET['id']) && $_GET['id']!=0){
 		</tbody>
     </table>
 </form>
-<table align="center">
+<table class="responsive table">
 	<tbody>
     <tr>
         <td colspan="3" align="center">

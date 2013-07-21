@@ -9,7 +9,7 @@ $data = $usuario->getUser($_POST['idusuarios']);
 
 <form id="frmUsuario" class="formulario">
 	<input type="hidden" name="idusuarios" id="idusuarios" value="<?=$data['idusuarios']?>" />
-	<table>
+	<table class="responsive table">
 		<thead>
 			<tr>
 				<th colspan="2"><div id="mensaje"></div></th>

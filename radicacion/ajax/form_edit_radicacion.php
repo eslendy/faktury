@@ -22,7 +22,7 @@ switch($_GET['case']){
     	
         <form id="frmRadicacion" class="formulario">
 	        <input type="hidden" name="idFactura" id="idFactura" value="<?=$data['idf']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -161,7 +161,7 @@ switch($_GET['case']){
 	    ?>
 	    <form id="frmUndAtencion" class="formulario">
 	    	<input type="hidden" name="idunidad_atencion" id="idunidad_atencion" value="<?=$dataUnds['idunidad_atencion']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -200,7 +200,7 @@ switch($_GET['case']){
     ?>
     <form id="frmcontrato" class="formulario">
         <input type="hidden" name="idcontrato" id="idcontrato" class="validate[required]" value="<?=$data['idcontrato']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -245,7 +245,7 @@ switch($_GET['case']){
         ?>
         <form id="frmGrados" class="formulario">
             <input type="hidden" name="idgrado" id="idgrado" value="<?=$data['idgrado']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -279,7 +279,7 @@ switch($_GET['case']){
         ?>
         <form id="frmFuerza" class="formulario">
             <input type="hidden" name="idfuerza" id="idfuerza" value="<?=$data['idfuerza']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -317,7 +317,7 @@ switch($_GET['case']){
 	?>
     	<form id="frmPaciente" class="formulario">
 		    <input type="hidden" name="idpaciente" id="idpaciente" value="<?=$data['idpaciente']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -365,7 +365,7 @@ switch($_GET['case']){
 	?>
     	<form id="frmProveedor" class="formulario">
         	<input type="hidden" name="idproveedor" id="idproveedor" value="<?=$data['idproveedor']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -406,7 +406,7 @@ switch($_GET['case']){
 	    ?>
 	    <form id="frmUnidad" class="formulario">
 	    	<input type="hidden" name="idunidad" id="idunidad" value="<?=$dataUnds['idunidad']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -435,7 +435,7 @@ switch($_GET['case']){
         $data = $paren->getOne($_POST['idparentesco']);?>
         <form id="frmparentesco" class="formulario">
             <input type="hidden" name="idparentesco" id="idparentesco" value="<?=$data['idparentesco']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>

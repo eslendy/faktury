@@ -10,7 +10,7 @@
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME; ?>auditoria_financiera/index_auditoria.php" />
 <div id="operaciones"> 
-	<table>
+	<table class="responsive table">
     	<thead>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@
 </div>
 
 <div id="contenido">
-    <table id="reporte" class="tablesorter table table-hover">
+    <table id="reporte" class="responsive table">
         <thead>
             <tr id="trBuscar" class="oculto">
                 <td></td>

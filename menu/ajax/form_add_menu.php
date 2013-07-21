@@ -8,7 +8,7 @@ $menus=$menu->consultar($menu->_menu_sql("m.descripcion, m.idmenu","m.padre=0","
 try{
 ?>
 <form id="frm_add_menu">
-	<table align="center" class="tablas_form">
+	<table align="center" class="responsive table">
     	<thead>
     	<tr>
         	<th colspan="2">Crear Nuevo Men&uacute;</th>

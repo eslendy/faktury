@@ -12,7 +12,7 @@ $dataModulos = $modulos->getallModulos();
 
 <form id="frmPerfil" class="formulario">
 	<input type="hidden" name="idperfil" id="idperfil" value="<?=$data['idperfil']?>" />
-	<table>
+	<table class="responsive table">
 		<thead>
 			<tr>
 				<th colspan="2"><div id="mensaje"></div></th>
@@ -26,7 +26,7 @@ $dataModulos = $modulos->getallModulos();
 			<tr>
 				<td><label>Permisos</label></td>
 				<td>
-					<table class="tabla-permisos">
+					<table class="responsive table">
 						<thead>
 							<tr>
 								<th colspan="2">MODULO</th>

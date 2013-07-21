@@ -68,6 +68,30 @@ class menu extends BD {
     public function make_menu($idperfil, $padre = 0) {
 
 
+        $html = '';
+        $padres = $this->get_menu_parent($idperfil, $padre);
+        if (!empty($padres)) {
+            foreach ($padres as $p) {
+                if ($this->check_parent($p['idmenu'])) {
+                    $html .='<a class="nav-header" data-toggle="collapse" href="#menu_' . $p['idmenu'] . '" >' . $p['descripcion'] . ' <span class="label sidebar-label label-info"><i class="icon-angle-down"></i> </span></a>';
+                    $html .= '<ul id="menu_' . $p['idmenu'] . '" class="nav nav-list collapse">';
+                    $childs = $this->get_menu_childs($idperfil, $p['idmenu']);
+                    foreach ($childs as $child) {
+                        $html .='<li role="presentation"><a role="menuitem" tabindex="-1" href="' . (($child['enlace'] == "") ? '#' : XNG_WEBSITE_URL . ($child['enlace'])) . '">' . $child['descripcion'] . '</a></li>';
+                    }
+                    $html .='</ul>';
+                } else {
+                    $html.='<a  class="nav-header active"  href="' . (($p['enlace'] == "") ? '#' : XNG_WEBSITE_URL . ($p['enlace'])) . '">' . $p['descripcion'] . '</a>';
+                    
+                }
+            }
+            return $html;
+        }
+    }
+
+     public function make_menu___($idperfil, $padre = 0) {
+
+
         $html = '<ul class="nav nav-pills">';
         $padres = $this->get_menu_parent($idperfil, $padre);
         if (!empty($padres)) {
@@ -93,7 +117,7 @@ class menu extends BD {
             return $html;
         }
     }
-
+    
     private function get_menus_old($idperfil, $padre) {
         $campos = "m.idmenu, m.descripcion, m.enlace, m.orden";
         $where = "pe.idperfil=" . $idperfil . " AND m.estado=1 AND p.ver=1 AND m.visible=1";
@@ -115,16 +139,17 @@ class menu extends BD {
         $groupby = "m.idmenu";
         $orderby = "m.orden";
         $padres = $this->consultar($this->_menu_sql($campos, $where, $groupby, $orderby));
-        $html = '<ul class="nav nav-list bs-docs-sidenav pull-left">';
+        $html = '';
 
         if (!empty($padres)) {
             foreach ($padres as $p) {
-                $html.='<li onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">';
-                $html.='<a><i class="icon-chevron-right"></i> ' . $p['descripcion'] . '';
-                $html.='</a>';
-                $html.='</li>';
+                 $html.='<button class="btn btn-primary" onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">' . $p['descripcion'] . '</button>';
+                //$html.='<li onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">';
+                //$html.='<a><i class="icon-chevron-right"></i> ' . $p['descripcion'] . '';
+                //$html.='</a>';
+                //$html.='</li>';
             }
-            return $html.='</ul>';
+            return $html;
         }
     }
 

@@ -26,7 +26,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
         <form id="addAuditoria" class="formulario">
             <input type="hidden" name="idFactura" id="idFactura" value="<?=$_GET['idfactura']?>" />
             <input type="hidden" name="idusuario" id="idusuario" value="<?=$_SESSION['usrid']?>" />
-            <table width="100%">
+            <table class="responsive table">
                 <tbody>
                     <tr>
                         <td width="50%"><label>Modalidad de pago<small>(No. Contrato o RG)</small></label></td>

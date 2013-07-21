@@ -14,7 +14,7 @@ $auMedica = new auMedica($conexion['local']);
 ?>
 <input type="hidden" id="nombre_archivo" value="<? $SERVER_NAME ?>auditoria_medica/index_factura.php" />
 <div id="operaciones"> 
-    <table>
+    <table class="responsive table">
         <thead>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@ $auMedica = new auMedica($conexion['local']);
 
 <div id="contenido">
 
-    <table  id="reporte" class="tablesorter table table-hover">
+    <table  id="reporte" class="responsive table">
         <thead>
             <? /*<tr id="trBuscar" class="oculto">
                 <td><input type="search" id="no_rad_search" placeholder="Rad" class="search_txt" size="4" /></td>

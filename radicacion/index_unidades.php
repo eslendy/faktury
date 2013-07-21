@@ -9,7 +9,7 @@
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_unidades.php" />
 <div id="operaciones"> 
-	<table>
+	<table class="responsive table">
     	<thead>
         </thead>
         <tbody>

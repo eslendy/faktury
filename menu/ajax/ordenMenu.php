@@ -23,7 +23,7 @@ $menu2=$menu->consultar($menu->_menu_sql("m.descripcion, m.idmenu, m.orden","m.p
 <div id="cuenta">
     <div id="datosBasicos">
         <form id="frm_orden_menu">
-        <table align="center" width="80%" class="tablas_form">
+        <table class="responsive table">
         	<thead>
             <tr>
                 <th colspan="3">Ordenar Men&uacute;</th>

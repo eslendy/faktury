@@ -23,7 +23,7 @@ $contrat=$contrato->getOne($data['contrato']);
         <form id="addAuditoria">
             <input type="hidden" name="idFactura" id="idFactura" value="<?=$_GET['idfactura']?>" />
             <input type="hidden" name="idusuario" id="idusuario" value="<?=$_SESSION['usrid']?>" />
-            <table width="100%">
+            <table class="responsive table">
                 <tbody>
                     
                     <tr>

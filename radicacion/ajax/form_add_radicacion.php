@@ -5,7 +5,7 @@ include("../../libphp/mysql.php");
 switch($_GET['case']){
 	case 'factura':?>
         <form id="frmRadicacion" class="formulario">
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -139,7 +139,7 @@ switch($_GET['case']){
 	break;
     case 'undAtencion':?>
     <form id="frmUndAtencion" class="formulario">
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -174,7 +174,7 @@ switch($_GET['case']){
     break;
     case 'contrato':?>
     <form id="frmcontrato" class="formulario">
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -216,7 +216,7 @@ switch($_GET['case']){
     break;
     case 'grados':?>
     <form id="frmGrados" class="formulario">
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -246,7 +246,7 @@ switch($_GET['case']){
     break;
 	case 'fuerza':?>
     <form id="frmFuerza" class="formulario">
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -282,7 +282,7 @@ switch($_GET['case']){
 		
 	?>
     <form id="frmPaciente" class="formulario">
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -328,7 +328,7 @@ switch($_GET['case']){
 		
 	?>
     <form id="frmProveedor" class="formulario">
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -365,7 +365,7 @@ switch($_GET['case']){
     break;
 	case 'unidades':?>
     <form id="frmUnidad" class="formulario">
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
@@ -391,7 +391,7 @@ switch($_GET['case']){
     break;
     case 'parentesco':?>
     <form id="frmparentesco" class="formulario">
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>

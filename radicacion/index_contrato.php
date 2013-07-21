@@ -9,7 +9,7 @@
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_contrato.php" />
 <div id="operaciones"> 
-	<table>
+	<table class="responsive table">
     	<thead>
         </thead>
         <tbody>
@@ -30,7 +30,7 @@
 </div>
 
 <div id="contenido">
-    <table id="reporte" class="tablesorter table table-hover">
+    <table id="reporte" class="responsive table">
         <thead>
             <? /*<tr id="trBuscar" class="oculto">
                 <td><input type="search" id="numero_contrato_search" placeholder="Buscar x No. Contrato" class="search_txt" /></td>

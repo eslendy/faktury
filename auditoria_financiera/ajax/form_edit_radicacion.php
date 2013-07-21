@@ -12,7 +12,7 @@ require_once('../clases/unidades_class.php');
 
 switch($_GET['case']){
 	case 'factura':?>
-        <form id="frmRadicacion" class="formulario">
+        <form id="frmRadicacion" class="responsive table">
             <table>
                 <thead>
                     <tr>

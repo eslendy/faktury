@@ -9,7 +9,7 @@ $data = $modulos->getModulo($_POST['idmodulo']);
 
 <form id="frmModulo" class="formulario">
 	<input type="hidden" name="idmodulo" id="idmodulo" value="<?=$data['idmodulo']?>" />
-	<table>
+	<table class="responsive table">
 		<thead>
 			<tr>
 				<th colspan="2"><div id="mensaje"></div></th>

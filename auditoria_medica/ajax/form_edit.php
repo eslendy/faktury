@@ -22,7 +22,7 @@ switch($_GET['case']){
     	
         <form id="frmRadicacion" class="formulario">
 	        <input type="hidden" name="idFactura" id="idFactura" value="<?=$data['idFactura']?>" />
-            <table>
+            <table class="responsive table">
                 <thead>
                     <tr>
                         <th colspan="2"><div id="mensaje"></div></th>
