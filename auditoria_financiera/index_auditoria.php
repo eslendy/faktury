@@ -8,39 +8,27 @@
 	include '../requestFunctionsJavascript.php';
     //var_dump($dataFacturas);
 ?>
+<div class="collapse in" id="content_">
+    <div class="table-option clearfix">
+
+        <span class="pull-left keywords">
+            <form action="#" class="form-inline">
+                <input name="q" class="table-form" type="text"  placeholder="Keywords: Ruby, Rails, Django" >
+                <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
+            </form>
+        </span>
+     
+        <div class="clear"></div>
+
+
+    </div>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME; ?>auditoria_financiera/index_auditoria.php" />
-<div id="operaciones"> 
-	<table class="responsive table">
-    	<thead>
-        </thead>
-        <tbody>
-        	<tr>
-            	<td>
-                	<button class="busqueda btn btn-success">
-                    	Buscar
-                	</button>
-                </td>
-                <td>
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+
 
 <div id="contenido">
     <table id="reporte" class="responsive table">
         <thead>
-            <tr id="trBuscar" class="oculto">
-                <td></td>
-                <td><input type="search" id="fecha_rad_search" placeholder="Buscar x fecha" class="search_txt fecha" /></td>
-                <td><input type="search" id="factura_search" placeholder="Buscar x No. Factura" class="search_txt" /></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+           
             <tr>
                 <th title="No. Radicado">ID</th>
                 <th title="Fecha Radicación">FECHA AUDITORÍA.</th>
@@ -58,14 +46,14 @@
                 <td><?=$fac['fecha_auditoria']?></td>
                 <td><?=(($fac['prefijo']!="")?$fac['prefijo'].' ':'').$fac['numero_factura']?></td>
                 <td><?=($fac['estado_au']==1)?'Activa':'Anulada'?></td>
-                <td>
+                <td width="61">
                     <a>
-                        <span class="editarBtn" onclick="_editAuditoria(<?=$fac['idauditoria_financiera']?>,<?=$fac['idFactura']?>)" title="Editar Auditoría"></span>
+                        <span class="editarBtn" data-record="<? echo $fac['idfactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?> data-auditor="<? echo $fac['idauditoria_financiera'] ?>"  title="Editar Auditoría"><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
                     </a>
                 </td>
-                <td>
+                <td width="61">
                     <a>
-                        <span class="anularBtn" onclick="_anularAuditoria(<?=$fac['idauditoria_financiera']?>)" title="Anular auditoría"></span>
+                        <span class="anularBtn" data-record="<? echo $fac['idauditoria_financiera']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?>  <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?> title="Anular auditoría"><button class="btn btn-danger"><i class="icon-ban-circle"></i></button></span>
                     </a>
                 </td>
             </tr>
@@ -82,3 +70,4 @@
     
 </div>
 <script type="text/javascript" src="<? echo $SERVER_NAME; ?>auditoria_financiera/js/auditoria_financiera_lista.js"></script>
+</div>

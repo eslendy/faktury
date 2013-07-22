@@ -5,7 +5,7 @@ include("../libphp/mysql.php");
 include("clases/facturas_class.php");
 $facturas = new facturas($conexion['local']);
 $dataFacturas = $facturas->getallFacturas();
-echo 'lalal';
+//var_dump($_REQUEST);
 include '../requestFunctionsJavascript.php';
 ?>
 
@@ -19,11 +19,7 @@ include '../requestFunctionsJavascript.php';
                 <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
             </form>
         </span>
-        <span class="pull-right">
-
-            <button class="btn btn-danger"><i class="icon-chevron-left"></i></button>
-            <button class="btn btn-danger"><i class="icon-chevron-right"></i></button>
-        </span>
+     
         <div class="clear"></div>
 
 
@@ -71,14 +67,14 @@ include '../requestFunctionsJavascript.php';
                         <td><?= $fac['proveedor_nombre'] ?></td>
                         <td><?= $fac['paciente_nombre'] ?></td>
                         <td><?= ($fac['estado_factura'] == 1) ? 'Activa' : 'Anulada' ?></td>
-                        <td>
+                        <td width="61">
                             <a>
-                                <span class="editarBtn" onclick="_editarReg(<?= $fac['idf'] ?>)"></span>
+                                <span class="editarBtn" data-record="<? echo  $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
                             </a>
                         </td>
-                        <td>
+                        <td width="61">
                             <a>
-                                <span class="anularBtn" onclick="_anularReg(<?= $fac['idf'] ?>)"></span>
+                                <span class="anularBtn" data-record="<? echo  $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-danger"><i class="icon-trash"></i></button></span>
                             </a>
                         </td>
                     </tr>

@@ -13,21 +13,19 @@ require_once('../clases/facturas_class.php');
 require_once('../clases/contrato_class.php');
 require_once('../clases/parentesco_class.php');
 
-switch($_GET['case']){
+switch($_REQUEST['case']){
 	case 'factura':
 		$factura = new facturas($conexion['local']);
         $contrato = new contrato($conexion['local']);
-	    $data = $factura->getFactura($_POST['idFactura']);
+
+	    $data = $factura->getFactura($_POST['id']);
+            
 	?>
     	
         <form id="frmRadicacion" class="formulario">
 	        <input type="hidden" name="idFactura" id="idFactura" value="<?=$data['idf']?>" />
             <table class="responsive table">
-                <thead>
-                    <tr>
-                        <th colspan="2"><div id="mensaje"></div></th>
-                    </tr>
-                </thead>
+               
                 <tbody>
                 	<tr>
                         <td width="70%"><label>Número Radicado</label></td>
@@ -155,9 +153,9 @@ switch($_GET['case']){
 
 <?php
 	break;
-    case 'undAtencion':
+    case 'unidadAtencion':
 	    $unds = new undidad_atencion($conexion['local']);
-	    $dataUnds = $unds->getUnidad($_POST['idunidad_atencion']);
+	    $dataUnds = $unds->getUnidad($_POST['id']);
 	    ?>
 	    <form id="frmUndAtencion" class="formulario">
 	    	<input type="hidden" name="idunidad_atencion" id="idunidad_atencion" value="<?=$dataUnds['idunidad_atencion']?>" />
@@ -196,7 +194,7 @@ switch($_GET['case']){
     break;
     case 'contrato':
     $contrato = new contrato($conexion['local']);
-    $data = $contrato->getOne($_POST['idcontrato']);
+    $data = $contrato->getOne($_POST['id']);
     ?>
     <form id="frmcontrato" class="formulario">
         <input type="hidden" name="idcontrato" id="idcontrato" class="validate[required]" value="<?=$data['idcontrato']?>" />
@@ -241,7 +239,7 @@ switch($_GET['case']){
     break;
     case'grados':
         $obj = new grados($conexion['local']);
-        $data = $obj->getGrado($_POST['idgrado']);
+        $data = $obj->getGrado($_POST['id']);
         ?>
         <form id="frmGrados" class="formulario">
             <input type="hidden" name="idgrado" id="idgrado" value="<?=$data['idgrado']?>" />
@@ -275,7 +273,7 @@ switch($_GET['case']){
     break;
 	case'fuerza':
         $obj = new fuerza($conexion['local']);
-        $data = $obj->getFuerza($_POST['idfuerza']);
+        $data = $obj->getFuerza($_POST['id']);
         ?>
         <form id="frmFuerza" class="formulario">
             <input type="hidden" name="idfuerza" id="idfuerza" value="<?=$data['idfuerza']?>" />
@@ -307,12 +305,12 @@ switch($_GET['case']){
         </form>
 <?php
     break;
-	case 'paciente':
+	case 'pacientes':
 		
 		$tipo_doc = new tipodoc($conexion['local']);
 		$fuerza = new fuerza($conexion['local']);
 		$paciente = new paciente($conexion['local']);
-		$data = $paciente->getOne($_POST['idpaciente']);
+		$data = $paciente->getOne($_POST['id']);
 		
 	?>
     	<form id="frmPaciente" class="formulario">
@@ -359,7 +357,7 @@ switch($_GET['case']){
 	case 'proveedor':
 		$tipo_doc = new tipodoc($conexion['local']);
 		$proveedor = new proveedor($conexion['local']);
-		$data = $proveedor->getOne($_POST['idproveedor']);
+		$data = $proveedor->getOne($_POST['id']);
 		
 		
 	?>
@@ -402,7 +400,7 @@ switch($_GET['case']){
     break;
 	case 'unidades':
 	    $unds = new undidad($conexion['local']);
-	    $dataUnds = $unds->getOne($_POST['idunidad']);
+	    $dataUnds = $unds->getOne($_POST['id']);
 	    ?>
 	    <form id="frmUnidad" class="formulario">
 	    	<input type="hidden" name="idunidad" id="idunidad" value="<?=$dataUnds['idunidad']?>" />
@@ -432,7 +430,7 @@ switch($_GET['case']){
     break;
     case 'parentesco':
         $paren = new parentesco($conexion['local']);
-        $data = $paren->getOne($_POST['idparentesco']);?>
+        $data = $paren->getOne($_POST['id']);?>
         <form id="frmparentesco" class="formulario">
             <input type="hidden" name="idparentesco" id="idparentesco" value="<?=$data['idparentesco']?>" />
             <table class="responsive table">

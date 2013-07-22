@@ -7,28 +7,25 @@
     $data = $obj->getall();
     include '../requestFunctionsJavascript.php';
     //var_dump($dataUsers);
+    
 ?>
+<div class="collapse in" id="content_">
+    <div class="table-option clearfix">
+
+        <span class="pull-left keywords">
+            <form action="#" class="form-inline">
+                <input name="q" class="table-form" type="text"  placeholder="Keywords: Ruby, Rails, Django" >
+                <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
+            </form>
+        </span>
+       
+        <div class="clear"></div>
+
+
+    </div>
+
+  
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_contrato.php" />
-<div id="operaciones"> 
-	<table class="responsive table">
-    	<thead>
-        </thead>
-        <tbody>
-        	<tr>
-            	<td>
-                	<button class="busqueda btn btn-success">
-                    	Buscar
-                	</button>
-                </td>
-                <td>
-                    <button class="nuevoReg btn btn-primary">
-                        Nuevo Conntrato
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 
 <div id="contenido">
     <table id="reporte" class="responsive table">
@@ -62,14 +59,14 @@
                 <td><?=$d['valor_contrato']?></td>
                 <td><?=$d['proveedor']?></td>
                 <td><?=($d['estadoContrato']==1)?'Activo':'Inactivo'?></td>
-                <td>
+                <td width="61">
                     <a>
-                        <span class="editarBtn" onclick="_editarReg(<?=$d['idcontrato']?>)"></span>
+                        <span class="editarBtn" data-record="<? echo  $d['idcontrato']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
                     </a>
                 </td>
-                <td>
+                <td width="61">
                     <a>
-                        <span class="anularBtn" onclick="_anularReg(<?=$d['idcontrato']?>)"></span>
+                        <span class="anularBtn" data-record="<? echo  $d['idcontrato']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-danger"><i class="icon-trash"></i></button></span>
                     </a>
                 </td>
             </tr>
@@ -86,3 +83,4 @@
     
 </div>
 <script type="text/javascript" src="<? echo $SERVER_NAME?>radicacion/js/contrato.js"></script>
+</div>

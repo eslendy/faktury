@@ -287,16 +287,22 @@ try {
                                         <div id="cuerpo">
                                             <div class="block-heading">
                                                 <span class="block-icon pull-right">
-                                                    <button class="btn btn-primary nuevo" onclick="$('#content_').collapse('hide');" >
-                                                       <i>Cargando...</i>
-                                                    </button>
+                                                    <? if (isset($_REQUEST['action']) && $_REQUEST['action'] !== 'auditoria_medica' && $_REQUEST['action'] !== 'auditoria_financiera') {
+                                                        ?>
+                                                        <button class="btn btn-primary nuevo" onclick="$('#content_').collapse('hide');" >
+                                                            <i>Cargando...</i>
+                                                        </button>
+                                                    <? }
+                                                    ?>
+
+
                                                 </span>
-                                                <? 
-                                                $title = explode('_',$_REQUEST['action']);
-                                                $tt='';
-                                                
-                                                foreach($title as $t){
-                                                    $tt .=   ucfirst($t).' ';
+                                                <?
+                                                $title = explode('_', $_REQUEST['action']);
+                                                $tt = '';
+
+                                                foreach ($title as $t) {
+                                                    $tt .= ucfirst($t) . ' ';
                                                 }
                                                 ?>
                                                 <a href="#content_" data-toggle="collapse" class="title_related"> <? echo $tt; ?> </a>
@@ -313,7 +319,7 @@ try {
                                                     <span class="pull-right">
 
                                                         <button class="btn btn-danger" onclick="$('.add').fadeOut();
-                                                                $('#content_').collapse('show');"> Cerrar Edicion <i class="icon-cog"></i></button>
+                                                                    $('#content_').collapse('show');"><i class="icon-remove"></i> Cerrar Edicion </button>
                                                     </span>
 
                                                     <span class="add_form">Cargando...</span>
@@ -344,6 +350,22 @@ try {
             <div class="clearfix">  </div> 
 
 
+            <div aria-hidden="false" aria-labelledby="myModalLabel1" role="dialog" tabindex="-1" class="modal hide fade" id="loadContentAjaxForms">
+                <div class="modal-header modal-default">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+                    <h3 id="myModalLabel1">Modal Header</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta quia fugit ad neque tempora reiciendis itaque placeat voluptatibus nemo asperiores officia dignissimos nulla fuga quis officiis inventore ea repellendus. Vero.</p>
+                </div>
+                <div class="modal-footer">
+                    <button aria-hidden="true" data-dismiss="modal" class="btn">Close</button>
+                    <button class="btn btn-primary">Save</button>
+                </div>
+            </div>
+
+            
+
 
             <footer>
                 <div class="clearfix">
@@ -354,13 +376,13 @@ try {
 
 
             <script type="text/javascript">
-                                                        //tooltip
-                                                        $("[rel=tooltip]").tooltip();
-                                                        $(function() {
-                                                            $('.demo-cancel-click').click(function() {
-                                                                return false;
+                                                            //tooltip
+                                                            $("[rel=tooltip]").tooltip();
+                                                            $(function() {
+                                                                $('.demo-cancel-click').click(function() {
+                                                                    return false;
+                                                                });
                                                             });
-                                                        });
             </script>	 
 
             <script type="text/javascript">

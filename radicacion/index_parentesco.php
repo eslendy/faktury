@@ -1,81 +1,78 @@
 <?php
-    include("../vigiaAjax.php");
-    include("../libphp/config.inc.php");
-    include("../libphp/mysql.php");
-    include("clases/parentesco_class.php");
-    $obj = new parentesco($conexion['local']);
-    $data = $obj->getall();
-    //var_dump($dataUsers);
-     include '../requestFunctionsJavascript.php';
+include("../vigiaAjax.php");
+include("../libphp/config.inc.php");
+include("../libphp/mysql.php");
+include("clases/parentesco_class.php");
+$obj = new parentesco($conexion['local']);
+$data = $obj->getall();
+//var_dump($dataUsers);
+include '../requestFunctionsJavascript.php';
 ?>
-<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_parentesco.php" />
-<div id="operaciones"> 
-	<table class="responsive table">
-    	<thead>
-        </thead>
-        <tbody>
-        	<tr>
-            	<td>
-                	<button class="busqueda btn btn-success">
-                    	Buscar
-                	</button>
-                </td>
-                <td>
-                    <button class="nuevoReg btn btn-primary">
-                        Nuevo Parentesco
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<div class="collapse in" id="content_">
+    <div class="table-option clearfix">
 
-<div id="contenido">
-    <table id="reporte" class="responsive table">
-        <thead>
-           <? /* <tr id="trBuscar" class="oculto">
-                <td></td>
-                <td><input type="search" id="descripcion_search" placeholder="Buscar x Descripcion" class="search_txt" /></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>*/ ?>
-            <tr>
-                <th>ID</th>
-                <th>DESCRIPCION</th>
-                <th>ESTADO</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody id="lista">
-            <? $i=1; 
-            foreach ($data as $u) {?>
-            <tr class="elemetoBusqueda">
-                <td><?=$u['idparentesco']?></td>
-                <td><?=$u['descripcion']?></td>
-                <td><?=($u['estado']==1)?'Activo':'Inactivo'?></td>
-                <td>
-                    <a>
-                        <span class="editarBtn" onclick="_editarReg(<?=$u['idparentesco']?>)"></span>
-                    </a>
-                </td>
-                <td>
-                    <a>
-                        <span class="anularBtn" onclick="_anularReg(<?=$u['idparentesco']?>)"></span>
-                    </a>
-                </td>
-            </tr>
-            <? }?>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="5" id="pager" class="holder" align="center">
-                   
-                </td>
-            </tr>
-        </tfoot>
-    </table>
-    
+        <span class="pull-left keywords">
+            <form action="#" class="form-inline">
+                <input name="q" class="table-form" type="text"  placeholder="Keywords: Ruby, Rails, Django" >
+                <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
+            </form>
+        </span>
+      
+        <div class="clear"></div>
+
+
+    </div>
+    <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>radicacion/index_parentesco.php" />
+
+
+    <div id="contenido">
+        <table id="reporte" class="responsive table">
+            <thead>
+                <? /* <tr id="trBuscar" class="oculto">
+                  <td></td>
+                  <td><input type="search" id="descripcion_search" placeholder="Buscar x Descripcion" class="search_txt" /></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  </tr> */ ?>
+                <tr>
+                    <th>ID</th>
+                    <th>DESCRIPCION</th>
+                    <th>ESTADO</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="lista">
+                <? $i = 1;
+                foreach ($data as $u) {
+                    ?>
+                    <tr class="elemetoBusqueda">
+                        <td><?= $u['idparentesco'] ?></td>
+                        <td><?= $u['descripcion'] ?></td>
+                        <td><?= ($u['estado'] == 1) ? 'Activo' : 'Inactivo' ?></td>
+                        <td width="61">
+                            <a>
+                                <span class="editarBtn" data-record="<? echo  $u['idparentesco']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
+                            </a>
+                        </td>
+                        <td width="61">
+                            <a>
+                                <span class="anularBtn" data-record="<? echo  $u['idparentesco']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-danger"><i class="icon-trash"></i></button></span>
+                            </a>
+                        </td>
+                    </tr>
+<? } ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" id="pager" class="holder" align="center">
+
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+    <script type="text/javascript" src="<? echo $SERVER_NAME ?>radicacion/js/parentesco.js"></script>
 </div>
-<script type="text/javascript" src="<? echo $SERVER_NAME?>radicacion/js/parentesco.js"></script>
