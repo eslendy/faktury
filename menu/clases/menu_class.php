@@ -143,7 +143,7 @@ class menu extends BD {
 
         if (!empty($padres)) {
             foreach ($padres as $p) {
-                 $html.='<button class="btn btn-primary" onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">' . $p['descripcion'] . '</button>';
+                 $html.='<button class="btn btn-primary"  onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">' . $p['descripcion'] . '</button>';
                 //$html.='<li onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">';
                 //$html.='<a><i class="icon-chevron-right"></i> ' . $p['descripcion'] . '';
                 //$html.='</a>';

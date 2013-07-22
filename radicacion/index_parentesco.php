@@ -6,6 +6,7 @@
     $obj = new parentesco($conexion['local']);
     $data = $obj->getall();
     //var_dump($dataUsers);
+     include '../requestFunctionsJavascript.php';
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_parentesco.php" />
 <div id="operaciones"> 

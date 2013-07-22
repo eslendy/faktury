@@ -120,7 +120,7 @@ switch ($_REQUEST['case']) {
 
         <?php
         break;
-    case 'undAtencion':
+    case 'unidadAtencion':
         ?>
         <form id="frmUndAtencion" class="formulario">
             <table class="responsive table">
@@ -261,7 +261,7 @@ switch ($_REQUEST['case']) {
         </form>
         <?php
         break;
-    case 'paciente':
+    case 'pacientes':
         require_once('../clases/tipodoc_class.php');
         require_once('../clases/fuerza_class.php');
         $tipo_doc = new tipodoc($conexion['local']);

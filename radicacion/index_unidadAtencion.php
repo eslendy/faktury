@@ -6,6 +6,7 @@
     $unds = new undidad_atencion($conexion['local']);
     $dataUnds = $unds->getallUnidades();
     //var_dump($dataUsers);
+   include '../requestFunctionsJavascript.php';
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_unidadAtencion.php" />
 <div id="operaciones"> 

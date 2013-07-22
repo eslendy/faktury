@@ -6,6 +6,7 @@
     $obj = new proveedor($conexion['local']);
     $data = $obj->getall();
     //var_dump($dataUsers);
+   include '../requestFunctionsJavascript.php';
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_proveedor.php" />
 <div id="operaciones"> 

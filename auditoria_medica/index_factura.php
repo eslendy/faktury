@@ -11,6 +11,8 @@ $where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_au
 $dataFacturas = $facturas->getall($campos, $where);
 //var_dump($dataFacturas);
 $auMedica = new auMedica($conexion['local']);
+include '../requestFunctionsJavascript.php';
+
 ?>
 <input type="hidden" id="nombre_archivo" value="<? $SERVER_NAME ?>auditoria_medica/index_factura.php" />
 <div id="operaciones"> 

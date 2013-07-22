@@ -6,6 +6,7 @@
     $obj = new grados($conexion['local']);
     $data = $obj->getallGrados();
     //var_dump($dataUsers);
+     include '../requestFunctionsJavascript.php';
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_grados.php" />
 <div id="operaciones"> 

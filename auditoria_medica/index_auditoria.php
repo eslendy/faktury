@@ -6,7 +6,8 @@
     $facturas = new facturas($conexion['local']);
     $dataFacturas = $facturas->getallFacturas("f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor = ".$_SESSION['usrid'].")");
     //var_dump($dataFacturas);
-    echo "SELECT idFactura FROM auditoria_financiera WHERE id_auditor = ".$_SESSION['usrid'];
+    include '../requestFunctionsJavascript.php';
+    //echo "SELECT idFactura FROM auditoria_financiera WHERE id_auditor = ".$_SESSION['usrid'];
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>radicacion/index_factura.php" />
 <div id="operaciones"> 

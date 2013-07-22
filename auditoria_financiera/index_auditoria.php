@@ -5,7 +5,7 @@
     include("clases/auditoria_financiera.php");
     $auditoria = new auditoria_financiera($conexion['local']);
     $data = $auditoria->getAll("f.estado=1".(( isset($_GET['idfactura'])&& $_GET['idfactura']>0)?' AND au.idFactura='.$_GET['idfactura']:''));
-	
+	include '../requestFunctionsJavascript.php';
     //var_dump($dataFacturas);
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME; ?>auditoria_financiera/index_auditoria.php" />

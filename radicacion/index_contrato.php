@@ -5,6 +5,7 @@
     include("clases/contrato_class.php");
     $obj = new contrato($conexion['local']);
     $data = $obj->getall();
+    include '../requestFunctionsJavascript.php';
     //var_dump($dataUsers);
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_contrato.php" />

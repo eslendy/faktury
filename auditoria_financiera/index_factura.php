@@ -9,6 +9,7 @@
     $au = new auditoria_financiera($conexion['local']);
     $dataFacturas = $facturas->getallFacturas("f.estado=1");
     //var_dump($dataFacturas);
+   include '../requestFunctionsJavascript.php';
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>auditoria_financiera/index_factura.php" />
 <div id="operaciones"> 
