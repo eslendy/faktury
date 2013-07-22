@@ -123,11 +123,11 @@ var _msgexito = function(msg, id) {
 
 
 var _dataGriD = function(id, headersArray, idpager, numFilas) {
-    $(id).tablesorter({
+    /*$(id).tablesorter({
         widthFixed: true,
         widgets: ['zebra'],
         headers: headersArray
-    });
+    });*/
     //.tablesorterPager({container: $(idpager),size : numFilas});
 
     //$(id).datagrid({loadFilter:pagerFilter}).datagrid('loadData', data);
@@ -144,14 +144,14 @@ var _filtrar = function(inputid, tableid, columna, ishiden) {
 };
 
 var _paginacion = function(ContPaginas, idtbody, numFilas, pagina) {
-    $(ContPaginas).jPages({
+    /*$(ContPaginas).jPages({
         containerID: idtbody,
         previous: "←",
         next: "→",
         perPage: numFilas,
         delay: 0,
         startPage: pagina
-    });
+    });*/
 
 }
 var _validarOnlyText = function(field, rules, i, options) {
@@ -240,9 +240,11 @@ var _verOcultarElemento = function(id) {
 $(document).ready(function() {
     $('.nuevo').click(function() {
         $('.add').fadeIn();
+        var text = $(this).text();
         $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_add_radicacion.php', {case: $(this).attr('data-related')}, function(data) {
-            console.log(data)
+            console.log(text)
             $('.load_content').html(data);
+           
         })
     })
 })

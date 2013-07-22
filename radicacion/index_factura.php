@@ -5,7 +5,7 @@ include("../libphp/mysql.php");
 include("clases/facturas_class.php");
 $facturas = new facturas($conexion['local']);
 $dataFacturas = $facturas->getallFacturas();
-
+echo 'lalal';
 include '../requestFunctionsJavascript.php';
 ?>
 

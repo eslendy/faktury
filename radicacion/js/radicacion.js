@@ -64,5 +64,5 @@ var _loadFormulariosEdit = function(caso, tipo, frm, mod, datosPost){
  };
 
 $(function(){
-     _loadContenido(init.XNG_WEBSITE_URL+'radicacion/index_factura.php');
+     _loadContenido(init.XNG_WEBSITE_URL+'radicacion/index_factura');
 });

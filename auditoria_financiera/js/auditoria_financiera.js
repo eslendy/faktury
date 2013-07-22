@@ -61,5 +61,6 @@ var _anularAuditoria = function (id){
 	_anularReg("nullAuditoria","id="+id, "Auditoría");
 }
 $(function(){
-     _loadContenido(init.XNG_WEBSITE_URL+'auditoria_financiera/index_factura.php');
+     _loadContenido(init.XNG_WEBSITE_URL+'auditoria_financiera/index_factura');
+     // $('.title_related').text(init.XNG_PARAMS.action)
 });

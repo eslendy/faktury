@@ -288,11 +288,18 @@ try {
                                             <div class="block-heading">
                                                 <span class="block-icon pull-right">
                                                     <button class="btn btn-primary nuevo" onclick="$('#content_').collapse('hide');" >
-                                                        Nueva Factura
+                                                       <i>Cargando...</i>
                                                     </button>
                                                 </span>
-
-                                                <a href="#content_" data-toggle="collapse" class=""> Facturas </a>
+                                                <? 
+                                                $title = explode('_',$_REQUEST['action']);
+                                                $tt='';
+                                                
+                                                foreach($title as $t){
+                                                    $tt .=   ucfirst($t).' ';
+                                                }
+                                                ?>
+                                                <a href="#content_" data-toggle="collapse" class="title_related"> <? echo $tt; ?> </a>
                                             </div>
                                             <?
                                             // var_dump($_REQUEST);
@@ -309,7 +316,7 @@ try {
                                                                 $('#content_').collapse('show');"> Cerrar Edicion <i class="icon-cog"></i></button>
                                                     </span>
 
-                                                    <span>Nueva Factura</span>
+                                                    <span class="add_form">Cargando...</span>
                                                 </p>                  
                                                 <div class="block-body">
                                                     <div class="load_content"></div>
