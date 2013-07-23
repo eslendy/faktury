@@ -133,45 +133,7 @@ try {
 
                         </li>
 
-                        <li class="dropdown header-border">
-                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="email-notify"><i class="icon-envelope-alt"></i><span class="email-alert"><i class="icon-circle"></i> </span></span>
-                            </a>
-
-                            <ul class="dropdown-menu block-dark messages">
-                                <li class="view-all"><a href="#">View all messages</a></li>   
-                                <li><a href="#">
-                                        <div class="avatar"><img height="45" width="45" src="/templates/austra/assets/images/face-1.jpg" alt="Your profile"></div>
-                                        <div class="info">Antonio Heide <span class="timer">36 min</span></div>    
-                                        <div class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem necessitatibus.</div>
-                                    </a>
-                                </li>
-                                <li><a href="#">
-                                        <div class="avatar"><img height="45" width="45" src="/templates/austra/assets/images/face-2.jpg" alt="Your profile"></div>
-                                        <div class="info">Melissa Evans <span class="timer">52 min</span></div>    
-                                        <div class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis optio ad placeat incidunt iste non enim nisi quae culpa.</div>
-                                    </a>
-                                </li>                                               
-                            </ul>
-                        </li>   
-
-                        <li class="dropdown header-border">
-                            <a href="#" role="button" class="dropdown-toggle " data-toggle="dropdown">
-                                <div class="notify">7</div>
-                            </a>
-
-                            <ul class="dropdown-menu block-dark messages msg-notify">
-                                <li class="view-all"><a href="#">View all notifications</a></li>   
-                                <li><a href="#"><div><i class="icon-comment"></i>  new comment <span class="timer">2 min</span></div></a>                        
-                                <li><a href="#"><div><i class="icon-twitter"></i>  new follower <span class="timer">6 min</span></div></a> 
-                                <li><a href="#"><div><i class="icon-thumbs-up"></i> new like <span class="timer">9 min</span></div></a>                        
-                                <li><a href="#"><div><i class="icon-twitter"></i>  new follower <span class="timer">25 min</span></div></a> 
-                                <li><a href="#"><div><i class="icon-user"></i>  new registration <span class="timer">32 min</span></div></a>                        
-                                <li><a href="#"><div><i class="icon-comment"></i>  new comment <span class="timer">2 hours</span></div></a>     
-                                <li><a href="#"><div><i class="icon-map-marker"></i>  new localization <span class="timer">Yesterday</span></div></a>     
-                            </ul>
-                        </li>                                   
-
+                        
                         <li class="dropdown header-border">
                             <a href="#" role="button" class="dropdown-toggle " data-toggle="dropdown">
                                 <div class="thumb-account">
@@ -228,35 +190,6 @@ try {
             <div class="content">
 
                 <div class="header">
-                    <div class="stats">
-                        <div class="stat-box notify-disabled">
-                            <i class="icon-group"></i>
-                            <span class="count badge">44</span>
-                            <span class="stat-text">Users</span>
-                        </div>
-                        <div class="stat-box notify-disabled">
-                            <i class="icon-shopping-cart"></i>
-                            <span class="count badge badge-success">56</span>
-                            <span class="stat-text">Orders </span>
-                        </div>
-                        <div class="stat-box notify-disabled">
-                            <i class="icon-calendar"></i>
-                            <span class="count badge badge-info">6</span>
-                            <span class="stat-text">Metting </span>
-                        </div>
-                        <div class="stat-box notify-disabled">
-                            <i class="icon-wrench"></i>
-                            <span class="count badge badge-important">23</span>
-                            <span class="stat-text">Tickets </span>
-                        </div>
-                        <div class="stat-box notify-disabled">
-                            <i class="icon-download-alt"></i>
-                            <span class="count badge badge-warning">15</span>
-                            <span class="stat-text">Requests </span>
-                        </div>                                                                   
-
-                    </div>
-
                     <h1 class="page-title">Tables</h1>
                 </div><!-- header --> 
 
