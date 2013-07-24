@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/var/www/eslendy/faktury/radicacion/index_factura.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/index_contrato.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/index_fuerza.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/index_grados.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/index_pacientes.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/index_parentesco.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/index_proveedor.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/index_unidadAtencion.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/index_unidades.php</file>
+        <file>file:/var/www/eslendy/faktury/templates/container.php</file>
+        <file>file:/var/www/eslendy/faktury/.htaccess</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/index.php</file>
+        <file>file:/var/www/eslendy/faktury/auditoria_financiera/index.php</file>
+        <file>file:/var/www/eslendy/faktury/auditoria_medica/index.php</file>
+        <file>file:/var/www/eslendy/faktury/auditoria_financiera/index_factura.php</file>
+        <file>file:/var/www/eslendy/faktury/auditoria_financiera/index_auditoria.php</file>
+        <file>file:/var/www/eslendy/faktury/auditoria_medica/index_auditoria.php</file>
+        <file>file:/var/www/eslendy/faktury/auditoria_medica/index_factura.php</file>
+        <file>file:/var/www/eslendy/faktury/templates/austra/assets/css/style.css</file>
+        <file>file:/var/www/eslendy/faktury/js/jGeneral.js</file>
+        <file>file:/var/www/eslendy/faktury/index.php</file>
+        <file>file:/var/www/eslendy/faktury/requestFunctionsJavascript.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/ajax/form_edit_radicacion.php</file>
+        <file>file:/var/www/eslendy/faktury/radicacion/ajax/form_add_radicacion.php</file>
+        <file>file:/var/www/eslendy/faktury/templates/austra/assets/lib/bootstrap/css/bootstrap.css</file>
+    </open-files>
 </project-private>

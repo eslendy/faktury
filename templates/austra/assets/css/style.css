@@ -3437,3 +3437,36 @@ padding: 3px 6px;
 .modal-body input{
     margin-bottom: 0px;
 }
+
+.home_buttons{
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.home_buttons button{
+    font-size: 111px;
+    width: 159px;
+    height: 140px;
+    padding-bottom: 0px;
+}
+
+.home_buttons button span{
+    font-size: 11px;
+}
+.home_buttons .btn [class^="icon-"]{
+line-height: 38px;
+}
+
+.home_buttons p {
+-webkit-text-shadow: rgba(0, 0, 0, 0.8) 0 -1px 0;
+-moz-text-shadow: rgba(0, 0, 0, 0.8) 0 -1px 0;
+-o-text-shadow: rgba(0, 0, 0, 0.8) 0 -1px 0;
+text-shadow: rgba(0, 0, 0, 0.8) 0 -1px 0;
+}
+
+.home_buttons p {
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}
+

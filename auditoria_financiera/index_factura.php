@@ -69,13 +69,13 @@ include '../requestFunctionsJavascript.php';
                         <? if (empty($rs_au)): ?>
                             <td width="61">
                                 <a>
-                                    <span class="adicionarBtn" data-record="<? echo $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?>  <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?> title="Nueva Auditoría"><button class="btn btn-success"><i class=" icon-check"></i></button></span>
+                                    <span class="adicionarBtn" data-record="<? echo $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?>  <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?> title="Nueva Auditoría"><button class="btn btn-success"><i class="icon-plus"></i></button></span>
                                 </a>
                             </td>
                         <? else: ?>
                             <td width="61">
                                 <a>
-                                    <span class="verBtn" data-record="<? echo $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> data-auditor="<? echo $rs_au['idauditoria_financiera'] ?>" <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?> title="Ver auditorías realizadas"><button class="btn btn-primary"><i class="icon-plus"></i></button></span>
+                                    <span class="verBtn" data-record="<? echo $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> data-auditor="<? echo $rs_au['idauditoria_financiera'] ?>" <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?> title="Ver auditorías realizadas"><button class="btn btn-primary"><i class=" icon-check"></i></button></span>
                                 </a>
                             </td>
                         <? endif; ?>

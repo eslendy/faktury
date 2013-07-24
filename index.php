@@ -133,7 +133,7 @@ try {
 
                         </li>
 
-                        
+
                         <li class="dropdown header-border">
                             <a href="#" role="button" class="dropdown-toggle " data-toggle="dropdown">
                                 <div class="thumb-account">
@@ -211,7 +211,11 @@ try {
                               </div> */ ?>    
 
                             <div id="menu_secundario" class="pull-left span11">
-                                <? echo $menu->menu_lateral($_SESSION['perfil'], ($_GET['c'])); ?>
+                                <?
+                                if (isset($_GET['c']) && !$_GET['isHome']) {
+                                    $menu->menu_lateral($_SESSION['perfil'], ($_GET['c']));
+                                }
+                                ?>
                             </div>
 
                             <div class="row-fluid">
@@ -240,9 +244,10 @@ try {
                                                 ?>
                                                 <a href="#content_" data-toggle="collapse" class="title_related"> <? echo $tt; ?> </a>
                                             </div>
-                                            <?
-                                            // var_dump($_REQUEST);
+                                            <?php
+                                             
                                             if (isset($_GET['c']) && !empty($_GET['c']) && ($_GET['c']) != 'index.php') {
+                                               
                                                 include(($_GET['c']));
                                             }
                                             ?>
@@ -252,7 +257,7 @@ try {
                                                     <span class="pull-right">
 
                                                         <button class="btn btn-danger" onclick="$('.add').fadeOut();
-                                                                    $('#content_').collapse('show');"><i class="icon-remove"></i> Cerrar Edicion </button>
+                                                            $('#content_').collapse('show');"><i class="icon-remove"></i> Cerrar Edicion </button>
                                                     </span>
 
                                                     <span class="add_form">Cargando...</span>
@@ -297,7 +302,7 @@ try {
                 </div>
             </div>
 
-            
+
 
 
             <footer>
@@ -309,13 +314,13 @@ try {
 
 
             <script type="text/javascript">
-                                                            //tooltip
-                                                            $("[rel=tooltip]").tooltip();
-                                                            $(function() {
-                                                                $('.demo-cancel-click').click(function() {
-                                                                    return false;
-                                                                });
+                                                        //tooltip
+                                                        $("[rel=tooltip]").tooltip();
+                                                        $(function() {
+                                                            $('.demo-cancel-click').click(function() {
+                                                                return false;
                                                             });
+                                                        });
             </script>	 
 
             <script type="text/javascript">
