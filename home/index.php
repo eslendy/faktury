@@ -13,12 +13,12 @@
     </button>
 
     <button class="btn btn-success" onclick="window.location = '/auditoria_financiera/'">
-         <i class="icon-user-md"></i>
+        <i class="icon-medkit"></i>
          <span>AUDITORIA FINANCIERA</span>
     </button>
 
     <button class="btn btn-success" onclick="window.location = '/auditoria_medica/'">
-          <i class="icon-medkit"></i>
+           <i class="icon-user-md"></i>
           <span>AUDITORIA MEDICA</span>
     </button>
 
