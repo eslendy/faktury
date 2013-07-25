@@ -16,27 +16,27 @@ var _loadBotones = function() {
     })
 }
 var _autocompletar = function(id, file, funcion, lista) {
-    /*$(id).click(function(){
-     $(id).select();
-     });
-     if(lista ==''){
-     $(id).autocomplete({
-     source: file,
-     minLength: 2,
-     select: function( event, ui ) {
-     funcion(ui);
-     }
-     });
-     }
-     if(lista !=''){
-     $(id).autocomplete({
-     source: file,
-     minLength: 2,
-     select: function( event, ui ) {
-     funcion(ui);
-     }
-     }).data( "ui-autocomplete" )._renderItem = lista;
-     }*/
+    $(id).click(function() {
+        $(id).select();
+    });
+    if (lista == '') {
+        $(id).autocomplete({
+            source: file,
+            minLength: 2,
+            select: function(event, ui) {
+                funcion(ui);
+            }
+        });
+    }
+    if (lista != '') {
+        $(id).autocomplete({
+            source: file,
+            minLength: 2,
+            select: function(event, ui) {
+                funcion(ui);
+            }
+        }).data("ui-autocomplete")._renderItem = lista;
+    }
 };
 var _fechaFields = function() {
     /*$('input[type="date"]').datepicker({
@@ -124,10 +124,10 @@ var _msgexito = function(msg, id) {
 
 var _dataGriD = function(id, headersArray, idpager, numFilas) {
     /*$(id).tablesorter({
-        widthFixed: true,
-        widgets: ['zebra'],
-        headers: headersArray
-    });*/
+     widthFixed: true,
+     widgets: ['zebra'],
+     headers: headersArray
+     });*/
     //.tablesorterPager({container: $(idpager),size : numFilas});
 
     //$(id).datagrid({loadFilter:pagerFilter}).datagrid('loadData', data);
@@ -145,13 +145,13 @@ var _filtrar = function(inputid, tableid, columna, ishiden) {
 
 var _paginacion = function(ContPaginas, idtbody, numFilas, pagina) {
     /*$(ContPaginas).jPages({
-        containerID: idtbody,
-        previous: "←",
-        next: "→",
-        perPage: numFilas,
-        delay: 0,
-        startPage: pagina
-    });*/
+     containerID: idtbody,
+     previous: "←",
+     next: "→",
+     perPage: numFilas,
+     delay: 0,
+     startPage: pagina
+     });*/
 
 }
 var _validarOnlyText = function(field, rules, i, options) {
@@ -244,8 +244,23 @@ $(document).ready(function() {
         $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_add_radicacion.php', {case: $(this).attr('data-related')}, function(data) {
             console.log(text)
             $('.load_content').html(data);
-           
+
         })
     })
     
+    
+
+    $('.guardar-formulario').submit(function(e) {
+        e.preventDefault();
+    })
+
 })
+function loadStylesCheckRadio() {
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_flat-blue',
+        radioClass: 'iradio_flat-blue',
+        increaseArea: '-10' // optionaliradio_flat-red
+    });
+}
+
+

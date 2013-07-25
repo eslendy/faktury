@@ -53,6 +53,9 @@ try {
             <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/jquery.spellchecker.css">
             <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/slider.css">
             <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/style.css">
+            <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/polaris/polaris.css" rel="stylesheet">
+            <link href="http://faktury.org/css/faktury/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css">
+            
             <!-- end: CSS -->
 
             <!-- start: JS -->
@@ -71,6 +74,7 @@ try {
             <script src="/templates/austra/assets/lib/flot/jquery.flot.pie.js"></script>
             <script src="/templates/austra/assets/lib/flot/jquery.flot.stack.js"></script>
             <script src="/templates/austra/assets/js/responsive-tables.js"></script>
+            <script src="/templates/austra/assets/js/jquery.icheck.js"></script>
             <script src="/templates/austra/assets/js/jquery.sparkline.js"></script>
             <script src="/templates/austra/assets/js/bootstrap-slider.js"></script>
             <script src="/templates/austra/assets/js/icheckdemo.js"></script>
@@ -79,7 +83,6 @@ try {
             <script src="/templates/austra/assets/js/daterangepicker.js"></script>   
             <script src="/templates/austra/assets/js/jquery.icheck.js"></script>    
             <script src="/templates/austra/assets/js/wizard.js"></script>
-            <script src="/templates/austra/assets/js/jquery-ui-1.10.2.custom.min.js"></script>
             <script src="/templates/austra/assets/js/wysihtml5-0.3.0.js"></script>
             <script src="/templates/austra/assets/js/bootstrap-wysihtml5.js"></script>
             <script src="/templates/austra/assets/js/prettyprint.js"></script>
@@ -88,6 +91,10 @@ try {
             <script src="/templates/austra/assets/js/jquery.masonry.min.js"></script>
             <script src="/templates/austra/assets/js/custom.js"></script>
             <script src="<? echo $SERVER_NAME; ?>js/jGeneral.js" type="text/javascript"></script>
+             <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
+           <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine-es.js"></script>
+           <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine.js"></script>
+           <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>css/validationEngine.jquery.css">
             <!-- end: JS -->
 
             <!-- Le fav and touch icons -->
@@ -212,8 +219,8 @@ try {
 
                             <div id="menu_secundario" class="pull-left span11">
                                 <?
-                                if (isset($_GET['c']) && !$_GET['isHome']) {
-                                    $menu->menu_lateral($_SESSION['perfil'], ($_GET['c']));
+                                if (isset($_GET['c']) && !$_REQUEST['isHome']) {
+                                    echo $menu->menu_lateral($_SESSION['perfil'], ($_GET['c']));
                                 }
                                 ?>
                             </div>
@@ -245,9 +252,8 @@ try {
                                                 <a href="#content_" data-toggle="collapse" class="title_related"> <? echo $tt; ?> </a>
                                             </div>
                                             <?php
-                                             
                                             if (isset($_GET['c']) && !empty($_GET['c']) && ($_GET['c']) != 'index.php') {
-                                               
+
                                                 include(($_GET['c']));
                                             }
                                             ?>
@@ -256,8 +262,8 @@ try {
                                                 <p class="block-heading">
                                                     <span class="pull-right">
 
-                                                        <button class="btn btn-danger" onclick="$('.add').fadeOut();
-                                                            $('#content_').collapse('show');"><i class="icon-remove"></i> Cerrar Edicion </button>
+                                                        <button class="btn btn-danger close-edit" onclick="$('.add').fadeOut();
+                                                            $('#content_').collapse('show'); $('.block.span12.add .load_content').empty()"><i class="icon-remove"></i> Cerrar Edicion </button>
                                                     </span>
 
                                                     <span class="add_form">Cargando...</span>
@@ -294,11 +300,11 @@ try {
                     <h3 id="myModalLabel1">Modal Header</h3>
                 </div>
                 <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta quia fugit ad neque tempora reiciendis itaque placeat voluptatibus nemo asperiores officia dignissimos nulla fuga quis officiis inventore ea repellendus. Vero.</p>
+                    
                 </div>
                 <div class="modal-footer">
-                    <button aria-hidden="true" data-dismiss="modal" class="btn">Close</button>
-                    <button class="btn btn-primary">Save</button>
+                    <button aria-hidden="true" data-dismiss="modal" class="btn" >Close</button>
+                    <button class="btn btn-primary guardar-formulario" onclick="$('.modal').modal('hide')">Save</button>
                 </div>
             </div>
 
@@ -329,7 +335,16 @@ try {
                     e.preventDefault();
                     $(this).tab('show');
                 })
+                 $(function() {
+                    $('input').iCheck({
+                        checkboxClass: 'icheckbox_flat-blue',
+                        radioClass: 'iradio_flat-blue',
+                        increaseArea: '-10' // optionaliradio_flat-red
+                    });
+                });
+
             </script> 	
+
 
         </body>
         <?PHP

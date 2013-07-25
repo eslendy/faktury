@@ -4,18 +4,18 @@ include('../../libphp/config.inc.php');
 include('../../libphp/mysql.php');
 
 try{
-	switch ($_GET['type']) {
-		case 'addUndAtencion':
+	switch ($_REQUEST['type']) {
+		case 'addunidadAtencion':
 			$bd->ejecutarInsertArray($_POST,"unidad_atencion");
 			echo "1";
 		break;
-		case 'editUndAtencion' : 
+		case 'editunidadAtencion' : 
 			$idunidad_atencion=$_POST['idunidad_atencion'];
 			unset($_POST['idunidad_atencion']);
 			$bd->ejecutarUpdateArray($_POST,"unidad_atencion", "idunidad_atencion=".$idunidad_atencion);
 			echo "1";
 		break;
-		case 'nullUndAtencion':
+		case 'nullunidadAtencion':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"unidad_atencion", "idunidad_atencion=".$_POST['idunidad_atencion']);
 			echo "1";
 		break;
@@ -24,7 +24,7 @@ try{
 			$bd->ejecutarInsertArray($_POST,"unidad_paciente");
 			echo "1";
 		break;
-		case 'editUnidad' : 
+		case 'editunidad' : 
 			$idunidad_atencion=$_POST['idunidad'];
 			unset($_POST['idunidad']);
 			$bd->ejecutarUpdateArray($_POST,"unidad_paciente", "idunidad=".$idunidad_atencion);
@@ -46,7 +46,7 @@ try{
 			$bd->ejecutarUpdateArray($_POST,"grado", "idgrado=".$idgrado);
 			echo "1";
 		break;
-		case 'nullGrado':
+		case 'nullgrado':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"grado", "idgrado=".$_POST['idgrado']);
 			echo "1";
 		break;
@@ -62,7 +62,7 @@ try{
 			$bd->ejecutarUpdateArray($_POST,"fuerza", "idfuerza=".$idgrado);
 			echo "1";
 		break;
-		case 'nullFuerza':
+		case 'nullfuerza':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"fuerza", "idfuerza=".$_POST['idfuerza']);
 			echo "1";
 		break;
@@ -78,7 +78,7 @@ try{
 			$bd->ejecutarUpdateArray($_POST,"paciente", "idpaciente=".$id);
 			echo "1";
 		break;
-		case 'nullPaciente':
+		case 'nullpaciente':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"paciente", "idpaciente=".$_POST['idpaciente']);
 			echo "1";
 		break;
@@ -94,7 +94,7 @@ try{
 			$bd->ejecutarUpdateArray($_POST,"proveedor", "idproveedor=".$id);
 			echo "1";
 		break;
-		case 'nullProveedor':
+		case 'nullproveedor':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"proveedor", "idproveedor=".$_POST['idproveedor']);
 			echo "1";
 		break;

@@ -3470,3 +3470,48 @@ box-sizing: border-box;
 -webkit-box-sizing: border-box;
 }
 
+
+.formulario{
+    margin-bottom: 0;
+}
+    
+    
+
+.table-btn tr td{
+    border: none;
+    padding: 0px;
+}
+
+.formulario label{
+    margin-top: 12px;
+}
+
+#frmpacientes tr td, #frmunidadAtencion tr td, #frmproveedor tr td, #frmcontrato tr td, #frmfuerza tr td, #frmgrados tr td{
+    padding: 12px 10px;
+    text-align: left;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    z-index: 9999999999 !important;
+}
+
+.modal .icheckbox_flat-blue, .modal .iradio_flat-blue {
+  float: left;   
+  margin-right: 3px;
+margin-left: 9px
+}
+
+.formulario .text-title{
+    float: left;
+}
+
+.formulario .iradio_flat-blue, .formulario .iradio_flat-blue{
+     float: left;   
+  margin-right: 3px;
+margin-left: 9px
+}
+
+
+.load_content .guardar-formulario{
+    margin-top: 20px;
+}

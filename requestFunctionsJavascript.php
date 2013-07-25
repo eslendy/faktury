@@ -1,4 +1,7 @@
 <script>
+     
+                    
+         
     $(document).ready(function() {
         $('.load_content').html('');
         $('.block.span12.add').hide();
@@ -25,7 +28,8 @@
             $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_edit_radicacion.php', {case: action, id:record }, function(data) {
                     console.log(data)
                     $('#loadContentAjaxForms').modal({show:true});
-                    $('.modal-body').html(data)
+                    $('.modal-body').html(data) 
+                    loadStylesCheckRadio();
             })
         })
     })

@@ -22,7 +22,7 @@ switch($_REQUEST['case']){
             
 	?>
     	
-        <form id="frmRadicacion" class="formulario">
+        <form id="frmfactura" class="formulario">
 	        <input type="hidden" name="idFactura" id="idFactura" value="<?=$data['idf']?>" />
             <table class="responsive table">
                
@@ -96,9 +96,9 @@ switch($_REQUEST['case']){
                     <tr>
                         <td><label>Parentesco</label></td>
                         <td>
-                        	<label><input type="radio" name="idparentesco" id="idparentescoT" class="validate[required]" value="1" <?=($data['idparentesco']==1)?'checked="checked"':''?> /> Titular</label><br />
-                            
-                            <label><input type="radio" name="idparentesco" id="idparentescoB" class="validate[required]" value="2" <?=($data['idparentesco']==2)?'checked="checked"':''?> /> Beneficiario</label>
+                          <input type="radio" name="idparentesco" id="idparentescoT" class="validate[required]" value="1" <?=($data['idparentesco']==1)?'checked="checked"':''?> /> <span class="text-title">Titular</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="idparentesco" id="idparentescoB" class="validate[required]" value="2" <?=($data['idparentesco']==2)?'checked="checked"':''?> /> <span class="text-title">Beneficiario</span>
                         </td>
                     </tr>
                     <tr>
@@ -140,12 +140,18 @@ switch($_REQUEST['case']){
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label></td>
-                        <td>
-                            <span style="display:block;"><label>En Proceso</label><input type="radio" name="estado" id="estado1" value="1" class="validate[required]" <?=($data['estado_factura']==1)?'checked="checked"':''?>  /></span>
-                            <span style="display:block;"><label>Paga</label><input type="radio" name="estado" id="estado0" value="0" class="validate[required]" <?=($data['estado_factura']==0)?'checked="checked"':''?> /></span>
-        
+                        
+                        <td><label>Estado</label>
+                            
+                                <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estado_factura']==1)?'checked="checked"':''?> /> <span class="text-title">En Proceso</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estado_factura']==0)?'checked="checked"':''?> /> <span class="text-title">Paga</span>
+
                         </td>
+                        <td>
+
+                        </td>
+                        
                     </tr>
                 </tbody>
             </table>
@@ -157,7 +163,7 @@ switch($_REQUEST['case']){
 	    $unds = new undidad_atencion($conexion['local']);
 	    $dataUnds = $unds->getUnidad($_POST['id']);
 	    ?>
-	    <form id="frmUndAtencion" class="formulario">
+	    <form id="addunidadAtencion" class="formulario">
 	    	<input type="hidden" name="idunidad_atencion" id="idunidad_atencion" value="<?=$dataUnds['idunidad_atencion']?>" />
             <table class="responsive table">
                 <thead>
@@ -180,12 +186,17 @@ switch($_REQUEST['case']){
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label></td>
-                        <td>
-                            <span style="display:block;"><label>Activo</label><input type="radio" name="estado" id="estado1" value="1" class="validate[required]" <?=($dataUnds['estado']==1)?'checked="checked"':''?> /></span>
-                            <span style="display:block;"><label>Inactivo</label><input type="radio" name="estado" id="estado0" value="0" class="validate[required]" <?=($dataUnds['estado']==0)?'checked="checked"':''?> /></span>
-        
+                         <td>
+                            <label>Estado</label>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($dataUnds['estado']==1)?'checked="checked"':''?>/> <span class="text-title">Activo</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($dataUnds['estado']==0)?'checked="checked"':''?>/> <span class="text-title">Inactivo</span>
+
                         </td>
+                        <td>
+
+                        </td>
+                       
                     </tr>
                 </tbody>
             </table>
@@ -225,12 +236,18 @@ switch($_REQUEST['case']){
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label></td>
-                        <td>
-                            <span style="display:block;"><label>Activo</label><input type="radio" name="estado" id="estado1" value="1" class="validate[required]" <?=($data['estadoContrato']==1)?'checked="checked"':''?> /></span>
-                            <span style="display:block;"><label>Inactivo</label><input type="radio" name="estado" id="estado0" value="0" class="validate[required]" <?=($data['estadoContrato']==0)?'checked="checked"':''?> /></span>
-        
+                        
+                         <td>
+                            <label>Estado</label>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estadoContrato']==1)?'checked="checked"':''?> /> <span class="text-title">Activo</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estadoContrato']==1)?'checked="checked"':''?> /> <span class="text-title">Inactivo</span>
+
                         </td>
+                        <td>
+
+                        </td>
+                        
                     </tr>
                 </tbody>
             </table>
@@ -241,7 +258,7 @@ switch($_REQUEST['case']){
         $obj = new grados($conexion['local']);
         $data = $obj->getGrado($_POST['id']);
         ?>
-        <form id="frmGrados" class="formulario">
+        <form id="frmgrados" class="formulario">
             <input type="hidden" name="idgrado" id="idgrado" value="<?=$data['idgrado']?>" />
             <table class="responsive table">
                 <thead>
@@ -259,12 +276,17 @@ switch($_REQUEST['case']){
                         <td><input type="text" name="abreviatura" id="abreviatura" class="validate[custom[TextoAcentosNum]]" value="<?=$data['abreviatura']?>" /></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label></td>
-                        <td>
-                            <span style="display:block;"><label>Activo</label><input type="radio" name="estado" id="estado1" value="1" class="validate[required]" <?=($data['estado']==1)?'checked="checked"':''?> /></span>
-                            <span style="display:block;"><label>Inactivo</label><input type="radio" name="estado" id="estado0" value="0" class="validate[required]" <?=($data['estado']==0)?'checked="checked"':''?> /></span>
-        
+                        <td><label>Estado</label>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estado']==1)?'checked="checked"':''?> /><span class="text-title"> Activo</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estado']==0)?'checked="checked"':''?> /><span class="text-title"> Inactivo</span>
+
                         </td>
+                        <td>
+
+                        </td>
+                        
+                       
                     </tr>
                 </tbody>
             </table>
@@ -275,7 +297,7 @@ switch($_REQUEST['case']){
         $obj = new fuerza($conexion['local']);
         $data = $obj->getFuerza($_POST['id']);
         ?>
-        <form id="frmFuerza" class="formulario">
+        <form id="frmfuerza" class="formulario">
             <input type="hidden" name="idfuerza" id="idfuerza" value="<?=$data['idfuerza']?>" />
             <table class="responsive table">
                 <thead>
@@ -293,12 +315,16 @@ switch($_REQUEST['case']){
                         <td><input type="text" name="abreviatura" id="abreviatura" class="validate[custom[TextoAcentosNum]]" value="<?=$data['abreviatura']?>" /></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label></td>
-                        <td>
-                            <span style="display:block;"><label>Activo</label><input type="radio" name="estado" id="estado1" value="1" class="validate[required]" <?=($data['estado']==1)?'checked="checked"':''?> /></span>
-                            <span style="display:block;"><label>Inactivo</label><input type="radio" name="estado" id="estado0" value="0" class="validate[required]" <?=($data['estado']==0)?'checked="checked"':''?> /></span>
-        
+                        <td><label>Estado</label>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"  <?=($data['estado']==1)?'checked="checked"':''?> /> <span class="text-title">Activo</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estado']==0)?'checked="checked"':''?> /> <span class="text-title">Inactivo</span>
+
                         </td>
+                        <td>
+
+                        </td>
+                      
                     </tr>
                 </tbody>
             </table>
@@ -313,7 +339,7 @@ switch($_REQUEST['case']){
 		$data = $paciente->getOne($_POST['id']);
 		
 	?>
-    	<form id="frmPaciente" class="formulario">
+    	<form id="frmpacientes" class="formulario">
 		    <input type="hidden" name="idpaciente" id="idpaciente" value="<?=$data['idpaciente']?>" />
             <table class="responsive table">
                 <thead>
@@ -343,11 +369,15 @@ switch($_REQUEST['case']){
                         <td><?=$fuerza->combobox("idfuerza","idfuerza","validate[required]",$data['idfuerza']);?></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label></td>
-                        <td>
-                            <span style="display:block;"><label>Activo</label><input type="radio" name="estado" id="estado1" value="1" class="validate[required]" <?=($data['estadoPaciente']==1)?'checked="checked"':''?> /></span>
-                            <span style="display:block;"><label>Inactivo</label><input type="radio" name="estado" id="estado0" value="0" class="validate[required]" <?=($data['estadoPaciente']==0)?'checked="checked"':''?> /></span>
+                        <td><label>Estado</label>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estadoPaciente']==1)?'checked="checked"':''?> /> <span class="text-title">Activo</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estadoPaciente']==0)?'checked="checked"':''?> /> <span class="text-title">Inactivo</span>
                         </td>
+                        <td>
+
+                        </td>
+                        
                     </tr>
                 </tbody>
             </table>
@@ -361,7 +391,7 @@ switch($_REQUEST['case']){
 		
 		
 	?>
-    	<form id="frmProveedor" class="formulario">
+    	<form id="frmproveedor" class="formulario">
         	<input type="hidden" name="idproveedor" id="idproveedor" value="<?=$data['idproveedor']?>" />
             <table class="responsive table">
                 <thead>
@@ -386,11 +416,16 @@ switch($_REQUEST['case']){
                         <td><input type="text" name="nombre" id="nombre" class="validate[required,custom[TextoAcentosNum]]" value="<?=$data['nombre']?>" /></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label></td>
-                        <td>
-                            <span style="display:block;"><label>Activo</label><input type="radio" name="estado" id="estado1" value="1" class="validate[required]" <?=($data['estadoProveedor']==1)?'checked="checked"':''?> /></span>
-                            <span style="display:block;"><label>Inactivo</label><input type="radio" name="estado" id="estado0" value="0" class="validate[required]" <?=($data['estadoProveedor']==0)?'checked="checked"':''?> /></span>
+                        <td><label>Estado</label>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estadoProveedor']==1)?'checked="checked"':''?> /> <span class="text-title">Activo</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estadoProveedor']==0)?'checked="checked"':''?> /> <span class="text-title">Inactivo</span>
                         </td>
+                        <td>
+
+                        </td>
+                        
+                    
                     </tr>
                 </tbody>
             </table>
@@ -402,7 +437,7 @@ switch($_REQUEST['case']){
 	    $unds = new undidad($conexion['local']);
 	    $dataUnds = $unds->getOne($_POST['id']);
 	    ?>
-	    <form id="frmUnidad" class="formulario">
+	    <form id="frmunidad" class="formulario">
 	    	<input type="hidden" name="idunidad" id="idunidad" value="<?=$dataUnds['idunidad']?>" />
             <table class="responsive table">
                 <thead>
@@ -416,12 +451,17 @@ switch($_REQUEST['case']){
                         <td><input type="text" name="descripcion" id="descripcion" class="validate[custom[TextoAcentosNum]]" value="<?=$dataUnds['descripcion']?>" /></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label></td>
-                        <td>
-                            <span style="display:block;"><label>Activo</label><input type="radio" name="estado" id="estado1" value="1" class="validate[required]" <?=($dataUnds['estado']==1)?'checked="checked"':''?> /></span>
-                            <span style="display:block;"><label>Inactivo</label><input type="radio" name="estado" id="estado0" value="0" class="validate[required]" <?=($dataUnds['estado']==0)?'checked="checked"':''?> /></span>
-        
+                        
+                         <td><label>Estado</label>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($dataUnds['estado']==1)?'checked="checked"':''?> /> <span class="text-title">Activo</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($dataUnds['estado']==0)?'checked="checked"':''?> /> <span class="text-title">Inactivo</span>
+
                         </td>
+                        <td>
+
+                        </td>
+                      
                     </tr>
                 </tbody>
             </table>
@@ -445,12 +485,16 @@ switch($_REQUEST['case']){
                         <td><input type="text" name="descripcion" id="descripcion" class="validate[custom[TextoAcentosNum]]" value="<?=$data['descripcion']?>" /></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label></td>
-                        <td>
-                            <span style="display:block;"><label>Activo</label><input type="radio" name="estado" id="estado1" value="1" class="validate[required]" <?=($data['estado']==1)?'checked="checked"':''?> /></span>
-                            <span style="display:block;"><label>Inactivo</label><input type="radio" name="estado" id="estado0" value="0" class="validate[required]" <?=($data['estado']==0)?'checked="checked"':''?> /></span>
-        
+                        
+                        <td><label>Estado</label>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"  <?=($data['estado']==1)?'checked="checked"':''?> /> <span class="text-title">Activo</span>
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?=($data['estado']==0)?'checked="checked"':''?> /> <span class="text-title">Inactivo</span>
+
                         </td>
+                        <td>
+
+                        </td>
+                        
                     </tr>
                 </tbody>
             </table>
@@ -459,3 +503,28 @@ switch($_REQUEST['case']){
     break;
 }
 ?>
+
+<script>
+    $('.guardar-formulario').submit(function(e) {
+        $.preventDefault(e);
+        
+    })
+    $('.guardar-formulario').click(function(e) {
+       
+        console.log('das')
+        if($('#frm<?  echo $_REQUEST['case']?>').validationEngine('validate') ==true){		
+            $.post(init.XNG_WEBSITE_URL+'radicacion/ajax/save.php?type=edit<?  echo $_REQUEST['case']?>',  $('#frm<?  echo $_REQUEST['case']?>').serialize(), function(data){
+                console.log(data)
+            })
+        }
+        
+    })
+    nuevo_reg_load();
+     $(function() {
+                    $('input').iCheck({
+                        checkboxClass: 'icheckbox_flat-blue',
+                        radioClass: 'iradio_flat-blue',
+                        increaseArea: '-10' // optionaliradio_flat-red
+                    });
+                });
+</script>
