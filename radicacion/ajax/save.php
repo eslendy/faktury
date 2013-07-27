@@ -111,7 +111,6 @@ try{
 			echo "1";
 		break;
 		case 'nullfactura':
-                        echo 'das';
 			$bd->ejecutarUpdateArray(array("estado"=>0),"factura", "idFactura=".$_REQUEST['id']);
 			echo "1";
 		break;
