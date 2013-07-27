@@ -22,11 +22,11 @@
 
 
     </div>
-<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_proveedor.php" />
+<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_proveedor" />
 
 
-<div id="contenido">
-    <table id="reporte" class="responsive table">
+<div id="contenido"> 
+    <table id="reporte" class="responsive table table-striped table-hover">
         <thead>
             <? /*<tr id="trBuscar" class="oculto">
                 <td></td>

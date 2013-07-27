@@ -25,10 +25,10 @@
     </div>
 
   
-<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_contrato.php" />
+<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_contrato" />
 
 <div id="contenido">
-    <table id="reporte" class="responsive table">
+    <table id="reporte" class="responsive table table-striped table-hover">
         <thead>
             <? /*<tr id="trBuscar" class="oculto">
                 <td><input type="search" id="numero_contrato_search" placeholder="Buscar x No. Contrato" class="search_txt" /></td>

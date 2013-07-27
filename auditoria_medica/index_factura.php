@@ -27,7 +27,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="<? $SERVER_NAME ?>auditoria_medica/index_factura.php" />
+    <input type="hidden" id="nombre_archivo" value="<? $SERVER_NAME ?>auditoria_medica/index_factura" />
 
 
     <div id="contenido">

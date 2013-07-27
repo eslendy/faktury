@@ -244,6 +244,7 @@ $(document).ready(function() {
         $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_add_radicacion.php', {case: $(this).attr('data-related')}, function(data) {
             console.log(text)
             $('.load_content').html(data);
+            
 
         })
     })

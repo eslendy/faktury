@@ -25,12 +25,12 @@ include '../requestFunctionsJavascript.php';
 
     </div>
 
-    <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>radicacion/index_factura.php" />
+    <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>radicacion/index_factura" />
 
 
 
     <div id="contenido" >
-        <table id="reporte" class="responsive table">
+        <table id="reporte" class="responsive table table-hover">
             <thead>
                 <? /* <tr id="trBuscar" class="oculto">
                   <td><input type="search" id="no_rad_search" placeholder="Rad" class="search_txt" size="4" /></td>

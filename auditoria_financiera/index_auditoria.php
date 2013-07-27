@@ -22,7 +22,7 @@
 
 
     </div>
-<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME; ?>auditoria_financiera/index_auditoria.php" />
+<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME; ?>auditoria_financiera/index_auditoria" />
 
 
 <div id="contenido">

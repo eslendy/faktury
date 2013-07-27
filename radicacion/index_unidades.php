@@ -22,7 +22,7 @@
 
 
     </div>
-<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_unidades.php" />
+<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_unidades" />
 
 <div id="contenido">
     <table id="reporte" class="tablesorter table table-hover">

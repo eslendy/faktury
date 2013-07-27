@@ -514,7 +514,17 @@ switch($_REQUEST['case']){
         console.log('das')
         if($('#frm<?  echo $_REQUEST['case']?>').validationEngine('validate') ==true){		
             $.post(init.XNG_WEBSITE_URL+'radicacion/ajax/save.php?type=edit<?  echo $_REQUEST['case']?>',  $('#frm<?  echo $_REQUEST['case']?>').serialize(), function(data){
-                console.log(data)
+             console.log('entra: '+ data);
+                 switch (data) {
+                                case '1':
+                                    alert("<?  echo $_REQUEST['case']?> Editado con Éxito!!");
+                                    $("#dialog-addModRad").remove();
+                                    _loadContenido($('#nombre_archivo').val());
+                                    break;
+                                default:
+                                    _msgerror(data, "#mensaje");
+                                    break;
+                            }
             })
         }
         

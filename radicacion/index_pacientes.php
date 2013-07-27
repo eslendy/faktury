@@ -23,10 +23,10 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>radicacion/index_pacientes.php" />
+    <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>radicacion/index_pacientes" />
 
     <div id="contenido">
-        <table id="reporte" class="responsive table">
+        <table id="reporte" class="responsive table table-striped table-hover">
             <thead>
                 <? /* <tr id="trBuscar" class="oculto">
                   <td></td>

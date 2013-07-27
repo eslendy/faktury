@@ -452,12 +452,24 @@ switch ($_REQUEST['case']) {
         
     })
     
+    
+    
+    
     $('.guardar-formulario').click(function(e) {
        
         console.log('das')
         if($('#frm'+$(this).attr('data-relation')).validationEngine('validate') ==true){		
             $.post(init.XNG_WEBSITE_URL+'radicacion/ajax/save.php?type=add'+$(this).attr('data-relation'),  $('#frm'+$(this).attr('data-relation')).serialize(), function(data){
-                console.log(data)
+                switch (data) {
+                                case '1':
+                                    alert("<?  echo $_REQUEST['case']?> Guardado con Éxito!!");
+                                    $("#dialog-addModRad").remove();
+                                    _loadContenido($('#nombre_archivo').val());
+                                    break;
+                                default:
+                                    _msgerror(data, "#mensaje");
+                                    break;
+                            }
             })
         }
         

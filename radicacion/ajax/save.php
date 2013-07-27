@@ -16,7 +16,7 @@ try{
 			echo "1";
 		break;
 		case 'nullunidadAtencion':
-			$bd->ejecutarUpdateArray(array("estado"=>0),"unidad_atencion", "idunidad_atencion=".$_POST['idunidad_atencion']);
+			$bd->ejecutarUpdateArray(array("estado"=>0),"unidad_atencion", "idunidad_atencion=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Unidades*/
@@ -31,7 +31,7 @@ try{
 			echo "1";
 		break;
 		case 'nullunidades':
-			$bd->ejecutarUpdateArray(array("estado"=>0),"unidad_paciente", "idunidad=".$_POST['idunidad']);
+			$bd->ejecutarUpdateArray(array("estado"=>0),"unidad_paciente", "idunidad=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin Unidades*/
@@ -46,8 +46,8 @@ try{
 			$bd->ejecutarUpdateArray($_POST,"grado", "idgrado=".$idgrado);
 			echo "1";
 		break;
-		case 'nullgrado':
-			$bd->ejecutarUpdateArray(array("estado"=>0),"grado", "idgrado=".$_POST['idgrado']);
+		case 'nullgrados':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"grado", "idgrado=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/*Fin Grados*/
@@ -63,23 +63,23 @@ try{
 			echo "1";
 		break;
 		case 'nullfuerza':
-			$bd->ejecutarUpdateArray(array("estado"=>0),"fuerza", "idfuerza=".$_POST['idfuerza']);
+			$bd->ejecutarUpdateArray(array("estado"=>0),"fuerza", "idfuerza=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin Fuerzas*/
 		/* Paciente*/
-		case 'addpaciente':
+		case 'addpacientes':
 			$bd->ejecutarInsertArray($_POST,"paciente");
 			echo "1";
 		break;
-		case 'editpaciente' : 
+		case 'editpacientes' : 
 			$id=$_POST['idpaciente'];
 			unset($_POST['idpaciente']);
 			$bd->ejecutarUpdateArray($_POST,"paciente", "idpaciente=".$id);
 			echo "1";
 		break;
-		case 'nullpaciente':
-			$bd->ejecutarUpdateArray(array("estado"=>0),"paciente", "idpaciente=".$_POST['idpaciente']);
+		case 'nullpacientes':
+			$bd->ejecutarUpdateArray(array("estado"=>0),"paciente", "idpaciente=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin Paciente*/
@@ -95,7 +95,7 @@ try{
 			echo "1";
 		break;
 		case 'nullproveedor':
-			$bd->ejecutarUpdateArray(array("estado"=>0),"proveedor", "idproveedor=".$_POST['idproveedor']);
+			$bd->ejecutarUpdateArray(array("estado"=>0),"proveedor", "idproveedor=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin Proveedor*/
@@ -111,7 +111,8 @@ try{
 			echo "1";
 		break;
 		case 'nullfactura':
-			$bd->ejecutarUpdateArray(array("estado"=>0),"factura", "idFactura=".$_POST['idFactura']);
+                        echo 'das';
+			$bd->ejecutarUpdateArray(array("estado"=>0),"factura", "idFactura=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin Proveedor*/
@@ -127,7 +128,7 @@ try{
 			echo "1";
 		break;
 		case 'nullcontrato':
-			$bd->ejecutarUpdateArray(array("estado"=>0),"contrato", "idcontrato=".$_POST['idcontrato']);
+			$bd->ejecutarUpdateArray(array("estado"=>0),"contrato", "idcontrato=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin Contrato*/
@@ -143,7 +144,7 @@ try{
 			echo "1";
 		break;
 		case 'nullparentesco':
-			$bd->ejecutarUpdateArray(array("estado"=>0),"parentesco", "idparentesco=".$_POST['idparentesco']);
+			$bd->ejecutarUpdateArray(array("estado"=>0),"parentesco", "idparentesco=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin parentesco*/
