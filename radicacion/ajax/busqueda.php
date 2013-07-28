@@ -20,13 +20,17 @@ try {
     switch ($_REQUEST['case']) {
         case 'factura':
             $dataFacturas = $facturas->getAllFacturasByTerm($_REQUEST);
-
             include 'table_factura_content.php';
             break;
         case 'pacientes':
-                 $paciente = new paciente($conexion['local']);
+            $paciente = new paciente($conexion['local']);
             $dataPacientes = $paciente->getAllPacientesByTerm($_REQUEST);
             include 'table_paciente_content.php';
+            break;
+         case 'proveedor':
+            $paciente = new paciente($conexion['local']);
+            $dataPacientes = $paciente->getAllProveedoresByTerm($_REQUEST);
+            include 'table_proveedores_content.php';
             break;
         case 'auto_und_atencion':
             $undAtencion = new undidad_atencion($conexion['local']);

@@ -11,11 +11,24 @@
 <div class="collapse in" id="content_">
     <div class="table-option clearfix">
 
-        <span class="pull-left keywords">
-            <form action="#" class="form-inline">
-                <input name="q" class="table-form" type="text"  placeholder="Keywords: Ruby, Rails, Django" >
-                <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
-            </form>
+           
+         <span class="pull-left keywords">
+           
+                <input name="q" class="table-form search-box" type="text"  placeholder="ID" >
+                <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action']?>"> <i class="icon-search icon-white"></i></button>
+                <h4>Filtrar por:</h4>
+                <div class="busqueda-radio">
+                    <label class="pull-left" for="documento">Documento:</label><input type="radio" name="type" value="p.documento" id="documento" class="search-radio" data-related="Documento">
+                    <label class="pull-left" for="nombre">Nombre:</label><input type="radio" name="type" value="p.nombre" id="nombre" class="search-radio" data-related="Nombre">
+                   </div>
+         
+            <script>
+                $(document).ready(function(){
+                    $('.checked .search-radio').click(function(){
+                        $('.search-box').attr('placeholder', $(this).attr('data-related'));
+                    })
+                })
+            </script>
         </span>
    
         <div class="clear"></div>
