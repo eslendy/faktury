@@ -1,18 +1,13 @@
-#[Font Awesome v3.2.1](http://fontawesome.io)
-###the iconic font designed for Bootstrap
+#[Faktury](http://eslendy.no-ip.biz/login/)
+###Trazabilidad de la facturación
 
-Font Awesome is a full suite of 361 pictographic icons for easy scalable vector graphics on websites, created and
-maintained by [Dave Gandy](http://twitter.com/davegandy). Stay up to date [@fontawesome](http://twitter.com/fontawesome).
+Las organizaciones como el Hospital Militar de Bucaramanga, dedicadas a la salud, no son la excepción puesto que su trabajo es velar por el bienestar de las personas que solicitan sus servicios; es indispensable que sus procesos se realicen de forma eficiente y oportuna, no solo en el área de la medicina si no también en sus procesos administrativos; de muchos de ellos depende la correcta disposición de los recursos, es por ello que se desarrolla la aplicación FAKTURY, el cual implementa un sistema de información que permite al Hospital Militar, sistematizar y optimizar el proceso de trazabilidad de la facturación.
 
-Get started at http://fontawesome.io!
+## Por que se crea la aplicación?
 
-##License
-- The Font Awesome font is licensed under the SIL OFL 1.1:
-  - http://scripts.sil.org/OFL
-- Font Awesome CSS, LESS, and SASS files are licensed under the MIT License:
-  - http://opensource.org/licenses/mit-license.html
-- The Font Awesome documentation is licensed under the CC BY 3.0 License:
-  - http://creativecommons.org/licenses/by/3.0/
+La implementación de una aplicación para el proceso de trazabilidad de la facturación del hospital, no solo  permitirá la sistematización de los procesos si no que adicionalmente, centraliza la información representando un aumento en la productividad del equipo de trabajo.
+
+
 - Attribution is no longer required as of Font Awesome 3.0, but much appreciated:
   - `Font Awesome by Dave Gandy - http://fontawesome.io`
 - Full details: http://fontawesome.io/license
