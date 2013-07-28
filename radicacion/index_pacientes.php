@@ -20,7 +20,6 @@ include '../requestFunctionsJavascript.php';
                 <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action']?>"> <i class="icon-search icon-white"></i></button>
                 <h4>Filtrar por:</h4>
                 <div class="busqueda-radio">
-                    <label class="pull-left" for="id">Numero Paciente:</label> <input type="radio" name="type" value="p.idpaciente" id="id" class="search-radio" data-related="Numero Paciente" checked>
                     <label class="pull-left" for="documento">Documento:</label><input type="radio" name="type" value="p.documento" id="documento" class="search-radio" data-related="Documento">
                     <label class="pull-left" for="nombre">Nombre:</label><input type="radio" name="type" value="p.nombre" id="nombre" class="search-radio" data-related="Nombre">
                     <label class="pull-left" for="apellido">Apellido:</label><input type="radio" name="type" value="p.apellidos" id="apellido" class="search-radio" data-related="Apellido">
