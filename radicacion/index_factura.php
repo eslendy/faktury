@@ -19,8 +19,8 @@ include '../requestFunctionsJavascript.php';
                 <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action']?>"> <i class="icon-search icon-white"></i></button>
                 <h4>Filtrar por:</h4>
                 <div class="busqueda-radio">
-                    <label class="pull-left" for="id">ID:</label> <input type="radio" name="type" value="f.no_radicado" id="id" class="search-radio" data-related="ID" checked>
-                    <label class="pull-left" for="fecha">Fecha:</label><input type="radio" name="type" value="f.fecha_radicacion" id="fecha" class="search-radio" data-related="Fecha">
+                    <label class="pull-left" for="id">Numero Radicado:</label> <input type="radio" name="type" value="f.no_radicado" id="id" class="search-radio" data-related="Numero radicado" checked>
+                    <label class="pull-left" for="fecha">Fecha Radicado:</label><input type="radio" name="type" value="f.fecha_radicacion" id="fecha" class="search-radio" data-related="Fecha Radicado">
                     <label class="pull-left" for="no-factura">Nro. Factura:</label><input type="radio" name="type" value="f.numero_factura" id="no-factura" class="search-radio" data-related="Numero factura">
                     <label class="pull-left" for="proveedor">Proveedor:</label><input type="radio" name="type" value="pro.nombre" id="proveedor" class="search-radio" data-related="Proveedor">
                     <label class="pull-left" for="paciente">Paciente:</label><input type="radio" name="type" value="pa.nombre" id="paciente" class="search-radio" data-related="Paciente">
