@@ -25,8 +25,7 @@ El desarrollo de la aplicación se realiza por medio de los siguientes lenguajes
 - CSS (Cascading Style Sheets)
 - JavaScript (Jquery)
 
-##Author
+##Autor
 - Email: dave@fontawesome.io
-- Twitter: http://twitter.com/davegandy
 - GitHub: https://github.com/davegandy
 - Work: Lead Product Designer @ http://kyru.us
