@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+error_reporting(-1);
 include("../../vigiaAjax.php");
 include("../../libphp/config.inc.php");
 include("../../libphp/mysql.php");
@@ -16,7 +16,12 @@ require_once('../clases/glosas_class.php');
 $facturas = new facturas($conexion['local']);
 
 try{
-	switch($_GET['case']){
+	switch($_REQUEST['case']){
+                case 'factura':
+                   	$dataFacturas = $facturas->getAllFacturasByTerm($_REQUEST);
+                        
+                        include 'table_factura_content.php';
+                    break;
 		case 'auto_und_atencion':
 			$undAtencion = new undidad_atencion($conexion['local']);
 			echo $undAtencion->getallUndAutoC($_GET['term'],$_GET['where']);;

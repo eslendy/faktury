@@ -14,10 +14,25 @@ include '../requestFunctionsJavascript.php';
     <div class="table-option clearfix">
 
         <span class="pull-left keywords">
-            <form action="#" class="form-inline">
-                <input name="q" class="table-form" type="text"  placeholder="Keywords: Ruby, Rails, Django" >
-                <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
-            </form>
+           
+                <input name="q" class="table-form search-box" type="text"  placeholder="ID" >
+                <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action']?>"> <i class="icon-search icon-white"></i></button>
+                <h4>Filtrar por:</h4>
+                <div class="busqueda-radio">
+                    <label class="pull-left" for="id">ID:</label> <input type="radio" name="type" value="f.no_radicado" id="id" class="search-radio" data-related="ID" checked>
+                    <label class="pull-left" for="fecha">Fecha:</label><input type="radio" name="type" value="f.fecha_radicacion" id="fecha" class="search-radio" data-related="Fecha">
+                    <label class="pull-left" for="no-factura">Nro. Factura:</label><input type="radio" name="type" value="f.numero_factura" id="no-factura" class="search-radio" data-related="Numero factura">
+                    <label class="pull-left" for="proveedor">Proveedor:</label><input type="radio" name="type" value="pro.nombre" id="proveedor" class="search-radio" data-related="Proveedor">
+                    <label class="pull-left" for="paciente">Paciente:</label><input type="radio" name="type" value="pa.nombre" id="paciente" class="search-radio" data-related="Paciente">
+                </div>
+         
+            <script>
+                $(document).ready(function(){
+                    $('.checked .search-radio').click(function(){
+                        $('.search-box').attr('placeholder', $(this).attr('data-related'));
+                    })
+                })
+            </script>
         </span>
      
         <div class="clear"></div>
@@ -32,16 +47,6 @@ include '../requestFunctionsJavascript.php';
     <div id="contenido" >
         <table id="reporte" class="responsive table table-hover">
             <thead>
-                <? /* <tr id="trBuscar" class="oculto">
-                  <td><input type="search" id="no_rad_search" placeholder="Rad" class="search_txt" size="4" /></td>
-                  <td><input type="search" id="fecha_rad_search" placeholder="Buscar x fecha" class="search_txt fecha" /></td>
-                  <td><input type="search" id="factura_search" placeholder="Buscar x No. Factura" class="search_txt" /></td>
-                  <td></td>
-                  <td><input type="search" id="proveedor_search" placeholder="Buscar x proveedor" class="search_txt" /></td>
-                  <td><input type="search" id="paciente_search" placeholder="Buscar x paciente" class="search_txt" /></td>
-                  <td></td>
-                  <td></td>
-                  </tr> */ ?>
                 <tr>
                     <th title="No. Radicado">RAD</th>
                     <th title="Fecha Radicación">FECHA RAD.</th>
@@ -54,7 +59,7 @@ include '../requestFunctionsJavascript.php';
                     <th></th>
                 </tr>
             </thead>
-            <tbody id="lista">
+            <tbody id="lista" class="loadContentFromSearch">
                 <?
                 $i = 1;
                 foreach ($dataFacturas as $fac) {

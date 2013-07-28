@@ -28,6 +28,16 @@ class facturas extends BD{
 		$campos="*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf";
 		return $this->consultar($this->_modulo_sql($campos,$where,"f.idFactura","f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
 	}
+        
+        public function getAllFacturasByTerm($Params){
+            
+            
+                $where = $Params['type'].' like "%'.$Params['term'].'%"';
+		$campos="*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf ";
+	//	echo $this->_modulo_sql($campos,$where,"f.idFactura","f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC");
+                return $this->consultar($this->_modulo_sql($campos,$where,"f.idFactura","f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
+	}
+        
 	public function getall($campos="",$where=""){
 		$campos=($campos=="")?"*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf":$campos;
 		//echo $this->_modulo_sql($campos,$where,"f.idFactura","f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC");

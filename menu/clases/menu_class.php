@@ -82,14 +82,13 @@ class menu extends BD {
                     $html .='</ul>';
                 } else {
                     $html.='<a  class="nav-header active"  href="' . (($p['enlace'] == "") ? '#' : XNG_WEBSITE_URL . ($p['enlace'])) . '">' . $p['descripcion'] . '</a>';
-                    
                 }
             }
             return $html;
         }
     }
 
-     public function make_menu___($idperfil, $padre = 0) {
+    public function make_menu___($idperfil, $padre = 0) {
 
 
         $html = '<ul class="nav nav-pills">';
@@ -117,7 +116,7 @@ class menu extends BD {
             return $html;
         }
     }
-    
+
     private function get_menus_old($idperfil, $padre) {
         $campos = "m.idmenu, m.descripcion, m.enlace, m.orden";
         $where = "pe.idperfil=" . $idperfil . " AND m.estado=1 AND p.ver=1 AND m.visible=1";
@@ -132,24 +131,28 @@ class menu extends BD {
 
         $Menu = $this->Faktury->FindIdParentBySeoName(ltrim($_SERVER['REQUEST_URI'], '/'));
         //var_dump($Menu);
-        $campos = "m.idmenu, m.descripcion, m.enlace, m.orden";
-        $where = "pe.idperfil=" . $idperfil . " AND m.estado=1 AND p.ver=1 AND m.visible=0";
-        //   if($padre)
-        $where .= " AND m.padre=" . $Menu['idmenu'];
-        $groupby = "m.idmenu";
-        $orderby = "m.orden";
-        $padres = $this->consultar($this->_menu_sql($campos, $where, $groupby, $orderby));
-        $html = '';
+        if (!empty($Menu['idmenu'])) {
+            $campos = "m.idmenu, m.descripcion, m.enlace, m.orden";
+            $where = "pe.idperfil=" . $idperfil . " AND m.estado=1 AND p.ver=1 AND m.visible=0";
+            //   if($padre)
+            $where .= " AND m.padre=" . $Menu['idmenu'];
+            $groupby = "m.idmenu";
+            $orderby = "m.orden";
+            $padres = $this->consultar($this->_menu_sql($campos, $where, $groupby, $orderby));
+            $html = '';
 
-        if (!empty($padres)) {
-            foreach ($padres as $p) {
-                 $html.='<button class="btn btn-primary"  onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">' . $p['descripcion'] . '</button>';
-                //$html.='<li onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">';
-                //$html.='<a><i class="icon-chevron-right"></i> ' . $p['descripcion'] . '';
-                //$html.='</a>';
-                //$html.='</li>';
+            if (!empty($padres)) {
+                foreach ($padres as $p) {
+                    $html.='<button class="btn btn-primary"  onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">' . $p['descripcion'] . '</button>';
+                    //$html.='<li onclick="cargar_contenido(this)" id="' . XNG_WEBSITE_URL . '' . $p['enlace'] . '" value="' . $p['idmenu'] . '">';
+                    //$html.='<a><i class="icon-chevron-right"></i> ' . $p['descripcion'] . '';
+                    //$html.='</a>';
+                    //$html.='</li>';
+                }
+                return $html;
             }
-            return $html;
+        }else{
+            return false;
         }
     }
 

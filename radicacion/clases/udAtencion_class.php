@@ -31,5 +31,6 @@ class undidad_atencion extends BD{
 		}
 		return  '['.implode(",",$array).']';
 	}
+        
 }
 ?>

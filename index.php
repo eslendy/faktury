@@ -220,6 +220,7 @@ try {
                             <div id="menu_secundario" class="pull-left span11">
                                 <?
                                 if (isset($_GET['c']) && !$_REQUEST['isHome']) {
+                                  
                                     echo $menu->menu_lateral($_SESSION['perfil'], ($_GET['c']));
                                 }
                                 ?>
