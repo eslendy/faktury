@@ -171,9 +171,7 @@ try {
                 </form>    
 
                 <div class="sidebar-avatar">
-                    <img src="/templates/austra/assets/images/team-1.jpg" alt="avatar" class="thumbnail-avatar">
-                    <a href="#"><div class="sidebar-avatar-message"><div class="notify notify-message"><i class="icon-envelope"></i></div></div></a>
-                    <a href="#"><div class="sidebar-avatar-notify"><div class="notify ">7</div></div></a>
+                
                 </div>
 
 
@@ -197,14 +195,8 @@ try {
             <div class="content">
 
                 <div class="header">
-                    <h1 class="page-title">Tables</h1>
+                    <h1 class="page-title title___"></h1>
                 </div><!-- header --> 
-
-                <ul class="breadcrumb">
-                    <li><a href="#">Home</a> <span class="divider"><i class="icon-chevron-right"></i></span></li>
-                    <li><a href="#">Forms</a> <span class="divider"><i class="icon-chevron-right"></i></span></li>
-                    <li class="active">Tables</li>
-                </ul><!-- breadcrumb -->           
 
 
 
@@ -250,6 +242,11 @@ try {
                                                     $tt .= ucfirst($t) . ' ';
                                                 }
                                                 ?>
+                                                <script>
+                                                    $(document).ready(function(){
+                                                        $('.title___').text('<? echo $tt ?>');
+                                                    })
+                                                    </script>
                                                 <a href="#content_" data-toggle="collapse" class="title_related"> <? echo $tt; ?> </a>
                                             </div>
                                             <?php

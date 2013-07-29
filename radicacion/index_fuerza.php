@@ -11,12 +11,21 @@ include '../requestFunctionsJavascript.php';
 ?>
 <div class="collapse in" id="content_">
     <div class="table-option clearfix">
-
         <span class="pull-left keywords">
-            <form action="#" class="form-inline">
-                <input name="q" class="table-form" type="text"  placeholder="Keywords: Ruby, Rails, Django" >
-                <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
-            </form>
+                <input name="q" class="table-form search-box" type="text"  placeholder="Descripcion" >
+                <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action']?>"> <i class="icon-search icon-white"></i></button>
+                <h4>Filtrar por:</h4>
+                <div class="busqueda-radio">
+                    <label class="pull-left" for="description">Descripcion:</label> <input type="radio" name="type" value="descripcion" id="descripcion" class="search-radio" data-related="Descripcion" checked>
+                </div>
+         
+            <script>
+                $(document).ready(function(){
+                    $('.checked .search-radio').click(function(){
+                        $('.search-box').attr('placeholder', $(this).attr('data-related'));
+                    })
+                })
+            </script>
         </span>
        
         <div class="clear"></div>
@@ -29,14 +38,7 @@ include '../requestFunctionsJavascript.php';
     <div id="contenido">
         <table id="reporte" class="responsive table table-striped table-hover">
             <thead>
-                <? /* <tr id="trBuscar" class="oculto">
-                  <td></td>
-                  <td><input type="search" id="descripcion_search" placeholder="Buscar x Descripcion" class="search_txt" /></td>
-                  <td><input type="search" id="abreviatura_search" placeholder="Buscar x abreviatura" class="search_txt" /></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  </tr> */ ?>
+               
                 <tr>
                     <th>ID</th>
                     <th>DESCRIPCION</th>
@@ -46,7 +48,7 @@ include '../requestFunctionsJavascript.php';
                     <th></th>
                 </tr>
             </thead>
-            <tbody id="lista">
+            <tbody id="lista" class="loadContentFromSearch">
                 <?
                 $i = 1;
                 foreach ($data as $u) {

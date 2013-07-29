@@ -1729,6 +1729,7 @@ canvas{
 }
 
 .sidebar-avatar {
+    height: 108px;
     text-align: center;
     padding: 10px 40px 15px;
     position: relative;
@@ -3549,3 +3550,5 @@ table.table.list tr:first-child td {
 .pull-left.keywords{
     width: 100%;
 }
+
+

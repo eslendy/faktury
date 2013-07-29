@@ -16,6 +16,12 @@ class undidad_atencion extends BD{
 		$campos="*";
 		return $this->consultar($this->_und_sql("*","","","descripcion ASC"));
 	}
+        
+         public function getallUndByTerm($Params){
+            $where = $Params['type'].' like "%'.$Params['term'].'%"';
+            return $this->consultar($this->_und_sql("*",$where,"","descripcion ASC")); 
+            
+        }
 
 	public function getUnidad($idunidad){
 		$rs = $this->consultar($this->_und_sql("*","idunidad_atencion=".$idunidad));

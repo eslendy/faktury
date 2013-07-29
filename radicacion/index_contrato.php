@@ -13,10 +13,23 @@
     <div class="table-option clearfix">
 
         <span class="pull-left keywords">
-            <form action="#" class="form-inline">
-                <input name="q" class="table-form" type="text"  placeholder="Keywords: Ruby, Rails, Django" >
-                <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
-            </form>
+           
+                <input name="q" class="table-form search-box" type="text"  placeholder="Numero de Contrato" >
+                <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action']?>"> <i class="icon-search icon-white"></i></button>
+                <h4>Filtrar por:</h4>
+                <div class="busqueda-radio">
+                    <label class="pull-left" for="nro-contrato">Numero de Contrato:</label> <input type="radio" name="type" value="c.numero_contrato" id="nro-contrato" class="search-radio" data-related="Numero de Contrato" checked>
+                    <label class="pull-left" for="fecha">Fecha Contrato:</label><input type="radio" name="type" value="c.fecha_contrato" id="fecha" class="search-radio" data-related="Fecha Contrato">
+                    <label class="pull-left" for="proveedor">Proveedor:</label><input type="radio" name="type" value="p.nombre" id="proveedor" class="search-radio" data-related="Proveedor">
+                </div>
+         
+            <script>
+                $(document).ready(function(){
+                    $('.checked .search-radio').click(function(){
+                        $('.search-box').attr('placeholder', $(this).attr('data-related'));
+                    })
+                })
+            </script>
         </span>
        
         <div class="clear"></div>
@@ -30,16 +43,7 @@
 <div id="contenido">
     <table id="reporte" class="responsive table table-striped table-hover">
         <thead>
-            <? /*<tr id="trBuscar" class="oculto">
-                <td><input type="search" id="numero_contrato_search" placeholder="Buscar x No. Contrato" class="search_txt" /></td>
-                <td><input type="search" id="fecha_contrato_search" placeholder="Buscar x fecha contrato" class="search_txt fecha" /></td>
-                <td><input type="search" id="valor_contrato_search" placeholder="Buscar x valor" class="search_txt" /></td>
-                <td><input type="search" id="proveedor_search" placeholder="Buscar x proveedor" class="search_txt" /></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>*/?>
+          
             <tr>
                 <th># CONTRATO</th>
                 <th>FECHA CONTRATO</th>
@@ -50,7 +54,7 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody id="lista">
+        <tbody id="lista" class="loadContentFromSearch">
             <? $i=1; 
             foreach ($data as $d) {?>
             <tr class="elemetoBusqueda">

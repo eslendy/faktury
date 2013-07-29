@@ -13,12 +13,12 @@ if (!empty($dataFacturas)) {
             <td><?= ($fac['estado_factura'] == 1) ? 'Activa' : 'Anulada' ?></td>
             <td width="61">
                 <a>
-                    <span class="editarBtn" data-record="<? echo $fac['idf']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
+                    <span class="editarBtn" data-record="<? echo $fac['idf']; ?>" data-section="radicacion" data-action="factura"><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
                 </a>
             </td>
             <td width="61">
                 <a>
-                    <span class="anularBtn" data-record="<? echo $fac['idf']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><button class="btn btn-danger"><i class="icon-trash"></i></button></span>
+                    <span class="anularBtn" data-record="<? echo $fac['idf']; ?>" data-section="radicacion" data-action="factura"><button class="btn btn-danger"><i class="icon-trash"></i></button></span>
                 </a>
             </td>
         </tr>
@@ -34,3 +34,4 @@ if (!empty($dataFacturas)) {
         <?
     }
     ?>
+<script type="text/javascript" src="<? echo $SERVER_NAME?>js/jGeneral.js"></script>

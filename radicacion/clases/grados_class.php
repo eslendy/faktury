@@ -16,6 +16,13 @@ class grados extends BD{
 		$campos="*";
 		return $this->consultar($this->_grado_sql("*","","","descripcion ASC"));
 	}
+        
+        public function getAllGradosByTerm($Params){
+            $where = $Params['type'].' like "%'.$Params['term'].'%"';
+            $campos="*";
+            return $this->consultar($this->_grado_sql("*",$where,"","descripcion ASC")); 
+            
+        }
 
 	public function getGrado($idgrado){
 		$rs = $this->consultar($this->_grado_sql("*","idgrado=".$idgrado));

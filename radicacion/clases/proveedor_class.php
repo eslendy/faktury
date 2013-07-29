@@ -5,8 +5,7 @@ class proveedor extends BD{
 	}
 	public function _sql($campos="*", $where="", $groupby="", $orderby=""){
 		$sql= "SELECT ".$campos."
-		FROM proveedor p
-		INNER JOIN tipo_doc t ON (p.idtipo_doc = t.idtipo_doc)".
+		FROM proveedor p INNER JOIN tipo_doc t ON (p.idtipo_doc = t.idtipo_doc)".
 		(($where!="")?" WHERE ".$where:"").
 		(($groupby!="")?" GROUP BY ".$groupby:"").
 		(($orderby!="")? " ORDER BY ".$orderby:"");
@@ -17,7 +16,15 @@ class proveedor extends BD{
 		$campos="*";
 		return $this->consultar($this->_sql("*,p.estado AS estadoProveedor, t.descripcion AS desTipod","","","idproveedor ASC"));
 	}
-
+        
+        public function getAllProveedoresByTerm($Params){
+            $where = $Params['type'].' like "%'.$Params['term'].'%"';
+            $campos="*";
+           // echo $this->_sql("*, p.estado AS estadoProveedor, t.descripcion AS desTipod ",$where,""," idproveedor ASC ");
+            return $this->consultar($this->_sql("*,p.estado AS estadoProveedor, t.descripcion AS desTipod ",$where,""," idproveedor ASC"));
+            
+            
+        }
 	public function getOne($id){
 		$rs = $this->consultar($this->_sql("*, p.estado AS estadoProveedor","idproveedor=".$id));
 		return $rs[0];

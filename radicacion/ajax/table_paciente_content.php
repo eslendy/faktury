@@ -12,12 +12,12 @@ if (!empty($dataPacientes)) {
             <td><?= ($d['estadoPaciente'] == 1) ? 'Activo' : 'Inactivo' ?></td>
             <td width="61">
                 <a>
-                    <span class="editarBtn" data-record="<? echo $d['idpaciente']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
+                    <span class="editarBtn" data-record="<? echo $d['idpaciente']; ?>" data-section="radicacion" data-action="pacientes"><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
                 </a>
             </td>
             <td width="61">
                 <a>
-                    <span class="anularBtn" data-record="<? echo $d['idpaciente']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><button class="btn btn-danger"><i class="icon-trash"></i></button></span>
+                    <span class="anularBtn" data-record="<? echo $d['idpaciente']; ?>" data-section="radicacion" data-action="pacientes"><button class="btn btn-danger"><i class="icon-trash"></i></button></span>
                 </a>
             </td>
         </tr>
@@ -31,3 +31,4 @@ if (!empty($dataPacientes)) {
     </tr>
     <?
 }?>
+<script type="text/javascript" src="<? echo $SERVER_NAME?>js/jGeneral.js"></script>

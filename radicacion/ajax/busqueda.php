@@ -1,6 +1,5 @@
 <?php
 
-error_reporting(-1);
 include("../../vigiaAjax.php");
 include("../../libphp/config.inc.php");
 include("../../libphp/mysql.php");
@@ -8,6 +7,7 @@ include("../clases/facturas_class.php");
 include("../clases/udAtencion_class.php");
 include("../clases/unidades_class.php");
 include("../clases/paciente_class.php");
+include("../clases/fuerza_class.php");
 include("../clases/grados_class.php");
 include("../clases/proveedor_class.php");
 include("../clases/contrato_class.php");
@@ -28,9 +28,39 @@ try {
             include 'table_paciente_content.php';
             break;
          case 'proveedor':
-            $paciente = new paciente($conexion['local']);
-            $dataPacientes = $paciente->getAllProveedoresByTerm($_REQUEST);
+            $proveedor = new proveedor($conexion['local']);
+         //   var_dump($_REQUEST);
+             $dataProveedores = $proveedor->getAllProveedoresByTerm($_REQUEST);
+        // var_dump($dataProveedores);
             include 'table_proveedores_content.php';
+            break;
+        case 'contrato':
+            $contrato = new contrato($conexion['local']);
+           // var_dump($_REQUEST);
+             $dataContratos = $contrato->getAllContratoByTerm($_REQUEST);
+            //var_dump($dataContratos);
+            include 'table_contrato_content.php';
+            break;
+        case 'fuerza':
+            //echo 'asdasd';
+            $fuerza = new fuerza($conexion['local']);
+            //var_dump($_REQUEST);
+            //die;
+            
+            $dataFuerzas = $fuerza->getAllFuerzasByTerm($_REQUEST);
+            //var_dump($dataFuerzas);
+            include 'table_fuerzas_content.php';
+            break;
+        case 'grados':
+            $grados = new grados($conexion['local']);
+            $dataGrados = $grados->getAllGradosByTerm($_REQUEST);
+            include 'table_grados_content.php';
+            
+            break;
+        case 'unidadAtencion':
+            $dataUnds = new undidad_atencion($conexion['local']);
+            $dataUnds_ = $dataUnds->getallUndByTerm($_REQUEST);
+            include 'table_unatencion_content.php';
             break;
         case 'auto_und_atencion':
             $undAtencion = new undidad_atencion($conexion['local']);

@@ -17,6 +17,17 @@ class contrato extends BD{
 		$campos="*, c.estado AS estadoContrato, UPPER(p.nombre) AS proveedor";
 		return $this->consultar($this->_sql($campos,"","","c.numero_contrato ASC"));
 	}
+        
+         public function getAllContratoByTerm($Params){
+            $where = $Params['type'].' like "%'.$Params['term'].'%"';
+            $campos="*, c.estado AS estadoContrato, UPPER(p.nombre) AS proveedor";
+            
+            //echo $this->_sql($campos,$where,"","c.numero_contrato ASC");
+            
+            return $this->consultar($this->_sql($campos,$where,"","c.numero_contrato ASC")); 
+            
+        }
+        
 
 	public function getOne($id){
 		if($id==0){

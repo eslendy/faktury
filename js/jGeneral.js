@@ -265,3 +265,39 @@ function loadStylesCheckRadio() {
 }
 
 
+   
+    $(document).ready(function() {
+        
+        $('.anularBtn').click(function() {
+                    var action = $(this).attr('data-action');
+                    var record = $(this).attr('data-record');
+                    if (confirm('¿Esta seguro de desactivar este registro?')) {
+                        $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/save.php?type=null'+action, {id: record}, function(html_response) {
+                            switch (html_response) {
+                                case '1':
+                                    alert(action + " Desactivado con Éxito!!");
+                                    $("#dialog-addModRad").remove();
+                                    _loadContenido($('#nombre_archivo').val());
+                                    break;
+                                default:
+                                    _msgerror(html_response, "#mensaje");
+                                    break;
+                            }
+                        });
+                    }
+
+                })
+        
+        $('.editarBtn').click(function() {
+         
+            var action = $(this).attr('data-action');
+            var record = $(this).attr('data-record');
+            $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_edit_radicacion.php', {case: action, id:record }, function(data) {
+                    console.log(data)
+                    $('#loadContentAjaxForms').modal({show:true});
+                    $('.modal-body').html(data) 
+                    loadStylesCheckRadio();
+                    
+            })
+        })
+    })

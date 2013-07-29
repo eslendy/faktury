@@ -163,7 +163,7 @@ switch($_REQUEST['case']){
 	    $unds = new undidad_atencion($conexion['local']);
 	    $dataUnds = $unds->getUnidad($_POST['id']);
 	    ?>
-	    <form id="addunidadAtencion" class="formulario">
+	    <form id="frmunidadAtencion" class="formulario">
 	    	<input type="hidden" name="idunidad_atencion" id="idunidad_atencion" value="<?=$dataUnds['idunidad_atencion']?>" />
             <table class="responsive table">
                 <thead>

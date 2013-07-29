@@ -16,11 +16,11 @@ include '../requestFunctionsJavascript.php';
         
          <span class="pull-left keywords">
            
-                <input name="q" class="table-form search-box" type="text"  placeholder="ID" >
+                <input name="q" class="table-form search-box" type="text"  placeholder="Documento" >
                 <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action']?>"> <i class="icon-search icon-white"></i></button>
                 <h4>Filtrar por:</h4>
                 <div class="busqueda-radio">
-                    <label class="pull-left" for="documento">Documento:</label><input type="radio" name="type" value="p.documento" id="documento" class="search-radio" data-related="Documento">
+                    <label class="pull-left" for="documento">Documento:</label><input type="radio" name="type" value="p.documento" id="documento" class="search-radio" data-related="Documento" checked>
                     <label class="pull-left" for="nombre">Nombre:</label><input type="radio" name="type" value="p.nombre" id="nombre" class="search-radio" data-related="Nombre">
                     <label class="pull-left" for="apellido">Apellido:</label><input type="radio" name="type" value="p.apellidos" id="apellido" class="search-radio" data-related="Apellido">
                     <label class="pull-left" for="fuerza">Fuerza:</label><input type="radio" name="type" value="f.descripcion" id="fuerza" class="search-radio" data-related="Fuerza">

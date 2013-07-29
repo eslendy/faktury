@@ -22,3 +22,22 @@ $(function(){
      _dataGriD("#reporte",headersArray,"#pager",1);
      _cargarPaginacion();
 });
+
+$(function() {
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_flat-blue',
+        radioClass: 'iradio_flat-blue',
+        increaseArea: '-10' // optionaliradio_flat-red
+    });
+    $('.iradio_flat-blue, .busqueda-radio label').click(function(){
+        $('.search-box').attr('placeholder', $('.iradio_flat-blue.checked .search-radio').attr('data-related'));
+    })
+    
+    $('.search-btn').click(function(){
+        $.post(init.XNG_WEBSITE_URL+'radicacion/ajax/busqueda.php', {case: $(this).attr('data-case'), type: $('.iradio_flat-blue.checked .search-radio').val(), term:$('.search-box').val()}, function(data){
+           // console.log(data)
+            
+            $('.loadContentFromSearch').html(data);
+        });
+    })
+});
