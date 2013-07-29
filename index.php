@@ -154,10 +154,11 @@ try {
                     <input type="text" placeholder="Search...">
                     <button class="search-submit btn-search" value="" type="submit"><i class="icon-search"></i></button>                        
                 </form>    
-
-                <div class="sidebar-avatar">
-                
-                </div>
+<div class="sidebar-avatar">
+	        <img src="<? echo $SERVER_NAME; ?>templates/austra/assets/images/team-1.jpg" alt="avatar" class="thumbnail-avatar">
+	        <a href="#"><div class="sidebar-avatar-message"><div class="notify notify-message"><i class="icon-envelope"></i></div></div></a>
+	        <a href="#"><div class="sidebar-avatar-notify"><div class="notify ">7</div></div></a>
+	     </div>
 
 
                 <a data-toggle="collapse" data-target=".nav-collapse" class="btn-sidebar">
