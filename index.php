@@ -141,21 +141,6 @@ try {
                         </li>
 
 
-                        <li class="dropdown header-border">
-                            <a href="#" role="button" class="dropdown-toggle " data-toggle="dropdown">
-                                <div class="thumb-account">
-                                    <img height="20" width="20" src="/templates/austra/assets/images/timeline-team.jpg" alt="Your profile">
-                                    <span><i class="icon-caret-down"></i></span>
-                                </div>
-                            </a>
-
-                            <ul class="dropdown-menu block-dark account">
-                                <li class="first"><a tabindex="-1" href="#"><i class="icon-user"></i> Your profile</a></li>
-                                <li class="first"><a tabindex="-1" href="#"><i class="icon-cogs"></i> Settings</a></li>
-                                <li><a tabindex="-1" href="sign-out.html"><i class="icon-signin"></i> Log in</a></li>
-                                <li class="last notify-disabled"><a tabindex="-1" href="sign-in.html"><i class="icon-signout"></i> Logout</a></li>
-                            </ul>
-                        </li>
 
 
                     </ul>
@@ -312,7 +297,6 @@ try {
             <footer>
                 <div class="clearfix">
                     <p class="pull-left"><a class="notify-disabled" href="#"><i class="icon-chevron-up"></i></a></p>
-                    <p class="pull-right">&copy; 2013 <a href="http://mickael-girault.fr/" target="_blank">Bootstrap Trooper</a></p>
                 </div>
             </footer><!-- footer -->     
 
