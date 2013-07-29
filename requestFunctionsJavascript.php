@@ -1,7 +1,4 @@
-<script>
-     
-                    
-         
+<script> 
     $(document).ready(function() {
         $('.load_content').html('');
         $('.block.span12.add').hide();
@@ -46,8 +43,9 @@
          
             var action = $(this).attr('data-action');
             var record = $(this).attr('data-record');
+            $('.title_modal').text('Editar '+action);
             $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_edit_radicacion.php', {case: action, id:record }, function(data) {
-                    console.log(data)
+              //      console.log(data)
                     $('#loadContentAjaxForms').modal({show:true});
                     $('.modal-body').html(data) 
                     loadStylesCheckRadio();

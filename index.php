@@ -295,7 +295,7 @@ try {
             <div aria-hidden="false" aria-labelledby="myModalLabel1" role="dialog" tabindex="-1" class="modal hide fade" id="loadContentAjaxForms">
                 <div class="modal-header modal-default">
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
-                    <h3 id="myModalLabel1">Modal Header</h3>
+                    <h3 id="myModalLabel1" class="title_modal"></h3>
                 </div>
                 <div class="modal-body">
                     
