@@ -106,8 +106,11 @@ switch ($_REQUEST['case']) {
                         <td><input type="number" name="valor" id="valor" class="validate[required,custom[numberP]] pesos"  value="<?= $data['valor'] ?>" /></td>
                     </tr>
                        <tr>
-                        <td colspan="2">
+                        <td>
                             <label class="pull-left">Fecha de presentacion Factura</label>
+                            </td>
+                            
+                        <td>
                             <input type="text" name="fecha_presentacion" id="fecha_presentacion" class="pull-left fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5" value="<?= $data['fecha_presentacion'] ?>"/>
 
                         </td>
@@ -152,10 +155,11 @@ switch ($_REQUEST['case']) {
                         <td>
                             <input type="text" id="autoc-idpaciente" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<?= $data['paciente_nombre'] ?>" />
                             <input type="hidden" id="idpaciente" name="idpaciente" value="<?= $data['idpaciente'] ?>" />
+                            <input type="hidden" id="idunidad" name="idunidad" value="1" />
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Parentesco</label></td>
+                        <td><label>Unidad del Paciente</label></td>
                         <td>
                              <input type="radio" name="idparentesco" id="idparentescoT" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['idparentesco'] == 1) ? 'checked="checked"' : '' ?>/> <span class="text-title">Titular </span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -167,13 +171,13 @@ switch ($_REQUEST['case']) {
 
                           </td>
                     </tr>
-                    <tr>
+                   <? /* <tr>
                         <td><label>Unidad del Paciente</label></td>
                         <td>
                             <input type="text" id="autoc-idunidad" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<?= $data['Upaciente'] ?>" />
                             <input type="hidden" id="idunidad" name="idunidad" value="<?= $data['idunidad'] ?>" />
                         </td>
-                    </tr>
+                    </tr>*/ ?>
                     <tr>
                         <td><label>Grado del Paciente</label></td>
                         <td>

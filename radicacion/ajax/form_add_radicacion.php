@@ -16,9 +16,7 @@ switch ($_REQUEST['case']) {
                                 <?php
                                 $rango = 12;
                                 for ($i = 1; $i <= $rango; $i++) {
-                                    $mesano = date('Y-n', mktime(0, 0, 0, $i, 1, date("Y")));
                                     $meses = date('F', mktime(0, 0, 0, $i, 1, date("Y")));
-                                    $ano = date('Y', mktime(0, 0, 0, $i, 1, date("Y")));
 
                                     if ($meses == "January")
                                         $meses = "Enero";
@@ -135,12 +133,13 @@ switch ($_REQUEST['case']) {
                             <label>Paciente</label>
                             <input type="text" id="autoc-idpaciente" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5"/>
                             <input type="hidden" id="idpaciente" name="idpaciente" />
+                            <input type="hidden" id="idunidad" name="idunidad" value="1" />
 
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <label>Parentesco</label>
+                             <label>Unidad del Paciente</label>
                             <input type="radio" name="idparentesco" id="idparentescoT" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Titular </span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                             <input type="radio" name="idparentesco" id="idparentescoB" value="2" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Beneficiario</span>
@@ -152,12 +151,12 @@ switch ($_REQUEST['case']) {
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <? /*<td>
                             <label>Unidad del Paciente</label>
                             <input type="text" id="autoc-idunidad" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt ui-autocomplete-input" data-prompt-position="centerRight:1,-5" autocomplete="off">
                             <input type="hidden" id="idunidad" name="idunidad">
-                        </td>
-                        <td><label>Grado del Paciente</label> 
+                        </td>*/?>
+                        <td colspan="2"><label>Grado del Paciente</label> 
                             <input type="text" id="autoc-idgrado" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5" />
                             <input type="hidden" id="idgrado" name="idgrado" class="validate[required]" /></td>
 

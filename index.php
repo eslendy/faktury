@@ -54,8 +54,8 @@ try {
             <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/slider.css">
             <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/style.css">
             <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/polaris/polaris.css" rel="stylesheet">
-           
-            
+
+
             <!-- end: CSS -->
 
             <!-- start: JS -->
@@ -92,10 +92,10 @@ try {
             <script src="/templates/austra/assets/js/custom.js"></script>
             <script src="<? echo $SERVER_NAME; ?>js/jGeneral.js" type="text/javascript"></script>
             <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
-           <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine-es.js"></script>
-           <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine.js"></script>
-           <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>css/validationEngine.jquery.css">
-           
+            <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine-es.js"></script>
+            <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine.js"></script>
+            <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>css/validationEngine.jquery.css">
+
             <link href="<? echo $SERVER_NAME; ?>css/ui/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
             <!-- end: JS -->
 
@@ -156,11 +156,10 @@ try {
                     <input type="text" placeholder="Search...">
                     <button class="search-submit btn-search" value="" type="submit"><i class="icon-search"></i></button>                        
                 </form>    
-<div class="sidebar-avatar">
-	        <img src="<? echo $SERVER_NAME; ?>templates/austra/assets/images/team-1.jpg" alt="avatar" class="thumbnail-avatar">
-	        <a href="#"><div class="sidebar-avatar-message"><div class="notify notify-message"><i class="icon-envelope"></i></div></div></a>
-	        <a href="#"><div class="sidebar-avatar-notify"><div class="notify ">7</div></div></a>
-	     </div>
+                <div class="sidebar-avatar">
+                    <img src="<? echo $SERVER_NAME; ?>imagenes/disan.png" alt="avatar" class="thumbnail-avatar">
+
+                </div>
 
 
                 <a data-toggle="collapse" data-target=".nav-collapse" class="btn-sidebar">
@@ -200,7 +199,7 @@ try {
                             <div id="menu_secundario" class="pull-left span11">
                                 <?
                                 if (isset($_GET['c']) && !$_REQUEST['isHome']) {
-                                  
+
                                     echo $menu->menu_lateral($_SESSION['perfil'], ($_GET['c']));
                                 }
                                 ?>
@@ -231,10 +230,10 @@ try {
                                                 }
                                                 ?>
                                                 <script>
-                                                    $(document).ready(function(){
-                                                        $('.title___').text('<? echo $tt ?>');
-                                                    })
-                                                    </script>
+                                                        $(document).ready(function() {
+                                                            $('.title___').text('<? echo $tt ?>');
+                                                        })
+                                                </script>
                                                 <a href="#content_" data-toggle="collapse" class="title_related"> <? echo $tt; ?> </a>
                                             </div>
                                             <?php
@@ -249,7 +248,8 @@ try {
                                                     <span class="pull-right">
 
                                                         <button class="btn btn-danger close-edit" onclick="$('.add').fadeOut();
-                                                            $('#content_').collapse('show'); $('.block.span12.add .load_content').empty()"><i class="icon-remove"></i> Cerrar Edicion </button>
+                                                                    $('#content_').collapse('show');
+                                                                    $('.block.span12.add .load_content').empty()"><i class="icon-remove"></i> Cerrar Edicion </button>
                                                     </span>
 
                                                     <span class="add_form">Cargando...</span>
@@ -286,7 +286,7 @@ try {
                     <h3 id="myModalLabel1" class="title_modal"></h3>
                 </div>
                 <div class="modal-body">
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button aria-hidden="true" data-dismiss="modal" class="btn" >Close</button>
@@ -320,7 +320,7 @@ try {
                     e.preventDefault();
                     $(this).tab('show');
                 })
-                 $(function() {
+                $(function() {
                     $('input').iCheck({
                         checkboxClass: 'icheckbox_flat-blue',
                         radioClass: 'iradio_flat-blue',
