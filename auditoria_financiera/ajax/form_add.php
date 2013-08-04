@@ -10,7 +10,7 @@ $factura = new facturas($conexion['local']);
 //usuarios
 $usuarios = new usuarios($conexion['local']);
 //se obtiene la informacion de la factura a auditar
-$data = $factura->getFactura($_GET['idfactura']);
+$data = $factura->getFactura($_REQUEST['id']);
 $contrato = new contrato($conexion['local']);
 $contrat=$contrato->getOne($data['contrato']);
 //print_r($data);
@@ -21,7 +21,7 @@ $contrat=$contrato->getOne($data['contrato']);
     <fieldset>
         <legend>Auditoría Financiera</legend>
         <form id="addAuditoria">
-            <input type="hidden" name="idFactura" id="idFactura" value="<?=$_GET['idfactura']?>" />
+            <input type="hidden" name="idFactura" id="idFactura" value="<?=$_REQUEST['id']?>" />
             <input type="hidden" name="idusuario" id="idusuario" value="<?=$_SESSION['usrid']?>" />
             <table class="responsive table">
                 <tbody>
@@ -33,7 +33,7 @@ $contrat=$contrato->getOne($data['contrato']);
                     </tr>
                     <tr>
                         <td><label>Observaciones de Auditoría</label><br />
-                        <textarea name="concepto_auditoria" id="concepto_auditoria" rows="15" style="width:100%;" class="validate[required,custom[TextoEspecial]]"></textarea></td>
+                        <textarea name="concepto_auditoria" id="concepto_auditoria" rows="6" style="width:75%; max-width: 970px" class="validate[required,custom[TextoEspecial]]"></textarea></td>
                     </tr>
                 </tbody>
             </table>
@@ -42,7 +42,7 @@ $contrat=$contrato->getOne($data['contrato']);
             <tbody>
                 <tr>
                     <td align="right">
-                        <button class="guardarDaata btn btn-primary">
+                        <button class="guardarDaata btn btn-primary btn-large">
                             Guardar
                         </button>
                     </td>
@@ -197,7 +197,7 @@ $contrat=$contrato->getOne($data['contrato']);
 </div>
 <script>
 	$(function(){
-		_botonesIcons('.guardarDaata',"ui-icon-disk","",function(){
+		$('.guardarDaata').click(function(){
 			_guardarMods("addAuditoria","#addAuditoria", "Auditoría");
 		});
         $("#acordeon").accordion({

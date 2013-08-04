@@ -10,9 +10,9 @@ $auditoria = new auditoria_financiera($conexion['local']);
 //usuarios
 $usuarios = new usuarios($conexion['local']);
 //se obtiene la informacion de la factura a auditar
-//print_r($_GET);
-$dataA = $auditoria->getOne($_GET['idauditoria_financiera'],$_GET['idfactura']);
-$data = $factura->getFactura($_GET['idfactura']);
+//print_r($_REQUEST);
+$dataA = $auditoria->getOne($_REQUEST['idauditoria'],$_REQUEST['id']);
+$data = $factura->getFactura($_REQUEST['id']);
 //print_r($data);
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>auditoria_financiera/index_factura.php" />
@@ -21,7 +21,7 @@ $data = $factura->getFactura($_GET['idfactura']);
     <fieldset>
         <legend>Auditoría Financiera</legend>
         <form id="addAuditoria">
-            <input type="hidden" name="idFactura" id="idFactura" value="<?=$_GET['idfactura']?>" />
+            <input type="hidden" name="idFactura" id="idFactura" value="<?=$_REQUEST['id']?>" />
             <input type="hidden" name="idusuario" id="idusuario" value="<?=$_SESSION['usrid']?>" />
             <input type="hidden" name="idauditoria_financiera" id="idauditoria_financiera" value="<?=$dataA['idauditoria_financiera']?>" />
             <table class="responsive table">
@@ -32,23 +32,17 @@ $data = $factura->getFactura($_GET['idfactura']);
                     </tr>
                     <tr>
                         <td><label>Observaciones de Auditoría</label><br />
-                        <textarea name="concepto_auditoria" id="concepto_auditoria" rows="15" style="width:100%;" class="validate[required,custom[TextoEspecial]]"><?=trim($dataA['concepto_auditoria'])?></textarea>
+                        <textarea name="concepto_auditoria" id="concepto_auditoria" rows="6" style="width:75%; max-width: 970px" class="validate[required,custom[TextoEspecial]]"><?=trim($dataA['concepto_auditoria'])?></textarea>
+                        <div class="clear"></div>
+                        <a class="guardarDaata btn btn-primary btn-large">
+                            Guardar
+                        </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </form>
-        <table width="100%">
-            <tbody>
-                <tr>
-                    <td align="right">
-                        <button class="guardarDaata btn btn-primary">
-                            Guardar
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        
     </fieldset>
 </div>
 <div class="partes">
@@ -196,9 +190,11 @@ $data = $factura->getFactura($_GET['idfactura']);
 </div>
 <script>
 	$(function(){
-		_botonesIcons('.guardarDaata',"ui-icon-disk","",function(){
-			_guardarMods("editAuditoria","#addAuditoria", "Auditoría");
-		})
+		$('.guardarDaata').click(function(){
+                    _guardarMods("editAuditoria","#addAuditoria", "Auditoría");
+                })
+			
+		//})
         $("#acordeon").accordion({
           collapsible: true,
           active : false,

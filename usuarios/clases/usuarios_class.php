@@ -39,7 +39,7 @@ class usuarios extends BD{
 	public function _combo($nombre, $id, $sel, $where){
 		$rs=$this->consultar($this->_usuarios_sql("*, UPPER(CONCAT_WS(' ',u.nombres, u.apellidos)) AS userName",$where,"u.idusuarios","u.nombres"));
 		$html='<select name="'.$nombre.'" id="'.$id.'" class="validate[required]">';
-			$html.='<option value="" >select</option>';
+			$html.='<option value="" >Seleccione un '.end(explode('_',$nombre)).'</option>';
 		foreach ($rs as $u) {
 			$html.='<option value="'.$u['idusuarios'].'" '.(($sel==$u['idusuarios'])?'selected="selected"':'').'>'.$u['userName'].'</option>';
 		}
