@@ -68,12 +68,12 @@ include '../requestFunctionsJavascript.php';
                                 <span class="anularBtn" data-record="<? echo  $u['idfuerza']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-info"><i class="icon-ban-circle"></i></button></span>
                             </a>
                         </td>
-                        
+                        <? /*
                          <td width="20">
                             <a>
                                 <span class="removeBtn" data-record="<? echo  $u['idfuerza']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-danger"><i class="icon-remove"></i></button></span>
                             </a>
-                        </td>
+                        </td> */ ?>
                     </tr>
 <? } ?>
             </tbody>
