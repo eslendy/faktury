@@ -2697,7 +2697,8 @@ div.DTFC_LeftFootWrapper table {
     padding: .5em 0em 0em 0em;
 }
 input[type="text"],
-input[type="password"] {
+input[type="password"], 
+select {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;

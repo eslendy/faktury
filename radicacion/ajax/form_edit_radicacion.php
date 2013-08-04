@@ -33,7 +33,49 @@ switch ($_REQUEST['case']) {
                             <label>Mes de Radicado</label>
                         </td>
                         <td>
-                            <input type="text" name="mes_radicado" id="mes_radicado" class="validate[required,custom[onlyLetterNumber]] fecha" data-prompt-position="centerRight:1,-5" value="<?= $data['mes_radicado'] ?>"/>
+                         <select name="mes_radicado" class="">
+                                <?php
+                                $mesrad = $data['mes_radicado'];
+                                $rango = 12;
+                                for ($i = 1; $i <= $rango; $i++) {
+                                    $mesano = date('Y-n', mktime(0, 0, 0, $i, 1, date("Y")));
+                                    $meses = date('F', mktime(0, 0, 0, $i, 1, date("Y")));
+                                    $ano = date('Y', mktime(0, 0, 0, $i, 1, date("Y")));
+
+                                    if ($meses == "January")
+                                        $meses = "Enero";
+                                    if ($meses == "February")
+                                        $meses = "Febrero";
+                                    if ($meses == "March")
+                                        $meses = "Marzo";
+                                    if ($meses == "April")
+                                        $meses = "Abril";
+                                    if ($meses == "May")
+                                        $meses = "Mayo";
+                                    if ($meses == "June")
+                                        $meses = "Junio";
+                                    if ($meses == "July")
+                                        $meses = "Julio";
+                                    if ($meses == "August")
+                                        $meses = "Agosto";
+                                    if ($meses == "September")
+                                        $meses = "Septiembre";
+                                    if ($meses == "October")
+                                        $meses = "Octubre";
+                                    if ($meses == "November")
+                                        $meses = "Noviembre";
+                                    if ($meses == "December")
+                                        $meses = "Diciembre";
+                                    if($mesrad == $i){
+                                        echo "<option value='$i' selected>$meses</option>";
+                                    }
+                                    else{
+                                         echo "<option value='$i'>$meses</option>";
+                                    }
+                                    
+                                }
+                                ?> 
+                            </select> 
                         </td>       
 
                     </tr>
@@ -207,14 +249,13 @@ switch ($_REQUEST['case']) {
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($dataUnds['estado'] == 1) ? 'checked="checked"' : '' ?>/> <span class="text-title">Activo</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($dataUnds['estado'] == 0) ? 'checked="checked"' : '' ?>/> <span class="text-title">Inactivo</span>
 
-                        </td>
-                        <td>
+                       
 
                         </td>
 
@@ -258,16 +299,14 @@ switch ($_REQUEST['case']) {
                     </tr>
                     <tr>
 
-                        <td>
+                        <td  colspan="2">
                             <label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estadoContrato'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Activo</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estadoContrato'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Inactivo</span>
 
                         </td>
-                        <td>
-
-                        </td>
+                        
 
                     </tr>
                 </tbody>
@@ -297,15 +336,13 @@ switch ($_REQUEST['case']) {
                         <td><input type="text" name="abreviatura" id="abreviatura" class="validate[custom[TextoAcentosNum]]" value="<?= $data['abreviatura'] ?>" /></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label>
+                        <td  colspan="2"> <label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estado'] == 1) ? 'checked="checked"' : '' ?> /><span class="text-title"> Activo</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estado'] == 0) ? 'checked="checked"' : '' ?> /><span class="text-title"> Inactivo</span>
 
                         </td>
-                        <td>
-
-                        </td>
+                        
 
 
                     </tr>
@@ -336,15 +373,13 @@ switch ($_REQUEST['case']) {
                         <td><input type="text" name="abreviatura" id="abreviatura" class="validate[custom[TextoAcentosNum]]" value="<?= $data['abreviatura'] ?>" /></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label>
+                        <td  colspan="2"><label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"  <?= ($data['estado'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Activo</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estado'] == 0) ? 'checked="checked"' : '' ?> /> <span class="text-title">Inactivo</span>
 
                         </td>
-                        <td>
-
-                        </td>
+                       
 
                     </tr>
                 </tbody>
@@ -389,15 +424,12 @@ switch ($_REQUEST['case']) {
                         <td><?= $fuerza->combobox("idfuerza", "idfuerza", "validate[required]", $data['idfuerza']); ?></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label>
+                        <td  colspan="2"><label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estadoPaciente'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Activo</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estadoPaciente'] == 0) ? 'checked="checked"' : '' ?> /> <span class="text-title">Inactivo</span>
                         </td>
-                        <td>
-
-                        </td>
-
+                       
                     </tr>
                 </tbody>
             </table>
@@ -425,8 +457,8 @@ switch ($_REQUEST['case']) {
                     <tr>
                         <td><label>No. Documento</label></td>
                         <td>
-                            <input type="text" name="nodocumento" id="nodocumento" class="validate[required,custom[numberP]]" value="<?= $data['nodocumento'] ?>" />
-                            <input type="text" size="3" id="dv"  class="validate[custom[numberP]]" name="dv" <?= ($data['idtipo_doc'] != 2) ? 'style="display:none;"' : '' ?> placeholder="DV" value="<?= $data['dv'] ?>" />
+                            <input type="text" name="nodocumento" id="nodocumento" style="width: 136px" class="validate[required,custom[numberP]]" value="<?= $data['nodocumento'] ?>" />
+                            <input type="text" size="3" id="dv"  class="validate[custom[numberP]]"  style="width: 50px" name="dv" <?= ($data['idtipo_doc'] != 2) ? 'style="display:none;"' : '' ?> placeholder="DV" value="<?= $data['dv'] ?>" />
                         </td>
                     </tr>
                     <tr>
@@ -434,15 +466,12 @@ switch ($_REQUEST['case']) {
                         <td><input type="text" name="nombre" id="nombre" class="validate[required,custom[TextoAcentosNum]]" value="<?= $data['nombre'] ?>" /></td>
                     </tr>
                     <tr>
-                        <td><label>Estado</label>
+                        <td  colspan="2"><label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estadoProveedor'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Activo</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estadoProveedor'] == 0) ? 'checked="checked"' : '' ?> /> <span class="text-title">Inactivo</span>
                         </td>
-                        <td>
-
-                        </td>
-
+                       
 
                     </tr>
                 </tbody>
@@ -470,15 +499,13 @@ switch ($_REQUEST['case']) {
                     </tr>
                     <tr>
 
-                        <td><label>Estado</label>
+                        <td  colspan="2"><label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($dataUnds['estado'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Activo</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($dataUnds['estado'] == 0) ? 'checked="checked"' : '' ?> /> <span class="text-title">Inactivo</span>
 
                         </td>
-                        <td>
-
-                        </td>
+                       
 
                     </tr>
                 </tbody>
@@ -505,15 +532,12 @@ switch ($_REQUEST['case']) {
                     </tr>
                     <tr>
 
-                        <td><label>Estado</label>
+                        <td  colspan="2"><label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"  <?= ($data['estado'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Activo</span>
                             <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estado'] == 0) ? 'checked="checked"' : '' ?> /> <span class="text-title">Inactivo</span>
 
                         </td>
-                        <td>
-
-                        </td>
-
+                       
                     </tr>
                 </tbody>
             </table>

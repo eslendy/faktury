@@ -72,16 +72,23 @@ include '../requestFunctionsJavascript.php';
                         <td><?= $fac['proveedor_nombre'] ?></td>
                         <td><?= $fac['paciente_nombre'] ?></td>
                         <td><?= ($fac['estado_factura'] == 1) ? 'Activa' : 'Anulada' ?></td>
-                        <td width="61">
+                        <td width="20">
                             <a>
                                 <span class="editarBtn" data-record="<? echo  $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
                             </a>
                         </td>
-                        <td width="61">
+                        <td width="20">
                             <a>
-                                <span class="anularBtn" data-record="<? echo  $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-danger"><i class="icon-trash"></i></button></span>
+                                <span class="anularBtn" data-record="<? echo  $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-info"><i class="icon-ban-circle"></i></button></span>
                             </a>
                         </td>
+                        
+                        <td width="20">
+                            <a>
+                                <span class="removeBtn" data-record="<? echo  $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-danger"><i class="icon-remove"></i></button></span>
+                            </a>
+                        </td>
+                        
                     </tr>
                 <? } ?>
             </tbody>

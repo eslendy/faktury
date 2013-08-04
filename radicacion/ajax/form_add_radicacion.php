@@ -11,9 +11,44 @@ switch ($_REQUEST['case']) {
                 <tbody>
                     <tr>
                         <td>
-                              <label>Mes de Radicado</label>
-                            <input type="text" name="mes_radicado" id="mes_radicado" class="validate[required,custom[onlyLetterNumber]] fecha" data-prompt-position="centerRight:1,-5"/>
+                            <label>Mes de Radicado</label>
+                            <select name="mes_radicado" class="">
+                                <?php
+                                $rango = 12;
+                                for ($i = 1; $i <= $rango; $i++) {
+                                    $mesano = date('Y-n', mktime(0, 0, 0, $i, 1, date("Y")));
+                                    $meses = date('F', mktime(0, 0, 0, $i, 1, date("Y")));
+                                    $ano = date('Y', mktime(0, 0, 0, $i, 1, date("Y")));
 
+                                    if ($meses == "January")
+                                        $meses = "Enero";
+                                    if ($meses == "February")
+                                        $meses = "Febrero";
+                                    if ($meses == "March")
+                                        $meses = "Marzo";
+                                    if ($meses == "April")
+                                        $meses = "Abril";
+                                    if ($meses == "May")
+                                        $meses = "Mayo";
+                                    if ($meses == "June")
+                                        $meses = "Junio";
+                                    if ($meses == "July")
+                                        $meses = "Julio";
+                                    if ($meses == "August")
+                                        $meses = "Agosto";
+                                    if ($meses == "September")
+                                        $meses = "Septiembre";
+                                    if ($meses == "October")
+                                        $meses = "Octubre";
+                                    if ($meses == "November")
+                                        $meses = "Noviembre";
+                                    if ($meses == "December")
+                                        $meses = "Diciembre";
+
+                                    echo "<option value='$i'>$meses</option>";
+                                }
+                                ?> 
+                            </select>
                         </td>
                         <td>
 
@@ -53,7 +88,7 @@ switch ($_REQUEST['case']) {
                     </tr>
                     <tr>
                         <td colspan="2">
-                              <label>Fecha de presentacion Factura</label>
+                            <label>Fecha de presentacion Factura</label>
                             <input type="text" name="fecha_presentacion" id="fecha_presentacion" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5" />
 
                         </td>
@@ -105,7 +140,7 @@ switch ($_REQUEST['case']) {
                     </tr>
                     <tr>
                         <td colspan="2">
-                             <label>Parentesco</label>
+                            <label>Parentesco</label>
                             <input type="radio" name="idparentesco" id="idparentescoT" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Titular </span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                             <input type="radio" name="idparentesco" id="idparentescoB" value="2" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Beneficiario</span>
@@ -522,13 +557,13 @@ switch ($_REQUEST['case']) {
             increaseArea: '-10' // optionaliradio_flat-red
         });
     });
-    
-   $(function() {
-        $( ".fecha" ).datepicker({
+
+    $(function() {
+        $(".fecha").datepicker({
             showOn: "button",
             buttonImage: "/imagenes/calendar.gif",
             buttonImageOnly: true,
-            dateFormat: "yy-mm-dd" 
+            dateFormat: "yy-mm-dd"
         });
     });
 </script>
