@@ -59,13 +59,13 @@ switch ($_REQUEST['case']) {
                         <td>
 
                             <label>Número Factura</label>
-                            <input type="text" name="numero_factura" id="numero_factura" class="validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
+                            <input type="text" name="numero_factura" id="numero_factura" class="validate[required,custom[onlyNumberSp]]" data-prompt-position="centerRight:1,-5"/>
 
 
                         </td>
                         <td>
                             <label>Prefijo Factura</label>
-                            <input type="text" name="prefijo" id="prefijo" class="validate[custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
+                            <input type="text" name="prefijo" id="prefijo" class="validate[required,custom[onlyLetterSp]]" data-prompt-position="centerRight:1,-5"/>
 
                         </td>
                     </tr>
@@ -164,7 +164,7 @@ switch ($_REQUEST['case']) {
                     <tr>
                         <td>
                             <label>Número Autorización</label>
-                            <input type="text" name="no_autorizacion" id="no_autorizacion" class="validate[required,custom[onlyLetterNumber]] " data-prompt-position="centerRight:1,-5"/>
+                            <input type="text" name="no_autorizacion" id="no_autorizacion" class="validate[required,custom[onlyNumberSp]] " data-prompt-position="centerRight:1,-5"/>
                         </td>
                         <td><label>Fecha Autorización del Servicio</label>
                             <input type="text" name="fecha_autorizacion_servicio" id="fecha_autorizacion_servicio" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>

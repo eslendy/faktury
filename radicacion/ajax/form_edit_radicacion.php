@@ -90,7 +90,7 @@ switch ($_REQUEST['case']) {
                     <tr>
                         <td><label>Número Factura</label></td>
                         <td>
-                            <input type="text" name="numero_factura" id="numero_factura" class="validate[required,custom[onlyLetterNumber]]" value="<?= $data['numero_factura'] ?>" />
+                            <input type="text" name="numero_factura" id="numero_factura" class="validate[required,custom[onlyNumberSp]]" value="<?= $data['numero_factura'] ?>" />
                         </td>
                     </tr>
                      <tr>
@@ -188,7 +188,7 @@ switch ($_REQUEST['case']) {
                     <tr>
                         <td><label>Número Autorización</label></td>
                         <td>
-                            <input type="text" name="no_autorizacion" id="no_autorizacion" class="validate[required,custom[onlyLetterNumber]]" value="<?= $data['no_autorizacion'] ?>" />
+                            <input type="text" name="no_autorizacion" id="no_autorizacion" class="validate[required,custom[onlyNumberSp]]" value="<?= $data['no_autorizacion'] ?>" />
                         </td>
                     </tr>
                     <tr>

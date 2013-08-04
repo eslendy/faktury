@@ -154,6 +154,24 @@ var _paginacion = function(ContPaginas, idtbody, numFilas, pagina) {
      });*/
 
 }
+
+
+
+var timeFormat = {
+    "regex": /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
+    "alertText":" errormessage in the locale chosen"}                           
+
+
+var _validarOnlyNumberSpecialChars = function(field, rules, i, options){
+    var regEx = new RegExp("^[0-9!@#$%^&*()_+\-=\[\]{};':]+$");
+    //regEx= /^[a-zA-Z\ \á]+$/;
+    //var regEx = new RegExp("([\\W\\S]){1,}");
+    if (!field.val().match(regEx)) {
+        return options.allrules.validate2fields.alertText;
+    }
+    ;
+    
+}
 var _validarOnlyText = function(field, rules, i, options) {
     var regEx = new RegExp("^[a-zA-Z\ \s\á\é\í\ó\ú\Á\É\Í\Ó\Ú\Ñ\ñ]+$");
     //regEx= /^[a-zA-Z\ \á]+$/;
