@@ -95,6 +95,11 @@ class BD{
 		$sql="UPDATE ".$table." SET ".$columnas." WHERE ".$where ;
 		return $this->ejecutar($sql);
 	}
+        
+        public function ejecutarBorrar($table, $where){
+            $sql="DELETE from ".$table." WHERE ".$where ;
+		return $this->ejecutar($sql);
+        }
 	
 	public function num_consulta($sql) {
 		if($rs = mysql_query($sql, $this->conn) ){

@@ -52,5 +52,25 @@
                     
             })
         })
+        
+         $('.removeBtn').click(function() {
+                    var action = $(this).attr('data-action');
+                    var record = $(this).attr('data-record');
+                    if (confirm('¿Esta seguro de Eliminar este registro?')) {
+                        $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/save.php?type=remove'+action, {id: record}, function(html_response) {
+                            switch (html_response) {
+                                case '1':
+                                    alert(action + " Borrado con Éxito!!");
+                                    $("#dialog-addModRad").remove();
+                                    _loadContenido($('#nombre_archivo').val());
+                                    break;
+                                default:
+                                    _msgerror(html_response, "#mensaje");
+                                    break;
+                            }
+                        });
+                    }
+
+                })
     })
 </script>

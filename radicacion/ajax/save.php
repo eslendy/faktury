@@ -19,6 +19,12 @@ try{
 			$bd->ejecutarUpdateArray(array("estado"=>0),"unidad_atencion", "idunidad_atencion=".$_REQUEST['id']);
 			echo "1";
 		break;
+            
+                case 'removeunidadAtencion':
+			$bd->ejecutarBorrar("unidad_atencion", "idunidad_atencion=".$_REQUEST['id']);
+			echo "1";
+		break;
+            
 		/* Unidades*/
 		case 'addUnidad':
 			$bd->ejecutarInsertArray($_POST,"unidad_paciente");
@@ -32,6 +38,10 @@ try{
 		break;
 		case 'nullunidades':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"unidad_paciente", "idunidad=".$_REQUEST['id']);
+			echo "1";
+		break;
+            case 'removeunidades':
+			$bd->ejecutarBorrar("unidad_paciente", "idunidad=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin Unidades*/
@@ -50,6 +60,10 @@ try{
 			$bd->ejecutarUpdateArray(array("estado"=>0),"grado", "idgrado=".$_REQUEST['id']);
 			echo "1";
 		break;
+            case 'removegrados':
+			$bd->ejecutarBorrar("grado", "idgrado=".$_REQUEST['id']);
+			echo "1";
+		break;
 		/*Fin Grados*/
 		/* Fuerzas*/
 		case 'addfuerza':
@@ -64,6 +78,10 @@ try{
 		break;
 		case 'nullfuerza':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"fuerza", "idfuerza=".$_REQUEST['id']);
+			echo "1";
+		break;
+            case 'removefuerza':
+			$bd->ejecutarBorrar("fuerza", "idfuerza=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin Fuerzas*/
@@ -82,6 +100,10 @@ try{
 			$bd->ejecutarUpdateArray(array("estado"=>0),"paciente", "idpaciente=".$_REQUEST['id']);
 			echo "1";
 		break;
+            case 'removepacientes':
+			$bd->ejecutarBorrar("paciente", "idpaciente=".$_REQUEST['id']);
+			echo "1";
+		break;
 		/* Fin Paciente*/
 		/* Proveedor*/
 		case 'addproveedor':
@@ -96,6 +118,10 @@ try{
 		break;
 		case 'nullproveedor':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"proveedor", "idproveedor=".$_REQUEST['id']);
+			echo "1";
+		break;
+            case 'removeproveedor':
+			$bd->ejecutarBorrar("proveedor", "idproveedor=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin Proveedor*/
@@ -114,6 +140,10 @@ try{
 			$bd->ejecutarUpdateArray(array("estado"=>0),"factura", "idFactura=".$_REQUEST['id']);
 			echo "1";
 		break;
+            case 'removefactura':
+			$bd->ejecutarBorrar("factura", "idFactura=".$_REQUEST['id']);
+			echo "1";
+		break;
 		/* Fin Proveedor*/
 		/* contrato*/
 		case 'addcontrato':
@@ -130,6 +160,10 @@ try{
 			$bd->ejecutarUpdateArray(array("estado"=>0),"contrato", "idcontrato=".$_REQUEST['id']);
 			echo "1";
 		break;
+            case 'removecontrato':
+			$bd->ejecutarBorrar("contrato", "idcontrato=".$_REQUEST['id']);
+			echo "1";
+		break;
 		/* Fin Contrato*/
 		/* parentesco*/
 		case 'addparentesco':
@@ -144,6 +178,10 @@ try{
 		break;
 		case 'nullparentesco':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"parentesco", "idparentesco=".$_REQUEST['id']);
+			echo "1";
+		break;
+            case 'removeparentesco':
+			$bd->ejecutarBorrar("parentesco", "idparentesco=".$_REQUEST['id']);
 			echo "1";
 		break;
 		/* Fin parentesco*/
