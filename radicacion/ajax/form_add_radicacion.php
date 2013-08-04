@@ -5,82 +5,122 @@ include("../../libphp/mysql.php");
 switch ($_REQUEST['case']) {
     case 'factura':
         ?>
-<form id="frmfactura" class="formulario" method="post">
+        <form id="frmfactura" class="formulario" method="post">
             <table class="responsive table table-striped">
 
                 <tbody>
                     <tr>
                         <td>
-                            <label>Número Radicado</label>
-                            <input type="text" name="no_radicado" id="no_radicado" class="validate[required,custom[numberP]]" data-prompt-position="centerRight:1,-5"/></td>
+                              <label>Mes de Radicado</label>
+                            <input type="text" name="mes_radicado" id="mes_radicado" class="validate[required,custom[onlyLetterNumber]] fecha" data-prompt-position="centerRight:1,-5"/>
+
+                        </td>
                         <td>
-                            <label>Prefijo Factura</label>
-                            <input type="text" name="prefijo" id="prefijo" class="validate[custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
+
+                            <label>Número Radicado</label>
+                            <input type="text" name="no_radicado" id="no_radicado" class="validate[required,custom[numberP]]" data-prompt-position="centerRight:1,-5"/>
+
                         </td>
                     </tr>
                     <tr>
                         <td>
+
                             <label>Número Factura</label>
                             <input type="text" name="numero_factura" id="numero_factura" class="validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
+
+
                         </td>
                         <td>
-                            <label>Fecha de emisión Factura</label>
-                            <input type="date" name="fecha_emision" id="fecha_emision" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5" />
+                            <label>Prefijo Factura</label>
+                            <input type="text" name="prefijo" id="prefijo" class="validate[custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
+
                         </td>
                     </tr>
 
                     <tr>
                         <td>
+
                             <label>Valor de la Factura</label>
                             <input type="number" name="valor" id="valor" class="validate[required,custom[numberP]] pesos" data-prompt-position="centerRight:1,-5"/>
+
                         </td>
+                        <td>
+
+                            <label>Fecha de emisión Factura</label>
+                            <input type="text" name="fecha_emision" id="fecha_emision" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                              <label>Fecha de presentacion Factura</label>
+                            <input type="text" name="fecha_presentacion" id="fecha_presentacion" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5" />
+
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             <label>Proveedor</label>
                             <input type="text" id="autoc-idproveedor" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5"/>
                             <input type="hidden" id="idproveedor" name="idproveedor" class="validate[required]" />
+
+
                         </td>
-                    </tr>
-                    <tr>
                         <td>
                             <label>Contrato</label>
                             <div id="td_contrato"></div>
+
+
                         </td>
+                    </tr>
+                    <tr>
                         <td>
+
                             <label>Unidad de Atención GAVD-CENAF</label>
                             <input type="text" id="autoc-idunidad_atencion" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5"/>
                             <input type="hidden" id="idunidad_atencion" name="idunidad_atencion"  />
+
                         </td>
-                    </tr>
-                    <tr>
                         <td>
-                            <label>Unidad de Atención GAVD-CENAF Centralizada</label>
+                            <label>Unidad Centralizada</label>
                             <input type="text" id="autoc-idcentralizada" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5" />
                             <input type="hidden" id="idcentralizada" name="idcentralizada"  />
-                        </td>
-                        <td>
-                            <label>Unidad de Atención GAVD-CENAF Centralizadora</label>
-                            <input type="text" id="autoc-idcentralizadora" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5"/>
-                            <input type="hidden" id="idcentralizadora" name="idcentralizadora"  />
+
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            <label>Unidad Centralizadora</label>
+                            <input type="text" id="autoc-idcentralizadora" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5"/>
+                            <input type="hidden" id="idcentralizadora" name="idcentralizadora"  />
+
+
+                        </td>
                         <td>
                             <label>Paciente</label>
                             <input type="text" id="autoc-idpaciente" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5"/>
                             <input type="hidden" id="idpaciente" name="idpaciente" />
+
                         </td>
-                        <td>
-                            <label>Parentesco</label>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                             <label>Parentesco</label>
                             <input type="radio" name="idparentesco" id="idparentescoT" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Titular </span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                             <input type="radio" name="idparentesco" id="idparentescoB" value="2" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Beneficiario</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <input type="radio" name="idparentesco" id="idparentescoR" value="3" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Retirado</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <input type="radio" name="idparentesco" id="idparentescoP" value="4" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Pensionado</span>
+
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Unidad del Paciente</label>
-                            <input type="text" id="autoc-idunidad" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5"/>
-                            <input type="hidden" id="idunidad" name="idunidad" />
+                            <input type="text" id="autoc-idunidad" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt ui-autocomplete-input" data-prompt-position="centerRight:1,-5" autocomplete="off">
+                            <input type="hidden" id="idunidad" name="idunidad">
                         </td>
                         <td><label>Grado del Paciente</label> 
                             <input type="text" id="autoc-idgrado" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5" />
@@ -93,25 +133,25 @@ switch ($_REQUEST['case']) {
                             <input type="text" name="no_autorizacion" id="no_autorizacion" class="validate[required,custom[onlyLetterNumber]] " data-prompt-position="centerRight:1,-5"/>
                         </td>
                         <td><label>Fecha Autorización del Servicio</label>
-                            <input type="date" name="fecha_autorizacion_servicio" id="fecha_autorizacion_servicio" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
+                            <input type="text" name="fecha_autorizacion_servicio" id="fecha_autorizacion_servicio" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
                         </td>
                     </tr>
 
 
                     <tr>
                         <td><label>Fecha Ingreso del Paciente</label>
-                            <input type="date" name="fecha_ingreso_paciente" id="fecha_ingreso_paciente" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
+                            <input type="text" name="fecha_ingreso_paciente" id="fecha_ingreso_paciente" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
                         </td>
                         <td><label>Fecha Salida del Paciente</label>
-                            <input type="date" name="fecha_egreso_paciente" id="fecha_egreso_paciente" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
+                            <input type="text" name="fecha_egreso_paciente" id="fecha_egreso_paciente" class="fecha validate[required,custom[onlyLetterNumber]]" data-prompt-position="centerRight:1,-5"/>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Estado</label>
-                            
+
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">En Proceso</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Paga</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Paga</span>
 
                         </td>
                         <td>
@@ -183,7 +223,7 @@ switch ($_REQUEST['case']) {
                     </tr>
                     <tr>
                         <td><label>Fecha de Inicio de l Contrato</label></td>
-                        <td><input type="date" name="fecha_contrato" id="fecha_contrato" class="validate[required,custom[TextoAcentosNum]] fecha" data-prompt-position="centerRight:1,-5"/></td>
+                        <td><input type="text" name="fecha_contrato" id="fecha_contrato" class="validate[required,custom[TextoAcentosNum]] fecha" data-prompt-position="centerRight:1,-5"/></td>
                     </tr>
                     <tr>
                         <td><label>Valor</label></td>
@@ -422,7 +462,7 @@ switch ($_REQUEST['case']) {
                     <tr>
                         <td><label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Activo</span>
-                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Inactivo</span>
 
                         </td>
@@ -449,37 +489,46 @@ switch ($_REQUEST['case']) {
 <script>
     $('.guardar-formulario').submit(function(e) {
         $.preventDefault(e);
-        
+
     })
-    
-    
-    
-    
+
+
+
+
     $('.guardar-formulario').click(function(e) {
-       
+
         console.log('das')
-        if($('#frm'+$(this).attr('data-relation')).validationEngine('validate') ==true){		
-            $.post(init.XNG_WEBSITE_URL+'radicacion/ajax/save.php?type=add'+$(this).attr('data-relation'),  $('#frm'+$(this).attr('data-relation')).serialize(), function(data){
+        if ($('#frm' + $(this).attr('data-relation')).validationEngine('validate') == true) {
+            $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/save.php?type=add' + $(this).attr('data-relation'), $('#frm' + $(this).attr('data-relation')).serialize(), function(data) {
                 switch (data) {
-                                case '1':
-                                    alert("<?  echo $_REQUEST['case']?> Guardado con Éxito!!");
-                                    $("#dialog-addModRad").remove();
-                                    _loadContenido($('#nombre_archivo').val());
-                                    break;
-                                default:
-                                    _msgerror(data, "#mensaje");
-                                    break;
-                            }
+                    case '1':
+                        alert("<? echo $_REQUEST['case'] ?> Guardado con Éxito!!");
+                        $("#dialog-addModRad").remove();
+                        _loadContenido($('#nombre_archivo').val());
+                        break;
+                    default:
+                        _msgerror(data, "#mensaje");
+                        break;
+                }
             })
         }
-        
+
     })
     nuevo_reg_load();
-     $(function() {
-                    $('input').iCheck({
-                        checkboxClass: 'icheckbox_flat-blue',
-                        radioClass: 'iradio_flat-blue',
-                        increaseArea: '-10' // optionaliradio_flat-red
-                    });
-                });
+    $(function() {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue',
+            increaseArea: '-10' // optionaliradio_flat-red
+        });
+    });
+    
+   $(function() {
+        $( ".fecha" ).datepicker({
+            showOn: "button",
+            buttonImage: "/imagenes/calendar.gif",
+            buttonImageOnly: true,
+            dateFormat: "yy-mm-dd" 
+        });
+    });
 </script>

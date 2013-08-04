@@ -49,7 +49,8 @@ class facturas extends BD{
 		UPPER(CONCAT('<b>',tdpa.descripcion,'</b> ',pa.documento)) AS doc_paciente, UPPER(CONCAT(fu.descripcion,' - ',fu.abreviatura)) AS fuerza,
 		UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, UPPER(ua.descripcion) AS Uatencion, UPPER(ua1.descripcion) AS UatencionC, UPPER(ua2.descripcion) AS UatencionCe,
 		up.descripcion AS Upaciente, CONCAT_WS(' - ',g.descripcion, g.abreviatura) AS grado, f.idunidad_atencion AS idunidad_at, UPPER(par.descripcion) AS desc_parentesco, f.idFactura AS idf";
-		$rs = $this->consultar($this->_modulo_sql($campos,"f.idFactura=".$idFactura,"f.idFactura","f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
+		
+                $rs = $this->consultar($this->_modulo_sql($campos,"f.idFactura=".$idFactura,"f.idFactura","f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
 		return $rs[0];
 	}
 }

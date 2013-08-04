@@ -2349,9 +2349,12 @@ canvas{
 }
 .add .responsive td, .add .responsive th {
     padding: 0px 10px;
-    text-align: center;
+    text-align: left;
 }
 
+.add .iradio_flat-blue {
+    float: left;
+}
 
 
 .modal .responsive td, .modal .responsive th {
@@ -3552,3 +3555,24 @@ table.table.list tr:first-child td {
 }
 
 
+.ui-widget{
+    font-size: 13px;
+}
+
+.modal .formulario .text-title {
+    width: 150px;
+}
+
+.fecha{
+    width: 146px;
+  
+}
+
+.fecha.pull-left{
+      margin-top: 6px;
+    margin-left: 13px;
+}
+
+.ui-datepicker-trigger{
+    margin-left: 5px;
+}

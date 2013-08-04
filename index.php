@@ -54,7 +54,7 @@ try {
             <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/slider.css">
             <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/style.css">
             <link rel="stylesheet" type="text/css" href="/templates/austra/assets/css/polaris/polaris.css" rel="stylesheet">
-            <link href="http://faktury.org/css/faktury/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css">
+           
             
             <!-- end: CSS -->
 
@@ -91,10 +91,12 @@ try {
             <script src="/templates/austra/assets/js/jquery.masonry.min.js"></script>
             <script src="/templates/austra/assets/js/custom.js"></script>
             <script src="<? echo $SERVER_NAME; ?>js/jGeneral.js" type="text/javascript"></script>
-             <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
+            <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
            <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine-es.js"></script>
            <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine.js"></script>
            <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>css/validationEngine.jquery.css">
+           
+            <link href="<? echo $SERVER_NAME; ?>css/ui/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
             <!-- end: JS -->
 
             <!-- Le fav and touch icons -->

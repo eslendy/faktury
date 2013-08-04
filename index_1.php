@@ -30,7 +30,8 @@ try {
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <title>.·:Faktury:·.</title>        
-            <link href="<? echo $SERVER_NAME; ?>css/faktury/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+            
+            
             <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>js/tablesorter/addons/pager/jquery.tablesorter.pager.css"  >
             <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>css/jPages.css">
             <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>css/validationEngine.jquery.css">
