@@ -77,9 +77,10 @@
 
             var action = $(this).attr('data-action');
             var record = $(this).attr('data-record');
+            
 
             $('.add').fadeIn();
-            
+             $('#content_').collapse('hide');
             $.post(init.XNG_WEBSITE_URL + 'auditoria_financiera/ajax/form_add.php', {case: action, id: record}, function(data) {
                 $('.load_content').html(data);
                 loadStylesCheckRadio();

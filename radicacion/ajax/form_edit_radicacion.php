@@ -307,7 +307,7 @@ switch ($_REQUEST['case']) {
                             <label>Estado</label>
                             <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estadoContrato'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Activo</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estadoContrato'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Inactivo</span>
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estadoContrato'] == 0) ? 'checked="checked"' : '' ?> /> <span class="text-title">Inactivo</span>
 
                         </td>
                         

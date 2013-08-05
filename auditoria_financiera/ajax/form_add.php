@@ -33,22 +33,17 @@ $contrat=$contrato->getOne($data['contrato']);
                     </tr>
                     <tr>
                         <td><label>Observaciones de Auditoría</label><br />
-                        <textarea name="concepto_auditoria" id="concepto_auditoria" rows="6" style="width:75%; max-width: 970px" class="validate[required,custom[TextoEspecial]]"></textarea></td>
+                        <textarea name="concepto_auditoria" id="concepto_auditoria" rows="6" style="width:75%; max-width: 970px" class="validate[required,custom[TextoEspecial]]"></textarea>
+                        <div class="clear"></div>
+                        <a class="guardarDaata btn btn-primary btn-large">
+                            Guardar
+                        </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </form>
-        <table width="100%">
-            <tbody>
-                <tr>
-                    <td align="right">
-                        <button class="guardarDaata btn btn-primary btn-large">
-                            Guardar
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+      
     </fieldset>
 
 </div>
@@ -95,6 +90,75 @@ $contrat=$contrato->getOne($data['contrato']);
                             </fieldset>
                         </td>
                     </tr>
+                    
+                    <tr>
+                    	<td><label>Unidad de Atención GAVD-CENAF</label></td>
+                        <td align="right"><?=$data['Uatencion']?></td>
+                    </tr>
+                    <tr>
+                        <td><label>Unidad Centralizada</label></td>
+                        <td align="right"><?=$data['UatencionC']?></td>
+                    </tr>
+                    <tr>
+                        <td><label>Unidad Centralizadora</label></td>
+                        <td align="right"><?=$data['UatencionCe']?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <fieldset>
+                                <legend>Paciente</legend>
+                                <table width="100%">
+                                    <tr>
+                                        <td><label>Nombre</label></td>
+                                        <td align="right"><?=$data['paciente_nombre']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>No. Documento</label></td>
+                                        <td align="right"><?=$data['doc_paciente']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Unidad del Paciente</label></td>
+                                        <? /*<td align="right"><?=$data['Upaciente']?></td> */?>
+                                        <td align="right"><?=$data['desc_parentesco']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Grado</label></td>
+                                        <td align="right"><?=$data['grado']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Fuerza</label></td>
+                                        <td align="right"><?=$data['fuerza']?></td>
+                                    </tr>
+                                   <? /* <tr>
+                                        <td><label>Parentesco</label></td>
+                                        <td align="right"><?=$data['desc_parentesco']?></td>
+                                    </tr>*/ ?>
+                                </table>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                    	<td><label>Número Autorización</label></td>
+                        <td align="right"><?=$data['no_autorizacion']?></td>
+                    </tr>
+                    <tr>
+                        <td><label>Fecha Autorización del Servicio</label></td>
+                        <td align="right"><?=$data['fecha_autorizacion_servicio']?></td>
+                    </tr>
+                    <tr>
+                    	<td><label>Fecha Ingreso del Paciente</label></td>
+                        <td align="right"><?=$data['fecha_ingreso_paciente']?></td>
+                    </tr>
+                    <tr>
+                    	<td><label>Fecha Salida del Paciente</label></td>
+                        <td align="right"><?=$data['fecha_egreso_paciente']?></td>
+                    </tr>
+                    <tr>
+                        <td><label>Estado</label></td>
+                        <td align="right"><?=(($data['estado_factura']==1)?'En proceso':'Paga')?></td>
+                    </tr>
+                    
                     <tr>
                         <? if($contrat['numero_contrato']!='RG'):?>
                         <td colspan="2">
@@ -120,72 +184,6 @@ $contrat=$contrato->getOne($data['contrato']);
                         <td><label>Tipo</label></td>
                         <td align="right"><?=$contrat['numero_contrato']?></td>
                         <? endif;?>
-                    </tr>
-                    <tr>
-                    	<td><label>Unidad de Atención GAVD-CENAF</label></td>
-                        <td align="right"><?=$data['Uatencion']?></td>
-                    </tr>
-                    <tr>
-                        <td><label>Unidad de Atención GAVD-CENAF Centralizada</label></td>
-                        <td align="right"><?=$data['UatencionC']?></td>
-                    </tr>
-                    <tr>
-                        <td><label>Unidad de Atención GAVD-CENAF Centralizadora</label></td>
-                        <td align="right"><?=$data['UatencionCe']?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <fieldset>
-                                <legend>Paciente</legend>
-                                <table width="100%">
-                                    <tr>
-                                        <td><label>Nombre</label></td>
-                                        <td align="right"><?=$data['paciente_nombre']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>No. Documento</label></td>
-                                        <td align="right"><?=$data['doc_paciente']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Unidad del Paciente</label></td>
-                                        <td align="right"><?=$data['Upaciente']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Grado</label></td>
-                                        <td align="right"><?=$data['grado']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Fuerza</label></td>
-                                        <td align="right"><?=$data['fuerza']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Parentesco</label></td>
-                                        <td align="right"><?=$data['desc_parentesco']?></td>
-                                    </tr>
-                                </table>
-                            </fieldset>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                    	<td><label>Número Autorización</label></td>
-                        <td align="right"><?=$data['no_autorizacion']?></td>
-                    </tr>
-                    <tr>
-                        <td><label>Fecha Autorización del Servicio</label></td>
-                        <td align="right"><?=$data['fecha_autorizacion_servicio']?></td>
-                    </tr>
-                    <tr>
-                    	<td><label>Fecha Ingreso del Paciente</label></td>
-                        <td align="right"><?=$data['fecha_ingreso_paciente']?></td>
-                    </tr>
-                    <tr>
-                    	<td><label>Fecha Salida del Paciente</label></td>
-                        <td align="right"><?=$data['fecha_egreso_paciente']?></td>
-                    </tr>
-                    <tr>
-                        <td><label>Estado</label></td>
-                        <td align="right"><?=(($data['estado_factura']==1)?'En proceso':'Paga')?></td>
                     </tr>
                 </tbody>
             </table>

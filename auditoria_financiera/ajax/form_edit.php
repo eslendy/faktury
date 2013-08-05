@@ -4,6 +4,7 @@ include("../../libphp/config.inc.php");
 include("../../libphp/mysql.php");
 include("../../radicacion/clases/facturas_class.php");
 include("../clases/auditoria_financiera.php");
+include("../../radicacion/clases/contrato_class.php");
 include("../../usuarios/clases/usuarios_class.php");
 $factura = new facturas($conexion['local']);
 $auditoria = new auditoria_financiera($conexion['local']);
@@ -13,6 +14,8 @@ $usuarios = new usuarios($conexion['local']);
 //print_r($_REQUEST);
 $dataA = $auditoria->getOne($_REQUEST['idauditoria'],$_REQUEST['id']);
 $data = $factura->getFactura($_REQUEST['id']);
+$contrato = new contrato($conexion['local']);
+$contrat=$contrato->getOne($data['contrato']);
 //print_r($data);
 ?>
 <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>auditoria_financiera/index_factura.php" />
@@ -88,42 +91,16 @@ $data = $factura->getFactura($_REQUEST['id']);
                             </fieldset>
                         </td>
                     </tr>
-                    <tr>
-                        <? if($contrat['numero_contrato']!='RG'):?>
-                        <td colspan="2">
-                            <fieldset>
-                                <legend>Contrato</legend>
-                                <table width="100%">
-                                    <tr>
-                                        <td><label>No. Contrato</label></td>
-                                        <td align="right"><?=$contrat['numero_contrato']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Fecha Inicio del Contrato</label></td>
-                                        <td align="right"><?=$contrat['fecha_contrato']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Valor Contrato</label></td>
-                                        <td align="right">$<?=number_format($contrat['valor_contrato'],2)?></td>
-                                    </tr>
-                                </table>
-                            </fieldset>
-                        <td>
-                        <? else:?>
-                        <td><label>Tipo</label></td>
-                        <td align="right"><?=$contrat['numero_contrato']?></td>
-                        <? endif;?>
-                    </tr>
-                    <tr>
+                                        <tr>
                         <td><label>Unidad de Atención GAVD-CENAF</label></td>
                         <td align="right"><?=$data['Uatencion']?></td>
                     </tr>
                     <tr>
-                        <td><label>Unidad de Atención GAVD-CENAF Centralizada</label></td>
+                        <td><label>Unidad Centralizada</label></td>
                         <td align="right"><?=$data['UatencionC']?></td>
                     </tr>
                     <tr>
-                        <td><label>Unidad de Atención GAVD-CENAF Centralizadora</label></td>
+                        <td><label>Unidad Centralizadora</label></td>
                         <td align="right"><?=$data['UatencionCe']?></td>
                     </tr>
                     <tr>
@@ -141,7 +118,8 @@ $data = $factura->getFactura($_REQUEST['id']);
                                     </tr>
                                     <tr>
                                         <td><label>Unidad del Paciente</label></td>
-                                        <td align="right"><?=$data['Upaciente']?></td>
+                                        <? /*<td align="right"><?=$data['Upaciente']?></td> */?>
+                                        <td align="right"><?=$data['desc_parentesco']?></td>
                                     </tr>
                                     <tr>
                                         <td><label>Grado</label></td>
@@ -151,14 +129,16 @@ $data = $factura->getFactura($_REQUEST['id']);
                                         <td><label>Fuerza</label></td>
                                         <td align="right"><?=$data['fuerza']?></td>
                                     </tr>
-                                    <tr>
+                                   <? /* <tr>
                                         <td><label>Parentesco</label></td>
                                         <td align="right"><?=$data['desc_parentesco']?></td>
-                                    </tr>
+                                    </tr>*/ ?>
                                 </table>
                             </fieldset>
                         </td>
                     </tr>
+                    
+                    
                     
                     <tr>
                         <td><label>Número Autorización</label></td>
@@ -180,6 +160,35 @@ $data = $factura->getFactura($_REQUEST['id']);
                         <td><label>Estado</label></td>
                         <td align="right"><?=(($data['estado_factura']==1)?'En proceso':'Paga')?></td>
                     </tr>
+                    
+                    <tr>
+                        <? if($contrat['numero_contrato']!='RG'):?>
+                        <td colspan="2">
+                            <fieldset>
+                                <legend>Contrato</legend>
+                                <table width="100%">
+                                    <tr>
+                                        <td><label>No. Contrato</label></td>
+                                       
+                                        <td align="right"><?=$contrat['numero_contrato']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Fecha Inicio del Contrato</label></td>
+                                        <td align="right"><?=$contrat['fecha_contrato']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Valor Contrato</label></td>
+                                        <td align="right">$<?=number_format($contrat['valor_contrato'],2)?></td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        <td>
+                        <? else:?>
+                        <td><label>Tipo</label></td>
+                        <td align="right"><?=$contrat['numero_contrato']?></td>
+                        <? endif;?>
+                    </tr>
+
                 </tbody>
             </table>
         </div>
