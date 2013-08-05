@@ -23,6 +23,7 @@ var _buscar = function(){
 };*/
 
  $('.nuevoReg').click(function() {
+     $('.modal-body').empty()
             $('.title_modal').text('Nuevo Perfil');
             $.post(init.XNG_WEBSITE_URL + "perfiles/ajax/form_add_perfil.php", function(data) {
              
@@ -38,6 +39,7 @@ var _buscar = function(){
        
     
 var _editarReg = function(idperfil){
+    $('.modal-body').empty()
     $('.title_modal').text('Editar   Perfil');
     $.post(init.XNG_WEBSITE_URL+"perfiles/ajax/form_edit_perfil.php", {idperfil:idperfil}, function(data){
         
@@ -64,7 +66,7 @@ var _editarReg = function(idperfil){
 };
 var _asigPermisos = function(idperfil){
     
-    
+     $('.modal-body').empty()
      $('.title_modal').text('Editar   Perfil');
     $.post(init.XNG_WEBSITE_URL+"perfiles/ajax/form_perfil_permisos.php", {idperfil:idperfil}, function(data){
         
