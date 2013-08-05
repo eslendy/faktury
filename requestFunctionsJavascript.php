@@ -49,7 +49,7 @@
                 $('#loadContentAjaxForms').modal({show: true});
                 $('.modal-body').html(data)
                 loadStylesCheckRadio();
-
+              
             })
         })
 
@@ -77,17 +77,17 @@
 
             var action = $(this).attr('data-action');
             var record = $(this).attr('data-record');
-            
+
 
             $('.add').fadeIn();
-             $('#content_').collapse('hide');
+            $('#content_').collapse('hide');
             $.post(init.XNG_WEBSITE_URL + 'auditoria_financiera/ajax/form_add.php', {case: action, id: record}, function(data) {
                 $('.load_content').html(data);
                 loadStylesCheckRadio();
                 $('.add_form').text('Nueva Auditoria');
             })
         })
-        
+
         $('.verBtn').click(function() {
 
             var action = $(this).attr('data-action');
@@ -95,16 +95,19 @@
             var idauditor = $(this).attr('data-idauditor');
             $('.add').fadeIn();
             $('#content_').collapse('hide');
-            
-            $.post(init.XNG_WEBSITE_URL + 'auditoria_financiera/ajax/form_edit.php', {case: action, id: record, idauditoria:idauditor}, function(data) {
+
+            $.post(init.XNG_WEBSITE_URL + 'auditoria_financiera/ajax/form_edit.php', {case: action, id: record, idauditoria: idauditor}, function(data) {
                 $('.load_content').html(data);
                 loadStylesCheckRadio();
                 $('.add_form').text('Editar Auditoria');
             })
         })
-        
-        
-  //      auditoria_financiera/ajax/form_edit.php?idauditoria=1&idfactura=4
+
+       
+
+
+
+        //      auditoria_financiera/ajax/form_edit.php?idauditoria=1&idfactura=4
 
     })
 </script>

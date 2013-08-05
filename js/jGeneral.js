@@ -8,12 +8,13 @@ $(function() {
 })
 
 var _loadBotones = function() {
-    _botonesIcons('.busqueda', "ui-icon-search", "", function() {
-        _buscar();
-    });
-    _botonesIcons('.nuevoReg', "ui-icon-circle-plus", "", function() {
-        _nuevoReg()
-    })
+      $('.busqueda').click(function(){
+          _buscar();
+      })  
+
+    //$('.nuevoReg').click(function(){
+      //  _nuevoReg()
+   // })
 }
 var _autocompletar = function(id, file, funcion, lista) {
     $(id).click(function() {

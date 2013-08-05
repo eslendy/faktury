@@ -13,7 +13,7 @@ try{
 			$idperfil=$_POST['idperfil'];
 			unset($_POST['idperfil']);
 			$bd->ejecutarUpdateArray($_POST,"perfil", "idperfil=".$idperfil);
-			echo "1";
+                        echo "1";
 		break;
 		case 'addPermisos':
 			foreach ($_POST['idmodulo'] as $value) {

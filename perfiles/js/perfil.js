@@ -6,7 +6,7 @@ var _buscar = function(){
 	}
 	_filtrar("#descripcion_search", "#reporte", "DESCRIPCIÓN", _cargarPaginacion);
 };
-var _nuevoReg = function(){
+/*var _nuevoReg = function(){
 	_ajax(init.XNG_WEBSITE_URL+"perfiles/ajax/form_add_perfil.php", "", function(html_response){
 		botones = [{
 			text : "Guardar",
@@ -20,10 +20,35 @@ var _nuevoReg = function(){
 		_dialogo("dialog-addPerfil", "50%", "Nuevo Perfil", botones, html_response)
 		$("#frmPerfil").validationEngine();
 	});
-};
+};*/
 
+ $('.nuevoReg').click(function() {
+            $('.title_modal').text('Nuevo Perfil');
+            $.post(init.XNG_WEBSITE_URL + "perfiles/ajax/form_add_perfil.php", function(data) {
+             
+                $('#loadContentAjaxForms').modal({show: true});
+                $('.modal-body').html(data)
+                loadStylesCheckRadio();
+                $("#frmPerfil").validationEngine();
+                
+            });
+        })
+        
+        
+       
+    
 var _editarReg = function(idperfil){
-	_ajax(init.XNG_WEBSITE_URL+"perfiles/ajax/form_edit_perfil.php", "idperfil="+idperfil, function(html_response){
+    $('.title_modal').text('Editar   Perfil');
+    $.post(init.XNG_WEBSITE_URL+"perfiles/ajax/form_edit_perfil.php", {idperfil:idperfil}, function(data){
+        
+         $('#loadContentAjaxForms').modal({show: true});
+                $('.modal-body').html(data)
+                loadStylesCheckRadio();
+                $("#frmPerfil").validationEngine();
+        
+    })
+    
+	/*_ajax(init.XNG_WEBSITE_URL+"perfiles/ajax/form_edit_perfil.php", "idperfil="+idperfil, function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -35,10 +60,22 @@ var _editarReg = function(idperfil){
 		}];
 		_dialogo("dialog-addPerfil", "50%", "Nuevo Perfil", botones, html_response)
 		$("#frmPerfil").validationEngine();
-	});
+	});*/
 };
 var _asigPermisos = function(idperfil){
-	_ajax(init.XNG_WEBSITE_URL+"perfiles/ajax/form_perfil_permisos.php", "idperfil="+idperfil, function(html_response){
+    
+    
+     $('.title_modal').text('Editar   Perfil');
+    $.post(init.XNG_WEBSITE_URL+"perfiles/ajax/form_perfil_permisos.php", {idperfil:idperfil}, function(data){
+        
+         $('#loadContentAjaxForms').modal({show: true});
+                $('.modal-body').html(data)
+                loadStylesCheckRadio();
+                $("#frmPerfil").validationEngine();
+        
+    })
+    
+	/*_ajax(init.XNG_WEBSITE_URL+"perfiles/ajax/form_perfil_permisos.php", "idperfil="+idperfil, function(html_response){
 		botones = [{
 			text : "Guardar",
 			click : function(){ 
@@ -50,7 +87,7 @@ var _asigPermisos = function(idperfil){
 		}];
 		_dialogo("dialog-addPerfil", "50%", "Asignar Permisos al Perfil", botones, html_response)
 		$("#frmPerfil").validationEngine();
-	});
+	});*/
 };
 
 var _cargarPaginacion = function(){

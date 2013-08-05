@@ -175,6 +175,12 @@ try {
 
                 </div>
 
+                <? /*  var_dump($_REQUEST);    
+                  <div id="menu_secundario">
+
+
+                  </div> */ ?>
+
 
 
             </div><!-- sidebar --> 
@@ -202,7 +208,13 @@ try {
 
                                     echo $menu->menu_lateral($_SESSION['perfil'], ($_GET['c']));
                                 }
+                                if (($_REQUEST['action'] == 'perfiles') && isset($_REQUEST['action'])) {
+                                    ?>
+                                        <button class="nuevoReg btn btn-primary" >Nuevo Perfil</button>
+                                    <?
+                                }
                                 ?>
+
                             </div>
 
                             <div class="row-fluid">
@@ -211,7 +223,7 @@ try {
                                         <div id="cuerpo">
                                             <div class="block-heading">
                                                 <span class="block-icon pull-right">
-                                                    <? if (isset($_REQUEST['action']) && $_REQUEST['action'] !== 'auditoria_medica' && $_REQUEST['action'] !== 'auditoria_financiera') {
+                                                    <? if (isset($_REQUEST['action']) && $_REQUEST['action'] != 'perfiles' && $_REQUEST['action'] !== 'auditoria_medica' && $_REQUEST['action'] !== 'auditoria_financiera') {
                                                         ?>
                                                         <button class="btn btn-primary nuevo" onclick="$('#content_').collapse('hide');" >
                                                             <i>Cargando...</i>
@@ -290,7 +302,7 @@ try {
                 </div>
                 <div class="modal-footer">
                     <button aria-hidden="true" data-dismiss="modal" class="btn" >Close</button>
-                    <button class="btn btn-primary guardar-formulario" onclick="$('.modal').modal('hide')">Save</button>
+                    <button class="btn btn-primary guardar-formulario" >Save</button>
                 </div>
             </div>
 

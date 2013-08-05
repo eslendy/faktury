@@ -559,6 +559,7 @@ switch ($_REQUEST['case']) {
     $('.guardar-formulario').click(function(e) {
 
         console.log('das')
+        
         if ($('#frm<? echo $_REQUEST['case'] ?>').validationEngine('validate') == true) {
             $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/save.php?type=edit<? echo $_REQUEST['case'] ?>', $('#frm<? echo $_REQUEST['case'] ?>').serialize(), function(data) {
                 console.log('entra: ' + data);
@@ -567,6 +568,7 @@ switch ($_REQUEST['case']) {
                         alert("<? echo $_REQUEST['case'] ?> Editado con Éxito!!");
                         $("#dialog-addModRad").remove();
                         _loadContenido($('#nombre_archivo').val());
+                          $('.modal').modal('hide')
                         break;
                     default:
                         _msgerror(data, "#mensaje");

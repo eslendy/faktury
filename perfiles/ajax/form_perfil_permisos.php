@@ -12,7 +12,7 @@ $dataModulos = $modulos->getallModulos();
 
 <form id="frmPerfil" class="formulario">
 	<input type="hidden" name="idperfil" id="idperfil" value="<?=$data['idperfil']?>" />
-	<table class="responsive table">
+	<table class="responsive table ">
 		<thead>
 			<tr>
 				<th colspan="2"><div id="mensaje"></div></th>
@@ -67,3 +67,32 @@ $dataModulos = $modulos->getallModulos();
 		</tbody>
 	</table>
 </form>
+
+<input type="hidden" id="nombre_archivo" value="/perfiles/index_perfil.php" />
+
+
+<script>
+    $('.guardar-formulario').submit(function(e) {
+        $.preventDefault(e);
+
+    })
+    $('.guardar-formulario').click(function(e) {
+
+        if ($('#frmPerfil').validationEngine('validate') == true) {
+            $.post(init.XNG_WEBSITE_URL + 'perfiles/ajax/save.php?type=addPermisos', $('#frmPerfil').serialize(), function(data) {
+                console.log('entra: ' + data);
+                switch (data) {
+                    case '1':
+                        alert("Permisos Editados con Éxito!!");
+                        _loadContenido($('#nombre_archivo').val());
+                        $('.modal').modal('hide')
+                        break;
+                    default:
+                        _msgerror(data, "#mensaje");
+                        break;
+                }
+            })
+        }
+
+    })
+</script>
