@@ -23,11 +23,14 @@ var _buscar = function(){
 };*/
 
  $('.nuevoReg').click(function() {
+     $('.guardar-formulario').addClass('nuevo');
+     $('.guardar-formulario').unbind('click');
      $('.modal-body').empty()
             $('.title_modal').text('Nuevo Perfil');
             $.post(init.XNG_WEBSITE_URL + "perfiles/ajax/form_add_perfil.php", function(data) {
              
                 $('#loadContentAjaxForms').modal({show: true});
+                console.log('add neuw')
                 $('.modal-body').html(data)
                 loadStylesCheckRadio();
                 $("#frmPerfil").validationEngine();
@@ -39,6 +42,8 @@ var _buscar = function(){
        
     
 var _editarReg = function(idperfil){
+    $('.guardar-formulario').addClass('editar');
+    $('.guardar-formulario').unbind('click');
     $('.modal-body').empty()
     $('.title_modal').text('Editar   Perfil');
     $.post(init.XNG_WEBSITE_URL+"perfiles/ajax/form_edit_perfil.php", {idperfil:idperfil}, function(data){
@@ -65,9 +70,10 @@ var _editarReg = function(idperfil){
 	});*/
 };
 var _asigPermisos = function(idperfil){
-    
+        $('.guardar-formulario').addClass('permisos');
+         $('.guardar-formulario').unbind('click');
      $('.modal-body').empty()
-     $('.title_modal').text('Editar   Perfil');
+     $('.title_modal').text('Editar  Perfil');
     $.post(init.XNG_WEBSITE_URL+"perfiles/ajax/form_perfil_permisos.php", {idperfil:idperfil}, function(data){
         
          $('#loadContentAjaxForms').modal({show: true});

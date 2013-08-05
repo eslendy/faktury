@@ -38,11 +38,11 @@ $data = $perfiles->getPerfil($_POST['idperfil']);
 
 
 <script>
-    $('.guardar-formulario').submit(function(e) {
+    $('.guardar-formulario.editar').submit(function(e) {
         $.preventDefault(e);
 
     })
-    $('.guardar-formulario').click(function(e) {
+    $('.guardar-formulario.editar').click(function(e) {
 
         if ($('#frmPerfil').validationEngine('validate') == true) {
             $.post(init.XNG_WEBSITE_URL + 'perfiles/ajax/save.php?type=editPerfil', $('#frmPerfil').serialize(), function(data) {
@@ -52,6 +52,7 @@ $data = $perfiles->getPerfil($_POST['idperfil']);
                         alert("Perfil Editado con Éxito!!");
                         _loadContenido($('#nombre_archivo').val());
                         $('.modal').modal('hide')
+                         $('.guardar-formulario').removeClass('editar');
                         break;
                     default:
                         _msgerror(data, "#mensaje");

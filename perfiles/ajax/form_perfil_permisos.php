@@ -72,11 +72,11 @@ $dataModulos = $modulos->getallModulos();
 
 
 <script>
-    $('.guardar-formulario').submit(function(e) {
+    $('.guardar-formulario.permisos').submit(function(e) {
         $.preventDefault(e);
 
     })
-    $('.guardar-formulario').click(function(e) {
+    $('.guardar-formulario.permisos').click(function(e) {
 
         if ($('#frmPerfil').validationEngine('validate') == true) {
             $.post(init.XNG_WEBSITE_URL + 'perfiles/ajax/save.php?type=addPermisos', $('#frmPerfil').serialize(), function(data) {
@@ -86,6 +86,7 @@ $dataModulos = $modulos->getallModulos();
                         alert("Permisos Editados con Éxito!!");
                         _loadContenido($('#nombre_archivo').val());
                         $('.modal').modal('hide')
+                        $('.guardar-formulario').removeClass('permisos');
                         break;
                     default:
                         _msgerror(data, "#mensaje");

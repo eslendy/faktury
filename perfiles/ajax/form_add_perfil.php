@@ -21,32 +21,36 @@
     </table>
 </form>
 
-    <input type="hidden" id="nombre_archivo" value="/perfiles/index_perfil.php" />
+<input type="hidden" id="nombre_archivo" value="/perfiles/index_perfil.php" />
 
 
 <script>
-    $('.guardar-formulario').submit(function(e) {
-        $.preventDefault(e);
+    $(document).ready(function() {
+        $('.guardar-formulario.nuevo').submit(function(e) {
+            $.preventDefault(e);
 
+        })
+        $('.guardar-formulario.nuevo').click(function(e) {
+
+            if ($('#frmPerfil').validationEngine('validate') == true) {
+                $.post(init.XNG_WEBSITE_URL + 'perfiles/ajax/save.php?type=addPerfil', $('#frmPerfil').serialize(), function(data) {
+                    console.log('entra: ' + data);
+                    switch (data) {
+                        case '1':
+                            alert("Perfil Agregado con Éxito!!");
+                            $("#dialog-addModRad").remove();
+                            _loadContenido($('#nombre_archivo').val());
+                            $('.modal').modal('hide');
+                            $('.guardar-formulario').removeClass('nuevo');
+                            break;
+                        default:
+                            _msgerror(data, "#mensaje");
+                            break;
+                    }
+                })
+            }
+
+        })
     })
-    $('.guardar-formulario').click(function(e) {
 
-        if ($('#frmPerfil').validationEngine('validate') == true) {
-            $.post(init.XNG_WEBSITE_URL + 'perfiles/ajax/save.php?type=addPerfil', $('#frmPerfil').serialize(), function(data) {
-                console.log('entra: ' + data);
-                switch (data) {
-                    case '1':
-                        alert("Perfil Agregado con Éxito!!");
-                        $("#dialog-addModRad").remove();
-                        _loadContenido($('#nombre_archivo').val());
-                        $('.modal').modal('hide')
-                        break;
-                    default:
-                        _msgerror(data, "#mensaje");
-                        break;
-                }
-            })
-        }
-
-    })
 </script>
