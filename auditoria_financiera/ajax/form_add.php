@@ -91,18 +91,7 @@ $contrat=$contrato->getOne($data['contrato']);
                         </td>
                     </tr>
                     
-                    <tr>
-                    	<td><label>Unidad de Atención GAVD-CENAF</label></td>
-                        <td align="right"><?=$data['Uatencion']?></td>
-                    </tr>
-                    <tr>
-                        <td><label>Unidad Centralizada</label></td>
-                        <td align="right"><?=$data['UatencionC']?></td>
-                    </tr>
-                    <tr>
-                        <td><label>Unidad Centralizadora</label></td>
-                        <td align="right"><?=$data['UatencionCe']?></td>
-                    </tr>
+                    
                     <tr>
                         <td colspan="2">
                             <fieldset>
@@ -133,6 +122,20 @@ $contrat=$contrato->getOne($data['contrato']);
                                         <td><label>Parentesco</label></td>
                                         <td align="right"><?=$data['desc_parentesco']?></td>
                                     </tr>*/ ?>
+                                    
+                                    <tr>
+                    	<td><label>Unidad de Atención GAVD-CENAF</label></td>
+                        <td align="right"><?=$data['Uatencion']?></td>
+                    </tr>
+                    <tr>
+                        <td><label>Unidad Centralizada</label></td>
+                        <td align="right"><?=$data['UatencionC']?></td>
+                    </tr>
+                    <tr>
+                        <td><label>Unidad Centralizadora</label></td>
+                        <td align="right"><?=$data['UatencionCe']?></td>
+                    </tr>
+                    
                                 </table>
                             </fieldset>
                         </td>
