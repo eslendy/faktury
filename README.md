@@ -26,6 +26,5 @@ El desarrollo de la aplicación se realiza por medio de los siguientes lenguajes
 - JavaScript (Jquery)
 
 ##Autor
-- Email: dave@fontawesome.io
-- GitHub: https://github.com/davegandy
-- Work: Lead Product Designer @ http://kyru.us
+- Email: eslendy.espinel@hotmail.com
+- GitHub: https://github.com/eslendy/faktury
