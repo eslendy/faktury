@@ -14,8 +14,10 @@ error_reporting(E_ALL & ~E_NOTICE);
 //@ini_set('display_errors', 0);
 
 
+
 require("vigia.php");
-//var_dump($_REQUEST);
+
+///var_dump($_REQUEST);
 //error_reporting(E_ALL & ~E_NOTICE);
 
 try {
