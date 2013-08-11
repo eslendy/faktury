@@ -257,8 +257,9 @@ try {
                                             </div>
                                             <?php
                                             if (isset($_GET['c']) && !empty($_GET['c']) && ($_GET['c']) != 'index.php') {
-
+                                                
                                                 include(($_GET['c']));
+                                                
                                             }
                                             ?>
                                             <div class="clear"></div>

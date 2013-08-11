@@ -19,6 +19,7 @@ RewriteRule ^login$ usuarios/login.php [L]
 RewriteRule ^salir$ salir.php [L]
 RewriteRule ^login/$ usuarios/login.php [L]
 RewriteRule ^salir/$ salir.php [L]
+
 RewriteRule ^$ index.php?c=home/index.php&isHome=true [L]
 RewriteRule ^index$ index.php?c=home/index.php&isHome=true [L]
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -31,5 +32,4 @@ RewriteRule ^(.*)/index_([a-zA-Z0-9-_]+)$ /$1/index_$2.php?action=$2&section=$1 
 RewriteRule ^([a-zA-Z0-9-_]+)/$ index.php?c=$1/index.php&p=$3&action=$1 [L]
 RewriteRule ^(.*)/index.php$ /$1/index.php?&section=$1 [L]
 #RewriteRule ^(.*)/ajax/([a-zA-Z0-9-_]+)$ /$1/ajax/$2.php?&section=$1 [L]
-
 RewriteRule ^phpmyadmin$ phpmyadmin/ [L]
