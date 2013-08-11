@@ -47,3 +47,33 @@ $data = $usuario->getUser($_POST['idusuarios']);
 		</tbody>
 	</table>
 </form>
+
+<input type="hidden" id="nombre_archivo" value="/usuarios/index_usuarios.php" />
+
+
+<script>
+    $('.guardar-formulario.edituser').submit(function(e) {
+        $.preventDefault(e);
+
+    })
+    $('.guardar-formulario.edituser').click(function(e) {
+
+        if($("#frmUsuario").validationEngine('validate') ==true){			
+            $.post(init.XNG_WEBSITE_URL + 'usuarios/ajax/save.php?type=editUser', $("#frmUsuario").serialize(), function(data) {
+                console.log('entra: ' + data);
+                switch (data) {
+                    case '1':
+                        alert("Usuario Editado con Éxito!!");
+                        _loadContenido($('#nombre_archivo').val());
+                        $('.modal').modal('hide')
+                        $('.guardar-formulario').removeClass('edituser');
+                        break;
+                    default:
+                        _msgerror(data, "#mensaje");
+                        break;
+                }
+            })
+        }
+
+    })
+</script>

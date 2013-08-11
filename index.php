@@ -213,6 +213,11 @@ try {
                                         <button class="nuevoReg btn btn-primary" >Nuevo Perfil</button>
                                     <?
                                 }
+                                if(isset($_REQUEST['action']) && ($_REQUEST['action'] === 'usuarios')){
+                                    ?>
+                                        <button class="nuevoRegUser btn btn-primary" >Nuevo Usuario</button>
+                                    <?
+                                }
                                 ?>
 
                             </div>

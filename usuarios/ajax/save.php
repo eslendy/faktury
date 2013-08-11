@@ -5,12 +5,12 @@ include('../../libphp/mysql.php');
 include('../clases/usuarios_class.php');
 try{
 	switch ($_GET['type']) {
-		case 'addUsuario':
+		case 'addUser':
 			$_POST['password_md5']=md5($_POST['password']);
 			$bd->ejecutarInsertArray($_POST,"usuarios");
 			echo "1";
 		break;
-		case 'editUsuario' : 
+		case 'editUser' : 
 			$_POST['password_md5']=md5($_POST['password']);
 			$iduser=$_POST['idusuarios'];
 			unset($_POST['idusuarios']);

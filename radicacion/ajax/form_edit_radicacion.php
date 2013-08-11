@@ -578,7 +578,6 @@ switch ($_REQUEST['case']) {
         }
 
     })
-    nuevo_reg_load();
     $(function() {
         $('input').iCheck({
             checkboxClass: 'icheckbox_flat-blue',
