@@ -9,7 +9,7 @@ include("../../auditoria_financiera/clases/auditoria_financiera.php");
 //include("../clases/auditoria_financiera.php");
 $factura = new facturas($conexion['local']);
 //se obtiene la informacion de la factura a auditar
-$data = $factura->getFactura($_GET['idfactura']);
+$data = $factura->getFactura($_REQUEST['id']);
 $contrato = new contrato($conexion['local']);
 $contrat=$contrato->getOne($data['contrato']);
 
@@ -24,55 +24,55 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
     <fieldset>
         <legend>Auditoría Médica</legend>
         <form id="addAuditoria" class="formulario">
-            <input type="hidden" name="idFactura" id="idFactura" value="<?=$_GET['idfactura']?>" />
-            <input type="hidden" name="idusuario" id="idusuario" value="<?=$_SESSION['usrid']?>" />
+            <input type="hidden" name="default_idFactura" id="idFactura" value="<?=$_REQUEST['id']?>" />
+            <input type="hidden" name="default_id_auditor" id="id_auditor" value="<?=$_SESSION['usrid']?>" />
             <table class="responsive table">
                 <tbody>
                     <tr>
-                        <td width="50%"><label>Modalidad de pago<small>(No. Contrato o RG)</small></label></td>
+                        <td width="30%"><label>Modalidad de pago<small>(No. Contrato o RG)</small></label></td>
 
                         <td>
-                            <?=$contrato->_select("c.idproveedor=".$data['idproveedor'], "modalidad_pago", "modalidad_pago",$data['contrato'] )?>
+                            <?=$contrato->_select("c.idproveedor=".$data['idproveedor'], "default_modalidad_pago", "modalidad_pago",$data['contrato'] )?>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Tipo de Servicio</label></td>
                         <td>
-                            <?=$tipo_servicio->_select("","idtipo_servicio","idtipo_servicio");?>
+                            <?=$tipo_servicio->_select("","default_idtipo_servicio","idtipo_servicio");?>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Nivel de atención  según  CRES Acuerdo 008/2008 y Acuerdo 028/2011</label></td>
                         <td>
-                        	<label><input type="radio" name="idcres" id="idcres_1" value="1" class="validate[required]" />1</label><br />
-                            <label><input type="radio" name="idcres" id="idcres_2" value="2" class="validate[required]" />2</label><br />
-                            <label><input type="radio" name="idcres" id="idcres_3" value="3" class="validate[required]" />3</label>
+                        	<label><input type="radio" name="default_idcres" id="idcres_1" value="1" class="validate[required]" />1</label>
+                            <label><input type="radio" name="default_idcres" id="idcres_2" value="2" class="validate[required]" />2</label>
+                            <label><input type="radio" name="default_idcres" id="idcres_3" value="3" class="validate[required]" />3</label>
                         </td>
                     </tr>
                     <tr>
                         <td><label>CIE 10 de la atención</label></td>
                         <td>
                             <input type="text" id="autoc-idcie10" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" />
-                            <input type="hidden" id="idcie10" name="idcie10" class="validate[required]"  />
+                            <input type="hidden" id="idcie10" name="default_idcie10" class="validate[required]"  />
                         </td>
                     </tr>
                     <tr>
                         <td><label>En Combate</label></td>
 
                         <td>
-                            <input type="radio" name="en_combate" id="en_combate_si" value="1" class="validate[required]" /><label>SI</label><br />
-                            <input type="radio" name="en_combate" id="en_combate_no" value="0" class="validate[required]" /><label>NO</label>
+                            <input type="radio" name="default_en_combate" id="en_combate_si" value="1" class="validate[required]" /><label>SI</label>
+                            <input type="radio" name="default_en_combate" id="en_combate_no" value="0" class="validate[required]" /><label>NO</label>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="checkbox" name="estado_factura" id="chk_0" value="0" onclick="glosas(this)" class="validate[required]"><label>Pago</label><br />
-                            <input type="checkbox" name="estado_factura" id="chk_1" value="1" onclick="glosas(this)" class="validate[required]"><label>Devolución</label><br />
-                            <input type="checkbox" name="estado_factura" id="chk_2" value="2" onclick="glosas(this)" class="validate[required]"><label>Glosas</label>
+                            <label >Pago</label> <input type="checkbox" name="default_estado_factura" id="chk_0" value="0" onclick="glosas(this)" class="validate[required]">
+                            <label >Devolución</label><input type="checkbox" name="default_estado_factura" id="chk_1" value="1" onclick="glosas(this)" class="validate[required]">
+                            <label >Glosas</label><input type="checkbox" name="default_estado_factura" id="chk_2" value="2" onclick="glosas(this)" class="validate[required]">
                         </td>
                     </tr>
 
-                    <tr id="tr_devoluciones">
+                    <tr id="tr_devoluciones" style="display: none;">
                         <td colspan="2">
                             <fieldset>
                                 <legend>Devoluciones</legend>
@@ -83,26 +83,26 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                         <tr>
                                             <td>Concepto Auditoría</td>
                                             <td>
-                                                <input type="number" name="codConcepto" id="codConcepto-chk_0" value="" class="validate[funcCall[_validarGlosas]]" />
+                                                <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="" class="validate[funcCall[_validarGlosas]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha Concepto Auditoría</td>
                                             <td>
-                                                <input type="date" name="fecha_concepto" id="fecha_concepto" class="fecha validate[custom[date2]]" />
+                                                <input type="text" name="devoluciones_fecha_concepto"  class="fecha validate[custom[date2]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Codigo Devolución</td>
                                             <td>
                                                 <input type="text" id="autoc-iddevolucion" class="validate[funcCall[_validarHiddenAutoC]] autoc_txt" />
-                                                <input type="hidden" name="iddevolucion" id="iddevolucion" class="validate[custom[numberP]]" />
+                                                <input type="hidden" name="devoluciones_iddevolucion" id="iddevolucion" class="validate[custom[numberP]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha de Devolución</td>
                                             <td>
-                                                <input name="fecha_devolucion" id="fecha_devolucion" class="fecha validate[custom[date2]]" />
+                                                <input type="text" name="devoluciones_fecha_devolucion"  class="fecha validate[custom[date2]]" />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -110,7 +110,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                             </fieldset>
                         </td>
                     </tr>
-                    <tr id="tr_glosas">
+                    <tr id="tr_glosas" style="display: none;">
                         <td colspan="2">
                             <fieldset>
                                 <legend>Glosas</legend>
@@ -121,38 +121,38 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                         <tr>
                                             <td>Concepto Auditoría</td>
                                             <td>
-                                                <input type="number" name="codConcepto" id="codConcepto" value="" class="validate[condRequired[chk_2],custom[numberP]]" />
+                                                <input type="number" name="glosa_codConcepto" id="codConcepto" value="" class="validate[condRequired[chk_2],custom[numberP]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha Concepto Auditoría</td>
                                             <td>
-                                                <input type="date" name="fecha_concepto" id="fecha_concepto" class="fecha validate[]" />
+                                                <input type="text" name="glosa_fecha_concepto"  class="fecha validate[]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Codigo Glosa Inicial</td>
                                             <td>
                                                 <input type="text" id="autoc-idglosa" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" />
-                                                <input type="hidden" name="idglosa" id="idglosa" class="validate[custom[numberP]]" />
+                                                <input type="hidden" name="glosa_idglosa" id="idglosa" class="validate[custom[numberP]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha de Glosa</td>
                                             <td>
-                                                <input type="date" name="fecha_glosa" id="fecha_glosa" class="fecha validate[custom[date2]]" />
+                                                <input type="text" name="glosa_fecha_glosa"  class="fecha validate[custom[date2]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                         	<td>Valor de la Glosa</td>
                                             <td>
-                                            	<input type="number" name="valor_glosa" id="valor_glosa-chk_2" class=" pesos" />
+                                            	<input type="number" name="glosa_valor_glosa" id="valor_glosa-chk_2" class=" pesos" />
                                             </td>
                                         </tr>
                                         <tr>
                                         	<td>Observaciones </td>
                                             <td>
-                                            	<textarea name="observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas],custom[date2]]" ></textarea>
+                                            	<textarea name="glosa_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ></textarea>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -160,7 +160,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                             </fieldset>
                         </td>
                     </tr>
-                    <tr id="tr_pago">
+                    <tr id="tr_pago" style="display: none;">
                         <td colspan="2">
                             <fieldset>
                                 <legend>Pago</legend>
@@ -171,25 +171,25 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                         <tr>
                                             <td>Concepto Auditoría</td>
                                             <td>
-                                                <input type="number" name="codConcepto" id="codConcepto" value="" class="validate[funcCall[chk_0],custom[numberP]]" />
+                                                <input type="number" name="pago_codConcepto" id="codConcepto" value="" class="validate[funcCall[chk_0],custom[numberP]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha Concepto Auditoría</td>
                                             <td>
-                                                <input type="date" name="fecha_concepto" id="fecha_concepto" class="fecha validate[custom[date2]]" />
+                                                <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Valor del Pago</td>
                                             <td>
-                                                <input type="number" name="valor_pago" id="valor_pago" class="validate[custom[numberP]] pesos" />
+                                                <input type="number" name="pago_valor_pago" id="valor_pago" class="validate[custom[numberP]] pesos" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha Pago</td>
                                             <td>
-                                                <input type="date" name="fecha_pago" id="fecha_pago" class="fecha validate[custom[date2]]" />
+                                                <input type="text" name="pago_fecha_pago"  class="fecha validate[custom[date2]]" />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -364,6 +364,18 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
 </div>
 </div>
 <script>
+     $(function() {
+         
+         _loadADDForms();
+        $(".fecha").datepicker({
+            showOn: "button",
+            buttonImage: "/imagenes/calendar.gif",
+            buttonImageOnly: true,
+            dateFormat: "yy-mm-dd"
+        });
+    });
+
+    
 	$(function(){
 		_botonesIcons('.guardarDaata',"ui-icon-disk","",function(){
 			_guardarMods("addAuditoria","#addAuditoria", "Auditoría");
@@ -375,11 +387,18 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
         });
         _fechaFields();
 	});
+        
+       
     function glosas(e){
+        $(".icheckbox_flat-blue").removeClass("checked");
+         $('.icheckbox_flat-blue').click(function(){
+                $(this).addClass('checked');
+        })
         if($(e).is(":checked")==true){
             if(e.id == 'chk_1'){
                 $("#chk_2").removeAttr("checked");
                 $("#chk_0").removeAttr("checked");
+                
                 $("#tr_devoluciones").show();
                 $("#tr_pago").hide();
                 $("#tr_glosas").hide();
@@ -407,4 +426,25 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
         }
     }
 
+var _loadADDForms = function(){
+	_autocompletar("#autoc-idcie10", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=cie10", function(ui){
+		$("#idcie10").val(ui.item.id);
+	}, '')
+	_autocompletar("#autoc-iddevolucion", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=glosas", function(ui){
+		$("#iddevolucion").val(ui.item.id);
+	}, function( ul, item ) {
+      return $( '<li style="width:50%"></li>' )
+	  	.data("item.autocomplete",item)
+        .append( "<a>" + item.icon + "</a>" )
+        .appendTo( ul );
+    })
+	_autocompletar("#autoc-idglosa", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=glosas", function(ui){
+		$("#idglosa").val(ui.item.id);
+	}, function( ul, item ) {
+      return $( "<li></li>" )
+	  	.data("item.autocomplete",item)
+        .append( "<a>" + item.icon + "</a>" )
+        .appendTo( ul );
+    })
+}
 </script>

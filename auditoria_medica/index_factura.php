@@ -76,13 +76,13 @@ include '../requestFunctionsJavascript.php';
                         <? if (empty($rs_au)): ?>
                             <td width="61">
                                 <a>
-                                    <span class="adicionarBtn" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-success"><i class=" icon-check"></i></button></span>
+                                    <span class="addAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-success"><i class=" icon-check"></i></button></span>
                                 </a>
                             </td>
                         <? else: ?>
                             <td width="61">
                                 <a>
-                                    <span class="verBtn" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-primary"><i class="icon-plus"></i></button></span>
+                                    <span class="verAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-primary"><i class="icon-plus"></i></button></span>
                                 </a>
                             </td>
                         <? endif ?>
@@ -99,5 +99,5 @@ include '../requestFunctionsJavascript.php';
         </table>
 
     </div>
-    <script type="text/javascript" src="<? echo $SERVER_NAME; ?>radicacion/js/factura.js"></script>
+    <script type="text/javascript" src="<? echo $SERVER_NAME; ?>auditoria_medica/js/factura.js"></script>
 </div>

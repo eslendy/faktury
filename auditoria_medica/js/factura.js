@@ -13,4 +13,29 @@ var _cargarPaginacion = function(){
 };
 $(function(){
      _loadBotones();
+     
 });
+
+ $(function() {
+        $(".fecha").datepicker({
+            showOn: "button",
+            buttonImage: "/imagenes/calendar.gif",
+            buttonImageOnly: true,
+            dateFormat: "yy-mm-dd"
+        });
+    });
+
+ $('.addAuditoriaMedica').click(function() {
+
+            var action = $(this).attr('data-action');
+            var record = $(this).attr('data-record');
+
+
+            $('.add').fadeIn();
+            $('#content_').collapse('hide');
+            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/form_add.php', {case: action, id: record}, function(data) {
+                $('.load_content').html(data);
+                loadStylesCheckRadio();
+                $('.add_form').text('Nueva Auditoria Medica');
+            })
+        })
