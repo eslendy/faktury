@@ -93,11 +93,11 @@ try {
             break;
         case 'cie10':
             $cie10 = new cie10($conexion['local']);
-            echo $cie10->getallAutoC($_GET['term']);
+            echo $cie10->getallAutoC($_GET['term'], ' limit 20');
             break;
         case 'glosas':
             $cie10 = new glosas_devoluciones($conexion['local']);
-            echo $cie10->getallAutoC($_GET['term']);
+            echo $cie10->getallAutoC($_GET['term'], 'limit 20');
             break;
     }
 } catch (Exception $e) {

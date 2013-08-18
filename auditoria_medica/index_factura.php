@@ -27,7 +27,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="<? $SERVER_NAME ?>auditoria_medica/index_factura" />
+    <input type="hidden" id="nombre_archivo" value="/auditoria_medica/index_factura.php" />
 
 
     <div id="contenido">
@@ -78,13 +78,13 @@ include '../requestFunctionsJavascript.php';
                         <? if (empty($rs_au)): ?>
                             <td width="61">
                                 <a>
-                                    <span class="addAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-success"><i class=" icon-check"></i></button></span>
+                                   lala <span class="addAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-success"><i class=" icon-plus"></i></button></span>
                                 </a>
                             </td>
                         <? else: ?>
                             <td width="61">
                                 <a>
-                                    <span class="verAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-primary"><i class="icon-plus"></i></button></span>
+                                    <span class="verAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-primary"><i class="icon-check"></i></button></span>
                                 </a>
                             </td>
                         <? endif ?>

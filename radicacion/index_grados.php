@@ -32,7 +32,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>radicacion/index_grados" />
+    <input type="hidden" id="nombre_archivo" value="/radicacion/index_grados.php" />
 
     <div id="contenido">
         <table id="reporte" class="responsive table table-striped table-hover">

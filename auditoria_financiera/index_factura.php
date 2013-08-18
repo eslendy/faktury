@@ -24,21 +24,12 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>auditoria_financiera/index_factura" />
+    <input type="hidden" id="nombre_archivo" value="/auditoria_financiera/index_factura" />
     
     <div id="contenido">
         <table id="reporte" class="responsive table">
             <thead>
-                <? /* <tr id="trBuscar" class="oculto">
-                  <td></td>
-                  <td><input type="search" id="fecha_rad_search" placeholder="Buscar x fecha" class="search_txt fecha" /></td>
-                  <td><input type="search" id="factura_search" placeholder="Buscar x No. Factura" class="search_txt" /></td>
-                  <td></td>
-                  <td><input type="search" id="proveedor_search" placeholder="Buscar x proveedor" class="search_txt" /></td>
-                  <td><input type="search" id="paciente_search" placeholder="Buscar x paciente" class="search_txt" /></td>
-                  <td></td>
-                  <td></td>
-                  </tr> */ ?>
+                
                 <tr>
                     <th title="No. Radicado">RAD</th>
                     <th title="Fecha Radicación">FECHA RAD.</th>

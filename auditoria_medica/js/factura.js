@@ -39,3 +39,18 @@ $(function(){
                 $('.add_form').text('Nueva Auditoria Medica');
             })
         })
+        
+        $('.verAuditoriaMedica').click(function() {
+
+            
+            var record = $(this).attr('data-record');
+            
+            $('.add').fadeIn();
+            $('#content_').collapse('hide');
+
+            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/form_edit.php', {id: record}, function(data) {
+                $('.load_content').html(data);
+                loadStylesCheckRadio();
+                $('.add_form').text('Editar Auditoria');
+            })
+        })

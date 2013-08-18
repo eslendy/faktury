@@ -32,7 +32,7 @@
 
 
     </div>
-<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_unidadAtencion" />
+<input type="hidden" id="nombre_archivo" value="/radicacion/index_unidadAtencion.php" />
 
 
 <div id="contenido">

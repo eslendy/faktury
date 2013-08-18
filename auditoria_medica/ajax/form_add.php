@@ -94,7 +94,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Concepto Auditoría</td>
+                                            <td width='320'>Concepto Auditoría</td>
                                             <td>
                                                 <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="" class="validate[funcCall[_validarGlosas]]" />
                                             </td>
@@ -138,7 +138,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Concepto Auditoría</td>
+                                            <td width='320'>Concepto Auditoría</td>
                                             <td>
                                                 <input type="number" name="glosa_codConcepto" id="codConcepto" value="" class="validate[condRequired[chk_2],custom[numberP]]" />
                                             </td>
@@ -188,7 +188,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Concepto Auditoría</td>
+                                            <td width='320'>Concepto Auditoría</td>
                                             <td>
                                                 <input type="number" name="pago_codConcepto" id="codConcepto" value="" class="validate[funcCall[chk_0],custom[numberP]]" />
                                             </td>
@@ -240,7 +240,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                 <table align="center">
                     <tbody>
                         <tr>
-                            <td width="70%"><label>No. Radicado</label></td>
+                            <td width='320'><label>No. Radicado</label></td>
                             <td align="right"><?= $data['no_radicado'] ?></td>
                         </tr>
                         <tr>

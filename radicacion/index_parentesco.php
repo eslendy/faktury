@@ -22,7 +22,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME ?>radicacion/index_parentesco" />
+    <input type="hidden" id="nombre_archivo" value="/radicacion/index_parentesco.php" />
 
 
     <div id="contenido">

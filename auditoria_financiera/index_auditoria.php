@@ -22,7 +22,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME; ?>auditoria_financiera/index_auditoria" />
+    <input type="hidden" id="nombre_archivo" value="/auditoria_financiera/index_auditoria.php" />
 
 
     <div id="contenido">

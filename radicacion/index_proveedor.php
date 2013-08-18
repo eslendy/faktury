@@ -35,7 +35,7 @@
 
 
     </div>
-<input type="hidden" id="nombre_archivo" value="<? echo $SERVER_NAME?>radicacion/index_proveedor" />
+<input type="hidden" id="nombre_archivo" value="/radicacion/index_proveedor.php" />
 
 
 <div id="contenido"> 

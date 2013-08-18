@@ -49,17 +49,12 @@ var _fechaFields = function() {
 };
 
 var _botonesIcons = function(id, primaryIcon, secundaryIcon, funcion) {
-    $(id).button({
-        icons: {
-            primary: primaryIcon,
-            secondary: secundaryIcon
-        }
-    }).click(function() {
+    $(id).addClass('btn-large').click(function() {
         funcion()
     });
 };
-var _botones = function(id, funcion) {
-    $(id).button().click(function() {
+var _botones = function(id, class_, funcion) {
+    $(id).addClass('btn-large '+class_).click(function() {
         funcion()
     });
 };

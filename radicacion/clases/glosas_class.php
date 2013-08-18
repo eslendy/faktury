@@ -27,7 +27,7 @@ class glosas_devoluciones extends BD{
 		$array=array();
                 foreach($rs as $g){
 			$data = explode('-',$g['descripcion']);
-			$html_data ='<table class="responsive table" ><tr><td><b>'.$g['codigo'].'-'.$g['item'].'  '.trim($data[0]).'</b></td></tr><tr><td><p align=\'justify\'>'.trim($data[1]).'</p></td></tr></table>';
+			$html_data ='<table class="" ><tr><td><b>'.$g['codigo'].'-'.$g['item'].'  '.trim($data[0]).'</b></td></tr><tr><td><p align=\'justify\'>'.trim($data[1]).'</p></td></tr></table>';
 			
 			
 			$array[] = array(
