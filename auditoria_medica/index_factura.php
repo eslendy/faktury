@@ -78,7 +78,7 @@ include '../requestFunctionsJavascript.php';
                         <? if (empty($rs_au)): ?>
                             <td width="61">
                                 <a>
-                                   lala <span class="addAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-success"><i class=" icon-plus"></i></button></span>
+                                   <span class="addAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-success"><i class=" icon-plus"></i></button></span>
                                 </a>
                             </td>
                         <? else: ?>
