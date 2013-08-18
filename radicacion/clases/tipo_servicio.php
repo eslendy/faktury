@@ -38,6 +38,7 @@ class tipo_servicio extends BD{
 			foreach($rs as $r){
 				$html.='<option value="'.$r['idtipo_servicio'].'" '.(($select==$r['idtipo_servicio'])?'selected="selected"':'').'>'.$r['descripcion'].'</option>';
 			}
+                        $html.='<option value="0">Otro</option>';
 		$html.='</select>';
 		return $html;
 	}

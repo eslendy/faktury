@@ -33,7 +33,7 @@ $contrat=$contrato->getOne($data['contrato']);
                     </tr>
                     <tr>
                         <td><label>Observaciones de Auditoría</label><br />
-                        <textarea name="concepto_auditoria" id="concepto_auditoria" rows="6" style="width:75%; max-width: 970px" class="validate[required,custom[TextoEspecial]]"></textarea>
+                        <textarea name="concepto_auditoria" id="concepto_auditoria" rows="6" style="width:75%; max-width: 970px" class="validate[required]"></textarea>
                         <div class="clear"></div>
                         <a class="guardarDaata btn btn-primary btn-large">
                             Guardar

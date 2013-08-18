@@ -73,7 +73,7 @@ var _loadADDForms = function(){
         .append( "<a>" + item.icon + "</a>" )
         .appendTo( ul );
     })
-	_autocompletar("#autoc-idglosa", init.XNG_WEBSITE_URL+"radicacion/ajax/busqueda.php?case=glosas", function(ui){
+	_autocompletar("#autoc-idglosa", init.XNG_WEBSITE_URL+"auditoria_medica/ajax/busqueda.php?case=glosas", function(ui){
 		$("#idglosa").val(ui.item.id);
 	}, function( ul, item ) {
       return $( "<li></li>" )

@@ -60,7 +60,9 @@ include '../requestFunctionsJavascript.php';
                 <?
                 $i = 1;
                 foreach ($dataFacturas as $fac) {
-                    $rs_au = $auMedica->getOne(0, $fac['idf']);
+                    
+                 //  echo '<pre>'; var_dump($fac); echo '</pre>';
+                    $rs_au = $auMedica->getOne(0, $fac['idFactura']);
                     ?>
                     <tr class="elemetoBusqueda">
                         <td><?= $fac['no_radicado'] ?></td>

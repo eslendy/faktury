@@ -65,7 +65,7 @@ switch ($_REQUEST['case']) {
                         </td>
                         <td>
                             <label>Prefijo Factura</label>
-                            <input type="text" name="prefijo" id="prefijo" class="validate[required,custom[onlyLetterSp]]" data-prompt-position="centerRight:1,-5"/>
+                            <input type="text" name="prefijo" id="prefijo" class="validate[custom[onlyLetterSp]]" data-prompt-position="centerRight:1,-5"/>
 
                         </td>
                     </tr>
