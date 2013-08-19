@@ -34,16 +34,7 @@ include '../requestFunctionsJavascript.php';
 
         <table  id="reporte" class="responsive table">
             <thead>
-                <? /* <tr id="trBuscar" class="oculto">
-                  <td><input type="search" id="no_rad_search" placeholder="Rad" class="search_txt" size="4" /></td>
-                  <td><input type="search" id="fecha_rad_search" placeholder="Buscar x fecha" class="search_txt fecha" /></td>
-                  <td><input type="search" id="factura_search" placeholder="Buscar x No. Factura" class="search_txt" /></td>
-                  <td></td>
-                  <td><input type="search" id="proveedor_search" placeholder="Buscar x proveedor" class="search_txt" /></td>
-                  <td><input type="search" id="paciente_search" placeholder="Buscar x paciente" class="search_txt" /></td>
-                  <td></td>
-                  <td></td>
-                  </tr> */ ?>
+
                 <tr>
                     <th title="No. Radicado">RAD</th>
                     <th title="Fecha Radicación">FECHA RAD.</th>
@@ -60,9 +51,10 @@ include '../requestFunctionsJavascript.php';
                 <?
                 $i = 1;
                 foreach ($dataFacturas as $fac) {
-                    
-                 //  echo '<pre>'; var_dump($fac); echo '</pre>';
+
+                    //  echo '<pre>'; var_dump($fac); echo '</pre>';
                     $rs_au = $auMedica->getOne(0, $fac['idFactura']);
+                    $isGlosa = ($rs_au['estado_factura'] == '2') ? true : false;
                     ?>
                     <tr class="elemetoBusqueda">
                         <td><?= $fac['no_radicado'] ?></td>
@@ -78,13 +70,21 @@ include '../requestFunctionsJavascript.php';
                         <? if (empty($rs_au)): ?>
                             <td width="61">
                                 <a>
-                                   <span class="addAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-success"><i class=" icon-plus"></i></button></span>
+                                    <span class="addAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><button class="btn btn-success"><i class=" icon-plus"></i></button></span>
                                 </a>
                             </td>
                         <? else: ?>
-                            <td width="61">
+                            <td width="250">
                                 <a>
-                                    <span class="verAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-primary"><i class="icon-check"></i></button></span>
+                                    <span class="verAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>>
+                                        <button class="btn btn-primary"><i class="icon-check"></i></button>
+                                        <?php if ($isGlosa) {
+                                            ?>
+                                            <button class="btn btn-warning"><i class=" icon-plus"></i></button>
+                                            <button class="btn btn-success"><i class=" icon-plus"></i></button>
+                                            <?php }
+                                        ?>
+                                    </span>
                                 </a>
                             </td>
                         <? endif ?>

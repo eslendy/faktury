@@ -21,7 +21,7 @@ $tipo_servicio = new tipo_servicio($conexion['local']);
 //aud financiera
 $auFinanciera = new auditoria_financiera($conexion['local']);
 $auMedica = new auMedica($conexion['local']);
-$auditoriaMedica = $auMedica->getOne(0,$_REQUEST['id']);
+$auditoriaMedica = $auMedica->getOne(0, $_REQUEST['id']);
 
 $cie10 = new cie10($conexion['local']);
 $idcie10 = $cie10->getOne($auditoriaMedica['idcie10']);
@@ -29,11 +29,10 @@ $idcie10 = $cie10->getOne($auditoriaMedica['idcie10']);
 $glosa = new glosas_devoluciones($conexion['local']);
 $glosas = $glosa->getOne($auditoriaMedica['devoluciones_iddevolucion']);
 /*
-var_dump($auditoriaMedica);
-echo '<hr>';
-var_dump($idcie10);
+  var_dump($auditoriaMedica);
+  echo '<hr>';
+  var_dump($idcie10);
  * */
- 
 ?>
 <input type="hidden" id="nombre_archivo" value="/auditoria_medica/index_factura.php" />
 <div id="contenido" class="dividido">
@@ -56,7 +55,7 @@ var_dump($idcie10);
                         <tr>
                             <td><label>Tipo de Servicio</label></td>
                             <td>
-                                <?= $tipo_servicio->_select("", "idtipo_servicio", "idtipo_servicio",  $auditoriaMedica['idtipo_servicio'] ); ?>
+                                <?= $tipo_servicio->_select("", "idtipo_servicio", "idtipo_servicio", $auditoriaMedica['idtipo_servicio']); ?>
                             </td>
                         </tr>
                         <tr class='nivel'>
@@ -74,17 +73,17 @@ var_dump($idcie10);
                     <td><label>Nivel de atención  según  CRES Acuerdo 008/2008 y Acuerdo 028/2011</label></td>
                     <td>
                         <label>1</label>
-                        <input type="checkbox" name="idcres_1" <?php echo ($auditoriaMedica['idcres_1'])?'checked="checked"':'';?> value="1"  class=" checkbox_ validate[required]" />
+                        <input type="checkbox" name="idcres_1" <?php echo ($auditoriaMedica['idcres_1']) ? 'checked="checked"' : ''; ?> value="1" />
                         <label>2</label>
-                        <input type="checkbox" name="idcres_3" <?php echo ($auditoriaMedica['idcres_2'])?'checked="checked"':'';?> class='checkbox_' value="1"  />
+                        <input type="checkbox" name="idcres_3" <?php echo ($auditoriaMedica['idcres_2']) ? 'checked="checked"' : ''; ?> class='checkbox_' value="1"  />
                         <label>3</label>
-                        <input type="checkbox" name="idcres_2" <?php echo ($auditoriaMedica['idcres_3'])?'checked="checked"':'';?> class='checkbox_' value="1"  />
+                        <input type="checkbox" name="idcres_2" <?php echo ($auditoriaMedica['idcres_3']) ? 'checked="checked"' : ''; ?> class='checkbox_' value="1"  />
                     </td>
                     </tr>
                     <tr>
                         <td><label>CIE 10 de la atención</label></td>
                         <td>
-                            <input type="text" id="autoc-idcie10" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<?php echo $idcie10['codigo'].' - '.$idcie10['descripcion']; ?>" />
+                            <input type="text" id="autoc-idcie10" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<?php echo $idcie10['codigo'] . ' - ' . $idcie10['descripcion']; ?>" />
                             <input type="hidden" id="idcie10" name="idcie10" class="validate[required]" value="<?php echo $auditoriaMedica['idcie10']; ?>" />
                         </td>
                     </tr>
@@ -92,19 +91,19 @@ var_dump($idcie10);
                         <td><label>En Combate</label></td>
 
                         <td>
-                            <input type="radio" name="en_combate" id="en_combate_si" value="SI"  <?php echo ($auditoriaMedica['en_combate']=='SI')?'checked="checked"':'';?> class="validate[required]" /><label>SI</label>
-                            <input type="radio" name="en_combate" id="en_combate_no" value="NO" <?php echo ($auditoriaMedica['en_combate']=='NO')?'checked="checked"':'';?> class="validate[required]" /><label>NO</label>
+                            <input type="radio" name="en_combate" id="en_combate_si" value="SI"  <?php echo ($auditoriaMedica['en_combate'] == 'SI') ? 'checked="checked"' : ''; ?> class="validate[required]" /><label>SI</label>
+                            <input type="radio" name="en_combate" id="en_combate_no" value="NO" <?php echo ($auditoriaMedica['en_combate'] == 'NO') ? 'checked="checked"' : ''; ?> class="validate[required]" /><label>NO</label>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" class='glosa-tipo'>
-                            <label >Pago</label> <input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura']=='0')?'checked="checked"':'';?> id="chk_0" value="0" onclick="glosas(this)" class="validate[required]">
-                            <label >Devolución</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura']=='1')?'checked="checked"':'';?> id="chk_1" value="1" onclick="glosas(this)" class="validate[required]">
-                            <label >Glosas</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura']=='2')?'checked="checked"':'';?> id="chk_2" value="2" onclick="glosas(this)" class="validate[required]">
+                            <label >Pago</label> <input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '0') ? 'checked="checked"' : ''; ?> id="chk_0" value="0" onclick="glosas(this)" class="validate[required]">
+                            <label >Devolución</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '1') ? 'checked="checked"' : ''; ?> id="chk_1" value="1" onclick="glosas(this)" class="validate[required]">
+                            <label >Glosas</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '2') ? 'checked="checked"' : ''; ?> id="chk_2" value="2" onclick="glosas(this)" class="validate[required]">
                         </td>
                     </tr>
 
-                    <tr id="tr_devoluciones"  <?php echo ($auditoriaMedica['estado_factura']=='1')?'':'style="display: none";';?>>
+                    <tr id="tr_devoluciones"  <?php echo ($auditoriaMedica['estado_factura'] == '1') ? '' : 'style="display: none";'; ?>>
                         <td colspan="2">
                             <fieldset>
                                 <legend>Devoluciones</legend>
@@ -115,32 +114,32 @@ var_dump($idcie10);
                                         <tr>
                                             <td width='320'>Concepto Auditoría</td>
                                             <td>
-                                                <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="<? echo $auditoriaMedica['devoluciones_codConcepto']?>" class="validate[funcCall[_validarGlosas]]" />
+                                                <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="<? echo $auditoriaMedica['devoluciones_codConcepto'] ?>" class="validate[funcCall[_validarGlosas]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha Concepto Auditoría</td>
                                             <td>
-                                                <input type="text" name="devoluciones_fecha_concepto"  class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['devoluciones_fecha_concepto']?>" />
+                                                <input type="text" name="devoluciones_fecha_concepto"  class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['devoluciones_fecha_concepto'] ?>" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Codigo Devolución</td>
                                             <td>
-                                                <input type="text" id="autoc-iddevolucion" class="validate[funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo $glosas['codigo'].'-'.$glosas['item'].' '.$glosas['descripcion']; ?>"/>
-                                                <input type="hidden" name="devoluciones_iddevolucion" id="iddevolucion" class="validate[custom[numberP]]" value="<? echo $auditoriaMedica['devoluciones_iddevolucion']?>"/>
+                                                <input type="text" id="autoc-iddevolucion" class="validate[funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo $glosas['codigo'] . '-' . $glosas['item'] . ' ' . $glosas['descripcion']; ?>"/>
+                                                <input type="hidden" name="devoluciones_iddevolucion" id="iddevolucion" class="validate[custom[numberP]]" value="<? echo $auditoriaMedica['devoluciones_iddevolucion'] ?>"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha de Devolución</td>
                                             <td>
-                                                <input type="text" name="devoluciones_fecha_devolucion" value="<? echo $auditoriaMedica['devoluciones_fecha_devolucion']?>" class="fecha validate[custom[date2]]" />
+                                                <input type="text" name="devoluciones_fecha_devolucion" value="<? echo $auditoriaMedica['devoluciones_fecha_devolucion'] ?>" class="fecha validate[custom[date2]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Observaciones </td>
                                             <td>
-                                                <textarea name="devoluciones_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $auditoriaMedica['devoluciones_observaciones']?></textarea>
+                                                <textarea name="devoluciones_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $auditoriaMedica['devoluciones_observaciones'] ?></textarea>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -148,7 +147,7 @@ var_dump($idcie10);
                             </fieldset>
                         </td>
                     </tr>
-                    <tr id="tr_glosas" <?php echo ($auditoriaMedica['estado_factura']=='2')?'':'style="display: none";';?>>
+                    <tr id="tr_glosas" <?php echo ($auditoriaMedica['estado_factura'] == '2') ? '' : 'style="display: none";'; ?>>
                         <td colspan="2">
                             <fieldset>
                                 <legend>Glosas</legend>
@@ -198,7 +197,7 @@ var_dump($idcie10);
                             </fieldset>
                         </td>
                     </tr>
-                    <tr id="tr_pago" <?php echo ($auditoriaMedica['estado_factura']=='0')?'':'style="display: none";';?>>
+                    <tr id="tr_pago" <?php echo ($auditoriaMedica['estado_factura'] == '0') ? '' : 'style="display: none";'; ?>>
                         <td colspan="2">
                             <fieldset>
                                 <legend>Pago</legend>
@@ -421,7 +420,7 @@ var_dump($idcie10);
                             _botones('.guardarDaata', "GuardarEdit", function() {
                                 _guardarMods("editAuditoria", "#editAuditoria", "Auditoría");
                             })
-                            
+
                             $("#acordeon").accordion({
                                 collapsible: true,
                                 active: false,
