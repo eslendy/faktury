@@ -94,7 +94,7 @@ include '../requestFunctionsJavascript.php';
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6" id="pager" class="holder" align="center">
+                    <td colspan="10" id="pager" class="holder" align="center">
 
                     </td>
                 </tr>

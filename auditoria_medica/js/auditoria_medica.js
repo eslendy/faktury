@@ -71,7 +71,7 @@ var _loadADDForms = function() {
     _autocompletar("#autoc-idcie10", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=cie10", function(ui) {
         $("#idcie10").val(ui.item.id);
     }, '')
-    _autocompletar("#autoc-iddevolucion", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas", function(ui) {
+    _autocompletar("#autoc-iddevolucion", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas&tipo=8", function(ui) {
         $("#iddevolucion").val(ui.item.id);
     }, function(ul, item) {
         return $('<li style="width:50%"></li>')
@@ -79,7 +79,7 @@ var _loadADDForms = function() {
                 .append("<a>" + item.icon + "</a>")
                 .appendTo(ul);
     })
-    _autocompletar("#autoc-idglosa", init.XNG_WEBSITE_URL + "auditoria_medica/ajax/busqueda.php?case=glosas", function(ui) {
+    _autocompletar("#autoc-idglosa", init.XNG_WEBSITE_URL + "auditoria_medica/ajax/busqueda.php?case=glosas&tipo=-1", function(ui) {
         $("#idglosa").val(ui.item.id);
     }, function(ul, item) {
         return $("<li></li>")
@@ -87,6 +87,7 @@ var _loadADDForms = function() {
                 .append("<a>" + item.icon + "</a>")
                 .appendTo(ul);
     })
+    
 }
 $(function() {
     _loadContenido(init.XNG_WEBSITE_URL + 'auditoria_medica/index_factura');

@@ -28,6 +28,7 @@ $idcie10 = $cie10->getOne($auditoriaMedica['idcie10']);
 
 $glosa = new glosas_devoluciones($conexion['local']);
 $glosas = $glosa->getOne($auditoriaMedica['devoluciones_iddevolucion']);
+$glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
 /*
   var_dump($auditoriaMedica);
   echo '<hr>';
@@ -158,38 +159,38 @@ $glosas = $glosa->getOne($auditoriaMedica['devoluciones_iddevolucion']);
                                         <tr>
                                             <td width='320'>Concepto Auditoría</td>
                                             <td>
-                                                <input type="number" name="glosa_codConcepto" id="codConcepto" value="" class="validate[condRequired[chk_2],custom[numberP]]" />
+                                                <input type="number" name="glosa_codConcepto" id="codConcepto" value="<? echo $auditoriaMedica['glosa_codConcepto'] ?>" class="validate[condRequired[chk_2],custom[numberP]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha Concepto Auditoría</td>
                                             <td>
-                                                <input type="text" name="glosa_fecha_concepto"  class="fecha validate[]" />
+                                                <input type="text" name="glosa_fecha_concepto"  class="fecha validate[]" value="<? echo $auditoriaMedica['glosa_fecha_concepto'] ?>"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Codigo Glosa Inicial</td>
                                             <td>
-                                                <input type="text" id="autoc-idglosa" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" />
-                                                <input type="hidden" name="glosa_idglosa" id="idglosa" class="validate[custom[numberP]]" />
+                                                <input type="text" id="autoc-idglosa" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo $glosa_inicial['codigo'] . '-' . $glosa_inicial['item'] . ' ' . $glosa_inicial['descripcion']; ?>"/>
+                                                <input type="hidden" name="glosa_idglosa" id="idglosa" class="validate[custom[numberP]]" value="<? echo $auditoriaMedica['glosa_idglosa'] ?>"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha de Glosa</td>
                                             <td>
-                                                <input type="text" name="glosa_fecha_glosa"  class="fecha validate[custom[date2]]" />
+                                                <input type="text" name="glosa_fecha_glosa" value="<? echo $auditoriaMedica['glosa_fecha_glosa'] ?>" class="fecha validate[custom[date2]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Valor de la Glosa</td>
                                             <td>
-                                                <input type="number" name="glosa_valor_glosa" id="valor_glosa-chk_2" class=" pesos" />
+                                                <input type="number" name="glosa_valor_glosa" value="<? echo $auditoriaMedica['glosa_valor_glosa'] ?>" id="valor_glosa-chk_2" class=" pesos" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Observaciones </td>
                                             <td>
-                                                <textarea name="glosa_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ></textarea>
+                                                <textarea name="glosa_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $auditoriaMedica['glosa_observaciones'] ?></textarea>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -208,25 +209,25 @@ $glosas = $glosa->getOne($auditoriaMedica['devoluciones_iddevolucion']);
                                         <tr>
                                             <td width='320'>Concepto Auditoría</td>
                                             <td>
-                                                <input type="number" name="pago_codConcepto" id="codConcepto" value="" class="validate[funcCall[chk_0],custom[numberP]]" />
+                                                <input type="number" name="pago_codConcepto" id="codConcepto" value="<? echo $auditoriaMedica['pago_codConcepto'] ?>" class="validate[funcCall[chk_0],custom[numberP]]" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha Concepto Auditoría</td>
                                             <td>
-                                                <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" />
+                                                <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['pago_fecha_concepto'] ?>"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Valor del Pago</td>
                                             <td>
-                                                <input type="number" name="pago_valor_pago" id="valor_pago" class="validate[custom[numberP]] pesos" />
+                                                <input type="number" name="pago_valor_pago" id="valor_pago" class="validate[custom[numberP]] pesos" value="<? echo $auditoriaMedica['pago_valor_pago'] ?>"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Fecha Pago</td>
                                             <td>
-                                                <input type="text" name="pago_fecha_pago"  class="fecha validate[custom[date2]]" />
+                                                <input type="text" name="pago_fecha_pago"  class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['pago_fecha_pago'] ?>"/>
                                             </td>
                                         </tr>
                                     </tbody>

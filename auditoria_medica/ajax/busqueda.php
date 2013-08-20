@@ -12,7 +12,7 @@ include '../../radicacion/clases/glosas_class.php';
             break;
         case 'glosas':
             $cie10 = new glosas_devoluciones($conexion['local']);
-            echo $cie10->getallAutoC($_GET['term']);
+            echo $cie10->getallAutoC($_GET['term'], $_GET['tipo']);
             break;
     }
 

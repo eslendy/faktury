@@ -79,7 +79,7 @@ include '../requestFunctionsJavascript.php';
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="5" id="pager" class="holder" align="center">
+                    <td colspan="8" id="pager" class="holder" align="center">
 
                     </td>
                 </tr>

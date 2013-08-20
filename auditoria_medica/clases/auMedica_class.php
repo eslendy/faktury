@@ -20,6 +20,14 @@ class auMedica extends BD {
         return $sql;
     }
 
+    public function getAllGlosasAuditoria($campos = "*", $where = "", $groupby = "", $orderby = ""){
+        $sql = "SELECT " . $campos . "
+		FROM glosa_auditoria ga " .
+                (($where != "") ? " WHERE " . $where : "") .
+                (($groupby != "") ? " GROUP BY " . $groupby : "") .
+                (($orderby != "") ? " ORDER BY " . $orderby : "");
+        return $this->consultar($sql);
+    }
     public function getall($where = "") {
         $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura";
         return $this->consultar($this->_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));

@@ -55,7 +55,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                             <td><label>Nivel de atención  según  CRES Acuerdo 008/2008 y Acuerdo 028/2011</label></td>
                             <td>
                                 <label>1</label>
-                                <input type="checkbox" name="idcres_1" value="1"  class=" checkbox_ validate[required]" />
+                                <input type="checkbox" name="idcres_1" value="1"  />
                                 <label>2</label>
                                 <input type="checkbox" name="idcres_3"  class='checkbox_' value="1"  />
                                 <label>3</label>

@@ -14,6 +14,10 @@ try {
             $bd->ejecutarUpdateArray($_POST, "auditoria_medica", "idauditoria_medica=" . $_POST['idauditoria_medica']);
             echo "1";
             break;
+        case 'addNewGlosa' :
+            $bd->ejecutarInsertArray($_POST, "glosa_auditoria");
+            echo "1";
+            break;
     }
 } catch (Exception $e) {
     echo $e->getMessage();

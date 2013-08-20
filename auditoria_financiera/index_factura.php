@@ -27,7 +27,7 @@ include '../requestFunctionsJavascript.php';
     <input type="hidden" id="nombre_archivo" value="/auditoria_financiera/index_factura" />
     
     <div id="contenido">
-        <table id="reporte" class="responsive table">
+        <table id="reporte" class="responsive table table-hover">
             <thead>
                 
                 <tr>
