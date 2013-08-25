@@ -1,0 +1,26 @@
+body{
+    font-size: 12pt;
+    background-color: #EFEFEF;
+}
+
+section{
+    border: 1px solid #777;
+}
+
+section.cap{
+    font-size: 14pt;
+}
+
+footer.cap{
+    color: red;
+}
+
+section#sec_1{
+    color: blue;
+}
+p{
+    border: 5px solid red;
+    margin: 40px 10px 20px 25px;
+    padding: 10px;
+    
+}
