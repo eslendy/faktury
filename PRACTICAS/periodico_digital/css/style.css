@@ -1,0 +1,183 @@
+/*En el cuerpo de la pagina con el background se da
+color de fondo y el font-size es el tamaño de la letra*/
+body{
+    background: darkslategray;
+    font-size: 12pt;
+}
+/*En el header: background es el color de relleno
+el height la altura que va tener y el color es para
+la letra del header*/
+header{
+    background: beige;
+    height: 110px;
+    color: grey;
+}
+/*h1: anchura de 1024 resolucion estandar
+en el margin: 0 auto; se encarga de centrar todo dentro de la etiqueta h1
+font-size es el tamaño de ese h1*/
+header h1{
+    width: 1024px;
+    margin: 0 auto;
+    font-size: 45pt;
+    font-family: 'Conv_Olondona', sans-serif;
+    font-weight: normal;
+}
+/*Etiqueta nav: hace referencia al navegador del menu 
+el background es el color que va tomar el nav
+border top: el borde que va tener el nav
+height altura del nav
+posicion relativa toma como padre al header*/
+header nav{
+    background: darkgrey;
+    border-top: 2px solid gray;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+}
+/*Se daran estilos a la lista ul*/
+header ul{
+    width: 1024px;
+    margin: 0 auto;
+}
+/*Se daran estilos a la lista li 
+el display block lo saca en forma de caja de bloques
+en donde flotaran a la izquierda
+*/
+header li{
+    display: block;
+    float: left;
+    padding-right: 15px;
+    margin-top: 10px;
+}
+/*estilos etiqueta <a> 
+el text decoration none no tendra ninguna decoracion el texto*/
+header a{
+    text-decoration: none;
+    color: whitesmoke;
+    font-family: 'Amarante', sans-serif;
+}
+/*header a:hover es una seudoclase= cuando se pasa
+el mouse encima de la etiqueta se resalta de color negro
+*/
+header a:hover{
+    color: black;
+}
+
+section.content{
+    width: 1024px;
+    position: relative;
+    margin: 0 auto;
+    top: 30px;
+    clear: both;
+}
+
+h2, h3{
+    color: black;
+    padding: 10px 0;
+    font-family: 'Amarante', sans-serif;
+}
+
+video{
+    background: darkgray;
+    padding: 19px;
+    border: 2px solid #222;
+    border-radius: 8px;
+    float: left;
+}
+
+section#video .descripcion{
+    float: left;
+    font-size: 12pt;
+    margin-left: 10px;
+    padding-right: 10px;
+    width: 250px;
+}
+
+section#video article{
+    border-right: 1px solid black;
+    min-height: 600px;
+}
+
+section#video{
+    width: 700px;
+    float: left;
+}
+
+aside#podcast-rel{
+    width: 300px;
+    float: left;
+    margin-left: 10px;
+}
+
+aside#podcast-rel audio{
+    margin: 10px 0;
+}
+
+aside#podcast-rel h3{
+    color: black;
+    padding: 10px 0;
+    font-family: 'Amarante', sans-serif;
+}
+
+div.wrapper_all{
+    background: white;
+    width: 1024px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 800px;
+    padding: 12px;
+    box-shadow: 0px 2px 15px aqua;
+}
+
+/*Estilos para la noticia principal ubicada en ultimo minuto*/
+section#noticia-principal{
+    min-height: 350px;
+    width: 700px;
+    border-right: 1px solid black;
+
+}
+
+section#noticia-principal figure img{
+    background-color: darkgray;
+    padding: 19px;
+    border-radius: 8px;
+    border: 2px solid #222;
+    float: left;
+}
+
+section#noticia-principal figcaption{
+    float: left;
+    font-size: 12pt;
+    font-style: italic;
+    margin-left: 10px;
+    width: 320px;
+}
+/*a posicion del padre es relativa y la 
+  de toolbox es absoluta pero no con respecto
+  a todo el documento por eso funciona*/
+div.noticia-social-icons{
+    position: relative;
+}
+
+div.addthis_toolbox{
+    position: absolute;
+     top: 580px;
+     width: 250px;
+     border-radius: 10px;
+     background-color: gray;
+     padding: 6px 6px;
+  }
+
+div.noticia-resumen{
+    clear: both;
+    margin-left: 5px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    font-size: 15pt;
+}
+div.noticia-content{
+    clear: both;
+    margin-left: 5px;
+    
+}

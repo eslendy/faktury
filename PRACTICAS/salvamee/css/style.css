@@ -1,0 +1,13 @@
+body{
+    background: url(../img/libelula.jpg) no-repeat scroll 0 0 white;
+}
+header{
+    width: 1024px;
+    margin: 0 auto;
+}
+header h1{
+    font-size: 60pt;
+    font-family: 'Flavors, cursive';
+    text-shadow: 0px 10px 15px white;
+    color: black;
+}

@@ -1,0 +1,117 @@
+body{
+    background-image: url("../imagenes/body.jpg");
+    background-repeat: repeat;
+    color: green;
+    font-family: Helvetica, Arial;   
+}
+
+header{
+    background: url("../imagenes/menu.jpg") repeat scroll 0 0 transparent;
+    }
+/*
+Hanalei se tomo de las google font..
+*/
+header{
+    font-family: Happy+Monkey, cursive;
+    font-size: 20pt;
+    text-shadow: 6px 6px 8px #000;
+
+}
+/*utilizando el span del h1*/
+header h1 > span{
+    font-size: 15pt;
+}
+
+.h1_header{
+    margin-top: 0;
+}
+
+header nav{
+    background: url(../imagenes/navmenu.jpg) repeat scroll 0 0 transparent;
+    /*background-attachment: scroll;*/
+    height: 65px;
+    margin: 0 auto;
+}
+
+header nav ul{
+    width: 1024px;
+    margin: 0 auto;
+}
+
+header li{
+    display: inline;
+}
+
+header a{
+    color: white;
+    display: block;
+    float: left;
+    margin-right: 20px;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+header a:hover{
+    color: #330A00;
+}
+
+section#sucursales{
+    min-height: 150px;
+}
+/*las imagenes flotan a la izquierda
+se van ajustando en linea y el width es el ancho
+maximo que puede llegas a tener la imagen*/
+section.sucursal{
+    width: 320px;
+    float: left;
+}
+
+section.sucursal iframe{
+    background: #9E6D24;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+div#fotos_platillo{
+    float: left;
+    width: 300px;
+    margin-right: 10px;
+}
+
+div#texto_platillo{
+    float: left;
+    width: 700px;
+    font-size: 9pt;
+}
+
+section#temporada, section#sucursales{
+    width: 1024px;
+    margin: 0 auto;
+}
+
+section#temporada{
+    clear: both;
+    min-height: 250px;
+}
+
+div.pics img{
+    border: 2px solid green;
+    background-color: #9E6D43;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+header h1{
+    margin: 0 auto;
+    width: 1024px;
+}
+
+footer{
+    clear: both;
+    min-height: 150px;
+}
+
+footer p{
+    width: 1024px;
+    margin: 0 auto;
+}
