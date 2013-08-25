@@ -34,7 +34,7 @@ class menu extends BD {
         $where .= " AND m.padre=0";
         $groupby = "m.idmenu";
         $orderby = "m.orden";
-
+        //echo $this->_menu_sql($campos, $where, $groupby, $orderby);
         return $this->consultar($this->_menu_sql($campos, $where, $groupby, $orderby));
     }
 

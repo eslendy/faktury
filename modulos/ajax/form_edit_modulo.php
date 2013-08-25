@@ -32,3 +32,26 @@ $data = $modulos->getModulo($_POST['idmodulo']);
 		</tbody>
 	</table>
 </form>
+<input type="hidden" id="nombre_archivo" value="/modulos/index_modulos.php" />
+<script>
+
+$('.guardar-formulario.editar-modulo').click(function() {
+    if ($("#frmModulo").validationEngine('validate') == true) {
+        $.post(init.XNG_WEBSITE_URL + "modulos/ajax/save.php?type=editModulo", $("#frmModulo").serialize(), function(html_response) {
+            switch (html_response) {
+                case '1':
+                    alert("Modulo Guardado con Éxito!!");
+                    $('#loadContentAjaxForms').modal('hide');
+                    _loadContenido($('#nombre_archivo').val());
+                    break;
+                default:
+                    _msgerror(html_response, "#mensaje");
+                    break;
+            }
+        });
+    }
+})
+
+
+
+</script>

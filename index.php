@@ -212,12 +212,12 @@ try {
                                 }
                                 if (($_REQUEST['action'] == 'perfiles') && isset($_REQUEST['action'])) {
                                     ?>
-                                        <button class="nuevoReg btn btn-primary" >Nuevo Perfil</button>
+                                    <button class="nuevoReg btn btn-primary" >Nuevo Perfil</button>
                                     <?
                                 }
-                                if(isset($_REQUEST['action']) && ($_REQUEST['action'] === 'usuarios')){
+                                if (isset($_REQUEST['action']) && ($_REQUEST['action'] === 'usuarios')) {
                                     ?>
-                                        <button class="nuevoRegUser btn btn-primary" >Nuevo Usuario</button>
+                                    <button class="nuevoRegUser btn btn-primary" >Nuevo Usuario</button>
                                     <?
                                 }
                                 ?>
@@ -230,24 +230,34 @@ try {
                                         <div id="cuerpo">
                                             <div class="block-heading">
                                                 <span class="block-icon pull-right">
-                                                    <? if (isset($_REQUEST['action']) && $_REQUEST['action'] != 'perfiles' && $_REQUEST['action'] !== 'auditoria_medica' && $_REQUEST['action'] !== 'auditoria_financiera') {
+                                                    <? if (isset($_REQUEST['action']) && $_REQUEST['action'] != 'modulos' && $_REQUEST['action'] != 'perfiles' && $_REQUEST['action'] !== 'auditoria_medica' && $_REQUEST['action'] !== 'auditoria_financiera') {
                                                         ?>
                                                         <button class="btn btn-primary nuevo" onclick="$('#content_').collapse('hide');" >
                                                             <i>Cargando...</i>
                                                         </button>
-                                                    <? }
+                                                        <?
+                                                    } else {
+                                                        if ($_REQUEST['action'] == 'modulos') {
+                                                            ?>
+                                                            <button class="btn btn-primary nuevo-modulo" onclick="$('#content_').collapse('hide');" >
+                                                                Nuevo Modulo
+                                                            </button>
+
+                                                            <?
+                                                        }
+                                                    }
                                                     ?>
 
 
                                                 </span>
-                                                <?
-                                                $title = explode('_', $_REQUEST['action']);
-                                                $tt = '';
+                                                    <?
+                                                    $title = explode('_', $_REQUEST['action']);
+                                                    $tt = '';
 
-                                                foreach ($title as $t) {
-                                                    $tt .= ucfirst($t) . ' ';
-                                                }
-                                                ?>
+                                                    foreach ($title as $t) {
+                                                        $tt .= ucfirst($t) . ' ';
+                                                    }
+                                                    ?>
                                                 <script>
                                                         $(document).ready(function() {
                                                             $('.title___').text('<? echo $tt ?>');
@@ -257,9 +267,8 @@ try {
                                             </div>
                                             <?php
                                             if (isset($_GET['c']) && !empty($_GET['c']) && ($_GET['c']) != 'index.php') {
-                                                
+
                                                 include(($_GET['c']));
-                                                
                                             }
                                             ?>
                                             <div class="clear"></div>
@@ -352,11 +361,11 @@ try {
 
 
         </body>
-        <?PHP
-    } catch (Exception $e) {
-        //impresion de excepciones
-        echo $e->getMessage();
-    }
-    ?>
+    <?PHP
+} catch (Exception $e) {
+    //impresion de excepciones
+    echo $e->getMessage();
+}
+?>
     <script type="text/javascript">var init =<?php echo json_encode(Page::loadVars()) ?></script>   
 </html>

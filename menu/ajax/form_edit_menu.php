@@ -10,13 +10,11 @@ if(isset($_GET['id']) && !empty($_GET['id']) && $_GET['id']!=0){
     $data=$menu->getMenuData("m.idmenu=".$_GET['id']);
 }
 ?>        	
-<form id="frm_edit_menu" class="responsive table">
+<div id="datosBasicos">
+    <h3>Editar Menu</h3>
+    <form id="frm_edit_menu" class="responsive table">
 	<table align="center" class="tablas_form">
-    	<thead>
-    	<tr>
-        	<th colspan="3">Editar Men&uacute;</th>
-        </tr>
-        </thead>
+    	
         <tbody>
         <tr>
             <td colspan="3">
@@ -40,9 +38,7 @@ if(isset($_GET['id']) && !empty($_GET['id']) && $_GET['id']!=0){
         <tr>
         	<td align="right"><label>Archivo de Enlace</label></td>
             <td id="tdTreeFile">
-            	<span id="nameFile" style="color:#FFF; background:#49B916;"></span><input type="button" id="cleanFile" name="cleanFile" value=" - " title="Quitar Archivo" style="display:none;"/>
             	<input type="text" value="<?=$data['enlace']?>" name="enlace" id="enlace" />
-                <?php echo $menu->FileTree($folders['absoluta']);?>
                 
             </td>
         </tr>
@@ -88,12 +84,14 @@ if(isset($_GET['id']) && !empty($_GET['id']) && $_GET['id']!=0){
 <table class="responsive table">
 	<tbody>
     <tr>
-        <td colspan="3" align="center">
+        <td colspan="3">
 
-            <button id="guardar" class='btn btn-primary'>
+            <button id="guardar" class='btn btn-primary pull-right btn-large'>
                 Guardar
             </button>
         </td>
     </tr>
     </tbody>
 </table>
+
+</div>

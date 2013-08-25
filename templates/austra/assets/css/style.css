@@ -3567,12 +3567,12 @@ table.table.list tr:first-child td {
 
 .fecha{
     width: 146px;
-  
+
 }
 
 .fecha.pull-left{
-      margin-top: 6px;
-  
+    margin-top: 6px;
+
 }
 
 .ui-datepicker-trigger{
@@ -3587,12 +3587,12 @@ table.table.list tr:first-child td {
 }
 
 .sidebar-avatar img {
-border-radius: 29%;
-width: 80px;
-padding: 8px;
-border: 6px solid #2E2E2E;
-box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
--webkit-box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+    border-radius: 29%;
+    width: 80px;
+    padding: 8px;
+    border: 6px solid #2E2E2E;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+    -webkit-box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
 }
 
 .dividido .partes legend{
@@ -3613,4 +3613,110 @@ box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
 } 
 .ui-autocomplete .ui-menu-item{
     width: 100% !important;
+}
+
+
+#frmModulo label{
+    float: left;
+}
+
+#frmModulo .iradio_flat-blue,  #frmModulo  .iradio_flat-blue {
+    margin-top: 5px;
+    margin-right: 16px;
+}
+
+#frm_add_menu td{
+    text-align: left;
+}
+#frm_add_menu label{
+    margin-left: 12px;
+}
+
+/*Arbol de directorios*/
+
+
+.directorio.directorioOpen{
+    list-style:image; 
+    list-style-image:url(images/treeFile/openfolder.gif);
+
+}
+.directorioClose{ 
+    list-style-image:url(images/treeFile/openfolder.gif); display:none;
+
+
+}
+.directorioOpen{ 
+    list-style-image:url(images/treeFile/openfolder.gif);
+
+}
+.fileTree{ 
+    list-style-image:url(images/treeFile/openfolder.gif); 
+
+}
+.lista1{ 
+    list-style-image:url(images/treeFile/grip_dotted.png);
+
+}
+#nameFile{ 
+    background-color: #D0D183;
+    color: #5F6D2C;
+}
+/*Fin Arbol de directorios*/
+
+UL.jqueryFileTree {
+    font-family: Verdana, sans-serif;
+    font-size: 11px;
+    line-height: 18px;
+    padding: 0px;
+    margin: 0px;
+}
+
+UL.jqueryFileTree LI {
+    list-style: none;
+    padding: 0px;
+    padding-left: 20px;
+    margin: 0px;
+    white-space: nowrap;
+}
+
+UL.jqueryFileTree A {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 0px 2px;
+}
+
+UL.jqueryFileTree A:hover {
+    background: #BDF;
+}
+
+
+#datosBasicos h3{
+    margin-left: 12px;
+}
+
+#frm_edit_menu td{  
+    text-align: left;
+}
+
+#datosBasicos tr td , #contenedor tr td 
+{
+    border: none;
+}
+
+#contenedor h3{
+    margin-left: 12px;
+}
+
+#guardar {
+    margin-right: 4px;
+}
+
+.ui-icon.ui-icon-info{
+    display:none;
+}
+
+.ui-widget {
+    padding-top: 5px;
+    margin-bottom: 10px;
 }
