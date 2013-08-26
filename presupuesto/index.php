@@ -194,6 +194,10 @@ include '../requestFunctionsJavascript.php';
 </div>
 
 <script>
+    
+    $(document).ready(function(){
+        $('.btn.btn-primary.nuevo').hide();
+    })
     $(".fecha").datepicker({
         showOn: "button",
         buttonImage: "/imagenes/calendar.gif",
