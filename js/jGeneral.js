@@ -8,13 +8,13 @@ $(function() {
 })
 
 var _loadBotones = function() {
-      $('.busqueda').click(function(){
-          _buscar();
-      })  
+    $('.busqueda').click(function() {
+        _buscar();
+    })
 
     //$('.nuevoReg').click(function(){
-      //  _nuevoReg()
-   // })
+    //  _nuevoReg()
+    // })
 }
 var _autocompletar = function(id, file, funcion, lista) {
     $(id).click(function() {
@@ -54,7 +54,7 @@ var _botonesIcons = function(id, primaryIcon, secundaryIcon, funcion) {
     });
 };
 var _botones = function(id, class_, funcion) {
-    $(id).addClass('btn-large '+class_).click(function() {
+    $(id).addClass('btn-large ' + class_).click(function() {
         funcion()
     });
 };
@@ -155,10 +155,10 @@ var _paginacion = function(ContPaginas, idtbody, numFilas, pagina) {
 
 var timeFormat = {
     "regex": /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
-    "alertText":" errormessage in the locale chosen"}                           
+    "alertText": " errormessage in the locale chosen"}
 
 
-var _validarOnlyNumberSpecialChars = function(field, rules, i, options){
+var _validarOnlyNumberSpecialChars = function(field, rules, i, options) {
     var regEx = new RegExp("^[0-9!@#$%^&*()_+\-=\[\]{};':]+$");
     //regEx= /^[a-zA-Z\ \á]+$/;
     //var regEx = new RegExp("([\\W\\S]){1,}");
@@ -166,7 +166,7 @@ var _validarOnlyNumberSpecialChars = function(field, rules, i, options){
         return options.allrules.validate2fields.alertText;
     }
     ;
-    
+
 }
 var _validarOnlyText = function(field, rules, i, options) {
     var regEx = new RegExp("^[a-zA-Z\ \s\á\é\í\ó\ú\Á\É\Í\Ó\Ú\Ñ\ñ]+$");
@@ -258,12 +258,12 @@ $(document).ready(function() {
         $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_add_radicacion.php', {case: $(this).attr('data-related')}, function(data) {
             console.log(text)
             $('.load_content').html(data);
-            
+
 
         })
     })
-    
-    
+
+
 
     $('.guardar-formulario').submit(function(e) {
         e.preventDefault();
@@ -279,39 +279,45 @@ function loadStylesCheckRadio() {
 }
 
 
-   
-    $(document).ready(function() {
-        
-        $('.anularBtn').click(function() {
-                    var action = $(this).attr('data-action');
-                    var record = $(this).attr('data-record');
-                    if (confirm('¿Esta seguro de desactivar este registro?')) {
-                        $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/save.php?type=null'+action, {id: record}, function(html_response) {
-                            switch (html_response) {
-                                case '1':
-                                    alert(action + " Desactivado con Éxito!!");
-                                    $("#dialog-addModRad").remove();
-                                    _loadContenido($('#nombre_archivo').val());
-                                    break;
-                                default:
-                                    _msgerror(html_response, "#mensaje");
-                                    break;
-                            }
-                        });
-                    }
 
-                })
-        
-        $('.editarBtn').click(function() {
-         
-            var action = $(this).attr('data-action');
-            var record = $(this).attr('data-record');
-            $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_edit_radicacion.php', {case: action, id:record }, function(data) {
-                    console.log(data)
-                    $('#loadContentAjaxForms').modal({show:true});
-                    $('.modal-body').html(data) 
-                    loadStylesCheckRadio();
-                    
-            })
+$(document).ready(function() {
+
+    $('.anularBtn').click(function() {
+        var action = $(this).attr('data-action');
+        var record = $(this).attr('data-record');
+        if (confirm('¿Esta seguro de desactivar este registro?')) {
+            $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/save.php?type=null' + action, {id: record}, function(html_response) {
+                switch (html_response) {
+                    case '1':
+                        alert(action + " Desactivado con Éxito!!");
+                        $("#dialog-addModRad").remove();
+                        _loadContenido($('#nombre_archivo').val());
+                        break;
+                    default:
+                        _msgerror(html_response, "#mensaje");
+                        break;
+                }
+            });
+        }
+
+    })
+
+    $('.editarBtn').click(function() {
+
+        var action = $(this).attr('data-action');
+        var record = $(this).attr('data-record');
+        $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_edit_radicacion.php', {case: action, id: record}, function(data) {
+            console.log(data)
+            $('#loadContentAjaxForms').modal({show: true});
+            $('.modal-body').html(data)
+            loadStylesCheckRadio();
+
         })
     })
+})
+
+function resetForm(idForm) {
+    $(idForm).each(function() {
+        this.reset();
+    });
+}
