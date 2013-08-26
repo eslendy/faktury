@@ -3459,9 +3459,7 @@ table.table.list tr:first-child td {
     line-height: 15px;
 }
 
-.modal-body .responsive td, .modal-body .responsive th {
-    padding: 3px 6px;
-}
+
 
 .modal-body input{
     margin-bottom: 0px;
@@ -3720,3 +3718,4 @@ UL.jqueryFileTree A:hover {
     padding-top: 5px;
     margin-bottom: 10px;
 }
+
