@@ -9,18 +9,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="js/jquery-1.7.2.min.js"></script>
         <script src="js/jquery.scrollto.js"></script>
-       <!-- <script src="js/transit-min.js"></script>  -->
+        <!-- <script src="js/transit-min.js"></script>  -->
         <script type="text/javascript">
             var j = jQuery.noConflict();
             (function($) {
                 j(document).ready(function() {
                     var container = j('#left-container article');
                     j("#links a").each(function() {
-                        $.post('html/' + j(this).attr('id') + '.html', function(data){
+                        $.post('html/' + j(this).attr('id') + '.html', function(data) {
                             container.before(data);
                         });
+                        //Usando scroll To
+                        j(this).click(function() {
+                            var article = j('#arti-' + j(this).attr('id'));
+                            j.scrollto(article, 500);
+
+                            article.find('h2').find('span').click(function() {
+                                j.scrollto('#links', 500);
+                            });
+                        });
                     });//aqui termina el each                    
-                   // j('#left-container').transit({opacityOrig:0.5, opacityNews:0.2, fadeSpeed:200});//transparencia
+                    // j('#left-container').transit({opacityOrig:0.5, opacityNews:0.2, fadeSpeed:200});//transparencia
                 });
             })(jQuery);
         </script>

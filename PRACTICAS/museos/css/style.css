@@ -1,0 +1,15 @@
+/* */
+body{
+    background: rosybrown;
+}
+h1{
+    margin: 0 auto;
+}
+div.wrapper_all{
+    min-height: 900px;
+    background: linear-gradient(top, black, red);/*propuesta de la W3C degradado*/
+    background: -webkit-linear-gradient(top, black, red);/*para chrome apartir de la v11*/
+    background: -moz-linear-gradient(top, black, red);/*propuesta de la W3C degradado Chrome 11+*/
+    background: -o-linear-gradient(top, black, red);/*Opera*/
+    background: -ms-linear-gradient(top, black, red);/*InternetE 10*/
+}
