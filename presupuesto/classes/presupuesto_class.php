@@ -24,9 +24,14 @@ class presupuesto extends BD{
 	}
         
         public function getPresupuestoByFactura($idfactura){
-                $this->_presupuesto_sql("*","idFactura=".$idfactura,"idFactura","presupuesto_fecha_cdp ASC ");
+                if(!empty($idfactura)){
+                    $this->_presupuesto_sql("*","idFactura=".$idfactura,"idFactura","presupuesto_fecha_cdp ASC ");
 		$rs = $this->consultar($this->_presupuesto_sql("*","idFactura=".$idfactura,"idFactura","presupuesto_fecha_cdp ASC "));
 		return $rs[0];
+                }else{
+                    return false;
+                }
+                
 	}
 }
 ?>
