@@ -13,3 +13,123 @@ div.wrapper_all{
     background: -o-linear-gradient(top, black, red);/*Opera*/
     background: -ms-linear-gradient(top, black, red);/*InternetE 10*/
 }
+section.content{
+    width:990px;
+    margin: 0 auto;
+    background: #FDE7B6;
+    padding: 0 15px;
+    box-shadow: 0px 6px 20px darkgray;
+}
+header{
+    margin: 0 auto;
+    padding: 10px;
+    width: 1000px;
+    background: #FDE7B6;
+}
+section h1, header h1{
+    font-family: 'Boogaloo', cursive;
+    font-size: 35pt;
+    text-shadow: 3px 3px 5px brown;
+    color: black;
+    font-weight: normal;
+}
+section#main{
+    min-height: 500px;
+    overflow: hidden;
+}
+section#left{
+    height: 220px;
+    width: 280px;
+    float: left;
+    margin-top: 5px;
+    background: url(../img/indio.jpg) no-repeat scroll 0 0 transparent;
+}
+section#right{
+    width: 400px;
+    min-height: 400px;
+    float: left;
+}
+nav{
+    position: relative;
+}
+nav a.link{
+    position: absolute;
+    text-decoration: none;
+    color: chocolate;
+    font-size: 16pt;
+    padding-top: 35px;
+    padding-left: 19px;
+}
+nav a#como_llegar{
+    top: 190px;
+    left: 50px;
+}
+nav a#muestrame{
+    top: 30px;
+    left: 124px;
+}
+nav a#costos{
+    top: 30px;
+    left: 360px;
+}
+nav a#pregunta{
+    top: 190px;
+    left: 440px;
+}
+nav a#reserva{
+    top: 320px;
+    left: 380px;
+}
+nav a#informacion{
+    top: 320px;
+    left: 130px;
+}
+nav div.link{
+    position: absolute;
+    width: 63px;
+    height: 60px;
+    background: url(../img/simbolo.jpg) no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+}
+nav #div_como_llegar{
+    left: 0px;
+    top: 210px;
+    height: 63px;
+}
+nav #div_muestrame{
+    left: 75px;
+    top: 50px;
+    background-position: -69px 0;
+}
+nav #div_costos{
+    top: 50px;
+    left: 310px;
+    background-position: -134px 0;
+}
+nav #div_pregunta{
+    left: 390px;
+    top: 210px;
+    background-position: 0px -70px;
+    width: 65px;
+    height: 65px;
+}
+nav #div_reserva{
+    top: 340px;
+    left: 310px;
+    background-position: -61px -66px;
+    width: 84px;
+    height: 82px;
+}
+nav #div_informacion{
+    left: 80px;
+    top: 340px;
+    background-position: 4px -140px;
+}
+nav #div_como_llegar:hover{
+    background-position: 1px -190px; 
+}
+nav #div_reserva:hover{
+    background-position: -70px -202px; 
+    width: 130px;
+    height: 65px
+}
