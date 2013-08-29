@@ -6,7 +6,7 @@ h1{
     margin: 0 auto;
 }
 div.wrapper_all{
-    min-height: 900px;
+    min-height: 2000px;
     background: linear-gradient(top, black, red);/*propuesta de la W3C degradado*/
     background: -webkit-linear-gradient(top, black, red);/*para chrome apartir de la v11*/
     background: -moz-linear-gradient(top, black, red);/*propuesta de la W3C degradado Chrome 11+*/
@@ -132,4 +132,14 @@ nav #div_reserva:hover{
     background-position: -70px -202px; 
     width: 130px;
     height: 65px
+}
+div.codice{
+    /*background: url(../img/2.jpg) repeat scroll 0 0 transparent;*/
+    min-height: 600px;
+}
+
+section #map_canvas{
+    margin: 20px;
+    padding: 0;
+    height: 100%;
 }
