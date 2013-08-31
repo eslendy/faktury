@@ -7,13 +7,28 @@ $(document).ready(function() {
         dateFormat: "yy-mm-dd"
     });
 
+    /* $('.agregarNuevoPresupuesto').click(function() {
+     resetForm('#frmaddPre');
+     //$('.presupuesto_id').val($(this).attr('data-presupuesto'));
+     $('.idFactura').val($(this).attr('data-record'));
+     $('.auditoria_id').val($(this).attr('data-auditoria'));
+     // $('#agregarPresupuesto .modal-body').html(data);
+     
+     })*/
+
     $('.agregarNuevoPresupuesto').click(function() {
         resetForm('#frmaddPre');
-        //$('.presupuesto_id').val($(this).attr('data-presupuesto'));
-        $('.idFactura').val($(this).attr('data-record'));
-        $('.auditoria_id').val($(this).attr('data-auditoria'));
-        // $('#agregarPresupuesto .modal-body').html(data);
+        var action = $(this).attr('data-action');
+        var auditoria_id = $(this).attr('data-auditoria');
+        var idFactura = $(this).attr('data-record')
 
+        $('.add').fadeIn();
+        $('#content_').collapse('hide');
+        $.post(init.XNG_WEBSITE_URL + 'presupuesto/ajax/form_add.php', {idFactura: idFactura, auditoria_id: auditoria_id}, function(data) {
+            $('.load_content').html(data);
+            loadStylesCheckRadio();
+            $('.add_form').text('Nuevo Presupuesto');
+        })
     })
 
     $('.quitarPresupuesto').click(function() {
@@ -24,7 +39,7 @@ $(document).ready(function() {
             $.post(init.XNG_WEBSITE_URL + 'presupuesto/ajax/save.php?type=removePresupuesto', {idpresupuesto: idpresupuesto}, function(data) {
 
                 if (data == 1) {
-                     _loadContenido($('#nombre_archivo').val());
+                    _loadContenido($('#nombre_archivo').val());
                     alert('Presupuesto eliminado.');
                 }
             })
@@ -36,40 +51,22 @@ $(document).ready(function() {
 
     })
 
-    $('.guardarEdicionPresupuesto').click(function() {
-        if ($("#frmEditPre").validationEngine('validate')) {
-            $.post(init.XNG_WEBSITE_URL + 'presupuesto/ajax/save.php?type=editPresupuesto', $('#frmEditPre').serialize(), function(data) {
 
-                if (data == 1) {
-                    _loadContenido($('#nombre_archivo').val());
-                    
-                    alert('Presupuesto editado.');
-                    $('#editarPresupuesto').modal('hide');
-                }
-            })
-        }
-    })
 
-    $('.guardarNuevoPresupuesto').click(function() {
-        if ($("#frmaddPre").validationEngine('validate')) {
-            $.post(init.XNG_WEBSITE_URL + 'presupuesto/ajax/save.php?type=addPresupuesto', $('.addPresupuesto').serialize(), function(data) {
-                console.log(data);
-                if (data == 1) {
-                     _loadContenido($('#nombre_archivo').val());
-                    alert('Presupuesto agregado.');
-                    $('#agregarPresupuesto').modal('hide');
-                }
-            })
-        }
-    })
 
     $('.editarPresupuesto').click(function() {
+
+
         var idPresupuesto = $(this).attr('data-presupuesto');
-        // if ($("#frmaddPre").validationEngine('validate')) {
+
+        $('.add').fadeIn();
+        $('#content_').collapse('hide');
         $.post(init.XNG_WEBSITE_URL + 'presupuesto/ajax/form_edit.php', {idPresupuesto: idPresupuesto}, function(data) {
-            $('#editarPresupuesto .modal-body').html(data);
+            $('.load_content').html(data);
+            loadStylesCheckRadio();
+            $('.add_form').text('Editar Presupuesto');
         })
-        // }
     })
+
 
 })

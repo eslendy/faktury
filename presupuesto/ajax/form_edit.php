@@ -60,7 +60,8 @@ $data = $presupuesto->getPresupuesto($_POST['idPresupuesto']);
             </tbody>
         </table>
     </fieldset>
-</form>
+</form> 
+<button class="btn btn-primary guardarEdicionPresupuesto btn-large">guardar</button>
 <script>
     $(".fecha").datepicker({
         showOn: "button",
@@ -69,5 +70,18 @@ $data = $presupuesto->getPresupuesto($_POST['idPresupuesto']);
         dateFormat: "yy-mm-dd"
     });
     
+     $('.guardarEdicionPresupuesto').click(function() {
+        if ($("#frmEditPre").validationEngine('validate')) {
+            $.post(init.XNG_WEBSITE_URL + 'presupuesto/ajax/save.php?type=editPresupuesto', $('#frmEditPre').serialize(), function(data) {
+
+                if (data == 1) {
+                    _loadContenido($('#nombre_archivo').val());
+
+                    alert('Presupuesto editado.');
+                    $('#content_').collapse('show');
+                }
+            })
+        }
+    })
    
 </script>

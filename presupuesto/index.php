@@ -113,95 +113,10 @@ include '../requestFunctionsJavascript.php';
 
 
 
-<!-- Modal -->
-<div id="editarPresupuesto" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Editar presupuesto</h3>
-    </div>
-    <div class="modal-body">
-
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary guardarEdicionPresupuesto">guardar</button>
-    </div>
-</div>
-
-<!-- Modal -->
-<div id="agregarPresupuesto" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Agregar Nuevo presupuesto</h3>
-    </div>
-    <div class="modal-body">
-        <form id="frmaddPre" class='addPresupuesto' class="formulario" method="post" >
-
-
-            <input type="hidden" value="" name='auditoria_id' class='auditoria_id' />
-            <input type="hidden" value="" name='idFactura' class='idFactura' />
-            <input type="hidden" name="idusuario" id="idusuario" value="<?php echo $_SESSION['usrid'] ?>" />
-            <fieldset>
-                <table width="100%" class="responsive" style="margin-top: 15px">
-                    <tbody>
-                        <tr>
-                            <td width='200'>Numero CDP</td>
-                            <td>
-                                <input type="number" name="presupuesto_cdp" id="presupuesto_cdp" value="" class="validate[required,condRequired[chk_2],custom[numberP]]" data-prompt-position="centerRight:1,-5"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Fecha CDP</td>
-                            <td>
-                                <input type="text" name="presupuesto_fecha_cdp"  class="fecha validate[required]" data-prompt-position="centerRight:1,-5"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Numero RPC</td>
-                            <td>
-                                <input type="number" name="presupuesto_rpc" id="presupuesto_rpc" value="" class="validate[required,condRequired[chk_2],custom[numberP]]" data-prompt-position="centerRight:1,-5"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Fecha RPC</td>
-                            <td>
-                                <input type="text" name="presupuesto_fecha_rpc"  class="fecha validate[required]" data-prompt-position="centerRight:1,-5"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Numero de Resolucion de r. del gasto</td>
-                            <td>
-                                <input type="number" name="presupuesto_numero_resolucion" id="presupuesto_numero_resolucion" class="validate[required,condRequired[chk_2],custom[numberP]]" data-prompt-position="centerRight:1,-5" />
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Fecha resolucion de r. del gasto</td>
-                            <td>
-                                <input type="text" name="presupuesto_fecha_rpc_gasto"  class="fecha validate[required]" data-prompt-position="centerRight:1,-5"/>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </fieldset>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary guardarNuevoPresupuesto">guardar</button>
-    </div>
-</div>
-
 <script>
     
     $(document).ready(function(){
         $('.btn.btn-primary.nuevo').hide();
     })
-    $(".fecha").datepicker({
-        showOn: "button",
-        buttonImage: "/imagenes/calendar.gif",
-        buttonImageOnly: true,
-        dateFormat: "yy-mm-dd"
-    });
+    
 </script>
