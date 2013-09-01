@@ -21,13 +21,7 @@ $data = $contabilidad->getContabilidadById($_POST['idContabilidad']);
                         <input type="number" name="no_obligacion" id="no_obligacion" value="<?php echo $data['no_obligacion']?>" class="validate[required,condRequired[chk_2],custom[numberP]]" data-prompt-position="centerRight:1,-5"/>
                     </td>
                 </tr>
-                
-                <tr>
-                    <td>Numero RPC</td>
-                    <td>
-                        <input type="number" name="no_rpc" id="no_rpc" value="<?php echo $data['no_rpc']?>" class="validate[required,condRequired[chk_2],custom[numberP]]" data-prompt-position="centerRight:1,-5"/>
-                    </td>
-                </tr>
+              
                 <tr>
                     <td>Fecha Obligacion</td>
                     <td>
