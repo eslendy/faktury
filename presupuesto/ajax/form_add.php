@@ -3,7 +3,7 @@ include("../../vigiaAjax.php");
 include("../../libphp/config.inc.php");
 include("../../libphp/mysql.php");
 ?>
-<form id="frmaddPre" class='addPresupuesto' class="formulario" method="post" >
+<form id="frmaddPre" class='addPresupuesto' method="post" >
 
 
     <input type="hidden" value="<?php echo $_REQUEST['auditoria_id'];?>" name='auditoria_id' class='auditoria_id' />

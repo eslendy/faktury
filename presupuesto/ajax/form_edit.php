@@ -12,7 +12,7 @@ $data = $presupuesto->getPresupuesto($_POST['idPresupuesto']);
 //var_dump($data);
 ?>
 
-<form id="frmEditPre" class='frmEditPre' class="formulario" method="post" >
+<form id="frmEditPre" class='frmEditPre' method="post" >
 
 
     <input type="hidden" value="<?php echo $data['idpresupuesto']?>" name='idpresupuesto' class='idpresupuesto' />
