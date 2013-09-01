@@ -1,18 +1,11 @@
 <?php
-include("radicacion/clases/facturas_class.php");
-include("auditoria_medica/clases/auMedica_class.php");
-include("presupuesto/classes/presupuesto_class.php");
-$facturas = new facturas($conexion['local']);
-$campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, 
-    IFNULL(COUNT(auf.idauditoria_financiera), 0) AS audFinanciera, f.idFactura as idFactura";
-$where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor = " . $_SESSION['usrid'] . ")";
-$dataFacturas = $facturas->getall($campos, $where);
-//var_dump($dataFacturas);
-$auMedica = new auMedica($conexion['local']);
-
-
+include("tesoreria/classes/tesoreria_class.php");
+$tesoreria = new tesoreria($conexion['local']);
+$dataTesoreria= $tesoreria->getTesoreriaByPage(1);
 include '../requestFunctionsJavascript.php';
+
 ?>
+
 <div class="collapse in" id="content_">
     <div class="table-option clearfix">
 
@@ -41,7 +34,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="/presupuesto/index_presupuesto.php" />
+    <input type="hidden" id="nombre_archivo" value="/tesoreria/index_tesoreria.php" />
     <div id="contenedor">
         <div id="contenido">
 
@@ -60,16 +53,12 @@ include '../requestFunctionsJavascript.php';
                 </thead>
                 <tbody id="lista">
                     <?php
-                    $presupuesto = new presupuesto($conexion['local']);
+                   
                     $i = 1;
-                    foreach ($dataFacturas as $fac) {
+                    foreach ($dataTesoreria as $fac) {
 
-                        //  echo '<pre>'; var_dump($fac); echo '</pre>';
-                        $rs_au = $auMedica->getOne(0, $fac['idFactura']);
-                        //var_dump($rs_au);
-                        // echo $rs_au['idauditoria_medica'];
-                        $Presupuesto = $presupuesto->getPresupuestoByFactura($rs_au['idFactura']);
-                        //var_dump($Presupuesto);
+                        $HaveTesoreria = $tesoreria->getTesoreriaByFactura($fac['idFactura']);
+                      //var_dump($HaveContabilidad);
                         ?>
                         <tr class="elemetoBusqueda">
                             <td><?= $fac['no_radicado'] ?></td>
@@ -77,18 +66,18 @@ include '../requestFunctionsJavascript.php';
                             <td><?= $fac['valor'] ?></td>
                             <td><?= $fac['proveedor_nombre'] ?></td>
                             <td><?= $fac['paciente_nombre'] ?></td>
-                            <td><? echo (($Presupuesto['estado_presupuesto'] != '1')) ? '<strong class="label label-danger">No tiene presupuesto</strong>' : '<strong class="label label-success">Ya presupuestado</strong>' ?></td>
-                            <? if (empty($Presupuesto)): ?>
+                            <td><? echo ((!$HaveTesoreria)) ? '<strong class="label label-danger">Sin tesoreria</strong>' : '<strong class="label label-success">Tesoreria realizada</strong>' ?></td>
+                            <? if (empty($HaveTesoreria)): ?>
                                 <td width="61">
 
-                                    <span data-toggle="modal" href="#agregarPresupuesto" role="button" class="agregarNuevoPresupuesto" data-auditoria='<?php echo $rs_au['idauditoria_medica']; ?>' data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><button class="btn btn-primary"><i class="icon-plus"></i></button></span>
+                                    <span class="agregarNuevaTesoreria" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><button class="btn btn-primary"><i class="icon-plus"></i></button></span>
 
                                 </td>
                             <? else: ?>
                                 <td width="130">
 
-                                    <button class="btn btn-success editarPresupuesto" role="button" data-toggle="modal" href="#editarPresupuesto"  data-presupuesto='<?php echo $Presupuesto['idpresupuesto']; ?>'  data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><i class=" icon-check"></i></button>
-                                    <button class="btn btn-danger quitarPresupuesto"  data-presupuesto='<?php echo $Presupuesto['idpresupuesto']; ?>'  data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><i class="icon-ban-circle"></i></button>
+                                    <button class="btn btn-success editarTesoreria"   data-tesoreria='<?php echo $HaveTesoreria['idtesoreria']; ?>'  data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><i class=" icon-check"></i></button>
+                                    <button class="btn btn-danger quitarTesoreria"  data-tesoreria='<?php echo $HaveTesoreria['idtesoreria']; ?>'  data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><i class="icon-ban-circle"></i></button>
 
                                 </td>
                             <? endif ?>
@@ -105,7 +94,7 @@ include '../requestFunctionsJavascript.php';
             </table>
 
         </div>
-        <script type="text/javascript" src="<? echo $SERVER_NAME; ?>presupuesto/js/presupuesto.js"></script>
+        <script type="text/javascript" src="<? echo $SERVER_NAME; ?>tesoreria/js/tesoreria.js"></script>
 
     </div>
 

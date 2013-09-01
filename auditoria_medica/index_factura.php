@@ -64,9 +64,9 @@ include '../requestFunctionsJavascript.php';
                         <td><?= $fac['valor'] ?></td>
                         <td><?= $fac['proveedor_nombre'] ?></td>
                         <td><?= $fac['paciente_nombre'] ?></td>
-                        <td><?= ($fac['estado_factura'] == 1) ? 'Activa' : 'Anulada' ?></td>
+                        <td><?= ($fac['estado_factura'] == 1) ? '<strong class="label label-success">Activa</strong>' : '<strong class="label label-danger">Anulada</strong>' ?></td>
                         <td>
-                            <?= ($fac['audFinanciera'] > 0) ? 'OK' : 'Pendiente' ?>
+                            <?= ($fac['audFinanciera'] > 0) ? '<strong class="label label-info">OK</strong>' : '<strong class="label label-warning">Pendiente</strong>' ?>
                         </td>
                         <? if (empty($rs_au)): ?>
                             <td width="61">

@@ -71,7 +71,7 @@ include '../requestFunctionsJavascript.php';
                         <td><?= $fac['valor'] ?></td>
                         <td><?= $fac['proveedor_nombre'] ?></td>
                         <td><?= $fac['paciente_nombre'] ?></td>
-                        <td><?= ($fac['estado_factura'] == 1) ? 'Activa' : 'Anulada' ?></td>
+                        <td><?= ($fac['estado_factura'] == 1) ? '<strong class="label label-success">Activa</strong>' : '<strong class="label label-danger">Anulada</strong>' ?></td>
                         <td width="20">
                             <a>
                                 <span class="editarBtn" data-record="<? echo  $fac['idf']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>

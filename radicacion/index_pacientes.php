@@ -66,7 +66,7 @@ include '../requestFunctionsJavascript.php';
                         <td><?= $d['nombre'] ?></td>
                         <td><?= $d['apellidos'] ?></td>
                         <td><?= $d['desFuerza'] ?></td>
-                        <td><?= ($d['estadoPaciente'] == 1) ? 'Activo' : 'Inactivo' ?></td>
+                        <td><?= ($d['estadoPaciente'] == 1) ? '<strong class="label label-success">Activo</strong>' : '<strong class="label label-danger">Inactivo</strong>' ?></td>
                         <td width="20">
                             <a>
                                 <span class="editarBtn" data-record="<? echo  $d['idpaciente']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>

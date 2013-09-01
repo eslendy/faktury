@@ -57,7 +57,7 @@ include '../requestFunctionsJavascript.php';
                         <tr class="elemetoBusqueda">
                             <td width="5%"><?= $i++ ?></td>
                             <td><?= $per['descripcion'] ?></td>
-                            <td><?= ($per['estado'] == 1) ? 'Activo' : 'Inactivo' ?></td>
+                            <td><?= ($per['estado'] == 1) ? '<strong class="label label-success">Activo</strong>' : '<strong class="label label-danger">Inactivo</strong>' ?></td>
                             <td width="30">
                                 <a class="btn btn-danger" onclick="_editarReg(<?= $per['idperfil'] ?>)">
                                     <i class="icon-edit"></i>

@@ -50,7 +50,7 @@ include '../requestFunctionsJavascript.php';
                     <tr class="elemetoBusqueda">
                         <td><?= $u['idparentesco'] ?></td>
                         <td><?= $u['descripcion'] ?></td>
-                        <td><?= ($u['estado'] == 1) ? 'Activo' : 'Inactivo' ?></td>
+                        <td><?= ($u['estado'] == 1) ? '<strong class="label label-success">Activo</strong>' : '<strong class="label label-danger">Inactivo</strong>' ?></td>
                         <td width="20">
                             <a>
                                 <span class="editarBtn" data-record="<? echo  $u['idparentesco']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>

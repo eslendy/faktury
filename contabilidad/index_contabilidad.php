@@ -40,7 +40,7 @@ include '../requestFunctionsJavascript.php';
                     <td><?= $fac['valor'] ?></td>
                     <td><?= $fac['proveedor_nombre'] ?></td>
                     <td><?= $fac['paciente_nombre'] ?></td>
-                    <td><? echo ((!$HaveContabilidad)) ? 'Sin contabilidad' : 'Contabilidad realizada' ?></td>
+                    <td><? echo ((!$HaveContabilidad)) ? '<strong class="label label-danger">Sin contabilidad</strong>' : '<strong class="label label-success">Contabilidad realizada</strong>' ?></td>
                     <? if (empty($HaveContabilidad)): ?>
                         <td width="61">
 

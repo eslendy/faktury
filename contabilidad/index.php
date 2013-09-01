@@ -1,7 +1,5 @@
 <?php
 include("contabilidad/classes/contabilidad_class.php");
-include("auditoria_medica/clases/auMedica_class.php");
-include("presupuesto/classes/presupuesto_class.php");
 $contabilidad = new contabilidad($conexion['local']);
 $dataContabilidad = $contabilidad->getContabilidadByPage(1);
 include '../requestFunctionsJavascript.php';
@@ -68,7 +66,7 @@ include '../requestFunctionsJavascript.php';
                             <td><?= $fac['valor'] ?></td>
                             <td><?= $fac['proveedor_nombre'] ?></td>
                             <td><?= $fac['paciente_nombre'] ?></td>
-                            <td><? echo ((!$HaveContabilidad)) ? 'Sin contabilidad' : 'Contabilidad realizada' ?></td>
+                            <td><? echo ((!$HaveContabilidad)) ? '<strong class="label label-danger">Sin contabilidad</strong>' : '<strong class="label label-success">Contabilidad realizada</strong>' ?></td>
                             <? if (empty($HaveContabilidad)): ?>
                                 <td width="61">
 

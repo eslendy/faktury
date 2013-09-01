@@ -47,7 +47,7 @@ include '../requestFunctionsJavascript.php';
                         <td><?= $fac['idauditoria_financiera'] ?></td>
                         <td><?= $fac['fecha_auditoria'] ?></td>
                         <td><?= (($fac['prefijo'] != "") ? $fac['prefijo'] . ' ' : '') . $fac['numero_factura'] ?></td>
-                        <td><?= ($fac['estado_au'] == 1) ? 'Activa' : 'Anulada' ?></td>
+                        <td><?= ($fac['estado_au'] == 1) ? '<strong class="label label-success">Activa</strong>' : '<strong class="label label-danger">Anulada</strong>' ?></td>
                         <td width="61">
                             <a>
                                 <span class="editarAuditoria" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?> data-auditor="<? echo $fac['idauditoria_financiera'] ?>"  title="Editar Auditoría"><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>

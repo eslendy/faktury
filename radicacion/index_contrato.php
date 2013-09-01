@@ -62,7 +62,7 @@
                 <td><?=$d['fecha_contrato']?></td>
                 <td><?=$d['valor_contrato']?></td>
                 <td><?=$d['proveedor']?></td>
-                <td><?=($d['estadoContrato']==1)?'Activo':'Inactivo'?></td>
+                <td><?=($d['estadoContrato']==1)?'<strong class="label label-success">Activo</strong>':'<strong class="label label-danger">Inactivo</strong>'?></td>
                 <td width="20">
                     <a>
                         <span class="editarBtn" data-record="<? echo  $d['idcontrato']; ?>" <? echo (($_REQUEST['section']))?'data-section="'.$_REQUEST['section'].'"':'';?> <? echo (($_REQUEST['action']))?'data-action="'.$_REQUEST['action'].'"':'';?>><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
