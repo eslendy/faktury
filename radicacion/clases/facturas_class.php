@@ -6,7 +6,7 @@ class facturas extends BD {
         $this->BD($conexion);
     }
 
-    public function _modulo_sql($campos = "*", $where = "", $groupby = "", $orderby = "") {
+    public function _modulo_sql($campos = "*", $where = "", $groupby = "", $orderby = "", $other_join = FALSE) {
         $sql = "SELECT " . $campos . "
 		FROM factura f
 		INNER JOIN proveedor pro ON (f.idproveedor=pro.idproveedor)
@@ -20,6 +20,7 @@ class facturas extends BD {
 		INNER JOIN grado g ON (f.idgrado=g.idgrado)
 		INNER JOIN fuerza fu ON (pa.idfuerza=fu.idfuerza)
 		INNER JOIN parentesco par ON (f.idparentesco=par.idparentesco)
+                " . $other_join . "
 		LEFT JOIN auditoria_financiera auf ON (auf.idFactura = f.idFactura)" .
                 (($where != "") ? " WHERE " . $where : "") .
                 (($groupby != "") ? " GROUP BY " . $groupby : "") .
@@ -33,18 +34,17 @@ class facturas extends BD {
         return $this->consultar($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
     }
 
-    public function getAllFacturasByTerm($Params) {
-
-
-        $where = $Params['type'] . ' like "%' . $Params['term'] . '%"';
-        $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf ";
-        //	echo $this->_modulo_sql($campos,$where,"f.idFactura","f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC");
-        return $this->consultar($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
+    public function getAllFacturasByTerm($Params, $where = false, $inner_join = false) {
+        //echo 'das';
+        $where = $Params['type'] . ' like "%' . $Params['term'] . '%" ' . $where;
+        $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf,  IFNULL(COUNT(auf.idauditoria_financiera), 0) AS audFinanciera ";
+        echo $this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join);
+        return $this->consultar($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join));
     }
 
     public function getall($campos = "", $where = "") {
         $campos = ($campos == "") ? "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf" : $campos;
-        //$this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC");
+       // echo $this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC");
         return $result = $this->consultar($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
     }
 

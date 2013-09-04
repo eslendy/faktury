@@ -14,3 +14,4 @@ var _cargarPaginacion = function(){
 $(function(){
      _loadBotones();
 });
+

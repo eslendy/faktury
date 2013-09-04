@@ -21,7 +21,7 @@ class contabilidad extends BD {
             INNER JOIN fuerza fu ON (pa.idfuerza=fu.idfuerza) 
             INNER JOIN parentesco par ON (f.idparentesco=par.idparentesco) 
             LEFT JOIN auditoria_financiera auf ON (auf.idFactura = f.idFactura) 
-            WHERE f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor = 1) 
+            WHERE f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor = 1) and f.estado=1 
             GROUP BY f.idFactura ORDER BY f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC";
         return $sql;
     }

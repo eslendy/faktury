@@ -91,6 +91,16 @@ var _ajax = function(dir, datos, funcion) {
     });
 };
 
+var loadSearch = function(section,typeSearch,value){
+     
+        $.post(init.XNG_WEBSITE_URL+section+'/ajax/busqueda.php', {case: section, type: typeSearch, term:value}, function(data){
+           // console.log(data)
+            
+            $('#lista').html(data);
+        });
+
+}
+
 var _llenarEtiqueta = function(id, html_content) {
     $(id).html(html_content);
 };

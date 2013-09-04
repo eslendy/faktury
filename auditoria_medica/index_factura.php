@@ -7,7 +7,7 @@ include("clases/auMedica_class.php");
 $facturas = new facturas($conexion['local']);
 $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, 
     IFNULL(COUNT(auf.idauditoria_financiera), 0) AS audFinanciera, f.idFactura as idFactura";
-$where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor = " . $_SESSION['usrid'] . ")";
+$where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor = " . $_SESSION['usrid'] . ") and f.estado=1";
 $dataFacturas = $facturas->getall($campos, $where);
 //var_dump($dataFacturas);
 $auMedica = new auMedica($conexion['local']);
@@ -17,10 +17,30 @@ include '../requestFunctionsJavascript.php';
     <div class="table-option clearfix">
 
         <span class="pull-left keywords">
-            <form action="#" class="form-inline">
-                <input name="q" class="table-form" type="text"  placeholder="Keywords: Ruby, Rails, Django" >
-                <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
-            </form>
+
+            <input name="q" class="table-form search-box" type="text"  placeholder="ID" >
+            <button type="submit" class="btn btn-primary search-btn-2" data-case="auditoria_medica"> <i class="icon-search icon-white"></i></button>
+            <h4>Filtrar por:</h4>
+            <div class="busqueda-radio">
+                <label class="pull-left" for="id">Numero Radicado:</label> <input type="radio" name="type" value="f.no_radicado" id="id" class="search-radio" data-related="Numero radicado" checked>
+                <label class="pull-left" for="no-factura">Nro. Factura:</label><input type="radio" name="type" value="f.numero_factura" id="no-factura" class="search-radio" data-related="Numero factura">
+                <label class="pull-left" for="proveedor">Proveedor:</label><input type="radio" name="type" value="pro.nombre" id="proveedor" class="search-radio" data-related="Proveedor">
+                <label class="pull-left" for="paciente">Paciente:</label><input type="radio" name="type" value="pa.nombre" id="paciente" class="search-radio" data-related="Paciente">
+            </div>
+
+            <script>
+                $(document).ready(function() {
+                    $('.search-radio').click(function() {
+                        $('.search-box').attr('placeholder', $(this).attr('data-related'));
+                    })
+
+                    $('.search-btn-2').click(function() {
+                        loadSearch($(this).attr('data-case'), $('.iradio_flat-blue.checked .search-radio').val(), $('.search-box').val());
+                    })
+
+                })
+                loadStylesCheckRadio();
+            </script>
         </span>
 
         <div class="clear"></div>
@@ -52,7 +72,7 @@ include '../requestFunctionsJavascript.php';
                 $i = 1;
                 foreach ($dataFacturas as $fac) {
 
-                    //  echo '<pre>'; var_dump($fac); echo '</pre>';
+                   //   echo '<pre>'; var_dump($fac); echo '</pre>';
                     $rs_au = $auMedica->getOne(0, $fac['idFactura']);
                     //var_dump($rs_au);
                     $isGlosa = ($rs_au['estado_factura'] == '2') ? true : false;
@@ -119,7 +139,7 @@ include '../requestFunctionsJavascript.php';
         })
 
         $('.verGlosasAgregadas').click(function() {
-            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/consultaGlosas.php', {auditoria_glosa:$(this).attr('data-auditoria'), id:$(this).attr('data-record')}, function(data) {
+            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/consultaGlosas.php', {auditoria_glosa: $(this).attr('data-auditoria'), id: $(this).attr('data-record')}, function(data) {
                 $('#verGlosa .modal-body').html(data);
             })
         })
@@ -138,7 +158,7 @@ include '../requestFunctionsJavascript.php';
         <h3 id="myModalLabel">Historial de Glosas</h3>
     </div>
     <div class="modal-body">
-        
+
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
