@@ -20,7 +20,6 @@ include '../requestFunctionsJavascript.php';
 ?>
 
 <div id="contenido">
-
     <table  id="reporte" class="responsive table table-hover">
         <thead>
 
@@ -79,6 +78,5 @@ include '../requestFunctionsJavascript.php';
             </tr>
         </tfoot>
     </table>
-
 </div>
 <script type="text/javascript" src="<? echo $SERVER_NAME; ?>presupuesto/js/presupuesto.js"></script>

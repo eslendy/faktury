@@ -12,7 +12,7 @@ include '../requestFunctionsJavascript.php';
         <span class="pull-left keywords">
 
             <input name="q" class="table-form search-box" type="text"  placeholder="ID" >
-            <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action'] ?>"> <i class="icon-search icon-white"></i></button>
+            <button type="submit" class="btn btn-primary search-btn-2" data-case="tesoreria"> <i class="icon-search icon-white"></i></button>
             <h4>Filtrar por:</h4>
             <div class="busqueda-radio">
                 <label class="pull-left" for="id">Numero Radicado:</label> <input type="radio" name="type" value="f.no_radicado" id="id" class="search-radio" data-related="Numero radicado" checked>
@@ -21,12 +21,26 @@ include '../requestFunctionsJavascript.php';
                 <label class="pull-left" for="paciente">Paciente:</label><input type="radio" name="type" value="pa.nombre" id="paciente" class="search-radio" data-related="Paciente">
             </div>
 
-            <script>
-                $(document).ready(function() {
-                    $('.checked .search-radio').click(function() {
+             <script>
+                loadStylesCheckRadio();
+                var loadSearch__ = function(){
+                    
+                    $('.search-radio').click(function() {
+                        
                         $('.search-box').attr('placeholder', $(this).attr('data-related'));
+                        
                     })
-                })
+
+                    $('.search-btn-2').click(function() {
+                        loadSearch($(this).attr('data-case'), $('.iradio_flat-blue.checked .search-radio').val(), $('.search-box').val());
+                    })
+
+             
+                }
+              $(window).load(function(){
+                  loadSearch__();
+              })
+                
             </script>
         </span>
 

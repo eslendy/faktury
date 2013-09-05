@@ -15,6 +15,7 @@ switch ($_REQUEST['case']) {
    
     case 'presupuesto':
         $dataFacturas = $facturas->getAllFacturasByTerm($_REQUEST, ' and f.estado=1 and f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor =  '. $_SESSION['usrid'] . ') ');
+        //var_dump($dataFacturas);
         include 'table_factura_content.php';
         include '../../requestFunctionsJavascript.php';
         break;

@@ -91,13 +91,13 @@ var _ajax = function(dir, datos, funcion) {
     });
 };
 
-var loadSearch = function(section,typeSearch,value){
-     
-        $.post(init.XNG_WEBSITE_URL+section+'/ajax/busqueda.php', {case: section, type: typeSearch, term:value}, function(data){
-           // console.log(data)
-            
-            $('#lista').html(data);
-        });
+var loadSearch = function(section, typeSearch, value) {
+
+    $.post(init.XNG_WEBSITE_URL + section + '/ajax/busqueda.php', {case: section, type: typeSearch, term: value}, function(data) {
+        // console.log(data)
+
+        $('#lista').html(data);
+    });
 
 }
 
@@ -331,3 +331,23 @@ function resetForm(idForm) {
         this.reset();
     });
 }
+
+var createPaginated = function(pagina, total, url) {
+    
+    var paginado_append = '<div class="pagination pagination-centered">\n\
+            <ul>\n\
+                <li>\n\
+                    <a href="javascript:void(0);">«</a>\n\
+                </li>\n\
+                <li><a href="javascript:void(0);" class=active>1</a></li>\n\
+                <li><a href="javascript:void(0);">2</a></li>\n\
+                <li><a href="javascript:void(0);">3</a></li>\n\
+                <li><a href="javascript:void(0);">»</a></li>\n\
+            </ul>\n\
+        </div>';
+    $('.paginado-container').append(paginado_append).delegate('li > a', 'click', function() {
+       //alert('I was clicked');
+        console.log(pagina+ ' '+total+' '+url)
+    });
+}
+
