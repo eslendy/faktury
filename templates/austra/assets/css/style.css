@@ -3718,4 +3718,13 @@ UL.jqueryFileTree A:hover {
     padding-top: 5px;
     margin-bottom: 10px;
 }
-
+.home_buttons button {
+    margin-left: 14px;
+    margin-bottom: 13px
+}
+.home_buttons button div {
+    font-size: 11px;
+}
+.home_buttons .btn [class^="icon-"] {
+    line-height: 104px;
+}

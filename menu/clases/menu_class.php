@@ -28,7 +28,7 @@ class menu extends BD {
     }
 
     private function get_menu_parent($idperfil, $padre) {
-        $campos = "m.idmenu, m.descripcion, m.enlace, m.orden, m.padre";
+        $campos = "m.idmenu, m.descripcion, m.enlace, m.orden, m.padre, m.class_icon";
         $where = "pe.idperfil=" . $idperfil . " AND m.estado=1 AND p.ver=1 AND m.visible=1";
         //   if($padre)
         $where .= " AND m.padre=0";
@@ -65,6 +65,21 @@ class menu extends BD {
         return $rs[0];
     }
 
+    public function make_menu_home($idperfil, $padre = 0) {
+
+
+        $html = '';
+        $padres = $this->get_menu_parent($idperfil, $padre);
+        if (!empty($padres)) {
+            foreach ($padres as $p) {
+                //var_dump($p);
+                if (!$this->check_parent($p['idmenu'])) {
+                    $html.='<button  class="btn btn-success"  onclick="window.location =\'' . (($p['enlace'] == "") ? '#' : XNG_WEBSITE_URL . ($p['enlace'])) . '\'" ><i class="'.$p['class_icon'].'"></i><div>' . $p['descripcion'] . '</div></button>';
+                }
+            }
+            return $html;
+        }
+    }
     public function make_menu($idperfil, $padre = 0) {
 
 
