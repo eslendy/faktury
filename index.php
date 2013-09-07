@@ -199,10 +199,6 @@ try {
                     <div class="container-fluid">
                         <div class="row-fluid">
 
-                            <? /* <div class="alert alert-info">
-                              <button data-dismiss="alert" class="close" type="button"><i class="icon-remove"></i></button>
-                              <strong>Note :</strong> Add <span class="label label-info">.responsive</span> table to small device.
-                              </div> */ ?>    
 
                             <div id="menu_secundario" class="pull-left span11">
                                 <?

@@ -65,7 +65,7 @@ include '../requestFunctionsJavascript.php';
             <tbody id="lista">
                 <?
                 $i = 1;
-                foreach ($dataFacturas as $fac) {
+                foreach ($dataFacturas['data'] as $fac) {
                     $rs_au = "";
                     $rs_au = $au->getOne(0, $fac['idf'], "au.estado=1");
                     ?>

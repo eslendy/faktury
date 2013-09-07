@@ -29,9 +29,18 @@ class facturas extends BD {
         return $sql;
     }
 
-    public function getallFacturas($where = "") {
+    public function getAllFacturasPaginated($page = 1, $where = "") {
+        if (empty($page)) {
+            $page = 1;
+        }
         $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf";
-        return $this->consultar($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
+        return $this->consultar_by_page($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"), $page);
+    }
+
+    public function getallFacturas($where = "", $page = 1) {
+
+        $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf";
+        return $this->consultar_by_page($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"), $page);
     }
 
     public function getAllFacturasByTerm($Params, $where = false, $inner_join = false) {
@@ -39,13 +48,13 @@ class facturas extends BD {
         $where = $Params['type'] . ' like "%' . $Params['term'] . '%" ' . $where;
         $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf,  IFNULL(COUNT(auf.idauditoria_financiera), 0) AS audFinanciera ";
         //echo $this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join);
-        
+
         return $this->consultar($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join));
     }
 
     public function getall($campos = "", $where = "") {
         $campos = ($campos == "") ? "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf" : $campos;
-       // echo $this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC");
+        // echo $this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC");
         return $result = $this->consultar($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
     }
 

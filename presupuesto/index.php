@@ -109,13 +109,7 @@ include '../requestFunctionsJavascript.php';
                         </tr>
                     <? } ?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="9" id="pager" class="holder" align="center">
-
-                        </td>
-                    </tr>
-                </tfoot>
+                
             </table>
 
         </div>

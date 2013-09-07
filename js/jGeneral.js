@@ -333,21 +333,73 @@ function resetForm(idForm) {
 }
 
 var createPaginated = function(pagina, total, url) {
-    
+    var registros_por_pagina = 5;
+    var total_pages = Math.ceil(total / registros_por_pagina);
+    //console.log('Total Paginas ' + total_pages)
     var paginado_append = '<div class="pagination pagination-centered">\n\
             <ul>\n\
                 <li>\n\
-                    <a href="javascript:void(0);">«</a>\n\
-                </li>\n\
-                <li><a href="javascript:void(0);" class=active>1</a></li>\n\
-                <li><a href="javascript:void(0);">2</a></li>\n\
-                <li><a href="javascript:void(0);">3</a></li>\n\
-                <li><a href="javascript:void(0);">»</a></li>\n\
+                    <a href="#">«</a>\n\
+                </li>';
+
+    for (i = 1; i <= total_pages; i++) {
+        paginado_append += '<li><a href="#pagina-' + i + '">' + i + '</a></li>';
+    }
+
+    paginado_append += '<li><a href="#">»</a></li>\n\
             </ul>\n\
         </div>';
-    $('.paginado-container').append(paginado_append).delegate('li > a', 'click', function() {
-       //alert('I was clicked');
-        console.log(pagina+ ' '+total+' '+url)
+    $('.paginado-container').html(paginado_append).delegate('li > a', 'click', function() {
+
     });
+
+
 }
 
+function getContentByPage() {
+    var page = getParamFromHash(window.location.hash, "pagina");
+    //console.log($('#nombre_archivo').val())
+    if ($('#nombre_archivo').val() !== undefined) {
+        $.post($('#nombre_archivo').val(), {page: page}, function(data) {
+            // console.log(data)
+            $('#contenedor').html(data);
+        })
+        console.log(' Pagina Seleccionada: ' + page);
+    }
+}
+
+$(window).load(function(){
+    getContentByPage();
+})
+
+$(document).ready(function() {
+    $(window).hashchange(function() {
+        getContentByPage();
+    })
+})
+
+function getParamFromHash(url, param) {
+    // assumes that param doesn't contain any regex characters
+    var re = new RegExp("#" + param + "-([^_]+)(_|$)");
+    var match = url.match(re);
+    return(match ? match[1] : "");
+}
+
+function getHashParent() {
+    if (window.location.hash) {
+        var hashParent = window.location.hash.split('?');
+        return hashParent[0];
+    }
+    else {
+        return false;
+    }
+
+}
+
+
+function truncate(string, length) {
+    if (string.length > length)
+        return string.substring(0, length) + '...';
+    else
+        return string;
+}

@@ -53,7 +53,7 @@ include '../requestFunctionsJavascript.php';
             </thead>
             <tbody id="lista">
                 <? $i = 1;
-                foreach ($dataFacturas as $fac) {
+                foreach ($dataFacturas['data'] as $fac) {
                     ?>
                     <tr class="elemetoBusqueda">
                         <td><?= $fac['no_radicado'] ?></td>
@@ -68,7 +68,7 @@ include '../requestFunctionsJavascript.php';
                         </td>
                         <td width="61">
                             <a>
-                                <span class="adicionarBtn" onclick="_addAudMedica(<?= $fac['idf'] ?>)"></span>
+                                <span class="btn btn-primary" onclick="_addAudMedica(<?= $fac['idf'] ?>)">Agregar Auditoria</span>
                             </a>
                         </td>
                     </tr>
