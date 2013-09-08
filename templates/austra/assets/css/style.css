@@ -616,6 +616,7 @@ hr {
 }
 .block-dark .pagination ul > li > a:hover, .block-dark .pagination ul > li > a:focus, .block-dark .pagination ul > .active > a, .block-dark .pagination ul > .active > span {
     background-color: #111;
+    font-weight: bold;
 }
 .block-dark .table-option {
     background: none repeat scroll 0 0 #1a1a1a;
