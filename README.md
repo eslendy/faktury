@@ -16,6 +16,7 @@ La implementación de una aplicación para el proceso de trazabilidad de la fact
 * Diagrama Clases
 * Diseño de la base de datos (Diagrama entidad- relación)
 * Diseño de interfces
+* 
 
 ##Desarrollo de la aplicación
 
