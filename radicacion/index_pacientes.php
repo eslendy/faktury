@@ -4,7 +4,10 @@ include("../libphp/config.inc.php");
 include("../libphp/mysql.php");
 include("clases/paciente_class.php");
 $obj = new paciente($conexion['local']);
-$data = $obj->getallPacientes();
+if(empty($_REQUEST['page'])){
+  $_REQUEST['page'] = 1;  
+}
+$data = $obj->getallPacientesByPage($_REQUEST['page']);
 //var_dump($dataUsers);
 
 include '../requestFunctionsJavascript.php';
@@ -39,7 +42,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="/radicacion/index_pacientes.php" />
+    <input type="hidden" id="nombre_archivo" value="/radicacion/index_pacientes" />
 
     <div id="contenido">
         <table id="reporte" class="responsive table table-striped table-hover">
@@ -58,7 +61,7 @@ include '../requestFunctionsJavascript.php';
             </thead>
             <tbody id="lista" class="loadContentFromSearch">
                 <? $i = 1;
-                foreach ($data as $d) {
+                foreach ($data['data'] as $d) {
                     ?>
                     <tr class="elemetoBusqueda">
                         <td><?= $d['idpaciente'] ?></td>
@@ -97,3 +100,7 @@ include '../requestFunctionsJavascript.php';
     </div>
     <script type="text/javascript" src="<? echo $SERVER_NAME ?>radicacion/js/paciente.js"></script>
 </div>
+<script>
+    var page_total = <?php echo ($data['total'] > 1) ? $data['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
+</script>

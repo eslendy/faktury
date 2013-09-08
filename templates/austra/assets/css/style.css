@@ -3732,3 +3732,7 @@ UL.jqueryFileTree A:hover {
 .partes legend{
     color: #90CAFF;
 }
+
+#menu_secundario a{
+   margin-right: 7px; 
+}

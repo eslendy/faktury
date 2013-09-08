@@ -4,6 +4,9 @@ include("../libphp/config.inc.php");
 include("../libphp/mysql.php");
 include("clases/contrato_class.php");
 $obj = new contrato($conexion['local']);
+if(empty($_REQUEST['page'])){
+  $_REQUEST['page'] = 1;  
+}
 $data = $obj->getallByPage($_REQUEST['page']);
 include '../requestFunctionsJavascript.php';
 //var_dump($dataUsers);
@@ -89,8 +92,5 @@ include '../requestFunctionsJavascript.php';
 </div>
 <script>
     var page_total = <?php echo ($data['total'] > 1) ? $data['total'] : 1; ?>;
-    createPaginated($('.page').val(), page_total);
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['section'] ?>');
 </script>
-<?php 
-// var_dump($_REQUEST);
-?>

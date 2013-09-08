@@ -22,6 +22,14 @@ class paciente extends BD {
         $campos = "*";
         return $this->consultar($this->_sql("*,p.estado AS estadoPaciente, f.descripcion AS desFuerza, t.descripcion AS desTipod", "", "", "nombre ASC, apellidos ASC"));
     }
+    
+    public function getallPacientesByPage($page = 1, $where = '') {
+        if (empty($page)) {
+            $page = 1;
+        }
+        $campos = "*";
+        return $this->consultar_by_page($this->_sql("*,p.estado AS estadoPaciente, f.descripcion AS desFuerza, t.descripcion AS desTipod", "", "", "nombre ASC, apellidos ASC"),$page);
+    }
 
     public function getAllPacientesByTerm($Params) {
         $campos = "*";

@@ -332,47 +332,60 @@ function resetForm(idForm) {
     });
 }
 
-var createPaginated = function(pagina, total, url) {
+var createPaginated = function(pagina, total, section) {
+    $('.section-page').val(section);
     var registros_por_pagina = 5;
     var total_pages = Math.ceil(total / registros_por_pagina);
     //console.log('Total Paginas ' + total_pages)
-    var paginado_append = '<div class="pagination pagination-centered">\n\
-            <ul>\n\
-                <li>\n\
-                    <a href="#">«</a>\n\
-                </li>';
-
+    var paginado_append = '<div class="block-dark"><div class="pagination pagination-centered">\n\
+            <ul>';
+    /*<li>\n\
+     <a href="#">«</a>\n\
+     </li>';*/
     for (i = 1; i <= total_pages; i++) {
-        paginado_append += '<li><a href="#pagina-' + i + '">' + i + '</a></li>';
+        if(i==pagina && pagina==1){
+            console.log(pagina +' '+' '+ i)
+            paginado_append += '<li class="page-' + i + ' active"><a href="#pagina-' + i + '">' + i + '</a></li>';
+        }else{
+            paginado_append += '<li class="page-' + i + '"><a href="#pagina-' + i + '">' + i + '</a></li>';
+        }
     }
-
-    paginado_append += '<li><a href="#">»</a></li>\n\
-            </ul>\n\
-        </div>';
+    //paginado_append += '<li><a href="#">»</a></li>\n\
+    paginado_append += '</ul>\n\
+        </div></div>';
     $('.paginado-container').html(paginado_append).delegate('li > a', 'click', function() {
-
     });
-
-
 }
 
 function getContentByPage() {
     var page = getParamFromHash(window.location.hash, "pagina");
+    
+    
+    if(page === ''){
+        page = 1;
+    }
+    
+    $('.page-' + page).addClass('active');
+    
     //console.log($('#nombre_archivo').val())
     if ($('#nombre_archivo').val() !== undefined) {
-        $.post($('#nombre_archivo').val(), {page: page}, function(data) {
+        $.post($('#nombre_archivo').val(), {page: page, section: $('.section-page').val()}, function(data) {
             // console.log(data)
             $('#contenedor').html(data);
+            $('.page-' + page).addClass('active');
         })
         console.log(' Pagina Seleccionada: ' + page);
     }
 }
 
-$(window).load(function(){
-    getContentByPage();
+$(window).load(function() {
+    getContentByPage(); 
+    
 })
 
 $(document).ready(function() {
+   
+
     $(window).hashchange(function() {
         getContentByPage();
     })

@@ -104,10 +104,9 @@ include '../requestFunctionsJavascript.php';
 
     <script type="text/javascript" src="<? echo $SERVER_NAME ?>radicacion/js/factura.js"></script>
 </div>
+
 <script>
+    
     var page_total = <?php echo ($dataFacturas['total'] > 1) ? $dataFacturas['total'] : 1; ?>;
-    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total);
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
 </script>
-<?php 
-// var_dump($_REQUEST);
-?>

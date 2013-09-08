@@ -17,6 +17,11 @@ class grados extends BD{
 		return $this->consultar($this->_grado_sql("*","","","descripcion ASC"));
 	}
         
+        public function getallGradosByPage($page = 1, $where = ''){
+		$campos="*";
+		return $this->consultar_by_page($this->_grado_sql("*","","","descripcion ASC"), $page);
+	}
+        
         public function getAllGradosByTerm($Params){
             $where = $Params['type'].' like "%'.$Params['term'].'%"';
             $campos="*";

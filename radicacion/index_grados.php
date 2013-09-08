@@ -3,8 +3,13 @@ include("../vigiaAjax.php");
 include("../libphp/config.inc.php");
 include("../libphp/mysql.php");
 include("clases/grados_class.php");
+
 $obj = new grados($conexion['local']);
-$data = $obj->getallGrados();
+if(empty($_REQUEST['page'])){
+  $_REQUEST['page'] = 1;  
+}
+
+$data = $obj->getallGradosByPage($_REQUEST['page']);
 //var_dump($dataUsers);
 include '../requestFunctionsJavascript.php';
 ?>
@@ -13,7 +18,7 @@ include '../requestFunctionsJavascript.php';
 
          <span class="pull-left keywords">
                 <input name="q" class="table-form search-box" type="text"  placeholder="Descripcion" >
-                <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action']?>"> <i class="icon-search icon-white"></i></button>
+                <button type="submit" class="btn btn-primary search-btn" data-case="<?php echo $_REQUEST['action']?>"> <i class="icon-search icon-white"></i></button>
                 <h4>Filtrar por:</h4>
                 <div class="busqueda-radio">
                     <label class="pull-left" for="description">Descripcion:</label> <input type="radio" name="type" value="descripcion" id="descripcion" class="search-radio" data-related="Descripcion" checked>
@@ -32,7 +37,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="/radicacion/index_grados.php" />
+    <input type="hidden" id="nombre_archivo" value="/radicacion/index_grados" />
 
     <div id="contenido">
         <table id="reporte" class="responsive table table-striped table-hover">
@@ -49,7 +54,7 @@ include '../requestFunctionsJavascript.php';
             </thead>
             <tbody id="lista" class="loadContentFromSearch">
                 <? $i = 1;
-                foreach ($data as $u) {
+                foreach ($data['data'] as $u) {
                     ?>
                     <tr class="elemetoBusqueda">
                         <td><?= $u['idgrado'] ?></td>
@@ -87,3 +92,7 @@ include '../requestFunctionsJavascript.php';
     </div>
     <script type="text/javascript" src="<? echo $SERVER_NAME ?>radicacion/js/grados.js"></script>
 </div>
+<script>
+    var page_total = <?php echo ($data['total'] > 1) ? $data['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
+</script>

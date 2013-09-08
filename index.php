@@ -130,7 +130,7 @@ try {
         $menu = new menu($conexion['local']);
         ?>
         <body> 
-
+            <input type="hidden" class="section-page" value=""/>
             <div class="navbar">
                 <div class="navbar-inner">
 

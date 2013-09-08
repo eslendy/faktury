@@ -4,7 +4,10 @@ include("../libphp/config.inc.php");
 include("../libphp/mysql.php");
 include("clases/fuerza_class.php");
 $obj = new fuerza($conexion['local']);
-$data = $obj->getallFuerzas();
+if(empty($_REQUEST['page'])){
+  $_REQUEST['page'] = 1;  
+}
+$data = $obj->getallFuerzasByPage($_REQUEST['page']);
 //var_dump($dataUsers);
 
 include '../requestFunctionsJavascript.php';
@@ -32,7 +35,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="/radicacion/index_fuerza.php" />
+    <input type="hidden" id="nombre_archivo" value="/radicacion/index_fuerza" />
 
 
     <div id="contenido">
@@ -51,7 +54,7 @@ include '../requestFunctionsJavascript.php';
             <tbody id="lista" class="loadContentFromSearch">
                 <?
                 $i = 1;
-                foreach ($data as $u) {
+                foreach ($data['data'] as $u) {
                     ?>
                     <tr class="elemetoBusqueda">
                         <td><?= $u['idfuerza'] ?></td>
@@ -77,15 +80,13 @@ include '../requestFunctionsJavascript.php';
                     </tr>
 <? } ?>
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="8" id="pager" class="holder" align="center">
-
-                    </td>
-                </tr>
-            </tfoot>
+           
         </table>
 
     </div>
     <script type="text/javascript" src="<? echo $SERVER_NAME ?>radicacion/js/fuerza.js"></script>
 </div>
+<script>
+    var page_total = <?php echo ($data['total'] > 1) ? $data['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['section'] ?>');
+</script>

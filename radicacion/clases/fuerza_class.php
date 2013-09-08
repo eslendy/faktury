@@ -16,6 +16,11 @@ class fuerza extends BD{
 		$campos="*";
 		return $this->consultar($this->_sql("*","","","descripcion ASC"));
 	}
+        
+        public function getallFuerzasByPage($page = 1, $where = ""){
+		$campos="*";
+		return $this->consultar_by_page($this->_sql("*","","","descripcion ASC"), $page);
+	}
 
          public function getAllFuerzasByTerm($Params){
             $where = $Params['type'].' like "%'.$Params['term'].'%"';
