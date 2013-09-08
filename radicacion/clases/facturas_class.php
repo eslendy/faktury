@@ -49,7 +49,7 @@ class facturas extends BD {
         $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf,  IFNULL(COUNT(auf.idauditoria_financiera), 0) AS audFinanciera ";
         //echo $this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join);
 
-        return $this->consultar($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join));
+        return $this->consultar_by_page($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join), $Params['page']);
     }
 
     public function getall($campos = "", $where = "", $other_join='') {

@@ -36,7 +36,7 @@ class contrato extends BD {
 
         //echo $this->_sql($campos,$where,"","c.numero_contrato ASC");
 
-        return $this->consultar($this->_sql($campos, $where, "", "c.numero_contrato ASC"));
+        return $this->consultar_by_page($this->_sql($campos, $where, "", "c.numero_contrato ASC"), $Params['page']);
     }
 
     public function getOne($id) {

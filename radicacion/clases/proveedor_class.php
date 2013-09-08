@@ -34,7 +34,7 @@ class proveedor extends BD {
         $where = $Params['type'] . ' like "%' . $Params['term'] . '%"';
         $campos = "*";
         // echo $this->_sql("*, p.estado AS estadoProveedor, t.descripcion AS desTipod ",$where,""," idproveedor ASC ");
-        return $this->consultar($this->_sql("*,p.estado AS estadoProveedor, t.descripcion AS desTipod ", $where, "", " idproveedor ASC"));
+        return $this->consultar_by_page($this->_sql("*,p.estado AS estadoProveedor, t.descripcion AS desTipod ", $where, "", " idproveedor ASC"), $Params['page']);
     }
 
     public function getOne($id) {

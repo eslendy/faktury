@@ -35,7 +35,7 @@ class paciente extends BD {
         $campos = "*";
         $where = $Params['type'].' like "%'.$Params['term'].'%"';
 // echo $this->_sql("*,p.estado AS estadoPaciente, f.descripcion AS desFuerza, t.descripcion AS desTipod", $where, "", "nombre ASC, apellidos ASC");
-        return $this->consultar($this->_sql("*,p.estado AS estadoPaciente, f.descripcion AS desFuerza, t.descripcion AS desTipod", $where, "", "nombre ASC, apellidos ASC"));
+        return $this->consultar_by_page($this->_sql("*,p.estado AS estadoPaciente, f.descripcion AS desFuerza, t.descripcion AS desTipod", $where, "", "nombre ASC, apellidos ASC"),$Params['page']);
     }
 
     public function getOne($id) {

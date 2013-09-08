@@ -26,7 +26,7 @@ class fuerza extends BD{
             $where = $Params['type'].' like "%'.$Params['term'].'%"';
             $campos="*";
             //echo $this->_sql("*",$where,"","descripcion ASC");
-            return $this->consultar($this->_sql("*",$where,"","descripcion ASC")); 
+            return $this->consultar_by_page($this->_sql("*",$where,"","descripcion ASC"), $Params['page']); 
             
         }
         

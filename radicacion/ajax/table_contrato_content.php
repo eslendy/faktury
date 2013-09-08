@@ -1,6 +1,6 @@
 <? $i = 1;
-if (!empty($dataContratos)) {
-foreach ($dataContratos as $d) {
+if (!empty($dataContratos['data'])) {
+foreach ($dataContratos['data'] as $d) {
     ?>
     <tr class="elemetoBusqueda">
         <td><?= $d['numero_contrato'] ?></td>
@@ -29,5 +29,51 @@ foreach ($dataContratos as $d) {
     </tr>
     <?
 }?> 
+
+<input type="hidden" id="nombre_archivo_" value="/radicacion/ajax/busqueda.php" />
+<input type="hidden" id="term" value="<?php echo $_REQUEST['term'] ?>" />
+<input type="hidden" id="type" value="<?php echo $_REQUEST['type'] ?>" />
+
+<script>
     
-<script type="text/javascript" src="<? echo $SERVER_NAME?>js/jGeneral.js"></script>
+    
+$(document).ready(function() {
+
+    $('.anularBtn').click(function() {
+        var action = $(this).attr('data-action');
+        var record = $(this).attr('data-record');
+        if (confirm('¿Esta seguro de desactivar este registro?')) {
+            $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/save.php?type=null' + action, {id: record}, function(html_response) {
+                switch (html_response) {
+                    case '1':
+                        alert(action + " Desactivado con Éxito!!");
+                        $("#dialog-addModRad").remove();
+                        _loadContenido($('#nombre_archivo').val());
+                        break;
+                    default:
+                        _msgerror(html_response, "#mensaje");
+                        break;
+                }
+            });
+        }
+
+    })
+
+    $('.editarBtn').click(function() {
+
+        var action = $(this).attr('data-action');
+        var record = $(this).attr('data-record');
+        $.post(init.XNG_WEBSITE_URL + 'radicacion/ajax/form_edit_radicacion.php', {case: action, id: record}, function(data) {
+            console.log(data)
+            $('#loadContentAjaxForms').modal({show: true});
+            $('.modal-body').html(data)
+            loadStylesCheckRadio();
+
+        })
+    })
+})
+
+
+    var page_total = <?php echo ($dataContratos['total'] > 1) ? $dataContratos['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<?php echo $_REQUEST['case'] ?>');
+</script>

@@ -31,7 +31,7 @@ class undidad_atencion extends BD {
 
     public function getallUndByTerm($Params) {
         $where = $Params['type'] . ' like "%' . $Params['term'] . '%"';
-        return $this->consultar($this->_und_sql("*", $where, "", "descripcion ASC"));
+        return $this->consultar_by_page($this->_und_sql("*", $where, "", "descripcion ASC"), $Params['page']);
     }
 
     public function getUnidad($idunidad) {

@@ -262,6 +262,10 @@ var _verOcultarElemento = function(id) {
 };
 
 $(document).ready(function() {
+    $('.search-btn').click(function(){
+        window.location = '#pagina-1';
+    })
+    
     $('.nuevo').click(function() {
         $('.add').fadeIn();
         var text = $(this).text();
@@ -368,7 +372,17 @@ function getContentByPage() {
     $('.page-' + page).addClass('active');
     
     //console.log($('#nombre_archivo').val())
-    if ($('#nombre_archivo').val() !== undefined) {
+    if($('#nombre_archivo_').val() !== undefined){
+        
+        
+        $.post($('#nombre_archivo_').val(), {type: $('#type').val(), page: page, case: $('.section-page').val(), term: $('#term').val()}, function(data) {
+            // console.log(data)
+            $('.loadContentFromSearch').html(data);
+            $('.page-' + page).addClass('active');
+        })
+        console.log(' Pagina Seleccionada: ' + page);
+    }
+    else if ($('#nombre_archivo').val() !== undefined) {
         $.post($('#nombre_archivo').val(), {page: page, section: $('.section-page').val()}, function(data) {
             // console.log(data)
             $('#contenedor').html(data);
@@ -384,7 +398,9 @@ $(window).load(function() {
 })
 
 $(document).ready(function() {
-   
+   $('.search-btn').click(function(){
+       window.location = '#pagina-1';
+   })
 
     $(window).hashchange(function() {
         getContentByPage();

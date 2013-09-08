@@ -64,9 +64,9 @@ $(function() {
     })
     
     $('.search-btn').click(function(){
-        $.post(init.XNG_WEBSITE_URL+'radicacion/ajax/busqueda.php', {case: $(this).attr('data-case'), type: $('.iradio_flat-blue.checked .search-radio').val(), term:$('.search-box').val()}, function(data){
-            console.log(data)
-            
+        var page = 1;
+         window.location = '#pagina-1';
+        $.post(init.XNG_WEBSITE_URL+'radicacion/ajax/busqueda.php', {page:page, case: $(this).attr('data-case'), type: $('.iradio_flat-blue.checked .search-radio').val(), term:$('.search-box').val()}, function(data){
             $('.loadContentFromSearch').html(data);
         });
     })

@@ -35,8 +35,11 @@ $(function() {
         $('.search-box').attr('placeholder', $('.iradio_flat-blue.checked .search-radio').attr('data-related'));
     })
     
+    
     $('.search-btn').click(function(){
-        $.post(init.XNG_WEBSITE_URL+'radicacion/ajax/busqueda.php', {case: $(this).attr('data-case'), type: $('.iradio_flat-blue.checked .search-radio').val(), term:$('.search-box').val()}, function(data){
+         var page = 1;
+         window.location = '#pagina-1';
+        $.post(init.XNG_WEBSITE_URL+'radicacion/ajax/busqueda.php', {page:page, case: $(this).attr('data-case'), type: $('.iradio_flat-blue.checked .search-radio').val(), term:$('.search-box').val()}, function(data){
             console.log(data)
             
             $('.loadContentFromSearch').html(data);
