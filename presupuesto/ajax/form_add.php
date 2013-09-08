@@ -59,7 +59,7 @@ include("../../libphp/mysql.php");
     <div id="acordeon">
 
         <?php
-        $idFactura = $data['idFactura'];
+        $idFactura = $_REQUEST['idFactura'];
         include_once ('../../radicacion/clases/facturas_class.php');
         $data = new facturas($conexion['local']);
         $data = $data->getFactura($idFactura);
@@ -210,11 +210,49 @@ include("../../libphp/mysql.php");
             </table>
         </div>
 
+
+        <h3>Auditoría Financiera</h3>
+        <div>
+            <?php
+            include_once ('../../auditoria_financiera/clases/auditoria_financiera.php');
+            $auFinanciera = new auditoria_financiera($conexion['local']);
+            $dataFin = $auFinanciera->getOne(0, $idFactura);
+            ?>
+            <table align="center">
+                <tr>
+                    <td width="320">
+                        <label>Numero de Factura</label>
+                    </td>
+                    <td align="right"><?php echo $dataFin['numero_factura']; ?></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Numero de Radicado</label>
+                    </td>
+                    <td align="right"><?php echo $dataFin['no_radicado']; ?></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Concepto Auditoria Financiera</label>
+                    </td>
+                    <td align="right"><?php echo $dataFin['concepto_auditoria']; ?></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Fecha Concepto</label>
+                    </td>
+                    <td align="right"><?php echo $dataFin['fecha_concepto']; ?></td>
+                </tr>
+            </table>
+
+
+        </div>
+
+
         <h3>Auditoría Médica</h3>
         <div>
 
             <?php
-            $idFactura = $data['idFactura'];
             include_once ('../../auditoria_medica/clases/auMedica_class.php');
             $auMedica = new auMedica($conexion['local']);
             $dataFin = $auMedica->getAuditoriaMedicabyIdFactura($idFactura);
@@ -235,7 +273,7 @@ include("../../libphp/mysql.php");
                             Modalidad de Pago
                         </td>
                         <td align="right">
-                            <?php echo $contrato['numero_contrato']; ?>
+    <?php echo $contrato['numero_contrato']; ?>
                         </td>
                     </tr>
                     <tr>
@@ -243,7 +281,7 @@ include("../../libphp/mysql.php");
                             CIE 10 de la atención
                         </td>
                         <td align="right">
-                            <?php echo $idcie10['codigo'] . ' - ' . $idcie10['descripcion']; ?>
+    <?php echo $idcie10['codigo'] . ' - ' . $idcie10['descripcion']; ?>
                         </td>
                     </tr>
                     <tr>
@@ -254,77 +292,77 @@ include("../../libphp/mysql.php");
                     </tr>
                 </table>
 
-                <?php
-            } else {
-                echo '<em>No tiene auditoria medica</em>';
-            }
-            ?>
+    <?php
+} else {
+    echo '<em>No tiene auditoria medica</em>';
+}
+?>
         </div>
-<?php /*
-        <h3>Presupuesto</h3>
-        <div>
-            <?php
-            include_once ('../../presupuesto/classes/presupuesto_class.php');
-            $presupuesto = new presupuesto($conexion['local']);
-            $dataFin = $presupuesto->getPresupuestoByFactura($idFactura);
-            ?>
+            <?php /*
+              <h3>Presupuesto</h3>
+              <div>
+              <?php
+              include_once ('../../presupuesto/classes/presupuesto_class.php');
+              $presupuesto = new presupuesto($conexion['local']);
+              $dataFin = $presupuesto->getPresupuestoByFactura($idFactura);
+              ?>
 
-            <?php if ($dataFin) { ?>
-                <table align="center">
-                    <tr>
-                        <td width="320">
-                            <label>Presupuesto CDP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_cdp']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Fecha del Presupuesto CDP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_fecha_cdp']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Numero de RCP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_rpc']; ?></td>
-                    </tr> 
-                    <tr>
-                        <td>
-                            <label>Fecha RCP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Numero de Resolucion de r. del gasto</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_numero_resolucion']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Fecha resolucion de r. del gasto</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc_gasto']; ?></td>
-                    </tr>
+              <?php if ($dataFin) { ?>
+              <table align="center">
+              <tr>
+              <td width="320">
+              <label>Presupuesto CDP</label>
+              </td>
+              <td align="right"><?php echo $dataFin['presupuesto_cdp']; ?></td>
+              </tr>
+              <tr>
+              <td>
+              <label>Fecha del Presupuesto CDP</label>
+              </td>
+              <td align="right"><?php echo $dataFin['presupuesto_fecha_cdp']; ?></td>
+              </tr>
+              <tr>
+              <td>
+              <label>Numero de RCP</label>
+              </td>
+              <td align="right"><?php echo $dataFin['presupuesto_rpc']; ?></td>
+              </tr>
+              <tr>
+              <td>
+              <label>Fecha RCP</label>
+              </td>
+              <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc']; ?></td>
+              </tr>
+              <tr>
+              <td>
+              <label>Numero de Resolucion de r. del gasto</label>
+              </td>
+              <td align="right"><?php echo $dataFin['presupuesto_numero_resolucion']; ?></td>
+              </tr>
+              <tr>
+              <td>
+              <label>Fecha resolucion de r. del gasto</label>
+              </td>
+              <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc_gasto']; ?></td>
+              </tr>
 
-                </table>
-                <?php
-            } else {
-                echo '<em>No tiene presupuesto</em>';
-            }
-            ?>
+              </table>
+              <?php
+              } else {
+              echo '<em>No tiene presupuesto</em>';
+              }
+              ?>
 
-        </div>
+              </div>
 
-*/ ?>
+             */ ?>
         <h3>Contabilidad</h3>
         <div>
-            <?php
-            include_once ('../../contabilidad/classes/contabilidad_class.php');
-            $contabilidad = new contabilidad($conexion['local']);
-            $dataFin = $contabilidad->getContabilidadByFactura($idFactura);
-            ?>
+<?php
+include_once ('../../contabilidad/classes/contabilidad_class.php');
+$contabilidad = new contabilidad($conexion['local']);
+$dataFin = $contabilidad->getContabilidadByFactura($idFactura);
+?>
 
             <?php if ($dataFin) { ?>
                 <table align="center">
@@ -348,21 +386,21 @@ include("../../libphp/mysql.php");
                     </tr>
 
                 </table>
-                <?
-            } else {
-                echo '<em>No tiene contabilidad</em>';
-            }
-            ?>
+    <?
+} else {
+    echo '<em>No tiene contabilidad</em>';
+}
+?>
 
         </div>
 
         <h3>Tesoreria</h3>
         <div>
-            <?php
-            include_once ('../../tesoreria/classes/tesoreria_class.php');
-            $tesoreria = new tesoreria($conexion['local']);
-            $dataFin = $tesoreria->getTesoreriaByFactura($idFactura);
-            ?>
+<?php
+include_once ('../../tesoreria/classes/tesoreria_class.php');
+$tesoreria = new tesoreria($conexion['local']);
+$dataFin = $tesoreria->getTesoreriaByFactura($idFactura);
+?>
 
             <?php if ($dataFin) { ?>
                 <table align="center">
@@ -392,11 +430,11 @@ include("../../libphp/mysql.php");
                     </tr>
 
                 </table>
-                <?
-            } else {
-                echo '<em>No tiene tesoreria</em>';
-            }
-            ?>
+    <?
+} else {
+    echo '<em>No tiene tesoreria</em>';
+}
+?>
 
         </div>
 

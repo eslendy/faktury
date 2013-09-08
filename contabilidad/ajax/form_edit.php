@@ -193,12 +193,51 @@ $data = $contabilidad->getContabilidadById($_POST['idContabilidad']);
                 </tbody>
             </table>
         </div>
+        
+         <h3>Auditoría Financiera</h3>
+            <div>
+                <?php
+               
+                  include_once ('../../auditoria_financiera/clases/auditoria_financiera.php');
+                  $auFinanciera = new auditoria_financiera($conexion['local']);
+                   $dataFin = $auFinanciera->getOne(0, $idFactura);
+                ?>
+                <table align="center">
+                    <tr>
+                        <td width="320">
+                            <label>Numero de Factura</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['numero_factura']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Numero de Radicado</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['no_radicado']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Concepto Auditoria Financiera</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['concepto_auditoria']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Fecha Concepto</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['fecha_concepto']; ?></td>
+                    </tr>
+                </table>
+                
+
+            </div>
+        
 
         <h3>Auditoría Médica</h3>
         <div>
 
             <?php
-            $idFactura = $data['idFactura'];
+            
             include_once ('../../auditoria_medica/clases/auMedica_class.php');
             $auMedica = new auMedica($conexion['local']);
             $dataFin = $auMedica->getAuditoriaMedicabyIdFactura($idFactura);
