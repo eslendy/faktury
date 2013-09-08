@@ -260,7 +260,7 @@ include("../../libphp/mysql.php");
             }
             ?>
         </div>
-
+<?php /*
         <h3>Presupuesto</h3>
         <div>
             <?php
@@ -317,7 +317,7 @@ include("../../libphp/mysql.php");
 
         </div>
 
-
+*/ ?>
         <h3>Contabilidad</h3>
         <div>
             <?php

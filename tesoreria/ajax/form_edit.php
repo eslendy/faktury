@@ -346,7 +346,7 @@ $data= $tesoreria->getTesoreriaById($_POST['idTesoreria']);
             ?>
 
         </div>
-
+<?php /*
         <h3>Tesoreria</h3>
         <div>
             <?php
@@ -391,7 +391,7 @@ $data= $tesoreria->getTesoreriaById($_POST['idTesoreria']);
 
         </div>
 
-
+*/ ?>
     </div>
 </div>
 

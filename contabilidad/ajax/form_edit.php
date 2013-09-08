@@ -301,7 +301,7 @@ $data = $contabilidad->getContabilidadById($_POST['idContabilidad']);
 
         </div>
 
-
+<?php /*
         <h3>Contabilidad</h3>
         <div>
             <?php
@@ -338,7 +338,7 @@ $data = $contabilidad->getContabilidadById($_POST['idContabilidad']);
             }
             ?>
 
-        </div>
+        </div>*/ ?>
 
         <h3>Tesoreria</h3>
         <div>

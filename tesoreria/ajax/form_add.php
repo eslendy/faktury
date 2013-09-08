@@ -340,7 +340,7 @@ include("../../libphp/mysql.php");
             ?>
 
         </div>
-
+<?php /*
         <h3>Tesoreria</h3>
         <div>
             <?php
@@ -384,7 +384,7 @@ include("../../libphp/mysql.php");
             ?>
 
         </div>
-
+*/ ?>
 
     </div>
 </div>

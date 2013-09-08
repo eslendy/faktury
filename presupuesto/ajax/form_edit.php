@@ -266,7 +266,7 @@ $data = $presupuesto->getPresupuesto($_POST['idPresupuesto']);
             }
             ?>
         </div>
-
+<?php /*
         <h3>Presupuesto</h3>
         <div>
             <?php
@@ -321,7 +321,7 @@ $data = $presupuesto->getPresupuesto($_POST['idPresupuesto']);
             }
             ?>
 
-        </div>
+        </div> */ ?>
 
 
         <h3>Contabilidad</h3>
