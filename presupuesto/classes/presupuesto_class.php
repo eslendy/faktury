@@ -5,7 +5,7 @@ class presupuesto extends BD{
 	}
 	public function _presupuesto_sql($campos="*", $where="", $groupby="", $orderby=""){
 		$sql= "SELECT ".$campos."
-		FROM presupuesto".
+		FROM presupuesto as p".
 		(($where!="")?" WHERE ".$where:"").
 		(($groupby!="")?" GROUP BY ".$groupby:"").
 		(($orderby!="")? " ORDER BY ".$orderby:"");
@@ -25,11 +25,10 @@ class presupuesto extends BD{
         
         public function getPresupuestoByFactura($idfactura){
                 if(!empty($idfactura)){
-                    $this->_presupuesto_sql("*","idFactura=".$idfactura,"idFactura","presupuesto_fecha_cdp ASC ");
+                 
+                //echo $this->_presupuesto_sql("*","idFactura=".$idfactura,"idFactura","presupuesto_fecha_cdp ASC ");
 		$rs = $this->consultar($this->_presupuesto_sql("*","idFactura=".$idfactura,"idFactura","presupuesto_fecha_cdp ASC "));
 		return $rs[0];
-                }else{
-                    return false;
                 }
                 
 	}

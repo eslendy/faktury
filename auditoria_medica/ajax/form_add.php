@@ -373,12 +373,176 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
             </div>
             <h3>Auditoría Financiera</h3>
             <div>
-                <?
-                $dataFin = $auFinanciera->getOne(0, $_GET['idfactura']);
-                echo $dataFin['concepto_auditoria'];
+                <?php
+                   $dataFin = $auFinanciera->getOne($data['idauditoria_financiera'], $_GET['idfactura']);
                 ?>
+                <table align="center">
+                    <tr>
+                        <td width="320">
+                            <label>Numero de Factura</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['numero_factura']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Numero de Radicado</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['no_radicado']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Concepto Auditoria Financiera</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['concepto_auditoria']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Fecha Concepto</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['fecha_concepto']; ?></td>
+                    </tr>
+                </table>
+                
 
             </div>
+             
+            <h3>Presupuesto</h3>
+            <div>
+               <?php
+                   include ('../../presupuesto/classes/presupuesto_class.php');
+                   $presupuesto = new presupuesto($conexion['local']);
+                   $dataFin = $presupuesto->getPresupuestoByFactura($data['idFactura']);
+                ?>
+            
+            <?php if($dataFin){ ?>
+                <table align="center">
+                    <tr>
+                        <td width="320">
+                            <label>Presupuesto CDP</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['presupuesto_cdp']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Fecha del Presupuesto CDP</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['presupuesto_fecha_cdp']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Numero de RCP</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['presupuesto_rpc']; ?></td>
+                    </tr> 
+                    <tr>
+                        <td>
+                            <label>Fecha RCP</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Numero de Resolucion de r. del gasto</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['presupuesto_numero_resolucion']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Fecha resolucion de r. del gasto</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc_gasto']; ?></td>
+                    </tr>
+                   
+                </table>
+                <?php } else{
+                 echo '<em>No tiene presupuesto</em>';   
+                }?>
+
+            </div>
+            
+            
+            <h3>Contabilidad</h3>
+            <div>
+               <?php
+                   include ('../../contabilidad/classes/contabilidad_class.php');
+                   $contabilidad = new contabilidad($conexion['local']);
+                   $dataFin = $contabilidad->getContabilidadByFactura($data['idFactura']);
+                ?>
+            
+            <?php if($dataFin){ ?>
+                <table align="center">
+                    <tr>
+                        <td width="320">
+                            <label>Numero Obligacion</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['no_obligacion']; ?></td>
+                    </tr>
+                    <tr>
+                        <td width="320">
+                            <label>Fecha Obligacion</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['fecha_obligacion']; ?></td>
+                    </tr>
+                    <tr>
+                        <td width="320">
+                            <label>Tarifa contratada</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['tarifa_contratada']; ?></td>
+                    </tr>
+                    
+                </table>
+            <? } else{
+                echo '<em>No tiene contabilidad</em>';
+            } ?>
+                
+            </div>
+            
+            <h3>Tesoreria</h3>
+            <div>
+               <?php
+                   include ('../../tesoreria/classes/tesoreria_class.php');
+                   $tesoreria = new tesoreria($conexion['local']);
+                   $dataFin = $tesoreria->getTesoreriaByFactura($data['idFactura']);
+                ?>
+            
+            <?php if($dataFin){ ?>
+                <table align="center">
+                    <tr>
+                        <td width="320">
+                            <label>Número trámite interno de pago</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['no_tramite_pago']; ?></td>
+                    </tr>
+                    <tr>
+                        <td width="320">
+                            <label>Fecha del trámite interno de pago</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['fecha_tramite_pago']; ?></td>
+                    </tr>
+                    <tr>
+                        <td width="320">
+                            <label>Número orden de pago</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['no_orden_pago']; ?></td>
+                    </tr>
+                    <tr>
+                        <td width="320">
+                            <label>Fecha orden de pago</label>
+                        </td>
+                        <td align="right"><?php echo $dataFin['fecha_orden_pago']; ?></td>
+                    </tr>
+                    
+                </table>
+            <? } else{
+                echo '<em>No tiene tesoreria</em>';
+            } ?>
+                
+            </div>
+            
+            
+            
+            
+            
         </div>
     </div>
 </div>

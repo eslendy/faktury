@@ -28,7 +28,7 @@ class auditoria_financiera extends BD{
 			$where[]=$con;
 		}
 		$where = implode(" AND ",$where);
-                
+                //echo $this->_sql("*, au.estado AS estado_au",$where,"au.idauditoria_financiera","au.fecha_auditoria DESC");
 		$rs = $this->consultar($this->_sql("*, au.estado AS estado_au",$where,"au.idauditoria_financiera","au.fecha_auditoria DESC"));
 		
                 return $rs[0];

@@ -6,7 +6,7 @@ $facturas = new facturas($conexion['local']);
 $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, 
     IFNULL(COUNT(auf.idauditoria_financiera), 0) AS audFinanciera, f.idFactura as idFactura";
 $where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor = " . $_SESSION['usrid'] . ") and f.estado=1";
-$dataFacturas = $facturas->getall($campos, $where);
+$dataFacturas = $facturas->getall($campos, $where, ' INNER JOIN auditoria_medica au ON (f.idFactura=au.idFactura) ');
 //var_dump($dataFacturas);
 $auMedica = new auMedica($conexion['local']);
 

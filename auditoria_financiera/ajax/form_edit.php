@@ -50,6 +50,7 @@ $contrat = $contrato->getOne($data['contrato']);
     </div>
     <div class="partes">
         <div id="acordeon">
+            
             <h3>Información de la Factura</h3>
             <div>
                 <table align="center">
@@ -194,8 +195,198 @@ $contrat = $contrato->getOne($data['contrato']);
                     </tbody>
                 </table>
             </div>
+
             <h3>Auditoría Médica</h3>
-            <div></div>
+            <div>
+
+                <?php
+                $idFactura = $data['idFactura'];
+                include_once ('../../auditoria_medica/clases/auMedica_class.php');
+                $auMedica = new auMedica($conexion['local']);
+                $dataFin = $auMedica->getAuditoriaMedicabyIdFactura($idFactura);
+           
+                if ($dataFin) {
+                    include_once("../../radicacion/clases/contrato_class.php");
+                    $contrato = new contrato($conexion['local']);
+                    $contrato = $contrato->getOne($dataFin['contrato']);
+
+                    include_once("../../radicacion/clases/cie10_class.php");
+                    $cie10 = new cie10($conexion['local']);
+                    $idcie10 = $cie10->getOne($dataFin['idcie10']);
+                    ?>
+
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                Modalidad de Pago
+                            </td>
+                            <td align="right">
+                                <?php echo $contrato['numero_contrato']; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                CIE 10 de la atención
+                            </td>
+                            <td align="right">
+                                <?php echo $idcie10['codigo'] . ' - ' . $idcie10['descripcion']; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Glosa Observacion</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['glosa_observaciones']; ?></td>
+                        </tr>
+                    </table>
+
+                    <?php
+                } else {
+                    echo '<em>No tiene auditoria medica</em>';
+                }
+                ?>
+            </div>
+
+            <h3>Presupuesto</h3>
+            <div>
+                <?php
+                include_once ('../../presupuesto/classes/presupuesto_class.php');
+                $presupuesto = new presupuesto($conexion['local']);
+                $dataFin = $presupuesto->getPresupuestoByFactura($idFactura);
+                ?>
+
+                <?php if ($dataFin) { ?>
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                <label>Presupuesto CDP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_cdp']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Fecha del Presupuesto CDP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_fecha_cdp']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Numero de RCP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_rpc']; ?></td>
+                        </tr> 
+                        <tr>
+                            <td>
+                                <label>Fecha RCP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Numero de Resolucion de r. del gasto</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_numero_resolucion']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Fecha resolucion de r. del gasto</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc_gasto']; ?></td>
+                        </tr>
+
+                    </table>
+                    <?php
+                } else {
+                    echo '<em>No tiene presupuesto</em>';
+                }
+                ?>
+
+            </div>
+
+
+            <h3>Contabilidad</h3>
+            <div>
+                <?php
+                include_once ('../../contabilidad/classes/contabilidad_class.php');
+                $contabilidad = new contabilidad($conexion['local']);
+                $dataFin = $contabilidad->getContabilidadByFactura($idFactura);
+                ?>
+
+                <?php if ($dataFin) { ?>
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                <label>Numero Obligacion</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['no_obligacion']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Fecha Obligacion</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['fecha_obligacion']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Tarifa contratada</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['tarifa_contratada']; ?></td>
+                        </tr>
+
+                    </table>
+                    <?
+                } else {
+                    echo '<em>No tiene contabilidad</em>';
+                }
+                ?>
+
+            </div>
+
+            <h3>Tesoreria</h3>
+            <div>
+                <?php
+                include_once ('../../tesoreria/classes/tesoreria_class.php');
+                $tesoreria = new tesoreria($conexion['local']);
+                $dataFin = $tesoreria->getTesoreriaByFactura($idFactura);
+                ?>
+
+                <?php if ($dataFin) { ?>
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                <label>Número trámite interno de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['no_tramite_pago']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Fecha del trámite interno de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['fecha_tramite_pago']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Número orden de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['no_orden_pago']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Fecha orden de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['fecha_orden_pago']; ?></td>
+                        </tr>
+
+                    </table>
+                    <?
+                } else {
+                    echo '<em>No tiene tesoreria</em>';
+                }
+                ?>
+
+            </div>
+
+
         </div>
     </div>
 </div>

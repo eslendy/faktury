@@ -34,6 +34,7 @@ class auMedica extends BD {
     }
 
     public function getOne($idAu, $idFactura = 0, $con = "") {
+        
         $where = array();
         if ($idAu > 0) {
             $where[] = "me.idauditoria_medica = " . $idAu;
@@ -48,6 +49,18 @@ class auMedica extends BD {
         //echo $this->_sql("*, me.estado AS estado_au",$where,"me.idauditoria_medica","me.fecha_auditoria DESC");
         $rs = $this->consultar($this->_sql("*, me.estado AS estado_au", $where, "me.idauditoria_medica", "me.fecha_auditoria DESC"));
         return $rs[0];
+    }
+    
+     public function getAuditoriaMedicabyIdFactura($idFactura = 0) {
+   if(!empty($idFactura)){
+       $where = "me.idFactura = " . $idFactura;
+        //echo $this->_sql("*, me.estado AS estado_au",$where,"me.idauditoria_medica","me.fecha_auditoria DESC");
+        $rs = $this->consultar($this->_sql("*, me.estado AS estado_au", $where, "me.idauditoria_medica", "me.fecha_auditoria DESC"));
+        return $rs[0];
+   }else{
+       return false;
+   }
+        
     }
 
 }

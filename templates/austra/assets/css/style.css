@@ -3728,3 +3728,7 @@ UL.jqueryFileTree A:hover {
 .home_buttons .btn [class^="icon-"] {
     line-height: 104px;
 }
+
+.partes legend{
+    color: #90CAFF;
+}

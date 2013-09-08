@@ -43,6 +43,7 @@ class contrato extends BD {
         if ($id == 0) {
             return array("numero_contrato" => "RG", "idcontrato" => 0);
         } else {
+            //echo $this->_sql("*, c.estado AS estadoContrato, UPPER(p.nombre) AS proveedor", "idcontrato=" . $id);
             $rs = $this->consultar($this->_sql("*, c.estado AS estadoContrato, UPPER(p.nombre) AS proveedor", "idcontrato=" . $id));
             return $rs[0];
         }
@@ -59,6 +60,8 @@ class contrato extends BD {
 
     public function _select($where, $name, $id, $select = "") {
         $campos = "*, c.estado AS estadoContrato, UPPER(p.nombre) AS proveedor";
+        /*echo $this->_sql($campos, $where, "", "c.numero_contrato ASC");
+        die;*/
         $rs = $this->consultar($this->_sql($campos, $where, "", "c.numero_contrato ASC"));
         $html = '<select name="' . $name . '" id="' . $id . '" class="validate[required]" >';
         $html.='<option value="">SELECCIONE</option>';
