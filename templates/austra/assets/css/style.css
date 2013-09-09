@@ -1677,11 +1677,6 @@ a.block-heading:hover,
     background: url("../images/menu-active.png") no-repeat scroll right center transparent !important;
 
 }
-canvas{
-    width: 100% !important;
-    max-width: 100%;
-    height: auto !important;
-}
 /*charts*/
 
 .legend-pie{
