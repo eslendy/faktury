@@ -39,7 +39,7 @@
         console.log(d.getFullYear(ev.date))*/
         var d = new Date(ev.date);
         //alert(d.getMonth()+1);
-        alert('has seleccionado: '+(d.getFullYear()+'-'+d.getMonth()+1))
+        alert('has seleccionado: '+(d.getFullYear()+'-'+(d.getMonth()+1)))
   });
 
         $("#calendar-by-day").datepicker({
