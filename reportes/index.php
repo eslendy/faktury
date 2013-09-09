@@ -352,7 +352,7 @@
 
 </script>
 <style>
-    .jqplot-point-label
+  /*  .jqplot-point-label
     {
         margin-top: -16px;
          -webkit-transform: rotate(-90deg);
@@ -373,5 +373,5 @@
 
   
     }
-    
+    */
 </style>
