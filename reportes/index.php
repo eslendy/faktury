@@ -25,7 +25,7 @@
         console.log(d.getFullYear(ev.date))*/
         var d = new Date(ev.date);
         //alert(d.getFullYear());
-        console.log('has seleccionado: '+d.getFullYear())
+        alert('has seleccionado: '+d.getFullYear())
   });
 
         $("#calendar-by-month").datepicker({
@@ -39,7 +39,7 @@
         console.log(d.getFullYear(ev.date))*/
         var d = new Date(ev.date);
         //alert(d.getMonth()+1);
-        console.log('has seleccionado: '+d.getMonth()+1)
+        alert('has seleccionado: '+d.getMonth()+1)
   });
 
         $("#calendar-by-day").datepicker({
@@ -51,7 +51,7 @@
         //console.log($('#calendar-by-day .day.active').text());
         var d = new Date(ev.date);
         var fullDate = (d.getFullYear())+'-'+(d.getMonth()+1)+'-'+d.getDate();
-        console.log('has seleccionado: '+fullDate)
+        alert('has seleccionado: '+fullDate)
         $.post(init.XNG_WEBSITE_URL+'reportes/', {fecha: fullDate}, function(data){
             console.log(data);
         })
