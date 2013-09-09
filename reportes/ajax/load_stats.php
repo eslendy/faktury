@@ -61,7 +61,7 @@ $data__ = array();
     }
     
     
-    for ($i = 1; $i < $num; $i++) {
+    for ($i = 1; $i < ($num+1); $i++) {
         /* if (in_array($i, $data['TOTAL_MONTH_DEATAILED'][$i])) { */
         /*if (strlen($i) == 1) {
             $i = '0' . $i;
