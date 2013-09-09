@@ -208,7 +208,7 @@
                         tooltipFadeSpeed: "fast",
                         tooltipAxes: 'y',
                         yvalues: 1,
-                        formatString: '<table class="jqplot-highlighter"><tr><td>Toral: </td><td>%s</td></tr></table>'
+                        formatString: '<table class="jqplot-highlighter"><tr><td>Total: </td><td>%s</td></tr></table>'
                     },
                     axes: {
                         xaxis: {
@@ -366,7 +366,7 @@
 <style>
     .jqplot-point-label
     {
-        display: none;
+        display: none !important;
     }
 
 </style>
