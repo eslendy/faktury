@@ -94,8 +94,12 @@ try {
             <script src="/templates/austra/assets/js/jquery.masonry.min.js"></script>
             <script src="/templates/austra/assets/js/custom.js"></script>
             <script src="<? echo $SERVER_NAME; ?>js/jGeneral.js" type="text/javascript"></script>
-            
-            
+            <? if ($_REQUEST['action'] != 'reportes') {
+                ?>
+                <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
+                <? }
+            ?>
+
             <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine-es.js"></script>
             <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine.js"></script>
             <link rel="stylesheet" type="text/css" href="<? echo $SERVER_NAME; ?>css/validationEngine.jquery.css">
