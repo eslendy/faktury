@@ -67,6 +67,7 @@
                     load_graph('gage-3', result, dateToSearch);
                     }
                     else{
+                        $('.detail-char').empty();
                         $('#gage-3').html('<b>El dia '+dia+' ('+dateToSearch+') no tiene ninguna factura</b>');
                     }
                    
