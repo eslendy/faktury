@@ -51,18 +51,23 @@ class BD {
         }
     }
 
-    public function consultar_by_page($sql, $page) {
+    public function consultar_by_page($sql, $page, $total=FALSE) {
          $registros = array();
+         if($total){
+             $this->total_items_per_page = $total;
+         }
          if ($page == 1) {
                 $limit = 'limit '.$this->total_items_per_page;
             }
             else{
                 $limit = 'limit ' .($page - 1) * $this->total_items_per_page .',' .$this->total_items_per_page; 
             }
+           // echo $sql;
             $result = mysql_query($sql);
             $registros['total'] = mysql_num_rows($result);
         if ($rs = mysql_query($sql.' '.$limit, $this->conn)) {
-            while ($reg = mysql_fetch_array($rs)) {
+            while ($reg = mysql_fetch_assoc($rs)) {
+              
                 $registros['data'][] = $reg;
             }
             return $registros;

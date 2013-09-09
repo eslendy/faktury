@@ -3,6 +3,11 @@
 <script type="text/javascript" src="js/plugins/jqplot.barRenderer.min.js"></script>
 <script type="text/javascript" src="js/plugins/jqplot.categoryAxisRenderer.min.js"></script>
 <script type="text/javascript" src="js/plugins/jqplot.pointLabels.min.js"></script>
+<script type="text/javascript" src="js/plugins/jqplot.dateAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/plugins/jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript" src="js/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script type="text/javascript" src="js/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/plugins/jqplot.barRenderer.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="js/jquery.jqplot.css" />
 
@@ -42,7 +47,16 @@
                 var dateToSearch = (d.getFullYear() + '-' + mes);
 
                 $.post(init.XNG_WEBSITE_URL + 'reportes/ajax/load_stats', {dateToSearch: dateToSearch, mode: ev.viewMode}, function(data) {
-                    console.log(data);
+                   var result = $.parseJSON(data);
+                    console.log(result);
+                    if(result.result === true){
+                         //load_gage('gage-3', result.total, result.DAY_NUMBER);
+                    load_graph_multiple('gage-2', result, dateToSearch);
+                    }
+                    else{
+                        $('.detail-char').empty();
+                        $('#gage-2').html('<b>El dia '+mes+' ('+dateToSearch+') no tiene ninguna factura</b>');
+                    }
                 })
             }
 
@@ -86,22 +100,18 @@
             <div>
                 <div id="calendar-by-year" class="date-picker" data-date="<?php echo date('Y-m-d'); ?>"></div>
                 <div class="clear"></div>
-                <ul class="gage unstyled">
-                    <li>
-                        <div id="gage-1" style="width:180px; height:140px"></div>
-                    </li>
-                </ul>
+                
+                        <div id="gage-1" style=""></div>
+                    
             </div>
 
             <h3>Reporte por Mes</h3>
             <div>
                 <div id="calendar-by-month" class="date-picker"  data-date="<?php echo date('Y-m-d'); ?>"></div>
                 <div class="clear"></div>
-                <ul class="gage unstyled">
-                    <li>
-                        <div id="gage-2" style="width:180px; height:140px"></div>
-                    </li>
-                </ul>
+               
+                        <div id="gage-2"></div>
+               
             </div>
 
             <h3>Reporte por Dia</h3>
@@ -135,6 +145,131 @@
         });
     })
 
+    
+    function load_graph_multiple(id, result) {
+        $('#'+id).empty();
+        //$('#'+id).html(result);
+      //  console.log(result);
+      var $s = [];
+      var $label = [];
+      var array = $.map(result.TOTAL_MONTH_DEATAILED, function(k, v) {
+            return [k];
+        });
+      if(array){
+            $.each(array, function(i,j){
+           // console.log(j)
+            $s[i] = parseInt(j.total);
+            $label[i] = j.DAY_NAME;
+        })
+     
+      //$s = '['+$s.toString()+']';
+     // console.log($s)
+     // console.log($label)
+      
+      
+        $(document).ready(function() {
+            
+            var labels=$label;
+            var ticks=$label;
+            // Can specify a custom tick Array.
+            // Ticks should match up one for each y value (category) in the series.
+
+            var plot1 = $.jqplot(id, [$s], {
+                stackSeries: true,
+                animate: true,
+                captureRightClick: true,
+                // The "seriesDefaults" option is an options object that will
+                // be applied to all series in the chart.
+                seriesDefaults: {
+                    renderer: $.jqplot.BarRenderer,
+                    rendererOptions: {
+                        showDataLabels: true,
+                        dataLabels: 'value',
+                        dataLabelFormatString: '%.2f'
+                    },
+                    pointLabels: {show: true /*, stackedValue: true*/, hideZeros: false},
+                },
+                axesDefaults: {
+                    tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                    tickOptions: {
+                        fontSize: '8pt',
+                        angle: -50
+                    },
+                    rendererOptions: {
+                        alignTicks: true,
+                    }
+                },
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks: ticks,
+                        rendererOptions: {
+                            // Put a 30 pixel margin between bars.
+                            barMargin: 200,
+                            // Highlight bars when mouse button pressed.
+                            // Disables default highlighting on mouse over.
+                            highlightMouseDown: true
+                        },
+                    },
+                    yaxis: {
+                        labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                        min: 0,
+                        tickOptions: {
+                            formatString: '%.2f',
+                        }
+
+                    }
+
+                },
+                legend: {
+                    show: true,
+                    location: 'ne',
+                    placement: 'outsideGrid',
+                    labels: labels
+                },
+            });
+        })
+         }
+    /*
+      
+        plot3 = $.jqplot(id, [[51780100, 45678902356, 123123123, 20111111]], {
+            // Tell the plot to stack the bars.
+            stackSeries: true,
+            captureRightClick: true,
+            seriesDefaults: {
+                renderer: $.jqplot.BarRenderer,
+                rendererOptions: {
+                    // Put a 30 pixel margin between bars.
+                    barMargin: 30,
+                    // Highlight bars when mouse button pressed.
+                    // Disables default highlighting on mouse over.
+                    highlightMouseDown: true
+                },
+                pointLabels: {show: true}
+            },
+            series: [
+                {label: $label}
+            ],
+            axes: {
+                xaxis: {
+                    renderer: $.jqplot.CategoryAxisRenderer
+                },
+                yaxis: {
+                    // Don't pad out the bottom of the data range.  By default,
+                    // axes scaled as if data extended 10% above and below the
+                    // actual range to prevent data points right on grid boundaries.
+                    // Don't want to do that here.
+                    padMin: 0,
+                    tickOptions: {formatString: '$%d'}
+                }
+            },
+            legend: {
+                show: true,
+                location: 'e',
+                placement: 'outside'
+            }
+        });*/
+    }
 
 
     function load_graph(id, result) {
@@ -216,3 +351,27 @@
     }
 
 </script>
+<style>
+    .jqplot-point-label
+    {
+        margin-top: -16px;
+         -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+
+  /* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+
+  /* Should be unset in IE9+ I think. */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+  
+    }
+    
+</style>

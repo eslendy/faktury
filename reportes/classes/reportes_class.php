@@ -11,6 +11,20 @@ class reportes extends BD {
         $rs = $this->consultar_by_page($sql, 1);
         return $rs;
     }
+    
+    public function getTotalDineroByDaysMonthSelected($date){
+        $sql = 'SELECT CONCAT( "Dia ", DAY( fecha_radicacion ) ) AS DAY_NAME, DAY( fecha_radicacion ) as DAY_NUMBER, MONTH( fecha_radicacion ) as MONTH_NUMBER, SUM( `valor` ) AS total FROM `factura` 
+            WHERE `estado` = 1 and fecha_radicacion like "'.$date.'%" GROUP BY DAY( fecha_radicacion ) ';
+        $rs = $this->consultar_by_page($sql, 1);
+        return $rs;
+    }
+    
+    public function getTotalDineroByMonthSelected($date){
+        $sql = 'SELECT CONCAT( "Mes ", MONTH( fecha_radicacion ) ) AS MONTH_NUMBER, SUM( `valor` ) AS total FROM `factura` 
+            WHERE `estado` = 1 and fecha_radicacion like "'.$date.'%" GROUP BY MONTH( fecha_radicacion ) ';
+        $rs = $this->consultar_by_page($sql,1);
+        return $rs;
+    }
 
     /* SELECT CONCAT(  'day ', DAY( fecha_radicacion ) ) AS DAY_NUMBER, SUM(  `valor` ) AS total FROM  `factura` 
       WHERE  `estado` =  '1' GROUP BY DAY( fecha_radicacion ) LIMIT 0 , 30 */
