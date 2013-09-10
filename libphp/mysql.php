@@ -51,23 +51,22 @@ class BD {
         }
     }
 
-    public function consultar_by_page($sql, $page, $total=FALSE) {
-         $registros = array();
-         if($total){
-             $this->total_items_per_page = $total;
-         }
-         if ($page == 1) {
-                $limit = 'limit '.$this->total_items_per_page;
-            }
-            else{
-                $limit = 'limit ' .($page - 1) * $this->total_items_per_page .',' .$this->total_items_per_page; 
-            }
-           // echo $sql;
-            $result = mysql_query($sql);
-            $registros['total'] = mysql_num_rows($result);
-        if ($rs = mysql_query($sql.' '.$limit, $this->conn)) {
+    public function consultar_by_page($sql, $page, $total = FALSE) {
+        $registros = array();
+        if ($total) {
+            $this->total_items_per_page = $total;
+        }
+        if ($page == 1) {
+            $limit = 'limit ' . $this->total_items_per_page;
+        } else {
+            $limit = 'limit ' . ($page - 1) * $this->total_items_per_page . ',' . $this->total_items_per_page;
+        }
+        // echo $sql;
+        $result = mysql_query($sql);
+        $registros['total'] = mysql_num_rows($result);
+        if ($rs = mysql_query($sql . ' ' . $limit, $this->conn)) {
             while ($reg = mysql_fetch_assoc($rs)) {
-              
+
                 $registros['data'][] = $reg;
             }
             return $registros;
@@ -109,25 +108,30 @@ class BD {
         if (mysql_query($sql, $this->conn)) {
             return mysql_insert_id($this->conn);
         } else {
-            throw new Exception("Error al ejecutar la consulta '" . $sql . "',  MySQL Error " . mysql_error());
+           
+                die("Estas agregando un registro duplicado, por favor verifique que no se encuentre en las listas.");
+            
+        
         }
     }
 
     public function ejecutarInsertArray($array, $table) {
-        try {
-            $columnas = "";
-            $valores = "";
-            foreach ($array as $c => $v) {
-                $columnas .= $c . ",";
-                $valores .= "'" . $v . "',";
-            }
-            $columnas = substr($columnas, 0, strlen($columnas) - 1);
-            $valores = substr($valores, 0, strlen($valores) - 1);
-            $sql = "INSERT INTO " . $table . "(" . $columnas . ") values(" . $valores . ")";
-            return $this->ejecutarInsert($sql);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+
+        $columnas = "";
+        $valores = "";
+        foreach ($array as $c => $v) {
+            $columnas .= $c . ",";
+            $valores .= "'" . $v . "',";
         }
+        $columnas = substr($columnas, 0, strlen($columnas) - 1);
+        $valores = substr($valores, 0, strlen($valores) - 1);
+        $sql = "INSERT INTO " . $table . "(" . $columnas . ") values(" . $valores . ")";
+        
+        $result = $this->ejecutarInsert($sql);
+        
+
+        return $result;
+                
     }
 
     public function ejecutarUpdateArray($array, $table, $where) {
