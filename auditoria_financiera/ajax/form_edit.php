@@ -30,16 +30,34 @@ $contrat = $contrato->getOne($data['contrato']);
                 <table class="responsive table">
                     <tbody>
                         <tr>
-                            <td><label>Auditor Médico</label><br />
+                            <td>
+                                <label>Auditor Médico</label>
+                            </td>
+                            <td>
                                 <?= $usuarios->_combo("id_auditor", "id_auditor", $dataA['id_auditor'], "p.idperfil=4") ?></td>
                         </tr>
                         <tr>
-                            <td><label>Observaciones de Auditoría</label><br />
+                            <td>
+                                <label>Observaciones de Auditoría</label>
+                            </td>
+                            <td>
                                 <textarea name="concepto_auditoria" id="concepto_auditoria" rows="6" style="width:75%; max-width: 970px" class="validate[required,custom[TextoEspecial]]"><?= trim($dataA['concepto_auditoria']) ?></textarea>
                                 <div class="clear"></div>
                                 <a class="guardarDaata btn btn-primary btn-large">
                                     Guardar
                                 </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width='320'>Concepto Auditoría</td>
+                            <td>
+                                <input type="number" name="codConcepto" id="codConcepto" class="validate[funcCall[chk_0],custom[numberP]]" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Fecha Concepto Auditoría</td>
+                            <td>
+                                <input type="text" name="fecha_concepto" class="fecha validate[custom[date2]]" />
                             </td>
                         </tr>
                     </tbody>

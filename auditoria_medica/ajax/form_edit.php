@@ -14,10 +14,10 @@ $factura = new facturas($conexion['local']);
 
 //se obtiene la informacion de la factura a auditar
 $data = $factura->getFactura($_REQUEST['id']);
-/*echo'<pre>';
+/* echo'<pre>';
 
-var_dump($data);
-echo'</pre>';*/
+  var_dump($data);
+  echo'</pre>'; */
 
 $contrato = new contrato($conexion['local']);
 $contrat = $contrato->getOne($data['contrato']);
@@ -65,25 +65,15 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                             </td>
                         </tr>
                         <tr class='nivel'>
-                    <script>
-                        $(".checkbox_").click(function() {
-                            if ($(this).is(':checked')) {
-                                console.log('entra')
-                                $(this).removeClass("checked");
-                            } else {
-                                $(this).addClass("checked");
-                            }
-                        })
-
-                    </script>
+                    
                     <td><label>Nivel de atención  según  CRES Acuerdo 008/2008 y Acuerdo 028/2011</label></td>
-                    <td>
+                    <td class="nivel_cres">
                         <label>1</label>
-                        <input type="checkbox" name="idcres_1" <?php echo ($auditoriaMedica['idcres_1']) ? 'checked="checked"' : ''; ?> value="1" />
+                        <input type="checkbox" name="idcres_1" onclick="glosas(this)" <?php echo ($auditoriaMedica['idcres_1'] == 1) ? 'checked="checked"' : ''; ?> value="1" />
                         <label>2</label>
-                        <input type="checkbox" name="idcres_3" <?php echo ($auditoriaMedica['idcres_2']) ? 'checked="checked"' : ''; ?> class='checkbox_' value="1"  />
+                        <input type="checkbox" name="idcres_1" onclick="glosas(this)" <?php echo ($auditoriaMedica['idcres_1'] == 2) ? 'checked="checked"' : ''; ?> class='checkbox_ ' value="2"  />
                         <label>3</label>
-                        <input type="checkbox" name="idcres_2" <?php echo ($auditoriaMedica['idcres_3']) ? 'checked="checked"' : ''; ?> class='checkbox_' value="1"  />
+                        <input type="checkbox" name="idcres_1" onclick="glosas(this)" <?php echo ($auditoriaMedica['idcres_1'] == 3) ? 'checked="checked"' : ''; ?> class='checkbox_ ' value="3"  />
                     </td>
                     </tr>
                     <tr>
@@ -117,18 +107,18 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                                     <thead>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td width='320'>Concepto Auditoría</td>
-                                            <td>
-                                                <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="<? echo $auditoriaMedica['devoluciones_codConcepto'] ?>" class="validate[funcCall[_validarGlosas]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha Concepto Auditoría</td>
-                                            <td>
-                                                <input type="text" name="devoluciones_fecha_concepto"  class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['devoluciones_fecha_concepto'] ?>" />
-                                            </td>
-                                        </tr>
+                                        <? /* <tr>
+                                          <td width='320'>Concepto Auditoría</td>
+                                          <td>
+                                          <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="<? echo $auditoriaMedica['devoluciones_codConcepto'] ?>" class="validate[funcCall[_validarGlosas]]" />
+                                          </td>
+                                          </tr>
+                                          <tr>
+                                          <td>Fecha Concepto Auditoría</td>
+                                          <td>
+                                          <input type="text" name="devoluciones_fecha_concepto"  class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['devoluciones_fecha_concepto'] ?>" />
+                                          </td>
+                                          </tr> */ ?>
                                         <tr>
                                             <td>Codigo Devolución</td>
                                             <td>
@@ -161,18 +151,18 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                                     <thead>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td width='320'>Concepto Auditoría</td>
-                                            <td>
-                                                <input type="number" name="glosa_codConcepto" id="codConcepto" value="<? echo $auditoriaMedica['glosa_codConcepto'] ?>" class="validate[condRequired[chk_2],custom[numberP]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha Concepto Auditoría</td>
-                                            <td>
-                                                <input type="text" name="glosa_fecha_concepto"  class="fecha validate[]" value="<? echo $auditoriaMedica['glosa_fecha_concepto'] ?>"/>
-                                            </td>
-                                        </tr>
+                                        <? /* <tr>
+                                          <td width='320'>Concepto Auditoría</td>
+                                          <td>
+                                          <input type="number" name="glosa_codConcepto" id="codConcepto" value="<? echo $auditoriaMedica['glosa_codConcepto'] ?>" class="validate[condRequired[chk_2],custom[numberP]]" />
+                                          </td>
+                                          </tr>
+                                          <tr>
+                                          <td>Fecha Concepto Auditoría</td>
+                                          <td>
+                                          <input type="text" name="glosa_fecha_concepto"  class="fecha validate[]" value="<? echo $auditoriaMedica['glosa_fecha_concepto'] ?>"/>
+                                          </td>
+                                          </tr> */ ?>
                                         <tr>
                                             <td>Codigo Glosa Inicial</td>
                                             <td>
@@ -211,18 +201,18 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                                     <thead>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td width='320'>Concepto Auditoría</td>
-                                            <td>
-                                                <input type="number" name="pago_codConcepto" id="codConcepto" value="<? echo $auditoriaMedica['pago_codConcepto'] ?>" class="validate[funcCall[chk_0],custom[numberP]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha Concepto Auditoría</td>
-                                            <td>
-                                                <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['pago_fecha_concepto'] ?>"/>
-                                            </td>
-                                        </tr>
+                                        <? /* <tr>
+                                          <td width='320'>Concepto Auditoría</td>
+                                          <td>
+                                          <input type="number" name="pago_codConcepto" id="codConcepto" value="<? echo $auditoriaMedica['pago_codConcepto'] ?>" class="validate[funcCall[chk_0],custom[numberP]]" />
+                                          </td>
+                                          </tr>
+                                          <tr>
+                                          <td>Fecha Concepto Auditoría</td>
+                                          <td>
+                                          <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['pago_fecha_concepto'] ?>"/>
+                                          </td>
+                                          </tr> */ ?>
                                         <tr>
                                             <td>Valor del Pago</td>
                                             <td>
@@ -398,11 +388,11 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
             <h3>Auditoría Financiera</h3>
             <div>
                 <?php
-               // var_dump($glosa_inicial);
+                // var_dump($glosa_inicial);
                 $dataFin = $auFinanciera->getOne($data['idauditoria_financiera'], $_GET['idfactura']);
-               /* echo '<pre>';
-                var_dump($dataFin);
-                echo '</pre>';*/
+                /* echo '<pre>';
+                  var_dump($dataFin);
+                  echo '</pre>'; */
                 ?>
                 <table align="center">
                     <tr>
@@ -430,149 +420,155 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                         <td align="right"><?php echo $dataFin['fecha_concepto']; ?></td>
                     </tr>
                 </table>
-                
+
 
             </div>
             <h3>Presupuesto</h3>
             <div>
-               <?php
-                   include ('../../presupuesto/classes/presupuesto_class.php');
-                   $presupuesto = new presupuesto($conexion['local']);
-                   $dataFin = $presupuesto->getPresupuestoByFactura($data['idFactura']);
+                <?php
+                include ('../../presupuesto/classes/presupuesto_class.php');
+                $presupuesto = new presupuesto($conexion['local']);
+                $dataFin = $presupuesto->getPresupuestoByFactura($data['idFactura']);
                 ?>
-            
-            <?php if($dataFin){ ?>
-                <table align="center">
-                    <tr>
-                        <td width="320">
-                            <label>Presupuesto CDP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_cdp']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Fecha del Presupuesto CDP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_fecha_cdp']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Numero de RCP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_rpc']; ?></td>
-                    </tr> 
-                    <tr>
-                        <td>
-                            <label>Fecha RCP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Numero de Resolucion de r. del gasto</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_numero_resolucion']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Fecha resolucion de r. del gasto</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc_gasto']; ?></td>
-                    </tr>
-                   
-                </table>
-                <?php } else{
-                 echo '<em>No tiene presupuesto</em>';   
-                }?>
+
+                <?php if ($dataFin) { ?>
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                <label>Presupuesto CDP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_cdp']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Fecha del Presupuesto CDP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_fecha_cdp']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Numero de RCP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_rpc']; ?></td>
+                        </tr> 
+                        <tr>
+                            <td>
+                                <label>Fecha RCP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Numero de Resolucion de r. del gasto</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_numero_resolucion']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Fecha resolucion de r. del gasto</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc_gasto']; ?></td>
+                        </tr>
+
+                    </table>
+                <?php
+                } else {
+                    echo '<em>No tiene presupuesto</em>';
+                }
+                ?>
 
             </div>
-            
-            
+
+
             <h3>Contabilidad</h3>
             <div>
-               <?php
-                   include ('../../contabilidad/classes/contabilidad_class.php');
-                   $contabilidad = new contabilidad($conexion['local']);
-                   $dataFin = $contabilidad->getContabilidadByFactura($data['idFactura']);
+                <?php
+                include ('../../contabilidad/classes/contabilidad_class.php');
+                $contabilidad = new contabilidad($conexion['local']);
+                $dataFin = $contabilidad->getContabilidadByFactura($data['idFactura']);
                 ?>
-            
-            <?php if($dataFin){ ?>
-                <table align="center">
-                    <tr>
-                        <td width="320">
-                            <label>Numero Obligacion</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['no_obligacion']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Fecha Obligacion</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['fecha_obligacion']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Tarifa contratada</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['tarifa_contratada']; ?></td>
-                    </tr>
-                    
-                </table>
-            <? } else{
-                echo '<em>No tiene contabilidad</em>';
-            } ?>
-                
+
+<?php if ($dataFin) { ?>
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                <label>Numero Obligacion</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['no_obligacion']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Fecha Obligacion</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['fecha_obligacion']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Tarifa contratada</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['tarifa_contratada']; ?></td>
+                        </tr>
+
+                    </table>
+                <?
+                } else {
+                    echo '<em>No tiene contabilidad</em>';
+                }
+                ?>
+
             </div>
-            
-             <h3>Tesoreria</h3>
+
+            <h3>Tesoreria</h3>
             <div>
-               <?php
-                   include ('../../tesoreria/classes/tesoreria_class.php');
-                   $tesoreria = new tesoreria($conexion['local']);
-                   $dataFin = $tesoreria->getTesoreriaByFactura($data['idFactura']);
+                <?php
+                include ('../../tesoreria/classes/tesoreria_class.php');
+                $tesoreria = new tesoreria($conexion['local']);
+                $dataFin = $tesoreria->getTesoreriaByFactura($data['idFactura']);
                 ?>
-            
-            <?php if($dataFin){ ?>
-                <table align="center">
-                    <tr>
-                        <td width="320">
-                            <label>Número trámite interno de pago</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['no_tramite_pago']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Fecha del trámite interno de pago</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['fecha_tramite_pago']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Número orden de pago</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['no_orden_pago']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Fecha orden de pago</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['fecha_orden_pago']; ?></td>
-                    </tr>
-                    
-                </table>
-            <? } else{
-                echo '<em>No tiene tesoreria</em>';
-            } ?>
-                
+
+<?php if ($dataFin) { ?>
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                <label>Número trámite interno de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['no_tramite_pago']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Fecha del trámite interno de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['fecha_tramite_pago']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Número orden de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['no_orden_pago']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Fecha orden de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['fecha_orden_pago']; ?></td>
+                        </tr>
+
+                    </table>
+<?
+} else {
+    echo '<em>No tiene tesoreria</em>';
+}
+?>
+
             </div>
-             
-             
+
+
         </div>
     </div>
 </div>
 <script>
 
-
+                         
                         $(function() {
 
                             _loadADDForms();
@@ -601,10 +597,7 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
 
 
                         function glosas(e) {
-                            $(".glosa-tipo .icheckbox_flat-blue").removeClass("checked");
-                            $('.glosa-tipo .icheckbox_flat-blue').click(function() {
-                                $(this).addClass('checked');
-                            })
+                            loadChecks();
                             if ($(e).is(":checked") == true) {
                                 if (e.id == 'chk_1') {
                                     $("#chk_2").removeAttr("checked");
@@ -638,6 +631,8 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                         }
 
                         var _loadADDForms = function() {
+                            
+                            
                             _autocompletar("#autoc-idcie10", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=cie10", function(ui) {
                                 $("#idcie10").val(ui.item.id);
                             }, '')

@@ -262,10 +262,10 @@ var _verOcultarElemento = function(id) {
 };
 
 $(document).ready(function() {
-    $('.search-btn').click(function(){
+    $('.search-btn').click(function() {
         window.location = '#pagina-1';
     })
-    
+
     $('.nuevo').click(function() {
         $('.add').fadeIn();
         var text = $(this).text();
@@ -293,6 +293,13 @@ function loadStylesCheckRadio() {
 }
 
 
+function loadChecks() {
+    $(".glosa-tipo .icheckbox_flat-blue, .nivel_cres .icheckbox_flat-blue").removeClass("checked");
+    $('.glosa-tipo .icheckbox_flat-blue, .nivel_cres .icheckbox_flat-blue').click(function() {
+
+        $(this).addClass('checked');
+    })
+}
 
 $(document).ready(function() {
 
@@ -347,10 +354,10 @@ var createPaginated = function(pagina, total, section) {
      <a href="#">«</a>\n\
      </li>';*/
     for (i = 1; i <= total_pages; i++) {
-        if(i==pagina && pagina==1){
-            console.log(pagina +' '+' '+ i)
+        if (i == pagina && pagina == 1) {
+            console.log(pagina + ' ' + ' ' + i)
             paginado_append += '<li class="page-' + i + ' active"><a href="#pagina-' + i + '">' + i + '</a></li>';
-        }else{
+        } else {
             paginado_append += '<li class="page-' + i + '"><a href="#pagina-' + i + '">' + i + '</a></li>';
         }
     }
@@ -363,18 +370,18 @@ var createPaginated = function(pagina, total, section) {
 
 function getContentByPage() {
     var page = getParamFromHash(window.location.hash, "pagina");
-    
-    
-    if(page === ''){
+
+
+    if (page === '') {
         page = 1;
     }
-    
+
     $('.page-' + page).addClass('active');
-    
+
     //console.log($('#nombre_archivo').val())
-    if($('#nombre_archivo_').val() !== undefined){
-        
-        
+    if ($('#nombre_archivo_').val() !== undefined) {
+
+
         $.post($('#nombre_archivo_').val(), {type: $('#type').val(), page: page, case: $('.section-page').val(), term: $('#term').val()}, function(data) {
             // console.log(data)
             $('.loadContentFromSearch').html(data);
@@ -393,14 +400,14 @@ function getContentByPage() {
 }
 
 $(window).load(function() {
-    getContentByPage(); 
-    
+    getContentByPage();
+
 })
 
 $(document).ready(function() {
-   $('.search-btn').click(function(){
-       window.location = '#pagina-1';
-   })
+    $('.search-btn').click(function() {
+        window.location = '#pagina-1';
+    })
 
     $(window).hashchange(function() {
         getContentByPage();

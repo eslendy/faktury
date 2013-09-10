@@ -41,25 +41,14 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                             </td>
                         </tr>
                         <tr class='nivel'>
-                    <script>
-                        $(".checkbox_").click(function() {
-                                if ($(this).is(':checked')) {
-                                    console.log('entra')
-                                    $(this).removeClass("checked");
-                                } else {
-                                    $(this).addClass("checked");
-                                }
-                            })
-                    
-                                                    </script>
                             <td><label>Nivel de atención  según  CRES Acuerdo 008/2008 y Acuerdo 028/2011</label></td>
-                            <td>
+                            <td class="nivel_cres">
                                 <label>1</label>
-                                <input type="checkbox" name="idcres_1" value="1"  />
+                                <input type="checkbox" name="idcres_1" value="1"  onclick="glosas(this)" />
                                 <label>2</label>
-                                <input type="checkbox" name="idcres_3"  class='checkbox_' value="1"  />
+                                <input type="checkbox" name="idcres_1"  class='checkbox_' value="2"  onclick="glosas(this)"/>
                                 <label>3</label>
-                                <input type="checkbox" name="idcres_2"  class='checkbox_' value="1"  />
+                                <input type="checkbox" name="idcres_1"  class='checkbox_' value="3"  onclick="glosas(this)"/>
                             </td>
                     </tr>
                     <tr>
@@ -93,7 +82,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                     <thead>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <? /*<tr>
                                             <td width='320'>Concepto Auditoría</td>
                                             <td>
                                                 <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="" class="validate[funcCall[_validarGlosas]]" />
@@ -104,7 +93,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                             <td>
                                                 <input type="text" name="devoluciones_fecha_concepto"  class="fecha validate[custom[date2]]" />
                                             </td>
-                                        </tr>
+                                        </tr>*/?>
                                         <tr>
                                             <td>Codigo Devolución</td>
                                             <td>
@@ -137,7 +126,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                     <thead>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <? /*<tr>
                                             <td width='320'>Concepto Auditoría</td>
                                             <td>
                                                 <input type="number" name="glosa_codConcepto" id="codConcepto" value="" class="validate[condRequired[chk_2],custom[numberP]]" />
@@ -148,7 +137,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                             <td>
                                                 <input type="text" name="glosa_fecha_concepto"  class="fecha validate[]" />
                                             </td>
-                                        </tr>
+                                        </tr>*/ ?>
                                         <tr>
                                             <td>Codigo Glosa Inicial</td>
                                             <td>
@@ -187,7 +176,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                     <thead>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                       <? /* <tr>
                                             <td width='320'>Concepto Auditoría</td>
                                             <td>
                                                 <input type="number" name="pago_codConcepto" id="codConcepto" value="" class="validate[funcCall[chk_0],custom[numberP]]" />
@@ -198,7 +187,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                             <td>
                                                 <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" />
                                             </td>
-                                        </tr>
+                                        </tr>*/?>
                                         <tr>
                                             <td>Valor del Pago</td>
                                             <td>
@@ -580,10 +569,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
 
 
                         function glosas(e) {
-                            $(".glosa-tipo .icheckbox_flat-blue").removeClass("checked");
-                            $('.glosa-tipo .icheckbox_flat-blue').click(function() {
-                                $(this).addClass('checked');
-                            })
+                           loadChecks();
                             if ($(e).is(":checked") == true) {
                                 if (e.id == 'chk_1') {
                                     $("#chk_2").removeAttr("checked");
