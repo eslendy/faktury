@@ -68,7 +68,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                     </tr>
                     <tr>
                         <td colspan="2" class='glosa-tipo'>
-                            <label >Pago</label> <input type="checkbox" name="estado_factura" id="chk_0" value="0" onclick="glosas(this)" class="validate[required]">
+                            <? /*<label >Pago</label> <input type="checkbox" name="estado_factura" id="chk_0" value="0" onclick="glosas(this)" class="validate[required]"> */ ?>
                             <label >Devolución</label><input type="checkbox" name="estado_factura" id="chk_1" value="1" onclick="glosas(this)" class="validate[required]">
                             <label >Glosas</label><input type="checkbox" name="estado_factura" id="chk_2" value="2" onclick="glosas(this)" class="validate[required]">
                         </td>
@@ -168,7 +168,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                             </fieldset>
                         </td>
                     </tr>
-                    <tr id="tr_pago" style="display: none;">
+                   <? /* <tr id="tr_pago" style="display: none;">
                         <td colspan="2">
                             <fieldset>
                                 <legend>Pago</legend>
@@ -187,7 +187,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                             <td>
                                                 <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" />
                                             </td>
-                                        </tr>*/?>
+                                        </tr>*/ /*?>
                                         <tr>
                                             <td>Valor del Pago</td>
                                             <td>
@@ -204,7 +204,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                 </table>
                             </fieldset>
                         </td>
-                    </tr>
+                    </tr>*/ ?>
                     </tbody>
                 </table>
             </form>

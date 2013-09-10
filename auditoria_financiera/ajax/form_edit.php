@@ -16,7 +16,7 @@ $dataA = $auditoria->getOne($_REQUEST['idauditoria'], $_REQUEST['id']);
 $data = $factura->getFactura($_REQUEST['id']);
 $contrato = new contrato($conexion['local']);
 $contrat = $contrato->getOne($data['contrato']);
-//print_r($data);
+//print_r($dataA);
 ?>
 <input type="hidden" id="nombre_archivo" value="/auditoria_financiera/index_factura.php" />
 <div id="contenido" class="dividido">
@@ -36,6 +36,18 @@ $contrat = $contrato->getOne($data['contrato']);
                             <td>
                                 <?= $usuarios->_combo("id_auditor", "id_auditor", $dataA['id_auditor'], "p.idperfil=4") ?></td>
                         </tr>
+                         <tr>
+                            <td width='320'>Concepto Auditoría</td>
+                            <td>
+                                <input type="number" name="codConcepto" id="codConcepto" class="validate[custom[numberP]]" value="<?= $dataA['codConcepto'] ?>"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Fecha Concepto Auditoría</td>
+                            <td>
+                                <input type="text" name="fecha_concepto" class="fecha validate[custom[date2]]" value="<?= $dataA['fecha_concepto'] ?>"/>
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 <label>Observaciones de Auditoría</label>
@@ -48,18 +60,7 @@ $contrat = $contrato->getOne($data['contrato']);
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td width='320'>Concepto Auditoría</td>
-                            <td>
-                                <input type="number" name="codConcepto" id="codConcepto" class="validate[funcCall[chk_0],custom[numberP]]" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Fecha Concepto Auditoría</td>
-                            <td>
-                                <input type="text" name="fecha_concepto" class="fecha validate[custom[date2]]" />
-                            </td>
-                        </tr>
+                       
                     </tbody>
                 </table>
             </form>
@@ -410,6 +411,14 @@ $contrat = $contrato->getOne($data['contrato']);
 </div>
 <script>
     $(function() {
+        
+        $(".fecha").datepicker({
+            showOn: "button",
+            buttonImage: "/imagenes/calendar.gif",
+            buttonImageOnly: true,
+            dateFormat: "yy-mm-dd"
+        });
+        
         $('.guardarDaata').click(function() {
             _guardarMods("editAuditoria", "#addAuditoria", "Auditoría");
         })

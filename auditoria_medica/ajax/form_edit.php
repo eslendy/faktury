@@ -93,7 +93,7 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                     </tr>
                     <tr>
                         <td colspan="2" class='glosa-tipo'>
-                            <label >Pago</label> <input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '0') ? 'checked="checked"' : ''; ?> id="chk_0" value="0" onclick="glosas(this)" class="validate[required]">
+                           <? /* <label >Pago</label> <input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '0') ? 'checked="checked"' : ''; ?> id="chk_0" value="0" onclick="glosas(this)" class="validate[required]"> */?>
                             <label >Devolución</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '1') ? 'checked="checked"' : ''; ?> id="chk_1" value="1" onclick="glosas(this)" class="validate[required]">
                             <label >Glosas</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '2') ? 'checked="checked"' : ''; ?> id="chk_2" value="2" onclick="glosas(this)" class="validate[required]">
                         </td>
@@ -193,7 +193,7 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                             </fieldset>
                         </td>
                     </tr>
-                    <tr id="tr_pago" <?php echo ($auditoriaMedica['estado_factura'] == '0') ? '' : 'style="display: none";'; ?>>
+                    <? /*<tr id="tr_pago" <?php echo ($auditoriaMedica['estado_factura'] == '0') ? '' : 'style="display: none";'; ?>>
                         <td colspan="2">
                             <fieldset>
                                 <legend>Pago</legend>
@@ -212,24 +212,13 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                                           <td>
                                           <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['pago_fecha_concepto'] ?>"/>
                                           </td>
-                                          </tr> */ ?>
-                                        <tr>
-                                            <td>Valor del Pago</td>
-                                            <td>
-                                                <input type="number" name="pago_valor_pago" id="valor_pago" class="validate[custom[numberP]] pesos" value="<? echo $auditoriaMedica['pago_valor_pago'] ?>"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha Pago</td>
-                                            <td>
-                                                <input type="text" name="pago_fecha_pago"  class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['pago_fecha_pago'] ?>"/>
-                                            </td>
-                                        </tr>
+                                          </tr> */ /*?>
+                                        
                                     </tbody>
                                 </table>
                             </fieldset>
                         </td>
-                    </tr>
+                    </tr>*/ ?>
                     </tbody>
                 </table>
             </form>

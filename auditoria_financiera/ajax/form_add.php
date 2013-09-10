@@ -33,22 +33,9 @@ $contrat = $contrato->getOne($data['contrato']);
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label>Observaciones de Auditoría</label>
-                            </td>
-                            <td>
-                                
-                                <textarea name="concepto_auditoria" id="concepto_auditoria" rows="6" style="width:75%; max-width: 970px" class="validate[required]"></textarea>
-                                <div class="clear"></div>
-                                <a class="guardarDaata btn btn-primary btn-large">
-                                    Guardar
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
                             <td width='320'>Concepto Auditoría</td>
                             <td>
-                                <input type="number" name="codConcepto" id="codConcepto" class="validate[funcCall[chk_0],custom[numberP]]" />
+                                <input type="number" name="codConcepto" id="codConcepto" class="validate[custom[numberP]]" />
                             </td>
                         </tr>
                         <tr>
@@ -57,6 +44,20 @@ $contrat = $contrato->getOne($data['contrato']);
                                 <input type="text" name="fecha_concepto" class="fecha validate[custom[date2]]" />
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <label>Observaciones de Auditoría</label>
+                            </td>
+                            <td>
+
+                                <textarea name="concepto_auditoria" id="concepto_auditoria" rows="6" style="width:75%; max-width: 970px" class="validate[required]"></textarea>
+                                <div class="clear"></div>
+                                <a class="guardarDaata btn btn-primary btn-large">
+                                    Guardar
+                                </a>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
             </form>
@@ -409,11 +410,14 @@ $contrat = $contrato->getOne($data['contrato']);
 </div>
 <script>
     $(function() {
-        $(".glosa-tipo .icheckbox_flat-blue, .nivel_cres .icheckbox_flat-blue").removeClass("checked");
-                            $('.glosa-tipo .icheckbox_flat-blue, .nivel_cres .icheckbox_flat-blue').click(function() {
-                                $(this).addClass('checked');
-                            })
-                            
+        $(".fecha").datepicker({
+            showOn: "button",
+            buttonImage: "/imagenes/calendar.gif",
+            buttonImageOnly: true,
+            dateFormat: "yy-mm-dd"
+        });
+
+
         $('.guardarDaata').click(function() {
             _guardarMods("addAuditoria", "#addAuditoria", "Auditoría");
         });

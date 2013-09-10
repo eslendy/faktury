@@ -10,25 +10,7 @@ include '../requestFunctionsJavascript.php';
 
     <div class="table-option clearfix">
 
-        <span class="pull-left keywords">
-
-            <input name="q" class="table-form search-box" type="text"  placeholder="Description" >
-            <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action'] ?>"> <i class="icon-search icon-white"></i></button>
-            
-            <div class="busqueda-radio" style="display: none;">
-              <h4>Filtrar por:</h4>
-              
-              <label class="pull-left" for="description">Descripcion:</label> <input type="radio" name="type" value="descripcion" id="descripcion" class="search-radio" data-related="Descripcion" checked>
-            </div>
-
-            <script>
-                $(document).ready(function() {
-                    $('.checked .search-radio').click(function() {
-                        $('.search-box').attr('placeholder', $(this).attr('data-related'));
-                    })
-                })
-            </script>
-        </span>
+     
 
         <div class="clear"></div>
 

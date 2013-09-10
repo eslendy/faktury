@@ -14,7 +14,7 @@ $('.nuevo-modulo').click(function(){
             $.post(init.XNG_WEBSITE_URL + 'modulos/ajax/form_add_modulo.php', function(data) {
                 $('.load_content').html(data);
                 loadStylesCheckRadio();
-                $('.add_form').text('Nueva Auditoria');
+                $('.add_form').text('Nuevo Modulo');
             })
         
 })
@@ -24,7 +24,7 @@ var _editarReg = function(idmodulo) {
     $('.guardar-formulario').addClass('editar-modulo');
     $('.guardar-formulario').unbind('click');
     $('.modal-body').empty()
-    $('.title_modal').text('Editar Perfil');
+    $('.title_modal').text('Editar Modulo');
     $.post(init.XNG_WEBSITE_URL + "modulos/ajax/form_edit_modulo.php", {idmodulo: idmodulo}, function(data) {
 
         $('#loadContentAjaxForms').modal({show: true});

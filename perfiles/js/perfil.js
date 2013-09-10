@@ -31,7 +31,7 @@ var _editarReg = function(idperfil) {
     $('.guardar-formulario').addClass('editar');
     $('.guardar-formulario').unbind('click');
     $('.modal-body').empty()
-    $('.title_modal').text('Editar   Perfil');
+    $('.title_modal').text('Editar Perfil');
     $.post(init.XNG_WEBSITE_URL + "perfiles/ajax/form_edit_perfil.php", {idperfil: idperfil}, function(data) {
 
         $('#loadContentAjaxForms').modal({show: true});
@@ -45,7 +45,7 @@ var _asigPermisos = function(idperfil) {
     $('.guardar-formulario').addClass('permisos');
     $('.guardar-formulario').unbind('click');
     $('.modal-body').empty()
-    $('.title_modal').text('Editar  Perfil');
+    $('.title_modal').text('Asignar Permisos');
     $.post(init.XNG_WEBSITE_URL + "perfiles/ajax/form_perfil_permisos.php", {idperfil: idperfil}, function(data) {
 
         $('#loadContentAjaxForms').modal({show: true});
