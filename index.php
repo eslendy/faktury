@@ -63,7 +63,12 @@ try {
             <!-- start: JS -->
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
             <script src="/templates/austra/assets/js/jquery-1.9.1.js"></script>
-            <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
+            <? if ($_REQUEST['action'] == 'reportes') {
+                ?>
+                <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
+                <? }
+            ?>
+
             <script src="/templates/austra/assets/lib/bootstrap/js/bootstrap.js"></script>
             <script src="/templates/austra/assets/lib/fullcalendar/fullcalendar.min.js"></script>
             <script src="/templates/austra/assets/lib/pnotify/jquery.pnotify.min.js"></script>
@@ -97,7 +102,7 @@ try {
             <? if ($_REQUEST['action'] != 'reportes') {
                 ?>
                 <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
-                <? }
+            <? }
             ?>
 
             <script type="text/javascript" src="<? echo $SERVER_NAME; ?>js/jquery.validationEngine-es.js"></script>
@@ -262,9 +267,9 @@ try {
                                                 }
                                                 ?>
                                                 <script>
-                                                            $(document).ready(function() {
-                                                                $('.title___').text('<? echo $tt ?>');
-                                                            })
+                                                        $(document).ready(function() {
+                                                            $('.title___').text('<? echo $tt ?>');
+                                                        })
                                                 </script>
                                                 <a href="#content_" data-toggle="collapse" class="title_related"> <? echo $tt; ?> </a>
                                             </div>
@@ -280,8 +285,8 @@ try {
                                                     <span class="pull-right">
 
                                                         <button class="btn btn-danger close-edit" onclick="$('.add').fadeOut();
-                                                                            $('#content_').collapse('show');
-                                                                            $('.block.span12.add .load_content').empty()"><i class="icon-remove"></i> Cerrar Edicion </button>
+                                                                    $('#content_').collapse('show');
+                                                                    $('.block.span12.add .load_content').empty()"><i class="icon-remove"></i> Cerrar Edicion </button>
                                                     </span>
 
                                                     <span class="add_form">Cargando...</span>
@@ -337,13 +342,13 @@ try {
 
 
             <script type="text/javascript">
-                                                            //tooltip
-                                                            $("[rel=tooltip]").tooltip();
-                                                            $(function() {
-                                                                $('.demo-cancel-click').click(function() {
-                                                                    return false;
-                                                                });
+                                                        //tooltip
+                                                        $("[rel=tooltip]").tooltip();
+                                                        $(function() {
+                                                            $('.demo-cancel-click').click(function() {
+                                                                return false;
                                                             });
+                                                        });
             </script>	 
 
             <script type="text/javascript">
