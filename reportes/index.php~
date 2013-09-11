@@ -245,7 +245,7 @@ var total_facturas =0;
 		total_facturas += parseInt(j.total)
                     $('.detail-total-facturas-2').append('<p>Total de Facturas en el ' + j.DAY_NUMBER + ': <b>' + addCommas(parseInt(j.total)) + '</b></p>');
                 })
-		$('.detail-total-facturas-2').append('<p><em><b>Sumatoria total de facturas: '+total_facturas+'</b></em></p>');
+		$('.detail-total-facturas-2').append('<p><em>Sumatoria total de facturas: '+total_facturas+'</em></p>');
 
 
             }
@@ -267,7 +267,7 @@ var total_facturas =0;
        	                $('.detail-total-facturas-1').append('<p>Total de Facturas en el ' + j.MONTH_NUMBER + ': <b>' + addCommas(parseInt(j.total)) + '</b></p>');
                 })
 
-		$('.detail-total-facturas-1').append('<p><em><b>Sumatoria total de facturas: '+total_facturas+'</b></em></p>');
+		$('.detail-total-facturas-1').append('<p><em>Sumatoria total de facturas: '+total_facturas+'</em></p>');
 
 
             }
