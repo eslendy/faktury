@@ -24,8 +24,18 @@
             if (ev.viewMode === 'years') {
                 var d = new Date(ev.date);
                 var dateToSearch = d.getFullYear();
+
                 $.post(init.XNG_WEBSITE_URL + 'reportes/ajax/load_stats', {dateToSearch: dateToSearch, mode: ev.viewMode}, function(data) {
-                    console.log(data);
+                    var result = $.parseJSON(data);
+                 //   console.log(result);
+                    if (result.result === true) {
+
+                        load_graph_multiple('gage-1', result, 'year');
+                    }
+                    else {
+                        $('.detail-char').empty();
+                        $('#gage-1').html('<b>El Año ' + ano + ' (' + dateToSearch + ') no tiene ninguna factura</b>');
+                    }
                 })
             }
 
@@ -49,14 +59,14 @@
 
                 $.post(init.XNG_WEBSITE_URL + 'reportes/ajax/load_stats', {dateToSearch: dateToSearch, mode: ev.viewMode}, function(data) {
                     var result = $.parseJSON(data);
-                    console.log(result);
+              //      console.log(result);
                     if (result.result === true) {
                         //load_gage('gage-3', result.total, result.DAY_NUMBER);
-                        load_graph_multiple('gage-2', result, dateToSearch);
+                        load_graph_multiple('gage-2', result, 'month');
                     }
                     else {
                         $('.detail-char').empty();
-                        $('#gage-2').html('<b>El dia ' + mes + ' (' + dateToSearch + ') no tiene ninguna factura</b>');
+                        $('#gage-2').html('<b>El mes ' + mes + ' (' + dateToSearch + ') no tiene ninguna factura</b>');
                     }
                 })
             }
@@ -76,7 +86,7 @@
                 var dateToSearch = d.getFullYear() + '-' + mes + '-' + dia;
                 $.post(init.XNG_WEBSITE_URL + 'reportes/ajax/load_stats', {dateToSearch: dateToSearch, mode: ev.viewMode}, function(data) {
                     var result = $.parseJSON(data);
-                    console.log(result);
+                  //  console.log(result);
                     if (result.result === true) {
                         //load_gage('gage-3', result.total, result.DAY_NUMBER);
                         load_graph('gage-3', result, dateToSearch);
@@ -102,7 +112,8 @@
                 <div id="calendar-by-year" class="date-picker" data-date="<?php echo date('Y-m-d'); ?>"></div>
                 <div class="clear"></div>
 
-                <div id="gage-1" style=""></div>
+                <div id="gage-1"></div>
+                <div class="detail-char-1"></div>
 
             </div>
 
@@ -112,7 +123,7 @@
                 <div class="clear"></div>
 
                 <div id="gage-2"></div>
-
+                <div class="detail-char-2"></div>
             </div>
 
             <h3>Reporte por Dia</h3>
@@ -122,7 +133,7 @@
 
                 <div id="gage-3" style="width:180px; height:140px; margin-left: auto; margin-right: auto;"></div>
 
-                <div class="detail-char"></div>
+                <div class="detail-char-3"></div>
 
             </div>
 
@@ -177,26 +188,64 @@
     })
 
 
-    function load_graph_multiple(id, result) {
+    function load_graph_multiple(id, result, m) {
         $('#' + id).empty();
-        //$('#'+id).html(result);
-        //  console.log(result);
         var $s = [];
         var $label = [];
-        var array = $.map(result.TOTAL_MONTH_DEATAILED, function(k, v) {
-            return [k];
-        });
+       
+        if (m == 'month') {
+           
+            var array = $.map(result.TOTAL_MONTH_DEATAILED, function(k, v) {
+                return [k];
+            });
+            
+            var TOTAL_ = $.map(result.TOTAL_MONTH, function(k, v) {
+                return [k];
+            });
+            
+        }
+        if (m == 'year') {
+            
+            var array = $.map(result.TOTAL_YEAR_DEATAILED, function(k, v) {
+                return [k];
+            });
+            
+             var TOTAL_ = $.map(result.TOTAL_YEAR, function(k, v) {
+                return [k];
+            });
+           
+        }
+
         if (array) {
-            $.each(array, function(i, j) {
-                // console.log(j)
-                $s[i] = parseInt(j.total);
-                $label[i] = j.DAY_NAME;
-            })
 
-            //$s = '['+$s.toString()+']';
-            // console.log($s)
-            // console.log($label)
+            if (m == 'month') {
+                $.each(array, function(i, j) {
+                    // console.log(j)
+                    $s[i] = parseInt(j.total);
+                    $label[i] = j.DAY_NAME;
+                })
+                
+                $.each(TOTAL_, function(i, j){
+                    $('.detail-char-2').html('<div class=span12><b>' + j.MONTH_NUMBER + '</b>' + ' Total: $' + addCommas(parseInt(j.total)) + '</div>');
+                })
+                
+            }
 
+            if (m == 'year') {
+                $.each(array, function(i, j) {
+                    // console.log(j)
+                    $s[i] = parseInt(j.total);
+                    $label[i] = j.MONTH_NAME;
+                })
+                
+                $.each(TOTAL_, function(i, j){
+                    $('.detail-char-1').html('<div class=span12><b>' + j.YEAR_NUMBER + '</b>' + ' Total: $' + addCommas(parseInt(j.total)) + '</div>');
+                })
+                
+               
+            }
+
+            
 
             $(document).ready(function() {
 
@@ -274,56 +323,20 @@
 
             $('#' + id).bind('jqplotDataHighlight',
                     function(ev, seriesIndex, pointIndex, data) {
-                       $.each($('.jqplot-highlighter tr td'), function(){ $(this).text(addCommas( $(this).text()) )})
+                        $.each($('.jqplot-highlighter tr td'), function() {
+                            $(this).text(addCommas($(this).text()))
+                        })
                     }
             );
 
         }
-        /*
-         
-         plot3 = $.jqplot(id, [[51780100, 45678902356, 123123123, 20111111]], {
-         // Tell the plot to stack the bars.
-         stackSeries: true,
-         captureRightClick: true,
-         seriesDefaults: {
-         renderer: $.jqplot.BarRenderer,
-         rendererOptions: {
-         // Put a 30 pixel margin between bars.
-         barMargin: 30,
-         // Highlight bars when mouse button pressed.
-         // Disables default highlighting on mouse over.
-         highlightMouseDown: true
-         },
-         pointLabels: {show: true}
-         },
-         series: [
-         {label: $label}
-         ],
-         axes: {
-         xaxis: {
-         renderer: $.jqplot.CategoryAxisRenderer
-         },
-         yaxis: {
-         // Don't pad out the bottom of the data range.  By default,
-         // axes scaled as if data extended 10% above and below the
-         // actual range to prevent data points right on grid boundaries.
-         // Don't want to do that here.
-         padMin: 0,
-         tickOptions: {formatString: '$%d'}
-         }
-         },
-         legend: {
-         show: true,
-         location: 'e',
-         placement: 'outside'
-         }
-         });*/
+
     }
 
 
     function load_graph(id, result) {
         $('#' + id).empty();
-        $('.detail-char').html('<div class=span12><b>' + result.DAY_NUMBER + '</b>' + ' Total: $' + result.total + '</div>');
+        $('.detail-char-3').html('<div class=span12><b>' + result.DAY_NUMBER + '</b>' + ' Total: $' + result.total + '</div>');
         console.log(result.DAY_NUMBER + ' ' + result.total)
 
         var s1 = [parseInt(result.total)];
@@ -365,21 +378,8 @@
                 placement: 'outside'
             }
         });
-        /*/ Bind a listener to the "jqplotDataClick" event.  Here, simply change
-         // the text of the info3 element to show what series and ponit were
-         // clicked along with the data for that point.
-         $('#chart3').bind('jqplotDataClick',
-         function(ev, seriesIndex, pointIndex, data) {
-         $('#info3').html('series: ' + seriesIndex + ', point: ' + pointIndex + ', data: ' + data);
-         }
-         );*/
+
     }
-
-
-
-
-
-
 
 
     //gage
