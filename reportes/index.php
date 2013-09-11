@@ -27,13 +27,13 @@
 
                 $.post(init.XNG_WEBSITE_URL + 'reportes/ajax/load_stats', {dateToSearch: dateToSearch, mode: ev.viewMode}, function(data) {
                     var result = $.parseJSON(data);
-                 //   console.log(result);
+                    //   console.log(result);
+                    $('.detail-char-1').empty();
+                    $('.detail-total-facturas-1').empty();
                     if (result.result === true) {
-
                         load_graph_multiple('gage-1', result, 'year');
                     }
                     else {
-                        $('.detail-char').empty();
                         $('#gage-1').html('<b>El Año ' + ano + ' (' + dateToSearch + ') no tiene ninguna factura</b>');
                     }
                 })
@@ -56,16 +56,16 @@
                 }
 
                 var dateToSearch = (d.getFullYear() + '-' + mes);
-
                 $.post(init.XNG_WEBSITE_URL + 'reportes/ajax/load_stats', {dateToSearch: dateToSearch, mode: ev.viewMode}, function(data) {
                     var result = $.parseJSON(data);
-              //      console.log(result);
+                    //      console.log(result);
+                    $('.detail-total-facturas-2').empty();
+                    $('.detail-char-2').empty();
                     if (result.result === true) {
                         //load_gage('gage-3', result.total, result.DAY_NUMBER);
                         load_graph_multiple('gage-2', result, 'month');
                     }
                     else {
-                        $('.detail-char').empty();
                         $('#gage-2').html('<b>El mes ' + mes + ' (' + dateToSearch + ') no tiene ninguna factura</b>');
                     }
                 })
@@ -86,13 +86,14 @@
                 var dateToSearch = d.getFullYear() + '-' + mes + '-' + dia;
                 $.post(init.XNG_WEBSITE_URL + 'reportes/ajax/load_stats', {dateToSearch: dateToSearch, mode: ev.viewMode}, function(data) {
                     var result = $.parseJSON(data);
-                  //  console.log(result);
+                    //  console.log(result);
+                    $('.detail-char-3').empty();
+                    $('.detail-total-facturas-3').empty();
                     if (result.result === true) {
                         //load_gage('gage-3', result.total, result.DAY_NUMBER);
                         load_graph('gage-3', result, dateToSearch);
                     }
                     else {
-                        $('.detail-char').empty();
                         $('#gage-3').html('<b>El dia ' + dia + ' (' + dateToSearch + ') no tiene ninguna factura</b>');
                     }
 
@@ -114,6 +115,7 @@
 
                 <div id="gage-1"></div>
                 <div class="detail-char-1"></div>
+                <div class="detail-total-facturas-1"></div>
 
             </div>
 
@@ -124,6 +126,7 @@
 
                 <div id="gage-2"></div>
                 <div class="detail-char-2"></div>
+                <div class="detail-total-facturas-2"></div>
             </div>
 
             <h3>Reporte por Dia</h3>
@@ -134,7 +137,7 @@
                 <div id="gage-3" style="width:180px; height:140px; margin-left: auto; margin-right: auto;"></div>
 
                 <div class="detail-char-3"></div>
-
+                <div class="detail-total-facturas-3"></div>
             </div>
 
         </div>
@@ -192,28 +195,37 @@
         $('#' + id).empty();
         var $s = [];
         var $label = [];
-       
+
+
         if (m == 'month') {
-           
+
             var array = $.map(result.TOTAL_MONTH_DEATAILED, function(k, v) {
                 return [k];
             });
-            
+
             var TOTAL_ = $.map(result.TOTAL_MONTH, function(k, v) {
                 return [k];
             });
-            
+
+            var TOTAL_FACTURAS = $.map(result.TOTAL_FACTURAS_BY_MONTH, function(k, v) {
+                return [k];
+            });
+
         }
         if (m == 'year') {
-            
+
             var array = $.map(result.TOTAL_YEAR_DEATAILED, function(k, v) {
                 return [k];
             });
-            
-             var TOTAL_ = $.map(result.TOTAL_YEAR, function(k, v) {
+
+            var TOTAL_ = $.map(result.TOTAL_YEAR, function(k, v) {
                 return [k];
             });
-           
+
+            var TOTAL_FACTURAS = $.map(result.TOTAL_FACTURAS_BY_YEAR, function(k, v) {
+                return [k];
+            });
+
         }
 
         if (array) {
@@ -224,11 +236,17 @@
                     $s[i] = parseInt(j.total);
                     $label[i] = j.DAY_NAME;
                 })
-                
-                $.each(TOTAL_, function(i, j){
+
+                $.each(TOTAL_, function(i, j) {
                     $('.detail-char-2').html('<div class=span12><b>' + j.MONTH_NUMBER + '</b>' + ' Total: $' + addCommas(parseInt(j.total)) + '</div>');
                 })
-                
+
+                $.each(TOTAL_FACTURAS, function(i, j) {
+                    $('.detail-total-facturas-2').append('<p>Total de Facturas en el ' + j.DAY_NUMBER + ': <b>' + addCommas(parseInt(j.total)) + '</b></p>');
+                })
+
+
+
             }
 
             if (m == 'year') {
@@ -237,15 +255,19 @@
                     $s[i] = parseInt(j.total);
                     $label[i] = j.MONTH_NAME;
                 })
-                
-                $.each(TOTAL_, function(i, j){
+
+                $.each(TOTAL_, function(i, j) {
+                    console.log(result);
                     $('.detail-char-1').html('<div class=span12><b>' + j.YEAR_NUMBER + '</b>' + ' Total: $' + addCommas(parseInt(j.total)) + '</div>');
                 })
-                
-               
+                $.each(TOTAL_FACTURAS, function(i, j) {
+                    $('.detail-total-facturas-1').append('<p>Total de Facturas en el ' + j.MONTH_NUMBER + ': <b>' + addCommas(parseInt(j.total)) + '</b></p>');
+                })
+
+
             }
 
-            
+
 
             $(document).ready(function() {
 
@@ -336,7 +358,14 @@
 
     function load_graph(id, result) {
         $('#' + id).empty();
+        $('.detail-total-facturas-3').empty();
         $('.detail-char-3').html('<div class=span12><b>' + result.DAY_NUMBER + '</b>' + ' Total: $' + result.total + '</div>');
+        var TOTAL_FACTURAS = $.map(result.TOTAL_FACTURAS_BY_DAY, function(k, v) {
+            return [k];
+        });
+        $.each(TOTAL_FACTURAS, function(i, j) {
+            $('.detail-total-facturas-3').append('<p>Total de Facturas en el ' + j.DAY_NUMBER + ': <b>' + addCommas(parseInt(j.total)) + '</b></p>');
+        })
         console.log(result.DAY_NUMBER + ' ' + result.total)
 
         var s1 = [parseInt(result.total)];

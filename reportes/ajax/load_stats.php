@@ -21,12 +21,10 @@ if ($_REQUEST['mode'] == 'months') {
     if (strlen($date[1]) == 1) {
         $date[1] = '0' . $date[1];
     }
-    
-    
 }
 
-if(!empty($date[1])){
-  $_REQUEST['dateToSearch'] = $date[0] . '-' . $date[1] . '-' . $date[2];  
+if (!empty($date[1])) {
+    $_REQUEST['dateToSearch'] = $date[0] . '-' . $date[1] . '-' . $date[2];
 }
 
 
@@ -35,7 +33,12 @@ if ($_REQUEST['mode'] == 'days') {
     foreach ($data_['data'] as $key => $d) {
         $data[$key] = $d;
     }
-    if (!empty($data[0])) {
+    $data_ = $Reportes->getTotalFacturasByDaySelected($_REQUEST['dateToSearch']);
+
+    foreach ($data_['data'] as $key => $d) {
+        $data[0]['TOTAL_FACTURAS_BY_DAY'][$key] = $d;
+    }
+    if (($data[0]['TOTAL_FACTURAS_BY_DAY'][0]['total']>0)) {
         $data[0]['result'] = TRUE;
         die(json_encode($data[0]));
     } else {
@@ -54,28 +57,31 @@ if ($_REQUEST['mode'] == 'months') {
         $day_key = $d['DAY_NUMBER'];
         $data__['TOTAL_MONTH_DEATAILED'][$day_key] = $d;
     }
-    
-    
-    for ($i = 1; $i < ($num+1); $i++) {
+
+
+    for ($i = 1; $i < ($num + 1); $i++) {
         if ($i == $data__['TOTAL_MONTH_DEATAILED'][$i]['DAY_NUMBER']) {
             $data['TOTAL_MONTH_DEATAILED'][$i] = $data__['TOTAL_MONTH_DEATAILED'][$i];
-        }
-        else{
+        } else {
             $data['TOTAL_MONTH_DEATAILED'][$i]['DAY_NUMBER'] = $i;
-            $data['TOTAL_MONTH_DEATAILED'][$i]['DAY_NAME'] = 'Dia '.$i;
+            $data['TOTAL_MONTH_DEATAILED'][$i]['DAY_NAME'] = 'Dia ' . $i;
             $data['TOTAL_MONTH_DEATAILED'][$i]['total'] = 0;
-   
         }
-        
+
         /* } */
     }
-    
+
     $data_ = $Reportes->getTotalDineroByMonthSelected($_REQUEST['dateToSearch']);
-
     foreach ($data_['data'] as $key => $d) {
-
         $data['TOTAL_MONTH'][$key] = $d;
     }
+
+    $data_ = $Reportes->getTotalFacturasByMonthSelected($_REQUEST['dateToSearch']);
+
+    foreach ($data_['data'] as $key => $d) {
+        $data['TOTAL_FACTURAS_BY_MONTH'][$key] = $d;
+    }
+    
     if (!empty($data)) {
         $data['result'] = TRUE;
         die(json_encode($data, TRUE));
@@ -95,28 +101,33 @@ if ($_REQUEST['mode'] == 'years') {
         $month_key = $d['MONTH_NUMBER'];
         $data__['TOTAL_YEAR_DEATAILED'][$month_key] = $d;
     }
-    
-    
-    for ($i = 1; $i < ($num+1); $i++) {
+
+
+    for ($i = 1; $i < ($num + 1); $i++) {
         if ($i == $data__['TOTAL_YEAR_DEATAILED'][$i]['MONTH_NUMBER']) {
             $data['TOTAL_YEAR_DEATAILED'][$i] = $data__['TOTAL_YEAR_DEATAILED'][$i];
-        }
-        else{
+        } else {
             $data['TOTAL_YEAR_DEATAILED'][$i]['MONTH_NUMBER'] = $i;
-            $data['TOTAL_YEAR_DEATAILED'][$i]['MONTH_NAME'] = 'Mes '.$i;
+            $data['TOTAL_YEAR_DEATAILED'][$i]['MONTH_NAME'] = 'Mes ' . $i;
             $data['TOTAL_YEAR_DEATAILED'][$i]['total'] = 0;
-   
         }
-        
+
         /* } */
     }
-    
+
     $data_ = $Reportes->getTotalDineroByYearSelected($_REQUEST['dateToSearch']);
 
     foreach ($data_['data'] as $key => $d) {
 
         $data['TOTAL_YEAR'][$key] = $d;
     }
+    
+    $data_ = $Reportes->getTotalFacturasByYearSelected($_REQUEST['dateToSearch']);
+
+    foreach ($data_['data'] as $key => $d) {
+        $data['TOTAL_FACTURAS_BY_YEAR'][$key] = $d;
+    }
+    
     if (!empty($data)) {
         $data['result'] = TRUE;
         die(json_encode($data, TRUE));
