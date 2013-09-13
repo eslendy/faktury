@@ -35,7 +35,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="/radicacion/index_unidadAtencion.php" />
+    <input type="hidden" id="nombre_archivo" value="/radicacion/index_unidadAtencion" />
 
 
     <div id="contenido">
