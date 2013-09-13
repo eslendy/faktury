@@ -91,7 +91,7 @@ switch ($_REQUEST['case']) {
 
                         </td>
                     </tr>
-                    <tr>e
+                    <tr>
                         <td>
                             <label>Proveedor</label>
                             <input type="text" id="autoc-idproveedor" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5"/>

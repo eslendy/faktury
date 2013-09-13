@@ -104,7 +104,8 @@ if ($_REQUEST['mode'] == 'months') {
 
 if ($_REQUEST['mode'] == 'years') {
     $data_ = $Reportes->getTotalDineroByMonthYearsSelected($_REQUEST['dateToSearch']);
-
+    
+    var_dump($data_);
     $num = 12;
 
     $data['result'] = true;
