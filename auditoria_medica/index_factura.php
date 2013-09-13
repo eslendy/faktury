@@ -5,11 +5,19 @@ include("../libphp/mysql.php");
 include("../radicacion/clases/facturas_class.php");
 include("clases/auMedica_class.php");
 $facturas = new facturas($conexion['local']);
+if(empty($_REQUEST['page'])){
+  $_REQUEST['page'] = 1;  
+}
+
 $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, 
     IFNULL(COUNT(auf.idauditoria_financiera), 0) AS audFinanciera, f.idFactura as idFactura";
-$where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor = " . $_SESSION['usrid'] . ") and f.estado=1";
-$dataFacturas = $facturas->getall($campos, $where);
-//var_dump($dataFacturas);
+
+$where_ = (($_SESSION['perfil'] == 1))?" ) and ":" WHERE id_auditor = " . $_SESSION["usrid"] . ") and ";
+
+$where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera  ".$where_." f.estado=1";
+
+$dataFacturas = $facturas->getallFacturas($where, $_REQUEST['page'], $campos);
+
 $auMedica = new auMedica($conexion['local']);
 include '../requestFunctionsJavascript.php';
 ?>
@@ -47,7 +55,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="/auditoria_medica/index_factura.php" />
+    <input type="hidden" id="nombre_archivo" value="/auditoria_medica/index_factura" />
 
 
     <div id="contenido">
@@ -70,7 +78,7 @@ include '../requestFunctionsJavascript.php';
             <tbody id="lista">
                 <?
                 $i = 1;
-                foreach ($dataFacturas as $fac) {
+                foreach ($dataFacturas['data'] as $fac) {
 
                    //   echo '<pre>'; var_dump($fac); echo '</pre>';
                     $rs_au = $auMedica->getOne(0, $fac['idFactura']);
@@ -122,6 +130,11 @@ include '../requestFunctionsJavascript.php';
     </div>
     <script type="text/javascript" src="<? echo $SERVER_NAME; ?>auditoria_medica/js/factura.js"></script>
 </div>
+
+<script>
+    var page_total = <?php echo ($dataFacturas['total'] > 1) ? $dataFacturas['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
+</script>
 
 
 <script type="text/javascript">

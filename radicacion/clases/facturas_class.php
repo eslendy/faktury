@@ -37,10 +37,11 @@ class facturas extends BD {
         return $this->consultar_by_page($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"), $page);
     }
 
-    public function getallFacturas($where = "", $page = 1) {
+    public function getallFacturas($where = "", $page = 1, $campos = "", $other_join='') {
 
-        $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf";
-        return $this->consultar_by_page($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"), $page);
+        $campos = ($campos == "") ? "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf" : $campos;
+        $this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $other_join);
+        return $this->consultar_by_page($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $other_join), $page);
     }
 
     public function getAllFacturasByTerm($Params, $where = false, $inner_join = false) {
