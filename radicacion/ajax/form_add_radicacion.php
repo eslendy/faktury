@@ -7,7 +7,7 @@ switch ($_REQUEST['case']) {
         ?>
         <form id="frmfactura" class="formulario" method="post">
             <table class="responsive table table-striped">
-
+                
                 <tbody>
                     <tr>
                         <td>
@@ -194,6 +194,11 @@ switch ($_REQUEST['case']) {
                     </tr>
 
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2"><div id="mensaje"></div></th>
+                </tr>
+            </tfoot>
             </table>
             <input type="hidden" name="idusuario" id="idusuario" value="<?= $_SESSION['usrid'] ?>" />
         </form>

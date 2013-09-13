@@ -27,6 +27,18 @@ if (!empty($date[1])) {
     $_REQUEST['dateToSearch'] = $date[0] . '-' . $date[1] . '-' . $date[2];
 }
 
+$auditores = $Reportes->getTotalAuditors();
+
+foreach ($auditores['data'] as $key => $value){
+    $value[$key]['nombre'] = $value['nombres'].' '.$value['apellidos'];
+    $value['ids'][] = $value['idusuarios'];
+}
+
+$ids = implode(',', $value['ids']);
+
+$facturas_auditor = $Reportes->getTotalFacturasByAuditors($ids);
+
+//var_dump($facturas_auditor);
 
 if ($_REQUEST['mode'] == 'days') {
     $data_ = $Reportes->getTotalDineroByDaySelected($_REQUEST['dateToSearch']);
