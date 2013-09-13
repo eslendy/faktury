@@ -91,7 +91,7 @@ switch ($_REQUEST['case']) {
 
                         </td>
                     </tr>
-                    <tr>
+                    <tr>e
                         <td>
                             <label>Proveedor</label>
                             <input type="text" id="autoc-idproveedor" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" data-prompt-position="centerRight:1,-5"/>
@@ -183,9 +183,9 @@ switch ($_REQUEST['case']) {
                     <tr>
                         <td><label>Estado</label>
 
-                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">En Proceso</span>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Activa</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Paga</span>
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5"/> <span class="text-title">Anulada</span>
 
                         </td>
                         <td>

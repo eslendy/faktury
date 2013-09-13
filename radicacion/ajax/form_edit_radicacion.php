@@ -213,9 +213,9 @@ switch ($_REQUEST['case']) {
 
                         <td colspan="2"><label>Estado</label>
 
-                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estado_factura'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">En Proceso</span>
+                            <input type="radio" name="estado" id="estado1" value="1" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estado_factura'] == 1) ? 'checked="checked"' : '' ?> /> <span class="text-title">Activa</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estado_factura'] == 0) ? 'checked="checked"' : '' ?> /> <span class="text-title">Paga</span>
+                            <input type="radio" name="estado" id="estado0" value="0" class="validate[required]" data-prompt-position="centerRight:1,-5" <?= ($data['estado_factura'] == 0) ? 'checked="checked"' : '' ?> /> <span class="text-title">Anulada</span>
 
                         </td>
 

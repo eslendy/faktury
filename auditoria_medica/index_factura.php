@@ -27,7 +27,7 @@ include '../requestFunctionsJavascript.php';
         <span class="pull-left keywords">
 
             <input name="q" class="table-form search-box" type="text"  placeholder="ID" >
-            <button type="submit" class="btn btn-primary search-btn-2" data-case="auditoria_medica"> <i class="icon-search icon-white"></i></button>
+            <button type="submit" class="btn btn-primary search-btn-2" <? echo $_REQUEST['section'] ?> data-case="auditoria_medica"> <i class="icon-search icon-white"></i></button>
             <h4>Filtrar por:</h4>
             <div class="busqueda-radio">
                 <label class="pull-left" for="id">Numero Radicado:</label> <input type="radio" name="type" value="f.no_radicado" id="id" class="search-radio" data-related="Numero radicado" checked>

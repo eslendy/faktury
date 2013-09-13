@@ -5,8 +5,12 @@ include("../libphp/mysql.php");
 include("../radicacion/clases/facturas_class.php");
 include("clases/auditoria_financiera.php");
 $facturas = new facturas($conexion['local']);
+if(empty($_REQUEST['page'])){
+  $_REQUEST['page'] = 1;  
+}
+
 $au = new auditoria_financiera($conexion['local']);
-$dataFacturas = $facturas->getallFacturas("f.estado=1");
+$dataFacturas = $facturas->getallFacturas("f.estado=1", $_REQUEST['page']);
 //var_dump($dataFacturas);
 include '../requestFunctionsJavascript.php';
 
@@ -63,7 +67,7 @@ include '../requestFunctionsJavascript.php';
                 </tr>
             </thead>
             <tbody id="lista">
-                <?
+                <?php
                 $i = 1;
                 foreach ($dataFacturas['data'] as $fac) {
                     $rs_au = "";
@@ -105,3 +109,7 @@ include '../requestFunctionsJavascript.php';
     </div>
     <script type="text/javascript" src="<? echo $SERVER_NAME; ?>auditoria_financiera/js/factura.js"></script>
 </div>
+<script>
+    var page_total = <?php echo ($dataFacturas['total'] > 1) ? $dataFacturas['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
+</script>

@@ -10,7 +10,7 @@ if (!empty($dataFacturas)) {
             <td><?= $fac['valor'] ?></td>
             <td><?= $fac['proveedor_nombre'] ?></td>
             <td><?= $fac['paciente_nombre'] ?></td>
-            <td><?= ($fac['estado_factura'] == 1) ? 'Activa' : 'Anulada' ?></td>
+            <td><?= ($fac['estado_factura'] == 1) ? '<strong class="label label-success">Activa</strong>' : '<strong class="label label-danger">Anulada</strong>' ?></td>
             <td width="61">
                 <a>
                     <span class="editarBtn" data-record="<? echo $fac['idf']; ?>" data-section="radicacion" data-action="factura"><button class="btn btn-warning"><i class="icon-pencil"></i></button></span>
