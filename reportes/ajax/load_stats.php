@@ -51,7 +51,7 @@ if ($_REQUEST['mode'] == 'days') {
         $data[0]['TOTAL_FACTURAS_BY_DAY'][$key] = $d;
     }
     if (($data[0]['TOTAL_FACTURAS_BY_DAY'][0]['total'] > 0)) {
-        $data[0]['result'] = TRUE;
+        $data[0]['result'] = TRUE; 
         die(json_encode($data[0]));
     } else {
         die('{"result":"FALSE"}');
