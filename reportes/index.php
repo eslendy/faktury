@@ -34,7 +34,7 @@
                         load_graph_multiple('gage-1', result, 'year');
                     }
                     else {
-                        $('#gage-1').html('<b>El Año ' + ano + ' (' + dateToSearch + ') no tiene ninguna factura</b>');
+                        $('#gage-1').html('<b>El Año ' + dateToSearch + ' (' + dateToSearch + ') no tiene ninguna factura</b>');
                     }
                 })
             }

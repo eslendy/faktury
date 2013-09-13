@@ -29,8 +29,8 @@ if (!empty($date[1])) {
 
 $auditores = $Reportes->getTotalAuditors();
 
-foreach ($auditores['data'] as $key => $value){
-    $value[$key]['nombre'] = $value['nombres'].' '.$value['apellidos'];
+foreach ($auditores['data'] as $key => $value) {
+    $value[$key]['nombre'] = $value['nombres'] . ' ' . $value['apellidos'];
     $value['ids'][] = $value['idusuarios'];
 }
 
@@ -50,7 +50,7 @@ if ($_REQUEST['mode'] == 'days') {
     foreach ($data_['data'] as $key => $d) {
         $data[0]['TOTAL_FACTURAS_BY_DAY'][$key] = $d;
     }
-    if (($data[0]['TOTAL_FACTURAS_BY_DAY'][0]['total']>0)) {
+    if (($data[0]['TOTAL_FACTURAS_BY_DAY'][0]['total'] > 0)) {
         $data[0]['result'] = TRUE;
         die(json_encode($data[0]));
     } else {
@@ -93,9 +93,11 @@ if ($_REQUEST['mode'] == 'months') {
     foreach ($data_['data'] as $key => $d) {
         $data['TOTAL_FACTURAS_BY_MONTH'][$key] = $d;
     }
-    
+
     if (!empty($data)) {
-        $data['result'] = TRUE;
+        if ($data_['total'] == 0) {
+            $data['result'] = false;
+        };
         die(json_encode($data, TRUE));
     } else {
         die('{"result":"FALSE"}');
@@ -104,11 +106,12 @@ if ($_REQUEST['mode'] == 'months') {
 
 if ($_REQUEST['mode'] == 'years') {
     $data_ = $Reportes->getTotalDineroByMonthYearsSelected($_REQUEST['dateToSearch']);
-    
-    var_dump($data_);
+
+    //var_dump($data_['total']);
     $num = 12;
 
-    $data['result'] = true;
+
+
     $data__ = array();
     foreach ($data_['data'] as $key => $d) {
         $month_key = $d['MONTH_NUMBER'];
@@ -134,15 +137,18 @@ if ($_REQUEST['mode'] == 'years') {
 
         $data['TOTAL_YEAR'][$key] = $d;
     }
-    
+
     $data_ = $Reportes->getTotalFacturasByYearSelected($_REQUEST['dateToSearch']);
 
     foreach ($data_['data'] as $key => $d) {
         $data['TOTAL_FACTURAS_BY_YEAR'][$key] = $d;
     }
-    
+
     if (!empty($data)) {
-        $data['result'] = TRUE;
+        $data['result'] = true;
+        if ($data_['total'] == 0) {
+            $data['result'] = false;
+        };
         die(json_encode($data, TRUE));
     } else {
         die('{"result":"FALSE"}');
