@@ -31,10 +31,10 @@ class menu extends BD {
         $campos = "m.idmenu, m.descripcion, m.enlace, m.orden, m.padre, m.class_icon";
         $where = "pe.idperfil=" . $idperfil . " AND m.estado=1 AND p.ver=1 AND m.visible=1";
         //   if($padre)
-        $where .= " AND m.padre=0";
+        $where .= " AND m.padre=0 ";
         $groupby = "m.idmenu";
         $orderby = "m.orden";
-        //echo $this->_menu_sql($campos, $where, $groupby, $orderby);
+//        echo $this->_menu_sql($campos, $where, $groupby, $orderby);
         return $this->consultar($this->_menu_sql($campos, $where, $groupby, $orderby));
     }
 
@@ -99,6 +99,7 @@ class menu extends BD {
                     $html.='<a  class="nav-header active"  href="' . (($p['enlace'] == "") ? '#' : XNG_WEBSITE_URL . ($p['enlace'])) . '">' . $p['descripcion'] . '</a>';
                 }
             }
+            
             return $html;
         }
     }

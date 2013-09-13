@@ -1,7 +1,7 @@
 <?php
 $i = 1;
-if (!empty($dataFacturas)) {
-    foreach ($dataFacturas as $fac) {
+if (!empty($dataFacturas['data'])) {
+    foreach ($dataFacturas['data'] as $fac) {
         $rs_au = "";
         $rs_au = $au->getOne(0, $fac['idf'], "au.estado=1");
         ?>
@@ -39,3 +39,7 @@ if (!empty($dataFacturas)) {
     <?
 }
 ?>
+<script>
+    var page_total = <?php echo ($dataFacturas['total'] > 1) ? $dataFacturas['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
+</script>

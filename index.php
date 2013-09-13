@@ -66,7 +66,7 @@ try {
             <? if ($_REQUEST['action'] == 'reportes') {
                 ?>
                 <script src="<? echo $SERVER_NAME; ?>js/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
-                <? }
+            <? }
             ?>
 
             <script src="/templates/austra/assets/lib/bootstrap/js/bootstrap.js"></script>
@@ -185,7 +185,12 @@ try {
 
 
                     <? echo $menu->make_menu($_SESSION['perfil'], 0); ?>
-
+                    <? if ($_SESSION['perfil'] > 1) {
+                        ?>
+                        <a class="nav-header active" href="/salir.php">SALIR</a>
+                        <?
+                    }
+                    ?>
 
                 </div>
 

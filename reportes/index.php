@@ -445,3 +445,11 @@ var total_facturas =0;
     }
 
 </style>
+
+<script>
+    
+    $(document).ready(function(){
+        $('.btn.btn-primary.nuevo').hide();
+    })
+    
+</script>
