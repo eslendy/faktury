@@ -86,6 +86,6 @@ include '../requestFunctionsJavascript.php';
 </div>
 
 <script>
-    var page_total = <?php echo ($data['total'] > 1) ? $data['total'] : 1; ?>;
+    var page_total = <?php echo ($dataUnds['total'] > 1) ? $data['total'] : 1; ?>;
     createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
 </script>
