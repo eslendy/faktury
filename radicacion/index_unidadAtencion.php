@@ -16,7 +16,7 @@ include '../requestFunctionsJavascript.php';
 
         <span class="pull-left keywords">
             <input name="q" class="table-form search-box" type="text"  placeholder="Descripcion" >
-            <button type="submit" class="btn btn-primary search-btn" data-case="<? echo $_REQUEST['action'] ?>"> <i class="icon-search icon-white"></i></button>
+            <button type="submit" class="btn btn-primary search-btn" data-case="unidadAtencion"> <i class="icon-search icon-white"></i></button>
             <h4>Filtrar por:</h4>
             <div class="busqueda-radio">
                 <label class="pull-left" for="description">Descripcion:</label> <input type="radio" name="type" value="descripcion" id="descripcion" class="search-radio" data-related="Descripcion" checked>
