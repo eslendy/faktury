@@ -86,7 +86,8 @@ include '../requestFunctionsJavascript.php';
         </tfoot>
     </table>
 </div>
-    <input type="hidden" id="nombre_archivo" value="/presupuesto/index_presupuesto" />
+
+<input type="hidden" id="nombre_archivo" value="/presupuesto/index_presupuesto" />
 
 <script type="text/javascript" src="<? echo $SERVER_NAME; ?>presupuesto/js/presupuesto.js"></script>
 <script>

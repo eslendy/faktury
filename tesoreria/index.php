@@ -1,7 +1,10 @@
 <?php
 include("tesoreria/classes/tesoreria_class.php");
 $tesoreria = new tesoreria($conexion['local']);
-$dataTesoreria= $tesoreria->getTesoreriaByPage(1);
+if (empty($_REQUEST['page'])) {
+    $_REQUEST['page'] = 1;
+}
+$dataTesoreria = $tesoreria->getTesoreriaByPaged($_REQUEST['page']);
 include '../requestFunctionsJavascript.php';
 
 ?>
@@ -48,7 +51,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="/tesoreria/index_tesoreria.php" />
+    <input type="hidden" id="nombre_archivo" value="/tesoreria/index_tesoreria" />
     <div id="contenedor">
         <div id="contenido">
 
@@ -69,7 +72,7 @@ include '../requestFunctionsJavascript.php';
                     <?php
                    
                     $i = 1;
-                    foreach ($dataTesoreria as $fac) {
+                    foreach ($dataTesoreria['data'] as $fac) {
 
                         $HaveTesoreria = $tesoreria->getTesoreriaByFactura($fac['idFactura']);
                       //var_dump($HaveContabilidad);
@@ -122,4 +125,8 @@ include '../requestFunctionsJavascript.php';
         $('.btn.btn-primary.nuevo').hide();
     })
     
+</script>
+<script>
+    var page_total = <?php echo ($dataTesoreria['total'] > 1) ? $dataTesoreria['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
 </script>
