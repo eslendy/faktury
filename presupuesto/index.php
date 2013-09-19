@@ -61,7 +61,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="/presupuesto/index_presupuesto.php" />
+    <input type="hidden" id="nombre_archivo" value="/presupuesto/index_presupuesto" />
     <div id="contenedor">
         <div id="contenido">
 
@@ -134,4 +134,9 @@ include '../requestFunctionsJavascript.php';
        
     })
     
+</script>
+
+<script>
+    var page_total = <?php echo ($dataFacturas['total'] > 1) ? $dataFacturas['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
 </script>

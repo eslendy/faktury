@@ -52,7 +52,7 @@ include '../requestFunctionsJavascript.php';
 
 
     </div>
-    <input type="hidden" id="nombre_archivo" value="/contabilidad/index_contabilidad.php" />
+    <input type="hidden" id="nombre_archivo" value="/contabilidad/index_contabilidad" />
     <div id="contenedor">
         <div id="contenido">
 
@@ -126,4 +126,9 @@ include '../requestFunctionsJavascript.php';
         $('.btn.btn-primary.nuevo').hide();
     })
     
+</script>
+
+<script>
+    var page_total = <?php echo ($dataContabilidad['total'] > 1) ? $dataContabilidad['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
 </script>

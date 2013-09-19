@@ -71,4 +71,10 @@ include '../requestFunctionsJavascript.php';
     </table>
 
 </div>
+    <input type="hidden" id="nombre_archivo" value="/contabilidad/index_contabilidad" />
+
 <script type="text/javascript" src="<? echo $SERVER_NAME; ?>contabilidad/js/contabilidad.js"></script>
+<script>
+    var page_total = <?php echo ($dataContabilidad['total'] > 1) ? $dataContabilidad['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
+</script>
