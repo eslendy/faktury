@@ -1,8 +1,8 @@
 <?php
-if (!empty($dataFacturas)) {
+if (!empty($dataFacturas['data'])) {
     $presupuesto = new presupuesto($conexion['local']);
     $i = 1;
-    foreach ($dataFacturas as $fac) {
+    foreach ($dataFacturas['data'] as $fac) {
 
         //  echo '<pre>'; var_dump($fac); echo '</pre>';
         $rs_au = $auMedica->getOne(0, $fac['idFactura']);

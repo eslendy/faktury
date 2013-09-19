@@ -125,7 +125,7 @@ class BD {
         }
         $columnas = substr($columnas, 0, strlen($columnas) - 1);
         $valores = substr($valores, 0, strlen($valores) - 1);
-        echo $sql = "INSERT INTO " . $table . "(" . $columnas . ") values(" . $valores . ")";
+        $sql = "INSERT INTO " . $table . "(" . $columnas . ") values(" . $valores . ")";
         
         $result = $this->ejecutarInsert($sql);
         

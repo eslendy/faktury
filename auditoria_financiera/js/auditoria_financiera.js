@@ -32,6 +32,7 @@ var _loadFormulariosEdit = function(caso, tipo, frm, mod, datosPost){
 		$(frm).validationEngine();
 	});
 };
+
 var _anularReg =function(tipo,datosPost, mod){
 	if(confirm('¿Esta seguro de desactivar este registro?')){
  		_guardar(init.XNG_WEBSITE_URL+"auditoria_financiera/ajax/save.php?type="+tipo, datosPost, function(html_response){

@@ -5,7 +5,10 @@ include("../libphp/mysql.php");
 
 include("../tesoreria/classes/tesoreria_class.php");
 $tesoreria = new tesoreria($conexion['local']);
-$dataTesoreria = $tesoreria->getTesoreriaByPage(1);
+if (empty($_REQUEST['page'])) {
+    $_REQUEST['page'] = 1;
+}
+$dataTesoreria = $tesoreria->getTesoreriaByPaged($_REQUEST['page']);
 
 include '../requestFunctionsJavascript.php';
 //var_dump($dataUsers);
@@ -29,7 +32,7 @@ include '../requestFunctionsJavascript.php';
                     <?php
                    
                     $i = 1;
-                    foreach ($dataTesoreria as $fac) {
+                    foreach ($dataTesoreria['data'] as $fac) {
 
                         $HaveTesoreria = $tesoreria->getTesoreriaByFactura($fac['idFactura']);
                       //var_dump($HaveContabilidad);

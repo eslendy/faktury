@@ -18,7 +18,7 @@ try{
 			$bd->ejecutarUpdateArray($_POST,"auditoria_financiera", "idauditoria_financiera=".$id);
 			echo "1";
 		break;
-		case 'nullAuditoria':
+		case 'nullauditoria_financiera':
 			$bd->ejecutarUpdateArray(array("estado"=>0),"auditoria_financiera", "idauditoria_financiera=".$_POST['id']);
 			echo "1";
 		break;

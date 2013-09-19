@@ -5,8 +5,11 @@ include("../libphp/mysql.php");
 
 include("../contabilidad/classes/contabilidad_class.php");
 $contabilidad = new contabilidad($conexion['local']);
-$dataContabilidad = $contabilidad->getContabilidadByPage(1);
-
+if (empty($_REQUEST['page'])) {
+    $_REQUEST['page'] = 1;
+}
+$dataContabilidad = $contabilidad->getContabilidadByPaged($_REQUEST['page']);
+//var_dump($dataContabilidad);
 include '../requestFunctionsJavascript.php';
 //var_dump($dataUsers);
 ?>
@@ -29,7 +32,7 @@ include '../requestFunctionsJavascript.php';
         <tbody id="lista">
             <?php
             $i = 1;
-            foreach ($dataContabilidad as $fac) {
+            foreach ($dataContabilidad['data'] as $fac) {
 
                 $HaveContabilidad = $contabilidad->getContabilidadByFactura($fac['idFactura']);
                 //var_dump($HaveContabilidad);

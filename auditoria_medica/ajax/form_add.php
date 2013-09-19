@@ -152,6 +152,12 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Fecha de Recepcion de Glosa</td>
+                                            <td>
+                                                <input type="text" name="glosa_fecha_recepcion_glosa"  class="fecha validate[custom[date2]]" />
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td>Valor de la Glosa</td>
                                             <td>
                                                 <input type="number" name="glosa_valor_glosa" id="valor_glosa-chk_2" class=" pesos" />

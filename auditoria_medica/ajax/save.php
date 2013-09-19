@@ -18,6 +18,10 @@ try {
             $bd->ejecutarInsertArray($_POST, "glosa_auditoria");
             echo "1";
             break;
+        case 'nullauditoria_medica' :
+            $bd->ejecutarUpdateArray(array("estado"=>0),"auditoria_medica", "idauditoria_medica=".$_POST['id']);
+            echo "1";
+            break;
     }
 } catch (Exception $e) {
     echo $e->getMessage();

@@ -14,7 +14,7 @@ $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre,
 
 $where_ = (($_SESSION['perfil'] == 1))?" ) and ":" WHERE id_auditor = " . $_SESSION["usrid"] . ") and ";
 
-$where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera  ".$where_." f.estado=1";
+$where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera  ".$where_." f.estado=1 and auf.estado=1 ";
 
 $dataFacturas = $facturas->getallFacturas($where, $_REQUEST['page'], $campos);
 
@@ -104,15 +104,17 @@ include '../requestFunctionsJavascript.php';
                             </td>
                         <? else: ?>
                             <td width="130">
-                                <a>
+                               
                                     <button class="btn btn-primary verAuditoriaMedica" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><i class="icon-check"></i></button>
+                                    
                                     <?php if ($isGlosa) {
                                         ?>
                                         <button class="btn btn-warning agregarNuevaGlosa" role="button" data-auditoria='<?php echo $rs_au['idauditoria_medica']; ?>' data-toggle="modal" href="#agregarNuevaGlosa" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><i class=" icon-medkit"></i></button>
                                         <button class="btn btn-success verGlosasAgregadas" role="button" data-auditoria='<?php echo $rs_au['idauditoria_medica']; ?>' data-toggle="modal" href="#verGlosa" data-record="<? echo $fac['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><i class=" icon-inbox"></i></button>
                                     <?php }
                                     ?>
-                                </a>
+                                    <span class="anularRegistro" data-type="auditoria_medica" data-idregistro="<?php echo $rs_au['idauditoria_medica'] ?>" data-record="<? echo $fac['idf']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> data-auditor="<? echo $rs_au['idauditoria_medica'] ?>" <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?> title="Anular auditoria"><button class="btn btn-danger"><i class=" icon-remove"></i></button></span>
+
                             </td>
                         <? endif ?>
                     </tr>

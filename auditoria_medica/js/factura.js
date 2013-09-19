@@ -54,3 +54,4 @@ $('.verAuditoriaMedica').click(function() {
         $('.add_form').text('Editar Auditoria');
     })
 })
+loadFunctions();

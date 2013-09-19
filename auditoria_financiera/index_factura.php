@@ -72,6 +72,7 @@ include '../requestFunctionsJavascript.php';
                 foreach ($dataFacturas['data'] as $fac) {
                     $rs_au = "";
                     $rs_au = $au->getOne(0, $fac['idf'], "au.estado=1");
+                   // var_dump($rs_au);
                     ?>
                     <tr class="elemetoBusqueda">
                         <td><?= $fac['no_radicado'] ?></td>
@@ -89,17 +90,21 @@ include '../requestFunctionsJavascript.php';
                             </td>
                         <? else: ?>
                             <td width="61">
-                                <a>
                                     <span class="verBtn" data-record="<? echo $fac['idf']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> data-auditor="<? echo $rs_au['idauditoria_financiera'] ?>" <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?> title="Ver auditorías realizadas"><button class="btn btn-primary"><i class=" icon-check"></i></button></span>
-                                </a>
+                               
+                            </td> 
+                            <td width="61">
+                                    <span class="anularRegistro" data-type="auditoria_financiera" data-idregistro="<?php echo $rs_au['idauditoria_financiera'] ?>" data-record="<? echo $fac['idf']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> data-auditor="<? echo $rs_au['idauditoria_financiera'] ?>" <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?> title="Anular auditoria"><button class="btn btn-danger"><i class=" icon-remove"></i></button></span>
+                                
                             </td>
                         <? endif; ?>
+                           
                     </tr>
                 <? } ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="8" id="pager" class="holder" align="center">
+                    <td colspan="9" id="pager" class="holder" align="center">
 
                     </td>
                 </tr>

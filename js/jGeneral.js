@@ -301,7 +301,32 @@ function loadChecks() {
     })
 }
 
+
+function loadFunctions() {
+    $('.anularRegistro').click(function() {
+        console.log();
+        var id = $(this).data('idregistro');
+        var type = $(this).data('type');
+        if (confirm('¿Esta seguro de anular este registro?')) {
+            $.post(init.XNG_WEBSITE_URL + type+"/ajax/save.php?type=null" + type, {id:id}, function(html_response) {
+                switch (html_response) {
+                    case '1':
+                        alert("registro anulado con Éxito!!");
+                        //$("#dialog-addMod").remove();
+                        _loadContenido($('#nombre_archivo').val());
+                        break;
+                    default:
+                        _msgerror(html_response, "#mensaje");
+                        break;
+                }
+            });
+        }
+    })
+}
+
 $(document).ready(function() {
+
+
 
     $('.anularBtn').click(function() {
         var action = $(this).attr('data-action');

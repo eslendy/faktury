@@ -7,10 +7,17 @@ include("../radicacion/clases/facturas_class.php");
 include("../auditoria_medica/clases/auMedica_class.php");
 include("../presupuesto/classes/presupuesto_class.php");
 $facturas = new facturas($conexion['local']);
+if (empty($_REQUEST['page'])) {
+    $_REQUEST['page'] = 1;
+}
 $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, 
     IFNULL(COUNT(auf.idauditoria_financiera), 0) AS audFinanciera, f.idFactura as idFactura";
-$where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor = " . $_SESSION['usrid'] . ") and f.estado=1";
-$dataFacturas = $facturas->getall($campos, $where, ' INNER JOIN auditoria_medica au ON (f.idFactura=au.idFactura) ');
+$where_ = (($_SESSION['perfil'] == 1))?" ) and ":" ) and ";
+$where = "f.idFactura IN (SELECT idFactura FROM auditoria_financiera ".$where_." f.estado=1";
+
+
+$dataFacturas = $facturas->getallFacturas($where, $_REQUEST['page'], $campos, ' INNER JOIN auditoria_medica au ON (f.idFactura=au.idFactura) ');
+
 //var_dump($dataFacturas);
 $auMedica = new auMedica($conexion['local']);
 
@@ -37,7 +44,7 @@ include '../requestFunctionsJavascript.php';
             <?php
             $presupuesto = new presupuesto($conexion['local']);
             $i = 1;
-            foreach ($dataFacturas as $fac) {
+            foreach ($dataFacturas['data'] as $fac) {
 
                 //  echo '<pre>'; var_dump($fac); echo '</pre>';
                 $rs_au = $auMedica->getOne(0, $fac['idFactura']);
