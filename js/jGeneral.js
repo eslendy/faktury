@@ -464,3 +464,4 @@ function truncate(string, length) {
     else
         return string;
 }
+

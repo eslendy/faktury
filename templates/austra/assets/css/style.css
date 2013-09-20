@@ -3949,3 +3949,16 @@ UL.jqueryFileTree A:hover {
     text-align: center;
 }
 
+
+.ui-autocomplete{
+    width: 450px!important;
+}
+
+.ui-menu .ui-menu-item a {
+    
+padding: 0px 0;
+}
+
+.step_glosa{
+    height: 56px!important;
+}

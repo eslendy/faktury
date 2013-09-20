@@ -108,7 +108,7 @@ class BD {
         if (mysql_query($sql, $this->conn)) {
             return mysql_insert_id($this->conn);
         } else {
-           
+                throw new Exception("Error al ejecutar la consulta '" . $sql . "',  MySQL Error " . mysql_error());
                 die("Estas agregando un registro duplicado, por favor verifique que no se encuentre en las listas.");
             
         

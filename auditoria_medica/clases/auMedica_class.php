@@ -6,8 +6,6 @@ class auMedica extends BD {
         $this->BD($conexion);
     }
 
-    
-
     public function _sql($campos = "*", $where = "", $groupby = "", $orderby = "") {
         $sql = "SELECT " . $campos . "
 		FROM factura f
@@ -20,7 +18,7 @@ class auMedica extends BD {
         return $sql;
     }
 
-    public function getAllGlosasAuditoria($campos = "*", $where = "", $groupby = "", $orderby = ""){
+    public function getAllGlosasAuditoria($campos = "*", $where = "", $groupby = "", $orderby = "") {
         $sql = "SELECT " . $campos . "
 		FROM glosa_auditoria ga " .
                 (($where != "") ? " WHERE " . $where : "") .
@@ -28,13 +26,34 @@ class auMedica extends BD {
                 (($orderby != "") ? " ORDER BY " . $orderby : "");
         return $this->consultar($sql);
     }
+
     public function getall($where = "") {
         $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura";
         return $this->consultar($this->_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
     }
 
+    public function getLastGlosaByIdAuditoria($id_auditoria) {
+        if (isset($id_auditoria)) {
+            $sql = "SELECT * FROM glosa_auditoria where auditoria_glosa = $id_auditoria order by step_glosa DESC limit 1";
+            $rs = $this->consultar($sql);
+            return $rs[0];
+        } else {
+            return false;
+        }
+    }
+    
+    public function getAllGlosaByIdAuditoria($id_auditoria) {
+        if (isset($id_auditoria)) {
+            $sql = "SELECT * FROM glosa_auditoria where auditoria_glosa = $id_auditoria order by step_glosa DESC limit 1";
+            $rs = $this->consultar($sql);
+            return $rs[0];
+        } else {
+            return false;
+        }
+    }
+
     public function getOne($idAu, $idFactura = 0, $con = "") {
-        
+
         $where = array();
         if ($idAu > 0) {
             $where[] = "me.idauditoria_medica = " . $idAu;
@@ -50,17 +69,16 @@ class auMedica extends BD {
         $rs = $this->consultar($this->_sql("*, me.estado AS estado_au", $where, "me.idauditoria_medica", "me.fecha_auditoria DESC"));
         return $rs[0];
     }
-    
-     public function getAuditoriaMedicabyIdFactura($idFactura = 0) {
-   if(!empty($idFactura)){
-       $where = "me.idFactura = " . $idFactura;
-        //echo $this->_sql("*, me.estado AS estado_au",$where,"me.idauditoria_medica","me.fecha_auditoria DESC");
-        $rs = $this->consultar($this->_sql("*, me.estado AS estado_au", $where, "me.idauditoria_medica", "me.fecha_auditoria DESC"));
-        return $rs[0];
-   }else{
-       return false;
-   }
-        
+
+    public function getAuditoriaMedicabyIdFactura($idFactura = 0) {
+        if (!empty($idFactura)) {
+            $where = "me.idFactura = " . $idFactura;
+            //echo $this->_sql("*, me.estado AS estado_au",$where,"me.idauditoria_medica","me.fecha_auditoria DESC");
+            $rs = $this->consultar($this->_sql("*, me.estado AS estado_au", $where, "me.idauditoria_medica", "me.fecha_auditoria DESC"));
+            return $rs[0];
+        } else {
+            return false;
+        }
     }
 
 }

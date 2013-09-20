@@ -50,167 +50,124 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                 <label>3</label>
                                 <input type="checkbox" name="idcres_1"  class='checkbox_' value="3"  onclick="glosas(this)"/>
                             </td>
-                    </tr>
-                    <tr>
-                        <td><label>CIE 10 de la atención</label></td>
-                        <td>
-                            <input type="text" id="autoc-idcie10" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" />
-                            <input type="hidden" id="idcie10" name="idcie10" class="validate[required]"  />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>En Combate</label></td>
+                        </tr>
+                        <tr>
+                            <td><label>CIE 10 de la atención</label></td>
+                            <td>
+                                <input type="text" id="autoc-idcie10" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" />
+                                <input type="hidden" id="idcie10" name="idcie10" class="validate[required]"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>En Combate</label></td>
 
-                        <td>
-                            <input type="radio" name="en_combate" id="en_combate_si" value="SI" class="validate[required]" /><label>SI</label>
-                            <input type="radio" name="en_combate" id="en_combate_no" value="NO" class="validate[required]" /><label>NO</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class='glosa-tipo'>
-                            <? /*<label >Pago</label> <input type="checkbox" name="estado_factura" id="chk_0" value="0" onclick="glosas(this)" class="validate[required]"> */ ?>
-                            <label >Devolución</label><input type="checkbox" name="estado_factura" id="chk_1" value="1" onclick="glosas(this)" class="validate[required]">
-                            <label >Glosas</label><input type="checkbox" name="estado_factura" id="chk_2" value="2" onclick="glosas(this)" class="validate[required]">
-                        </td>
-                    </tr>
+                            <td>
+                                <input type="radio" name="en_combate" id="en_combate_si" value="SI" class="validate[required]" /><label>SI</label>
+                                <input type="radio" name="en_combate" id="en_combate_no" value="NO" class="validate[required]" /><label>NO</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class='glosa-tipo'>
+                                <? /* <label >Pago</label> <input type="checkbox" name="estado_factura" id="chk_0" value="0" onclick="glosas(this)" class="validate[required]"> */ ?>
+                                <label >Devolución</label><input type="checkbox" name="estado_factura" id="chk_1" value="1" onclick="glosas(this)" class="validate[required]">
+                                <label >Glosas</label><input type="checkbox" name="estado_factura" id="chk_2" value="2" onclick="glosas(this)" class="validate[required]">
+                            </td>
+                        </tr>
 
-                    <tr id="tr_devoluciones" style="display: none;">
-                        <td colspan="2">
-                            <fieldset>
-                                <legend>Devoluciones</legend>
-                                <table width="100%">
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                        <? /*<tr>
-                                            <td width='320'>Concepto Auditoría</td>
-                                            <td>
-                                                <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="" class="validate[funcCall[_validarGlosas]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha Concepto Auditoría</td>
-                                            <td>
-                                                <input type="text" name="devoluciones_fecha_concepto"  class="fecha validate[custom[date2]]" />
-                                            </td>
-                                        </tr>*/?>
-                                        <tr>
-                                            <td>Codigo Devolución</td>
-                                            <td>
-                                                <input type="text" id="autoc-iddevolucion" class="validate[funcCall[_validarHiddenAutoC]] autoc_txt" />
-                                                <input type="hidden" name="devoluciones_iddevolucion" id="iddevolucion" class="validate[custom[numberP]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha de Devolución</td>
-                                            <td>
-                                                <input type="text" name="devoluciones_fecha_devolucion"  class="fecha validate[custom[date2]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Observaciones </td>
-                                            <td>
-                                                <textarea name="devoluciones_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ></textarea>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </fieldset>
-                        </td>
-                    </tr>
-                    <tr id="tr_glosas" style="display: none;">
-                        <td colspan="2">
-                            <fieldset>
-                                <legend>Glosas</legend>
-                                <table width="100%">
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                        <? /*<tr>
-                                            <td width='320'>Concepto Auditoría</td>
-                                            <td>
-                                                <input type="number" name="glosa_codConcepto" id="codConcepto" value="" class="validate[condRequired[chk_2],custom[numberP]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha Concepto Auditoría</td>
-                                            <td>
-                                                <input type="text" name="glosa_fecha_concepto"  class="fecha validate[]" />
-                                            </td>
-                                        </tr>*/ ?>
-                                        <tr>
-                                            <td>Codigo Glosa Inicial</td>
-                                            <td>
-                                                <input type="text" id="autoc-idglosa" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" />
-                                                <input type="hidden" name="glosa_idglosa" id="idglosa" class="validate[custom[numberP]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha de Glosa</td>
-                                            <td>
-                                                <input type="text" name="glosa_fecha_glosa"  class="fecha validate[custom[date2]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha de Recepcion de Glosa</td>
-                                            <td>
-                                                <input type="text" name="glosa_fecha_recepcion_glosa"  class="fecha validate[custom[date2]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Valor de la Glosa</td>
-                                            <td>
-                                                <input type="number" name="glosa_valor_glosa" id="valor_glosa-chk_2" class=" pesos" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Observaciones </td>
-                                            <td>
-                                                <textarea name="glosa_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ></textarea>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </fieldset>
-                        </td>
-                    </tr>
-                   <? /* <tr id="tr_pago" style="display: none;">
-                        <td colspan="2">
-                            <fieldset>
-                                <legend>Pago</legend>
-                                <table width="100%">
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                       <? /* <tr>
-                                            <td width='320'>Concepto Auditoría</td>
-                                            <td>
-                                                <input type="number" name="pago_codConcepto" id="codConcepto" value="" class="validate[funcCall[chk_0],custom[numberP]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha Concepto Auditoría</td>
-                                            <td>
-                                                <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" />
-                                            </td>
-                                        </tr>*/ /*?>
-                                        <tr>
-                                            <td>Valor del Pago</td>
-                                            <td>
-                                                <input type="number" name="pago_valor_pago" id="valor_pago" class="validate[custom[numberP]] pesos" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha Pago</td>
-                                            <td>
-                                                <input type="text" name="pago_fecha_pago"  class="fecha validate[custom[date2]]" />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </fieldset>
-                        </td>
-                    </tr>*/ ?>
+                        <tr id="tr_devoluciones" style="display: none;">
+                            <td colspan="2">
+                                <fieldset>
+                                    <legend>Devoluciones</legend>
+                                    <table width="100%">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                            <? /* <tr>
+                                              <td width='320'>Concepto Auditoría</td>
+                                              <td>
+                                              <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="" class="validate[funcCall[_validarGlosas]]" />
+                                              </td>
+                                              </tr>
+                                              <tr>
+                                              <td>Fecha Concepto Auditoría</td>
+                                              <td>
+                                              <input type="text" name="devoluciones_fecha_concepto"  class="fecha validate[custom[date2]]" />
+                                              </td>
+                                              </tr> */ ?>
+                                            <tr>
+                                                <td>Codigo Devolución</td>
+                                                <td>
+                                                    <input type="text" id="autoc-iddevolucion" class="validate[funcCall[_validarHiddenAutoC]] autoc_txt" />
+                                                    <input type="hidden" name="devoluciones_iddevolucion" id="iddevolucion" class="validate[custom[numberP]]" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fecha de Devolución</td>
+                                                <td>
+                                                    <input type="text" name="devoluciones_fecha_devolucion"  class="fecha validate[custom[date2]]" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Observaciones </td>
+                                                <td>
+                                                    <textarea name="devoluciones_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr id="tr_glosas" style="display: none;">
+                            <td colspan="2">
+                                <fieldset>
+                                    <legend>Glosas</legend>
+                                    <table width="100%">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Codigo Glosa Inicial</td>
+                                                <td>
+                                                    <input type="text" id="autoc-idglosa" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value=""/>
+                                                    <input type="hidden" name="glosa_idglosa" id="idglosa" class="validate[custom[numberP]]" value=""/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fecha de Glosa</td>
+                                                <td>
+                                                    <input type="text" name="glosa_fecha_glosa" value="" class="fecha validate[custom[date2]]" />
+                                                </td>
+                                            </tr>                                            
+                                            <tr>
+                                                <td>Fecha de Recepcion de Glosa</td>
+                                                <td>
+                                                    <input type="text" name="glosa_fecha_recepcion_glosa"  class="fecha validate[custom[date2]]" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Valor de la Glosa</td>
+                                                <td>
+                                                    <input type="number" name="glosa_valor_glosa" id="valor_glosa-chk_2" class=" pesos" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Observaciones </td>
+                                                <td>
+                                                    <textarea name="glosa_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Valor a pagar primera auditoría</td>
+                                                <td>
+                                                    <input type="number" name="glosa_valor_pagar_primera_glosa" id="valor_glosa-chk_2" class=" pesos" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </form>
@@ -226,7 +183,6 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                 </tbody>
             </table>
         </fieldset>
-
     </div>
     <div class="partes">
         <div id="acordeon">
@@ -369,7 +325,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
             <h3>Auditoría Financiera</h3>
             <div>
                 <?php
-                   $dataFin = $auFinanciera->getOne($data['idauditoria_financiera'], $_GET['idfactura']);
+                $dataFin = $auFinanciera->getOne($data['idauditoria_financiera'], $_GET['idfactura']);
                 ?>
                 <table align="center">
                     <tr>
@@ -397,237 +353,243 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                         <td align="right"><?php echo $dataFin['fecha_concepto']; ?></td>
                     </tr>
                 </table>
-                
+
 
             </div>
-             
+
             <h3>Presupuesto</h3>
             <div>
-               <?php
-                   include ('../../presupuesto/classes/presupuesto_class.php');
-                   $presupuesto = new presupuesto($conexion['local']);
-                   $dataFin = $presupuesto->getPresupuestoByFactura($data['idFactura']);
+                <?php
+                include ('../../presupuesto/classes/presupuesto_class.php');
+                $presupuesto = new presupuesto($conexion['local']);
+                $dataFin = $presupuesto->getPresupuestoByFactura($data['idFactura']);
                 ?>
-            
-            <?php if($dataFin){ ?>
-                <table align="center">
-                    <tr>
-                        <td width="320">
-                            <label>Presupuesto CDP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_cdp']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Fecha del Presupuesto CDP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_fecha_cdp']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Numero de RCP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_rpc']; ?></td>
-                    </tr> 
-                    <tr>
-                        <td>
-                            <label>Fecha RCP</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Numero de Resolucion de r. del gasto</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_numero_resolucion']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Fecha resolucion de r. del gasto</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc_gasto']; ?></td>
-                    </tr>
-                   
-                </table>
-                <?php } else{
-                 echo '<em>No tiene presupuesto</em>';   
-                }?>
+
+                <?php if ($dataFin) { ?>
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                <label>Presupuesto CDP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_cdp']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Fecha del Presupuesto CDP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_fecha_cdp']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Numero de RCP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_rpc']; ?></td>
+                        </tr> 
+                        <tr>
+                            <td>
+                                <label>Fecha RCP</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Numero de Resolucion de r. del gasto</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_numero_resolucion']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Fecha resolucion de r. del gasto</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['presupuesto_fecha_rpc_gasto']; ?></td>
+                        </tr>
+
+                    </table>
+                    <?php
+                } else {
+                    echo '<em>No tiene presupuesto</em>';
+                }
+                ?>
 
             </div>
-            
-            
+
+
             <h3>Contabilidad</h3>
             <div>
-               <?php
-                   include ('../../contabilidad/classes/contabilidad_class.php');
-                   $contabilidad = new contabilidad($conexion['local']);
-                   $dataFin = $contabilidad->getContabilidadByFactura($data['idFactura']);
+                <?php
+                include ('../../contabilidad/classes/contabilidad_class.php');
+                $contabilidad = new contabilidad($conexion['local']);
+                $dataFin = $contabilidad->getContabilidadByFactura($data['idFactura']);
                 ?>
-            
-            <?php if($dataFin){ ?>
-                <table align="center">
-                    <tr>
-                        <td width="320">
-                            <label>Numero Obligacion</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['no_obligacion']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Fecha Obligacion</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['fecha_obligacion']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Tarifa contratada</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['tarifa_contratada']; ?></td>
-                    </tr>
-                    
-                </table>
-            <? } else{
-                echo '<em>No tiene contabilidad</em>';
-            } ?>
-                
+
+                <?php if ($dataFin) { ?>
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                <label>Numero Obligacion</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['no_obligacion']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Fecha Obligacion</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['fecha_obligacion']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Tarifa contratada</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['tarifa_contratada']; ?></td>
+                        </tr>
+
+                    </table>
+                    <?
+                } else {
+                    echo '<em>No tiene contabilidad</em>';
+                }
+                ?>
+
             </div>
-            
+
             <h3>Tesoreria</h3>
             <div>
-               <?php
-                   include ('../../tesoreria/classes/tesoreria_class.php');
-                   $tesoreria = new tesoreria($conexion['local']);
-                   $dataFin = $tesoreria->getTesoreriaByFactura($data['idFactura']);
+                <?php
+                include ('../../tesoreria/classes/tesoreria_class.php');
+                $tesoreria = new tesoreria($conexion['local']);
+                $dataFin = $tesoreria->getTesoreriaByFactura($data['idFactura']);
                 ?>
-            
-            <?php if($dataFin){ ?>
-                <table align="center">
-                    <tr>
-                        <td width="320">
-                            <label>Número trámite interno de pago</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['no_tramite_pago']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Fecha del trámite interno de pago</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['fecha_tramite_pago']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Número orden de pago</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['no_orden_pago']; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="320">
-                            <label>Fecha orden de pago</label>
-                        </td>
-                        <td align="right"><?php echo $dataFin['fecha_orden_pago']; ?></td>
-                    </tr>
-                    
-                </table>
-            <? } else{
-                echo '<em>No tiene tesoreria</em>';
-            } ?>
-                
+
+                <?php if ($dataFin) { ?>
+                    <table align="center">
+                        <tr>
+                            <td width="320">
+                                <label>Número trámite interno de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['no_tramite_pago']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Fecha del trámite interno de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['fecha_tramite_pago']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Número orden de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['no_orden_pago']; ?></td>
+                        </tr>
+                        <tr>
+                            <td width="320">
+                                <label>Fecha orden de pago</label>
+                            </td>
+                            <td align="right"><?php echo $dataFin['fecha_orden_pago']; ?></td>
+                        </tr>
+
+                    </table>
+                    <?
+                } else {
+                    echo '<em>No tiene tesoreria</em>';
+                }
+                ?>
+
             </div>
-            
-            
-            
-            
-            
+
+
+
+
+
         </div>
     </div>
 </div>
 <script>
-                       
-                        
-                        $(function() {
-                            
-                            _loadADDForms();
-                            $(".fecha").datepicker({
-                                showOn: "button",
-                                buttonImage: "/imagenes/calendar.gif",
-                                buttonImageOnly: true,
-                                dateFormat: "yy-mm-dd"
-                            });
-                        });
+
+
+                                    $(function() {
+
+                                        _loadADDForms();
+                                        $(".fecha").datepicker({
+                                            showOn: "button",
+                                            buttonImage: "/imagenes/calendar.gif",
+                                            buttonImageOnly: true,
+                                            dateFormat: "yy-mm-dd"
+                                        });
+                                    });
 
 
 
-                        $(function() {
+                                    $(function() {
 
 
 
 
-                            _botonesIcons('.guardarDaata', "ui-icon-disk", "", function() {
-                                _guardarMods("addAuditoria", "#addAuditoria", "Auditoría");
-                            })
-                            $("#acordeon").accordion({
-                                collapsible: true,
-                                active: false,
-                                heightStyle: "content"
-                            });
-                            _fechaFields();
-                        });
+                                        _botonesIcons('.guardarDaata', "ui-icon-disk", "", function() {
+                                            _guardarMods("addAuditoria", "#addAuditoria", "Auditoría");
+                                        })
+                                        $("#acordeon").accordion({
+                                            collapsible: true,
+                                            active: false,
+                                            heightStyle: "content"
+                                        });
+                                        _fechaFields();
+                                    });
 
 
-                        function glosas(e) {
-                           loadChecks();
-                            if ($(e).is(":checked") == true) {
-                                if (e.id == 'chk_1') {
-                                    $("#chk_2").removeAttr("checked");
-                                    $("#chk_0").removeAttr("checked");
+                                    function glosas(e) {
+                                        loadChecks();
+                                        if ($(e).is(":checked") == true) {
+                                            if (e.id == 'chk_1') {
+                                                $("#chk_2").removeAttr("checked");
+                                                $("#chk_0").removeAttr("checked");
 
-                                    $("#tr_devoluciones").show();
-                                    $("#tr_pago").hide();
-                                    $("#tr_glosas").hide();
-                                } else if (e.id == 'chk_2') {
-                                    $("#chk_1").removeAttr("checked");
-                                    $("#chk_0").removeAttr("checked");
-                                    $("#tr_devoluciones").hide();
-                                    $("#tr_pago").hide();
-                                    $("#tr_glosas").show();
-                                } else {
-                                    $("#chk_2").removeAttr("checked");
-                                    $("#chk_1").removeAttr("checked");
-                                    $("#tr_devoluciones").hide();
-                                    $("#tr_pago").show();
-                                    $("#tr_glosas").hide();
-                                }
-                            } else {
-                                if (e.id == 'chk_1') {
-                                    $("#tr_devoluciones").hide();
-                                } else if (e.id == 'chk_2') {
-                                    $("#tr_glosas").hide();
-                                } else {
-                                    $("#tr_pago").hide();
-                                }
-                            }
-                        }
+                                                $("#tr_devoluciones").show();
+                                                $("#tr_pago").hide();
+                                                $("#tr_glosas").hide();
+                                            } else if (e.id == 'chk_2') {
+                                                $("#chk_1").removeAttr("checked");
+                                                $("#chk_0").removeAttr("checked");
+                                                $("#tr_devoluciones").hide();
+                                                $("#tr_pago").hide();
+                                                $("#tr_glosas").show();
+                                            } else {
+                                                $("#chk_2").removeAttr("checked");
+                                                $("#chk_1").removeAttr("checked");
+                                                $("#tr_devoluciones").hide();
+                                                $("#tr_pago").show();
+                                                $("#tr_glosas").hide();
+                                            }
+                                        } else {
+                                            if (e.id == 'chk_1') {
+                                                $("#tr_devoluciones").hide();
+                                            } else if (e.id == 'chk_2') {
+                                                $("#tr_glosas").hide();
+                                            } else {
+                                                $("#tr_pago").hide();
+                                            }
+                                        }
+                                    }
 
-                        var _loadADDForms = function() {
-                            _autocompletar("#autoc-idcie10", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=cie10", function(ui) {
-                                $("#idcie10").val(ui.item.id);
-                            }, '')
-                            _autocompletar("#autoc-iddevolucion", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas", function(ui) {
-                                $("#iddevolucion").val(ui.item.id);
-                            }, function(ul, item) {
-                                return $('<li style="width:50%"></li>')
-                                        .data("item.autocomplete", item)
-                                        .append("<a>" + item.icon + "</a>")
-                                        .appendTo(ul);
-                            })
-                            _autocompletar("#autoc-idglosa", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas", function(ui) {
-                                $("#idglosa").val(ui.item.id);
-                            }, function(ul, item) {
-                                return $("<li></li>")
-                                        .data("item.autocomplete", item)
-                                        .append("<a>" + item.icon + "</a>")
-                                        .appendTo(ul);
-                            })
-                        }
+                                    var _loadADDForms = function() {
+                                        _autocompletar("#autoc-idcie10", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=cie10", function(ui) {
+                                            $("#idcie10").val(ui.item.id);
+                                        }, '')
+                                        _autocompletar("#autoc-iddevolucion", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas", function(ui) {
+                                            $("#iddevolucion").val(ui.item.id);
+                                        }, function(ul, item) {
+                                            return $('<li style="width:50%"></li>')
+                                                    .data("item.autocomplete", item)
+                                                    .append("<a>" + item.icon + "</a>")
+                                                    .appendTo(ul);
+                                        })
+                                        _autocompletar("#autoc-idglosa", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas", function(ui) {
+                                            $("#idglosa").val(ui.item.id);
+                                        }, function(ul, item) {
+                                            return $("<li></li>")
+                                                    .data("item.autocomplete", item)
+                                                    .append("<a>" + item.icon + "</a>")
+                                                    .appendTo(ul);
+                                        })
+                                    }
 
 </script>

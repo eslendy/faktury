@@ -65,166 +65,125 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                             </td>
                         </tr>
                         <tr class='nivel'>
-                    
-                    <td><label>Nivel de atención  según  CRES Acuerdo 008/2008 y Acuerdo 028/2011</label></td>
-                    <td class="nivel_cres">
-                        <label>1</label>
-                        <input type="checkbox" name="idcres_1" onclick="glosas(this)" <?php echo ($auditoriaMedica['idcres_1'] == 1) ? 'checked="checked"' : ''; ?> value="1" />
-                        <label>2</label>
-                        <input type="checkbox" name="idcres_1" onclick="glosas(this)" <?php echo ($auditoriaMedica['idcres_1'] == 2) ? 'checked="checked"' : ''; ?> class='checkbox_ ' value="2"  />
-                        <label>3</label>
-                        <input type="checkbox" name="idcres_1" onclick="glosas(this)" <?php echo ($auditoriaMedica['idcres_1'] == 3) ? 'checked="checked"' : ''; ?> class='checkbox_ ' value="3"  />
-                    </td>
-                    </tr>
-                    <tr>
-                        <td><label>CIE 10 de la atención</label></td>
-                        <td>
-                            <input type="text" id="autoc-idcie10" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<?php echo $idcie10['codigo'] . ' - ' . $idcie10['descripcion']; ?>" />
-                            <input type="hidden" id="idcie10" name="idcie10" class="validate[required]" value="<?php echo $auditoriaMedica['idcie10']; ?>" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>En Combate</label></td>
 
-                        <td>
-                            <input type="radio" name="en_combate" id="en_combate_si" value="SI"  <?php echo ($auditoriaMedica['en_combate'] == 'SI') ? 'checked="checked"' : ''; ?> class="validate[required]" /><label>SI</label>
-                            <input type="radio" name="en_combate" id="en_combate_no" value="NO" <?php echo ($auditoriaMedica['en_combate'] == 'NO') ? 'checked="checked"' : ''; ?> class="validate[required]" /><label>NO</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class='glosa-tipo'>
-                           <? /* <label >Pago</label> <input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '0') ? 'checked="checked"' : ''; ?> id="chk_0" value="0" onclick="glosas(this)" class="validate[required]"> */?>
-                            <label >Devolución</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '1') ? 'checked="checked"' : ''; ?> id="chk_1" value="1" onclick="glosas(this)" class="validate[required]">
-                            <label >Glosas</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '2') ? 'checked="checked"' : ''; ?> id="chk_2" value="2" onclick="glosas(this)" class="validate[required]">
-                        </td>
-                    </tr>
+                            <td><label>Nivel de atención  según  CRES Acuerdo 008/2008 y Acuerdo 028/2011</label></td>
+                            <td class="nivel_cres">
+                                <label>1</label>
+                                <input type="checkbox" name="idcres_1" onclick="glosas(this)" <?php echo ($auditoriaMedica['idcres_1'] == 1) ? 'checked="checked"' : ''; ?> value="1" />
+                                <label>2</label>
+                                <input type="checkbox" name="idcres_1" onclick="glosas(this)" <?php echo ($auditoriaMedica['idcres_1'] == 2) ? 'checked="checked"' : ''; ?> class='checkbox_ ' value="2"  />
+                                <label>3</label>
+                                <input type="checkbox" name="idcres_1" onclick="glosas(this)" <?php echo ($auditoriaMedica['idcres_1'] == 3) ? 'checked="checked"' : ''; ?> class='checkbox_ ' value="3"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>CIE 10 de la atención</label></td>
+                            <td>
+                                <input type="text" id="autoc-idcie10" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<?php echo $idcie10['codigo'] . ' - ' . $idcie10['descripcion']; ?>" />
+                                <input type="hidden" id="idcie10" name="idcie10" class="validate[required]" value="<?php echo $auditoriaMedica['idcie10']; ?>" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>En Combate</label></td>
 
-                    <tr id="tr_devoluciones"  <?php echo ($auditoriaMedica['estado_factura'] == '1') ? '' : 'style="display: none";'; ?>>
-                        <td colspan="2">
-                            <fieldset>
-                                <legend>Devoluciones</legend>
-                                <table width="100%">
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                        <? /* <tr>
-                                          <td width='320'>Concepto Auditoría</td>
-                                          <td>
-                                          <input type="number" name="devoluciones_codConcepto" id="codConcepto-chk_0" value="<? echo $auditoriaMedica['devoluciones_codConcepto'] ?>" class="validate[funcCall[_validarGlosas]]" />
-                                          </td>
-                                          </tr>
-                                          <tr>
-                                          <td>Fecha Concepto Auditoría</td>
-                                          <td>
-                                          <input type="text" name="devoluciones_fecha_concepto"  class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['devoluciones_fecha_concepto'] ?>" />
-                                          </td>
-                                          </tr> */ ?>
-                                        <tr>
-                                            <td>Codigo Devolución</td>
-                                            <td>
-                                                <input type="text" id="autoc-iddevolucion" class="validate[funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo $glosas['codigo'] . '-' . $glosas['item'] . ' ' . $glosas['descripcion']; ?>"/>
-                                                <input type="hidden" name="devoluciones_iddevolucion" id="iddevolucion" class="validate[custom[numberP]]" value="<? echo $auditoriaMedica['devoluciones_iddevolucion'] ?>"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha de Devolución</td>
-                                            <td>
-                                                <input type="text" name="devoluciones_fecha_devolucion" value="<? echo $auditoriaMedica['devoluciones_fecha_devolucion'] ?>" class="fecha validate[custom[date2]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Observaciones </td>
-                                            <td>
-                                                <textarea name="devoluciones_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $auditoriaMedica['devoluciones_observaciones'] ?></textarea>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </fieldset>
-                        </td>
-                    </tr>
-                    <tr id="tr_glosas" <?php echo ($auditoriaMedica['estado_factura'] == '2') ? '' : 'style="display: none";'; ?>>
-                        <td colspan="2">
-                            <fieldset>
-                                <legend>Glosas</legend>
-                                <table width="100%">
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                        <? /* <tr>
-                                          <td width='320'>Concepto Auditoría</td>
-                                          <td>
-                                          <input type="number" name="glosa_codConcepto" id="codConcepto" value="<? echo $auditoriaMedica['glosa_codConcepto'] ?>" class="validate[condRequired[chk_2],custom[numberP]]" />
-                                          </td>
-                                          </tr>
-                                          <tr>
-                                          <td>Fecha Concepto Auditoría</td>
-                                          <td>
-                                          <input type="text" name="glosa_fecha_concepto"  class="fecha validate[]" value="<? echo $auditoriaMedica['glosa_fecha_concepto'] ?>"/>
-                                          </td>
-                                          </tr> */ ?>
-                                        <tr>
-                                            <td>Codigo Glosa Inicial</td>
-                                            <td>
-                                                <input type="text" id="autoc-idglosa" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo $glosa_inicial['codigo'] . '-' . $glosa_inicial['item'] . ' ' . $glosa_inicial['descripcion']; ?>"/>
-                                                <input type="hidden" name="glosa_idglosa" id="idglosa" class="validate[custom[numberP]]" value="<? echo $auditoriaMedica['glosa_idglosa'] ?>"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha de Glosa</td>
-                                            <td>
-                                                <input type="text" name="glosa_fecha_glosa" value="<? echo $auditoriaMedica['glosa_fecha_glosa'] ?>" class="fecha validate[custom[date2]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fecha de Recepcion de Glosa</td>
-                                            <td>
-                                                <input type="text" name="glosa_fecha_recepcion_glosa" value="<? echo $auditoriaMedica['glosa_fecha_recepcion_glosa'] ?>" class="fecha validate[custom[date2]]" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Valor de la Glosa</td>
-                                            <td>
-                                                <input type="number" name="glosa_valor_glosa" value="<? echo $auditoriaMedica['glosa_valor_glosa'] ?>" id="valor_glosa-chk_2" class=" pesos" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Observaciones </td>
-                                            <td>
-                                                <textarea name="glosa_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $auditoriaMedica['glosa_observaciones'] ?></textarea>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </fieldset>
-                        </td>
-                    </tr>
-                    <? /*<tr id="tr_pago" <?php echo ($auditoriaMedica['estado_factura'] == '0') ? '' : 'style="display: none";'; ?>>
-                        <td colspan="2">
-                            <fieldset>
-                                <legend>Pago</legend>
-                                <table width="100%">
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                        <? /* <tr>
-                                          <td width='320'>Concepto Auditoría</td>
-                                          <td>
-                                          <input type="number" name="pago_codConcepto" id="codConcepto" value="<? echo $auditoriaMedica['pago_codConcepto'] ?>" class="validate[funcCall[chk_0],custom[numberP]]" />
-                                          </td>
-                                          </tr>
-                                          <tr>
-                                          <td>Fecha Concepto Auditoría</td>
-                                          <td>
-                                          <input type="text" name="pago_fecha_concepto" class="fecha validate[custom[date2]]" value="<? echo $auditoriaMedica['pago_fecha_concepto'] ?>"/>
-                                          </td>
-                                          </tr> */ /*?>
-                                        
-                                    </tbody>
-                                </table>
-                            </fieldset>
-                        </td>
-                    </tr>*/ ?>
+                            <td>
+                                <input type="radio" name="en_combate" id="en_combate_si" value="SI"  <?php echo ($auditoriaMedica['en_combate'] == 'SI') ? 'checked="checked"' : ''; ?> class="validate[required]" /><label>SI</label>
+                                <input type="radio" name="en_combate" id="en_combate_no" value="NO" <?php echo ($auditoriaMedica['en_combate'] == 'NO') ? 'checked="checked"' : ''; ?> class="validate[required]" /><label>NO</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class='glosa-tipo'>
+                                <? /* <label >Pago</label> <input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '0') ? 'checked="checked"' : ''; ?> id="chk_0" value="0" onclick="glosas(this)" class="validate[required]"> */ ?>
+                                <label >Devolución</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '1') ? 'checked="checked"' : ''; ?> id="chk_1" value="1" onclick="glosas(this)" class="validate[required]">
+                                <label >Glosas</label><input type="checkbox" name="estado_factura" <?php echo ($auditoriaMedica['estado_factura'] == '2') ? 'checked="checked"' : ''; ?> id="chk_2" value="2" onclick="glosas(this)" class="validate[required]">
+                            </td>
+                        </tr>
+
+                        <tr id="tr_devoluciones"  <?php echo ($auditoriaMedica['estado_factura'] == '1') ? '' : 'style="display: none";'; ?>>
+                            <td colspan="2">
+                                <fieldset>
+                                    <legend>Devoluciones</legend>
+                                    <table width="100%">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>Codigo Devolución</td>
+                                                <td>
+                                                    <input type="text" id="autoc-iddevolucion" class="validate[funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo $glosas['codigo'] . '-' . $glosas['item'] . ' ' . $glosas['descripcion']; ?>"/>
+                                                    <input type="hidden" name="devoluciones_iddevolucion" id="iddevolucion" class="validate[custom[numberP]]" value="<? echo $auditoriaMedica['devoluciones_iddevolucion'] ?>"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fecha de Devolución</td>
+                                                <td>
+                                                    <input type="text" name="devoluciones_fecha_devolucion" value="<? echo $auditoriaMedica['devoluciones_fecha_devolucion'] ?>" class="fecha validate[custom[date2]]" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Observaciones </td>
+                                                <td>
+                                                    <textarea name="devoluciones_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $auditoriaMedica['devoluciones_observaciones'] ?></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr id="tr_glosas" <?php echo ($auditoriaMedica['estado_factura'] == '2') ? '' : 'style="display: none";'; ?>>
+                            <td colspan="2">
+                                <fieldset>
+                                    <legend>Glosas</legend>
+                                    <table width="100%">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>Codigo Glosa Inicial</td>
+                                                <td>
+                                                    <input type="text" id="autoc-idglosa" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo $glosa_inicial['codigo'] . '-' . $glosa_inicial['item'] . ' ' . $glosa_inicial['descripcion']; ?>"/>
+                                                    <input type="hidden" name="glosa_idglosa" id="idglosa" class="validate[custom[numberP]]" value="<? echo $auditoriaMedica['glosa_idglosa'] ?>"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fecha de Glosa</td>
+                                                <td>
+                                                    <input type="text" name="glosa_fecha_glosa" value="<? echo $auditoriaMedica['glosa_fecha_glosa'] ?>" class="fecha validate[custom[date2]]" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fecha de Recepcion de Glosa</td>
+                                                <td>
+                                                    <input type="text" name="glosa_fecha_recepcion_glosa" value="<? echo $auditoriaMedica['glosa_fecha_recepcion_glosa'] ?>" class="fecha validate[custom[date2]]" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Valor de la Glosa</td>
+                                                <td>
+                                                    <input type="number" name="glosa_valor_glosa" value="<? echo $auditoriaMedica['glosa_valor_glosa'] ?>" id="valor_glosa-chk_2" class=" pesos" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Observaciones </td>
+                                                <td>
+                                                    <textarea name="glosa_observaciones" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $auditoriaMedica['glosa_observaciones'] ?></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Valor a pagar primera auditoría</td>
+                                                <td>
+                                                    <input type="number" name="glosa_valor_pagar_primera_glosa" id="valor_glosa-chk_2" class=" pesos" value="<? echo $auditoriaMedica['glosa_valor_pagar_primera_glosa'] ?>"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
             </form>
@@ -466,7 +425,7 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                         </tr>
 
                     </table>
-                <?php
+                    <?php
                 } else {
                     echo '<em>No tiene presupuesto</em>';
                 }
@@ -483,7 +442,7 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                 $dataFin = $contabilidad->getContabilidadByFactura($data['idFactura']);
                 ?>
 
-<?php if ($dataFin) { ?>
+                <?php if ($dataFin) { ?>
                     <table align="center">
                         <tr>
                             <td width="320">
@@ -505,7 +464,7 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                         </tr>
 
                     </table>
-                <?
+                    <?
                 } else {
                     echo '<em>No tiene contabilidad</em>';
                 }
@@ -521,7 +480,7 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                 $dataFin = $tesoreria->getTesoreriaByFactura($data['idFactura']);
                 ?>
 
-<?php if ($dataFin) { ?>
+                <?php if ($dataFin) { ?>
                     <table align="center">
                         <tr>
                             <td width="320">
@@ -549,11 +508,11 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                         </tr>
 
                     </table>
-<?
-} else {
-    echo '<em>No tiene tesoreria</em>';
-}
-?>
+                    <?
+                } else {
+                    echo '<em>No tiene tesoreria</em>';
+                }
+                ?>
 
             </div>
 
@@ -563,90 +522,90 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
 </div>
 <script>
 
-                         
-                        $(function() {
 
-                            _loadADDForms();
-                            $(".fecha").datepicker({
-                                showOn: "button",
-                                buttonImage: "/imagenes/calendar.gif",
-                                buttonImageOnly: true,
-                                dateFormat: "yy-mm-dd"
+                            $(function() {
+
+                                _loadADDForms();
+                                $(".fecha").datepicker({
+                                    showOn: "button",
+                                    buttonImage: "/imagenes/calendar.gif",
+                                    buttonImageOnly: true,
+                                    dateFormat: "yy-mm-dd"
+                                });
                             });
-                        });
 
 
 
-                        $(function() {
-                            _botones('.guardarDaata', "GuardarEdit", function() {
-                                _guardarMods("editAuditoria", "#editAuditoria", "Auditoría");
-                            })
+                            $(function() {
+                                _botones('.guardarDaata', "GuardarEdit", function() {
+                                    _guardarMods("editAuditoria", "#editAuditoria", "Auditoría");
+                                })
 
-                            $("#acordeon").accordion({
-                                collapsible: true,
-                                active: false,
-                                heightStyle: "content"
+                                $("#acordeon").accordion({
+                                    collapsible: true,
+                                    active: false,
+                                    heightStyle: "content"
+                                });
+                                _fechaFields();
                             });
-                            _fechaFields();
-                        });
 
 
-                        function glosas(e) {
-                            loadChecks();
-                            if ($(e).is(":checked") == true) {
-                                if (e.id == 'chk_1') {
-                                    $("#chk_2").removeAttr("checked");
-                                    $("#chk_0").removeAttr("checked");
+                            function glosas(e) {
+                                loadChecks();
+                                if ($(e).is(":checked") == true) {
+                                    if (e.id == 'chk_1') {
+                                        $("#chk_2").removeAttr("checked");
+                                        $("#chk_0").removeAttr("checked");
 
-                                    $("#tr_devoluciones").show();
-                                    $("#tr_pago").hide();
-                                    $("#tr_glosas").hide();
-                                } else if (e.id == 'chk_2') {
-                                    $("#chk_1").removeAttr("checked");
-                                    $("#chk_0").removeAttr("checked");
-                                    $("#tr_devoluciones").hide();
-                                    $("#tr_pago").hide();
-                                    $("#tr_glosas").show();
+                                        $("#tr_devoluciones").show();
+                                        $("#tr_pago").hide();
+                                        $("#tr_glosas").hide();
+                                    } else if (e.id == 'chk_2') {
+                                        $("#chk_1").removeAttr("checked");
+                                        $("#chk_0").removeAttr("checked");
+                                        $("#tr_devoluciones").hide();
+                                        $("#tr_pago").hide();
+                                        $("#tr_glosas").show();
+                                    } else {
+                                        $("#chk_2").removeAttr("checked");
+                                        $("#chk_1").removeAttr("checked");
+                                        $("#tr_devoluciones").hide();
+                                        $("#tr_pago").show();
+                                        $("#tr_glosas").hide();
+                                    }
                                 } else {
-                                    $("#chk_2").removeAttr("checked");
-                                    $("#chk_1").removeAttr("checked");
-                                    $("#tr_devoluciones").hide();
-                                    $("#tr_pago").show();
-                                    $("#tr_glosas").hide();
-                                }
-                            } else {
-                                if (e.id == 'chk_1') {
-                                    $("#tr_devoluciones").hide();
-                                } else if (e.id == 'chk_2') {
-                                    $("#tr_glosas").hide();
-                                } else {
-                                    $("#tr_pago").hide();
+                                    if (e.id == 'chk_1') {
+                                        $("#tr_devoluciones").hide();
+                                    } else if (e.id == 'chk_2') {
+                                        $("#tr_glosas").hide();
+                                    } else {
+                                        $("#tr_pago").hide();
+                                    }
                                 }
                             }
-                        }
 
-                        var _loadADDForms = function() {
-                            
-                            
-                            _autocompletar("#autoc-idcie10", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=cie10", function(ui) {
-                                $("#idcie10").val(ui.item.id);
-                            }, '')
-                            _autocompletar("#autoc-iddevolucion", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas", function(ui) {
-                                $("#iddevolucion").val(ui.item.id);
-                            }, function(ul, item) {
-                                return $('<li style="width:50%"></li>')
-                                        .data("item.autocomplete", item)
-                                        .append("<a>" + item.icon + "</a>")
-                                        .appendTo(ul);
-                            })
-                            _autocompletar("#autoc-idglosa", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas", function(ui) {
-                                $("#idglosa").val(ui.item.id);
-                            }, function(ul, item) {
-                                return $("<li></li>")
-                                        .data("item.autocomplete", item)
-                                        .append("<a>" + item.icon + "</a>")
-                                        .appendTo(ul);
-                            })
-                        }
+                            var _loadADDForms = function() {
+
+
+                                _autocompletar("#autoc-idcie10", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=cie10", function(ui) {
+                                    $("#idcie10").val(ui.item.id);
+                                }, '')
+                                _autocompletar("#autoc-iddevolucion", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas", function(ui) {
+                                    $("#iddevolucion").val(ui.item.id);
+                                }, function(ul, item) {
+                                    return $('<li style="width:50%"></li>')
+                                            .data("item.autocomplete", item)
+                                            .append("<a>" + item.icon + "</a>")
+                                            .appendTo(ul);
+                                })
+                                _autocompletar("#autoc-idglosa", init.XNG_WEBSITE_URL + "radicacion/ajax/busqueda.php?case=glosas", function(ui) {
+                                    $("#idglosa").val(ui.item.id);
+                                }, function(ul, item) {
+                                    return $("<li></li>")
+                                            .data("item.autocomplete", item)
+                                            .append("<a>" + item.icon + "</a>")
+                                            .appendTo(ul);
+                                })
+                            }
 
 </script>
