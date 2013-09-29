@@ -18,12 +18,17 @@ class auMedica extends BD {
         return $sql;
     }
     
+    public function updateGlosaValue($data){
+        $sql = "update ValoresGlosas set valor='".$data[valor]."', descripcion='".$data[description]."', id_factura=$data[id_factura], step=$data[step], userid=$_SESSION[usrid])";
+        return $this->ejecutar($sql);
+    }
+    
     public function saveGlosaValue($data){
         $sql = "insert into ValoresGlosas (valor, descripcion, id_factura, step, userid) values($data[valor], '".$data[description]."', $data[id_factura],$data[step], $_SESSION[usrid])";
         return $this->ejecutar($sql);
     }
 
-    public function getAllListsGlosasByFacturaId($id){
+    public function getAllListsGlosasByFacturaId($id, $step=0){
         $sql = "SELECT * FROM ValoresGlosas vg WHERE vg.id_factura = $id and userid = $_SESSION[usrid] ";
         return $this->consultar($sql);
     }

@@ -625,7 +625,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                             e.preventDefault();
 
 
-                                            $.post(init.XNG_WEBSITE_URL + '/auditoria_medica/ajax/loadAndSaveValorGlosa.php', $($(this).attr('data-form')).serialize(), function(data) {
+                                            $.post(init.XNG_WEBSITE_URL + '/auditoria_medica/ajax/loadAndSaveValorGlosa.php?type=save', $($(this).attr('data-form')).serialize(), function(data) {
                                                 var result = $.parseJSON(data)
 
                                                 $('.valor-inicial-glosa').val((parseInt($('.valor-inicial-glosa').val()) + parseInt(result.valor)))

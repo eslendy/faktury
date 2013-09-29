@@ -7,11 +7,20 @@ include("../../libphp/mysql.php");
 include("../clases/auMedica_class.php");
 $auMedica = new auMedica($conexion['local']);
 
-$saving = $auMedica->saveGlosaValue($_REQUEST);
+if(key_exists('type', $_GET)){
+    if($_GET['type'] == 'edit'){
+        $saving = $auMedica->updateGlosaValue($_REQUEST); 
+    }
+    if($_GET['type'] == 'save'){
+        $saving = $auMedica->saveGlosaValue($_REQUEST); 
+    }
+   
+}
+
 
 if($saving)
 {
-    $data_ = $auMedica->getAllListsGlosasByFacturaId($_REQUEST['id_factura']);
+    $data_ = $auMedica->getAllListsGlosasByFacturaId($_POST['id_factura']);
 
 }
 

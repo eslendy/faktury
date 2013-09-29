@@ -264,8 +264,6 @@ include '../requestFunctionsJavascript.php';
                             <td>Valor aceptado por la IPS</td>
                             <td>
                                 <input type="number" name="glosa_valor_aceptado_ips_1" id="valor_glosa-chk_2" class=" pesos" />
-                                <button class="btn btn-success AddNewValueGlosa" data-related=".valor_ips"><i class="icon-plus"></i></button>
-
                             </td>
                         </tr>
 
@@ -273,7 +271,6 @@ include '../requestFunctionsJavascript.php';
                             <td>Valor levantado</td>
                             <td>
                                 <input type="number" name="glosa_valor_glosa_levantado_1" id="valor_glosa-chk_2" class=" pesos" />
-                                <button class="btn btn-success AddNewValueGlosa" data-related=".valor_levantado"><i class="icon-plus"></i></button>
                             </td>
                         </tr>
                         <tr <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
@@ -309,10 +306,22 @@ include '../requestFunctionsJavascript.php';
                                 <input type="text" name="glosa_fecha_recepcion_glosa_2"  class="fecha validate[]" />
                             </td>
                         </tr>
+                        <?php
+                                                $data_glosas_ = $auMedica->getAllListsGlosasByFacturaId($fac['idFactura']);
+                                               // var_dump($data_glosas_);
+                                                $total___ = 0;
+                                                ?>
+
+                                                <?
+                                                foreach ($data_glosas_ as $data___) {
+                                                    $total___ += $data___['valor'];
+                                                }
+                                             //echo $LastGlosa['glosa_valor_aceptado_ips_1'];
+                                                ?>
                         <tr <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Valor de Glosa Pendiente</td>
                             <td>
-                                <input type="number" name="glosa_valor_glosa_2" id="valor_glosa-chk_2" class=" pesos" />
+                                <input type="number" name="glosa_valor_glosa_2" id="valor_glosa-chk_2" class=" pesos" readonly="true" value="<? echo abs($total___ - $LastGlosa['glosa_valor_aceptado_ips_1'] - $LastGlosa['glosa_valor_glosa_levantado_1']);?>"/>
                             </td>
                         </tr>
                         <tr <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>

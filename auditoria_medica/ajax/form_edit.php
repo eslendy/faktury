@@ -160,12 +160,35 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                                                     <input type="text" name="glosa_fecha_recepcion_glosa" value="<? echo $auditoriaMedica['glosa_fecha_recepcion_glosa'] ?>" class="fecha validate[custom[date2]]" />
                                                 </td>
                                             </tr>
+                                            
                                             <tr>
+                                                <?php
+                                                $auMedica = new auMedica($conexion['local']);
+                                                $fac = $data['idFactura'];
+                                                $data_glosas_ = $auMedica->getAllListsGlosasByFacturaId($fac);
+                                               
+                                                $total___ = 0;
+                                                ?>
+
+                                                <?
+                                                foreach ($data_glosas_ as $data___) {
+                                                    $total___ += $data___['valor'];
+                                                }
+                                                ?>
+
+
                                                 <td>Valor de la Glosa</td>
                                                 <td>
-                                                    <input type="number" name="glosa_valor_glosa" value="<? echo $auditoriaMedica['glosa_valor_glosa'] ?>" id="valor_glosa-chk_2" class=" pesos" />
+                                                    <div class="input-prepend">
+                                                        <span class="add-on">$</span>
+                                                        <input type="number" name="glosa_valor_glosa" id="prependedInput" readonly="true" class=" pesos valor-inicial-glosa" value="<? echo $total___ ?>"/>
+
+                                                        <? /* <input type="number" id="valor_glosa-chk_2" readonly="true" class=" pesos valor-inicial-glosa" value="<? echo $total___ ?>"/> */ ?>
+                                                        <button class="btn btn-success AddNewValueGlosa"><i class="icon-plus"></i></button>
+                                                    </div>
                                                 </td>
                                             </tr>
+
                                             <tr>
                                                 <td>Observaciones </td>
                                                 <td>
@@ -175,9 +198,13 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
                                             <tr>
                                                 <td>Valor a pagar primera auditoría</td>
                                                 <td>
-                                                    <input type="number" name="glosa_valor_pagar_primera_glosa" id="valor_glosa-chk_2" class=" pesos" value="<? echo $auditoriaMedica['glosa_valor_pagar_primera_glosa'] ?>"/>
+                                                    <div class="input-prepend">
+                                                        <span class="add-on">$</span>
+                                                        <input type="number" name="glosa_valor_pagar_primera_glosa" readonly="true" value="<?php echo abs($data['valor'] - $total___) ?>" data-valor-factura="<? echo $auditoriaMedica['glosa_valor_pagar_primera_glosa'] ?>" id="prependedInput" class=" pesos valor_a_pagar_primera_audioria" />
+                                                    </div>
                                                 </td>
                                             </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </fieldset>
@@ -520,10 +547,110 @@ $glosa_inicial = $glosa->getOne($auditoriaMedica['glosa_idglosa']);
         </div>
     </div>
 </div>
+
+
+
+<div aria-hidden="true" aria-labelledby="myModalLabel2" role="dialog" tabindex="-1" class="modal hide fade" id="ModalValorGlosa" style="display: none;">
+    <div class="modal-header modal-success">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <h3 id="myModalLabel2">Valor/Descripcion Glosa</h3>
+    </div>
+    <div class="modal-body">
+        <div class="span6">
+            <label><h2>Glosa a la Factura #<? echo $fac ?></h2></label>
+            <div class="glosas-detalle">
+
+                <table class="responsive table table-hover">
+                    <tbody
+                    <?
+                    foreach ($data_glosas_ as $data) {
+
+
+                        switch ($data['step']) {
+                            case 0:
+                                $Glosa_Step = 'Glosa Inicial';
+                                break;
+                            case 1:
+                                $Glosa_Step = 'Primera respuesta de Glosa';
+                                break;
+                            case 2:
+                                $Glosa_Step = 'Segunda respuesta de Glosa';
+                                break;
+                            case 3:
+                                $Glosa_Step = 'Glosa de conciliacion';
+                                break;
+
+
+                            default:
+                                break;
+                        }
+                        ?>
+                            <tr>
+                                <td>
+                                    <h3><?php echo $Glosa_Step ?></h3>
+                                    <h5>Glosa ID #<?php echo $data['id'] ?></h5>
+                                    <p><b>Valor: </b><?php echo $data['valor'] ?></p>
+                                    <p><b>Descripcion: </b> <?php echo $data['descripcion'] ?></p>
+                                </td>
+                            </tr>
+                        <? } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="span6">
+            <div class="valor-inicial-form">
+
+                <form class="form_glosa_ marginTop20" style="margin-left: 20px;">
+                    <input type="hidden" name="id_factura" value="<?php echo $fac ?>"/>
+                    <input type="hidden" name="step" value="0"/>
+                    <div class="primer-valor">
+                        <input type="number" class="valor" name="valor" placeholder="valor"/>
+                    </div>
+                    <div class="marginTop20">
+                        <textarea class="descripcion" placeholder="description" name="description"></textarea>
+                    </div>
+
+                    <button class="addnewvalue btn btn-primary" data-form=".form_glosa_">Agregar Este nuevo valor</button>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal">OK</button>
+    </div>
+</div>
+
 <script>
 
 
                             $(function() {
+                                
+                                $('.addnewvalue').click(function(e) {
+                                            e.preventDefault();
+
+
+                                            $.post(init.XNG_WEBSITE_URL + '/auditoria_medica/ajax/loadAndSaveValorGlosa.php?type=edit', $($(this).attr('data-form')).serialize(), function(data) {
+                                                var result = $.parseJSON(data)
+
+                                                $('.valor-inicial-glosa').val((parseInt($('.valor-inicial-glosa').val()) + parseInt(result.valor)))
+                                                $('.valor_a_pagar_primera_audioria').val(Math.abs((parseInt($('.valor-inicial-glosa').val())) - parseInt($('.valor_a_pagar_primera_audioria').attr('data-valor-factura'))))
+                                                $('.glosas-detalle').html(result.html);
+                                                $('.valor').html('');
+                                                $('.description').html('');
+
+                                            })
+                                        })
+
+
+                                        $('.AddNewValueGlosa').click(function(e) {
+                                            e.preventDefault();
+                                            $('#ModalValorGlosa').modal('show');
+                                        })
+
 
                                 _loadADDForms();
                                 $(".fecha").datepicker({
