@@ -229,8 +229,8 @@ include '../requestFunctionsJavascript.php';
                                 ?>
 
                                 <select name="step_glosa" class="step_glosa" size="3" multiple>
-                                    <option class="option-glosa" value="1" <?php echo ($LastGlosa['step_glosa'] == 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 0) ? ' disabled="true" style="color:#D1D1D1;"' : ''; ?>>Primera respuesta de Glosa</option>
-                                    <option class="option-glosa" value="2" <?php echo ($LastGlosa['step_glosa'] > 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 1) ? ' disabled="true" style="color:#D1D1D1;"' : ''; ?>>Segunda respuesta de Glosa</option>
+                                    <option class="option-glosa" value="1" <?php echo ($LastGlosa['step_glosa'] == 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 0) ? ' style="color:#D1D1D1;"' : ''; ?>>Primera respuesta de Glosa</option>
+                                    <option class="option-glosa" value="2" <?php echo ($LastGlosa['step_glosa'] > 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 1) ? ' style="color:#D1D1D1;"' : ''; ?>>Segunda respuesta de Glosa</option>
                                     <option class="option-glosa" value="3" <?php echo ($LastGlosa['step_glosa'] > 1) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 2) ? 'selected="selected" disabled="true" style="color:#D1D1D1;"' : ''; ?>>Glosa de conciliacion</option>
                                 </select>
                             </td>
@@ -307,21 +307,21 @@ include '../requestFunctionsJavascript.php';
                             </td>
                         </tr>
                         <?php
-                                                $data_glosas_ = $auMedica->getAllListsGlosasByFacturaId($fac['idFactura']);
-                                               // var_dump($data_glosas_);
-                                                $total___ = 0;
-                                                ?>
+                        $data_glosas_ = $auMedica->getAllListsGlosasByFacturaId($fac['idFactura']);
+                        // var_dump($data_glosas_);
+                        $total___ = 0;
+                        ?>
 
-                                                <?
-                                                foreach ($data_glosas_ as $data___) {
-                                                    $total___ += $data___['valor'];
-                                                }
-                                             //echo $LastGlosa['glosa_valor_aceptado_ips_1'];
-                                                ?>
+                        <?
+                        foreach ($data_glosas_ as $data___) {
+                            $total___ += $data___['valor'];
+                        }
+                        //echo $LastGlosa['glosa_valor_aceptado_ips_1'];
+                        ?>
                         <tr <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Valor de Glosa Pendiente</td>
                             <td>
-                                <input type="number" name="glosa_valor_glosa_2" id="valor_glosa-chk_2" class=" pesos" readonly="true" value="<? echo abs($total___ - $LastGlosa['glosa_valor_aceptado_ips_1'] - $LastGlosa['glosa_valor_glosa_levantado_1']);?>"/>
+                                <input type="number" name="glosa_valor_glosa_2" id="valor_glosa-chk_2" class=" pesos" readonly="true" value="<? echo abs($total___ - $LastGlosa['glosa_valor_aceptado_ips_1'] - $LastGlosa['glosa_valor_glosa_levantado_1']); ?>"/>
                             </td>
                         </tr>
                         <tr <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
@@ -395,16 +395,16 @@ include '../requestFunctionsJavascript.php';
 </div>
 
 <script>
-    $(document).ready(function(){
-        $.getJSON(init.XNG_WEBSITE_URL+'auditoria_medica/ajax/loadAlarms', {}, function(data){
-            $.each(data, function(i,j){
+    $(document).ready(function() {
+        $.getJSON(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/loadAlarms', {}, function(data) {
+            $.each(data, function(i, j) {
                 console.log(j);
                 //$('.links-sin-auditar').append();
             })
-            
+
             $('#myModal2').modal('show');
         })
-        
+
     })
 
 </script>
