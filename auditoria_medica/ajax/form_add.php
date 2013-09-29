@@ -160,14 +160,17 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                                     $total___ += $data___['valor'];
                                                 }
                                                 ?>
-                                              
+
 
                                                 <td>Valor de la Glosa</td>
                                                 <td>
-                                                    <input type="number" name="glosa_valor_glosa" id="valor_glosa-chk_2" readonly="true" class=" pesos valor-inicial-glosa" value="<? echo $total___?>"/>
+                                                    <div class="input-prepend">
+                                                        <span class="add-on">$</span>
+                                                        <input type="number" name="glosa_valor_glosa" id="prependedInput" readonly="true" class=" pesos valor-inicial-glosa" value="<? echo $total___ ?>"/>
 
-                                                    <? /*<input type="number" id="valor_glosa-chk_2" readonly="true" class=" pesos valor-inicial-glosa" value="<? echo $total___ ?>"/>*/?>
-                                                    <button class="btn btn-success AddNewValueGlosa"><i class="icon-plus"></i></button>
+                                                        <? /* <input type="number" id="valor_glosa-chk_2" readonly="true" class=" pesos valor-inicial-glosa" value="<? echo $total___ ?>"/> */ ?>
+                                                        <button class="btn btn-success AddNewValueGlosa"><i class="icon-plus"></i></button>
+                                                    </div>
                                                 </td>
                                             </tr>
 
@@ -180,7 +183,10 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                             <tr>
                                                 <td>Valor a pagar primera auditoría</td>
                                                 <td>
-                                                    <input type="number" name="glosa_valor_pagar_primera_glosa" id="valor_glosa-chk_2_" class=" pesos" />
+                                                    <div class="input-prepend">
+                                                        <span class="add-on">$</span>
+                                                        <input type="number" name="glosa_valor_pagar_primera_glosa" readonly="true" value="<?php echo abs($data['valor'] - $total___) ?>" data-valor-factura="<?php echo $data['valor']; ?>" id="prependedInput" class=" pesos valor_a_pagar_primera_audioria" />
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -568,7 +574,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                     <p><b>Descripcion: </b> <?php echo $data['descripcion'] ?></p>
                                 </td>
                             </tr>
-<? } ?>
+                        <? } ?>
                     </tbody>
                 </table>
             </div>
@@ -623,6 +629,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                                 var result = $.parseJSON(data)
 
                                                 $('.valor-inicial-glosa').val((parseInt($('.valor-inicial-glosa').val()) + parseInt(result.valor)))
+                                                $('.valor_a_pagar_primera_audioria').val((parseInt($('.valor-inicial-glosa').val())) - parseInt($('.valor_a_pagar_primera_audioria').attr('data-valor-factura')))
                                                 $('.glosas-detalle').html(result.html);
                                                 $('.valor').html('');
                                                 $('.description').html('');
