@@ -51,6 +51,16 @@ class auMedica extends BD {
         return $this->consultar($this->_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
     }
 
+    public function getGlosaByIdAuditoriaStep($id_auditoria, $step=1) {
+        if (isset($id_auditoria)) {
+            $sql = "SELECT * FROM glosa_auditoria where auditoria_glosa = $id_auditoria and step_glosa = $step limit 1";
+            $rs = $this->consultar($sql);
+            return $rs[0];
+        } else {
+            return false;
+        }
+    }
+    
     public function getLastGlosaByIdAuditoria($id_auditoria) {
         if (isset($id_auditoria)) {
             $sql = "SELECT * FROM glosa_auditoria where auditoria_glosa = $id_auditoria order by step_glosa DESC limit 1";

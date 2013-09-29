@@ -108,11 +108,35 @@ class BD {
         if (mysql_query($sql, $this->conn)) {
             return mysql_insert_id($this->conn);
         } else {
-                throw new Exception("Error al ejecutar la consulta '" . $sql . "',  MySQL Error " . mysql_error());
-                die("Estas agregando un registro duplicado, por favor verifique que no se encuentre en las listas.");
-            
-        
+            throw new Exception("Error al ejecutar la consulta '" . $sql . "',  MySQL Error " . mysql_error());
+            die("Estas agregando un registro duplicado, por favor verifique que no se encuentre en las listas.");
         }
+    }
+
+    public function ejecutarInsertArrayExistsUpdate($array, $table, $select = '', $while = '') {
+
+        $sql = $select;
+        $result_ = $this->consultar_total($sql);
+       
+        if (count($result_) > 0) {
+            $result = $this->ejecutarUpdateArray($array, $table, $while);
+            
+        } else {
+            $columnas = "";
+            $valores = "";
+            foreach ($array as $c => $v) {
+                $columnas .= $c . ",";
+                $valores .= "'" . $v . "',";
+            }
+            $columnas = substr($columnas, 0, strlen($columnas) - 1);
+            $valores = substr($valores, 0, strlen($valores) - 1);
+            $sql = "INSERT INTO " . $table . "(" . $columnas . ") values(" . $valores . ")";
+            $result = $this->ejecutarInsert($sql);
+        }
+
+
+
+        return $result;
     }
 
     public function ejecutarInsertArray($array, $table) {
@@ -126,12 +150,11 @@ class BD {
         $columnas = substr($columnas, 0, strlen($columnas) - 1);
         $valores = substr($valores, 0, strlen($valores) - 1);
         $sql = "INSERT INTO " . $table . "(" . $columnas . ") values(" . $valores . ")";
-        
+
         $result = $this->ejecutarInsert($sql);
-        
+
 
         return $result;
-                
     }
 
     public function ejecutarUpdateArray($array, $table, $where) {

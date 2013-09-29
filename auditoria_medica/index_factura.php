@@ -4,6 +4,8 @@ include("../libphp/config.inc.php");
 include("../libphp/mysql.php");
 include("../radicacion/clases/facturas_class.php");
 include("clases/auMedica_class.php");
+include("../radicacion/clases/glosas_class.php");
+
 $facturas = new facturas($conexion['local']);
 if (empty($_REQUEST['page'])) {
     $_REQUEST['page'] = 1;
@@ -142,6 +144,7 @@ include '../requestFunctionsJavascript.php';
 <script type="text/javascript">
     $(document).ready(function() {
         $('.agregarNuevaGlosa').click(function() {
+            $('.guardarNuevaGlosa').attr('data-record', $(this).attr('data-record'))
             $('.auditoria_glosa').val($(this).attr('data-auditoria'));
         })
         _autocompletar("#autoc-idglosa2", init.XNG_WEBSITE_URL + "auditoria_medica/ajax/busqueda.php?case=glosas&tipo=-1", function(ui) {
@@ -179,9 +182,10 @@ include '../requestFunctionsJavascript.php';
             })
         })
         $('.guardarNuevaGlosa').click(function() {
-            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/save.php?type=addNewGlosa', $('.addOtherGlosa').serialize(), function(data) {
+            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/save.php?type=addNewGlosa&idFactura='+$(this).attr('data-record'), $('.addOtherGlosa').serialize(), function(data) {
                 alert('Se ha agregado una nueva glosa para esta auditoria.')
                 $('#agregarNuevaGlosa').modal('hide');
+                window.location = init.XNG_WEBSITE_URL+'auditoria_medica';
             })
         })
     })
@@ -219,6 +223,27 @@ include '../requestFunctionsJavascript.php';
                             <td>
                                 <?php
                                 $LastGlosa = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica']);
+                                $glosa = new glosas_devoluciones($conexion['local']);
+                                
+                                
+                                $Glosa1 = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica'], 1);
+                                if($Glosa1){
+                                    $glosas1 = $glosa->getOne($Glosa1['glosa_idglosa_1']);
+                                }
+                               
+                                
+                                
+                                $Glosa2 = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica'], 2);
+                                if($Glosa2){
+                                    $glosas2 = $glosa->getOne($Glosa2['glosa_idglosa_2']);
+                                }
+                                
+                                $Glosa3 = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica'], 3);
+                                if($Glosa3){
+                                    $glosas3 = $glosa->getOne($Glosa3['glosa_idglosa_3']);
+                                }
+                                
+                                
                                 //var_dump($LastGlosa);
                                 if (isset($LastGlosa)) {
                                     $LastGlosa = $LastGlosa;
@@ -229,9 +254,9 @@ include '../requestFunctionsJavascript.php';
                                 ?>
 
                                 <select name="step_glosa" class="step_glosa" size="3" multiple>
-                                    <option class="option-glosa" value="1" <?php echo ($LastGlosa['step_glosa'] == 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 0) ? ' style="color:#D1D1D1;"' : ''; ?>>Primera respuesta de Glosa</option>
-                                    <option class="option-glosa" value="2" <?php echo ($LastGlosa['step_glosa'] > 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 1) ? ' style="color:#D1D1D1;"' : ''; ?>>Segunda respuesta de Glosa</option>
-                                    <option class="option-glosa" value="3" <?php echo ($LastGlosa['step_glosa'] > 1) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 2) ? 'selected="selected" disabled="true" style="color:#D1D1D1;"' : ''; ?>>Glosa de conciliacion</option>
+                                    <option class="option-glosa" value="1" data-selected=".glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 0) ? ' style="color:#D1D1D1;"' : ''; ?>>Primera respuesta de Glosa</option>
+                                    <option class="option-glosa" value="2" data-selected=".glosa2_tr" <?php echo ($LastGlosa['step_glosa'] > 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 1) ? ' style="color:#D1D1D1;"' : ''; ?>>Segunda respuesta de Glosa</option>
+                                    <option class="option-glosa" value="3" data-selected=".glosa3_tr" <?php echo ($LastGlosa['step_glosa'] > 1) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 2) ? 'selected="selected" style="color:#D1D1D1;"' : ''; ?>>Glosa de conciliacion</option>
                                 </select>
                             </td>
                         </tr>
@@ -240,43 +265,43 @@ include '../requestFunctionsJavascript.php';
 
 
 
-                        <tr  <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Codigo Glosa</td>
                             <td>
-                                <input type="text" id="autoc-idglosa2" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" />
-                                <input type="hidden" name="glosa_idglosa_1" id="idglosa2" class="validate[custom[numberP]]" />
+                                <input type="text" id="autoc-idglosa2" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas1)?$glosas1['codigo'] . '-' . $glosas1['item'] . ' ' . $glosas1['descripcion']:''; ?>"/>
+                                <input type="hidden" name="glosa_idglosa_1" id="idglosa2" class="validate[custom[numberP]]" value="<? echo $Glosa1['glosa_idglosa_1']; ?>"/>
                             </td>
                         </tr>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Fecha de Glosa</td>
                             <td>
-                                <input type="text" name="glosa_fecha_glosa_1"  class="fecha validate[custom[date2]]" />
+                                <input type="text" name="glosa_fecha_glosa_1" value="<? echo $Glosa1['glosa_fecha_glosa_1']; ?>" class="fecha validate[custom[date2]]" />
                             </td>
                         </tr>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Fecha Recepcion de Glosa</td>
                             <td>
-                                <input type="text" name="glosa_fecha_recepcion_glosa_1"  class="fecha validate[]" />
+                                <input type="text" name="glosa_fecha_recepcion_glosa_1" value="<? echo $Glosa1['glosa_fecha_recepcion_glosa_1']; ?>" class="fecha validate[]" />
                             </td>
                         </tr>
 
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Valor aceptado por la IPS</td>
                             <td>
-                                <input type="number" name="glosa_valor_aceptado_ips_1" id="valor_glosa-chk_2" class=" pesos" />
+                                <input type="number" name="glosa_valor_aceptado_ips_1" value="<? echo $Glosa1['glosa_valor_aceptado_ips_1']; ?>" id="valor_glosa-chk_2" class=" pesos" />
                             </td>
                         </tr>
 
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Valor levantado</td>
                             <td>
-                                <input type="number" name="glosa_valor_glosa_levantado_1" id="valor_glosa-chk_2" class=" pesos" />
+                                <input type="number" name="glosa_valor_glosa_levantado_1" value="<? echo $Glosa1['glosa_valor_glosa_levantado_1']; ?>" id="valor_glosa-chk_2" class=" pesos" />
                             </td>
                         </tr>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Observaciones </td>
                             <td>
-                                <textarea name="glosa_observaciones_1" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ></textarea>
+                                <textarea name="glosa_observaciones_1" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $Glosa1['glosa_observaciones_1']; ?></textarea>
                             </td>
                         </tr>
 
@@ -286,24 +311,24 @@ include '../requestFunctionsJavascript.php';
 
 
 
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Codigo Glosa</td>
                             <td>
-                                <input type="text" id="autoc-idglosa3" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" />
-                                <input type="hidden" name="glosa_idglosa_2" id="idglosa3" class="validate[custom[numberP]]" />
+                                <input type="text" id="autoc-idglosa3" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas2)?$glosas2['codigo'] . '-' . $glosas2['item'] . ' ' . $glosas2['descripcion']:''; ?>"/>
+                                <input type="hidden" name="glosa_idglosa_2" id="idglosa3" class="validate[custom[numberP]]" value="<? echo $Glosa2['glosa_idglosa_2']; ?>"/>
                             </td>
                         </tr>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Fecha de Glosa</td>
                             <td>
-                                <input type="text" name="glosa_fecha_glosa_2"  class="fecha validate[custom[date2]]" />
+                                <input type="text" name="glosa_fecha_glosa_2"  class="fecha validate[custom[date2]]" value="<? echo $Glosa2['glosa_fecha_glosa_2']; ?>"/>
                             </td>
                         </tr>
 
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Fecha de recepcion de Glosa</td>
                             <td>
-                                <input type="text" name="glosa_fecha_recepcion_glosa_2"  class="fecha validate[]" />
+                                <input type="text" name="glosa_fecha_recepcion_glosa_2"  class="fecha validate[]" value="<? echo $Glosa2['glosa_fecha_recepcion_glosa_2']; ?>"/>
                             </td>
                         </tr>
                         <?php
@@ -318,16 +343,16 @@ include '../requestFunctionsJavascript.php';
                         }
                         //echo $LastGlosa['glosa_valor_aceptado_ips_1'];
                         ?>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Valor de Glosa Pendiente</td>
                             <td>
                                 <input type="number" name="glosa_valor_glosa_2" id="valor_glosa-chk_2" class=" pesos" readonly="true" value="<? echo abs($total___ - $LastGlosa['glosa_valor_aceptado_ips_1'] - $LastGlosa['glosa_valor_glosa_levantado_1']); ?>"/>
                             </td>
                         </tr>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Observaciones </td>
                             <td>
-                                <textarea name="glosa_observaciones_2" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ></textarea>
+                                <textarea name="glosa_observaciones_2" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $Glosa2['glosa_observaciones_2']; ?></textarea>
                             </td>
                         </tr>
 
@@ -335,35 +360,35 @@ include '../requestFunctionsJavascript.php';
 
 
 
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Codigo Glosa</td>
                             <td>
-                                <input type="text" id="autoc-idglosa4" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" />
-                                <input type="hidden" name="glosa_idglosa_3" id="idglosa4" class="validate[custom[numberP]]" />
+                                <input type="text" id="autoc-idglosa4" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas3)?$glosas3['codigo'] . '-' . $glosas3['item'] . ' ' . $glosas3['descripcion']:''; ?>"/>
+                                <input type="hidden" name="glosa_idglosa_3" id="idglosa4" class="validate[custom[numberP]]" value="<? echo $Glosa3['glosa_idglosa_3']; ?>"/>
                             </td>
                         </tr>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Fecha de Glosa</td>
                             <td>
-                                <input type="text" name="glosa_fecha_glosa_3"  class="fecha validate[custom[date2]]" />
+                                <input type="text" name="glosa_fecha_glosa_3"  class="fecha validate[custom[date2]]" value="<? echo $Glosa3['glosa_fecha_glosa_3']; ?>"/>
                             </td>
                         </tr>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Fecha de recepcion de Glosa</td>
                             <td>
-                                <input type="text" name="glosa_fecha_recepcion_glosa_3"  class="fecha validate[]" />
+                                <input type="text" name="glosa_fecha_recepcion_glosa_3"  class="fecha validate[]" value="<? echo $Glosa3['glosa_fecha_recepcion_glosa_3']; ?>"/>
                             </td>
                         </tr>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Valor definitivo</td>
                             <td>
-                                <input type="number" name="glosa_valor_glosa_3" id="valor_glosa-chk_2" class=" pesos" />
+                                <input type="number" name="glosa_valor_glosa_3" id="valor_glosa-chk_2" class=" pesos" value="<? echo $Glosa3['glosa_valor_glosa_3']; ?>"/>
                             </td>
                         </tr>
-                        <tr <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
+                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Observaciones </td>
                             <td>
-                                <textarea name="glosa_observaciones_3" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ></textarea>
+                                <textarea name="glosa_observaciones_3" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $Glosa3['glosa_observaciones_3']; ?></textarea>
                             </td>
                         </tr>
 
@@ -374,7 +399,7 @@ include '../requestFunctionsJavascript.php';
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary guardarNuevaGlosa">guardar</button>
+        <button class="btn btn-primary guardarNuevaGlosa" data-record="">guardar</button>
     </div>
 </div>
 
@@ -404,7 +429,12 @@ include '../requestFunctionsJavascript.php';
 
             $('#myModal2').modal('show');
         })
-
+        $('.option-glosa').click(function(){
+            $('.glosa1_tr').hide();
+            $('.glosa2_tr').hide();
+            $('.glosa3_tr').hide();
+            $($(this).data('selected')).show();
+        })
     })
 
 </script>

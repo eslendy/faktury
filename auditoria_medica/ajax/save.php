@@ -15,7 +15,9 @@ try {
             echo "1";
             break;
         case 'addNewGlosa' :
-            $bd->ejecutarInsertArray($_POST, "glosa_auditoria");
+            $bd->ejecutarInsertArrayExistsUpdate($_POST, "glosa_auditoria", "select * from glosa_auditoria where auditoria_glosa = $_POST[auditoria_glosa] and step_glosa=$_POST[step_glosa]","auditoria_glosa=" . $_POST['auditoria_glosa']." and step_glosa= $_POST[step_glosa] ");
+
+            /*$bd->ejecutarInsertArray($_POST, "glosa_auditoria");*/
             echo "1";
             break;
         case 'nullauditoria_medica' :
