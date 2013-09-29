@@ -17,7 +17,21 @@ class auMedica extends BD {
 
         return $sql;
     }
+    
+    public function saveGlosaValue($data){
+        $sql = "insert into ValoresGlosas (valor, descripcion, id_factura, step, userid) values($data[valor], '".$data[description]."', $data[id_factura],$data[step], $_SESSION[usrid])";
+        return $this->ejecutar($sql);
+    }
 
+    public function getAllListsGlosasByFacturaId($id){
+        $sql = "SELECT * FROM ValoresGlosas vg WHERE vg.id_factura = $id and userid = $_SESSION[usrid] ";
+        return $this->consultar($sql);
+    }
+    
+    public function getAllListsGlosas($id){
+        $sql = "SELECT * FROM auditoria_medica am, ValoresGlosas vg WHERE am.idFactura = vg.id_factura and vg.id_factura = $id";
+        return $this->consultar($sql);
+    }
     public function getAllGlosasAuditoria($campos = "*", $where = "", $groupby = "", $orderby = "") {
         $sql = "SELECT " . $campos . "
 		FROM glosa_auditoria ga " .

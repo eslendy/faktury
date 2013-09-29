@@ -264,6 +264,8 @@ include '../requestFunctionsJavascript.php';
                             <td>Valor aceptado por la IPS</td>
                             <td>
                                 <input type="number" name="glosa_valor_aceptado_ips_1" id="valor_glosa-chk_2" class=" pesos" />
+                                <button class="btn btn-success AddNewValueGlosa" data-related=".valor_ips"><i class="icon-plus"></i></button>
+
                             </td>
                         </tr>
 
@@ -271,6 +273,7 @@ include '../requestFunctionsJavascript.php';
                             <td>Valor levantado</td>
                             <td>
                                 <input type="number" name="glosa_valor_glosa_levantado_1" id="valor_glosa-chk_2" class=" pesos" />
+                                <button class="btn btn-success AddNewValueGlosa" data-related=".valor_levantado"><i class="icon-plus"></i></button>
                             </td>
                         </tr>
                         <tr <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
@@ -365,3 +368,34 @@ include '../requestFunctionsJavascript.php';
         <button class="btn btn-primary guardarNuevaGlosa">guardar</button>
     </div>
 </div>
+
+
+
+
+<div aria-hidden="true" aria-labelledby="myModalLabel2" role="dialog" tabindex="-1" class="modal hide fade" id="myModal2" style="display: none;">
+    <div class="modal-header modal-danger">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <h3 id="myModalLabel2">Alert Header</h3>
+    </div>
+    <div class="modal-body links-sin-auditar">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum excepturi nulla aut fugit iste tempore nihil. Nemo ut ipsum non consequatur nulla similique possimus ea minima. Facilis quibusdam cumque itaque!</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal">OK</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $.getJSON(init.XNG_WEBSITE_URL+'auditoria_medica/ajax/loadAlarms', {}, function(data){
+            $.each(data, function(i,j){
+                console.log(j);
+                //$('.links-sin-auditar').append();
+            })
+            
+            $('#myModal2').modal('show');
+        })
+        
+    })
+
+</script>
