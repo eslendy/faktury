@@ -629,7 +629,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
                                                 var result = $.parseJSON(data)
 
                                                 $('.valor-inicial-glosa').val((parseInt($('.valor-inicial-glosa').val()) + parseInt(result.valor)))
-                                                $('.valor_a_pagar_primera_audioria').val(abs((parseInt($('.valor-inicial-glosa').val())) - parseInt($('.valor_a_pagar_primera_audioria').attr('data-valor-factura'))))
+                                                $('.valor_a_pagar_primera_audioria').val(Math.abs((parseInt($('.valor-inicial-glosa').val())) - parseInt($('.valor_a_pagar_primera_audioria').attr('data-valor-factura'))))
                                                 $('.glosas-detalle').html(result.html);
                                                 $('.valor').html('');
                                                 $('.description').html('');
