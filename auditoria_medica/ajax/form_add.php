@@ -164,7 +164,9 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
 
                                                 <td>Valor de la Glosa</td>
                                                 <td>
-                                                    <input type="number" id="valor_glosa-chk_2" readonly="true" class=" pesos valor-inicial-glosa" value="<? echo $total___ ?>"/>
+                                                    <input type="number" name="glosa_valor_glosa" id="valor_glosa-chk_2" readonly="true" class=" pesos valor-inicial-glosa" value="<? echo $total___?>"/>
+
+                                                    <? /*<input type="number" id="valor_glosa-chk_2" readonly="true" class=" pesos valor-inicial-glosa" value="<? echo $total___ ?>"/>*/?>
                                                     <button class="btn btn-success AddNewValueGlosa"><i class="icon-plus"></i></button>
                                                 </td>
                                             </tr>
