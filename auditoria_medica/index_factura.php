@@ -38,7 +38,7 @@ if (count($AlarmaDevolucion) > 0) {
         foreach ($AlarmaDevolucion as $key => $ad) {
             ?>
             <div class="links-sin-devoluciones">
-                <a class="addAuditoriaMedica link-<?php echo $ad['idFactura'] ?>" data-record="<?php echo $ad['idFactura'] ?>" data-section="factura" data-action="factura" class=""><?php echo ($key + 1); ?>. No se ha hecho una auditoria medica para la Factura N° <?php echo $ad['numero_factura'] ?></a>
+                <a class="addAuditoriaMedica link-<?php echo $ad['idFactura'] ?>" data-record="<?php echo $ad['idFactura'] ?>" data-section="factura" data-action="factura" class=""><?php echo ($key + 1); ?>. Auditoria financiera realizada el <?php echo $ad['fecha_auditoria'] ?> para la Factura N° <?php echo $ad['numero_factura'] ?></a>
             </div>
 
             <?php
