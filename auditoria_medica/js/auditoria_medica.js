@@ -1,4 +1,5 @@
 var _guardarMods = function(tipo, frm, mod) {
+    var idFactura = $(frm +' #idFactura').val();
     if ($(frm).validationEngine('validate') == true) {
         _guardar(init.XNG_WEBSITE_URL + "auditoria_medica/ajax/save.php?type=" + tipo, $(frm).serialize(), function(html_response) {
             switch (html_response) {
@@ -9,7 +10,7 @@ var _guardarMods = function(tipo, frm, mod) {
                     $('.block.span12.add .load_content').empty()
                     $("#dialog-addMod").remove();
                     _loadContenido($('#nombre_archivo').val());
-                    
+                  
                     break;
                 default:
                     _msgerror(html_response, "#mensaje");

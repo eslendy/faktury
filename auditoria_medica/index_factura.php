@@ -23,6 +23,32 @@ $dataFacturas = $facturas->getallFacturas($where, $_REQUEST['page'], $campos);
 $auMedica = new auMedica($conexion['local']);
 include '../requestFunctionsJavascript.php';
 ?>
+
+<?php
+$AlarmaDevolucion = $auMedica->getAllFacturasConAuditoriaFinancieraConAntiguedadXDias();
+if (count($AlarmaDevolucion) > 0) {
+    ?>
+    <div class="alert alert-error" style="padding: 20px;margin: 11px;">
+
+        <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+        <strong>Han pasado 20 dias y no se ha hecho auditoria medica a las facturas: </strong>
+
+        <?php
+        // var_dump($AlarmaDevolucion);
+        foreach ($AlarmaDevolucion as $key => $ad) {
+            ?>
+            <div class="links-sin-devoluciones">
+                <a class="addAuditoriaMedica link-<?php echo $ad['idFactura'] ?>" data-record="<?php echo $ad['idFactura'] ?>" data-section="factura" data-action="factura" class=""><?php echo ($key + 1); ?>. No se ha hecho una auditoria medica para la Factura N° <?php echo $ad['numero_factura'] ?></a>
+            </div>
+
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+}
+?>
+
 <div class="collapse in" id="content_">
     <div class="table-option clearfix">
 
@@ -182,10 +208,10 @@ include '../requestFunctionsJavascript.php';
             })
         })
         $('.guardarNuevaGlosa').click(function() {
-            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/save.php?type=addNewGlosa&idFactura='+$(this).attr('data-record'), $('.addOtherGlosa').serialize(), function(data) {
+            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/save.php?type=addNewGlosa&idFactura=' + $(this).attr('data-record'), $('.addOtherGlosa').serialize(), function(data) {
                 alert('Se ha agregado una nueva glosa para esta auditoria.')
                 $('#agregarNuevaGlosa').modal('hide');
-                window.location = init.XNG_WEBSITE_URL+'auditoria_medica';
+                window.location = init.XNG_WEBSITE_URL + 'auditoria_medica';
             })
         })
     })
@@ -224,26 +250,26 @@ include '../requestFunctionsJavascript.php';
                                 <?php
                                 $LastGlosa = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica']);
                                 $glosa = new glosas_devoluciones($conexion['local']);
-                                
-                                
+
+
                                 $Glosa1 = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica'], 1);
-                                if($Glosa1){
+                                if ($Glosa1) {
                                     $glosas1 = $glosa->getOne($Glosa1['glosa_idglosa_1']);
                                 }
-                               
-                                
-                                
+
+
+
                                 $Glosa2 = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica'], 2);
-                                if($Glosa2){
+                                if ($Glosa2) {
                                     $glosas2 = $glosa->getOne($Glosa2['glosa_idglosa_2']);
                                 }
-                                
+
                                 $Glosa3 = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica'], 3);
-                                if($Glosa3){
+                                if ($Glosa3) {
                                     $glosas3 = $glosa->getOne($Glosa3['glosa_idglosa_3']);
                                 }
-                                
-                                
+
+
                                 //var_dump($LastGlosa);
                                 if (isset($LastGlosa)) {
                                     $LastGlosa = $LastGlosa;
@@ -268,7 +294,7 @@ include '../requestFunctionsJavascript.php';
                         <tr class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Codigo Glosa</td>
                             <td>
-                                <input type="text" id="autoc-idglosa2" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas1)?$glosas1['codigo'] . '-' . $glosas1['item'] . ' ' . $glosas1['descripcion']:''; ?>"/>
+                                <input type="text" id="autoc-idglosa2" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas1) ? $glosas1['codigo'] . '-' . $glosas1['item'] . ' ' . $glosas1['descripcion'] : ''; ?>"/>
                                 <input type="hidden" name="glosa_idglosa_1" id="idglosa2" class="validate[custom[numberP]]" value="<? echo $Glosa1['glosa_idglosa_1']; ?>"/>
                             </td>
                         </tr>
@@ -314,7 +340,7 @@ include '../requestFunctionsJavascript.php';
                         <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Codigo Glosa</td>
                             <td>
-                                <input type="text" id="autoc-idglosa3" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas2)?$glosas2['codigo'] . '-' . $glosas2['item'] . ' ' . $glosas2['descripcion']:''; ?>"/>
+                                <input type="text" id="autoc-idglosa3" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas2) ? $glosas2['codigo'] . '-' . $glosas2['item'] . ' ' . $glosas2['descripcion'] : ''; ?>"/>
                                 <input type="hidden" name="glosa_idglosa_2" id="idglosa3" class="validate[custom[numberP]]" value="<? echo $Glosa2['glosa_idglosa_2']; ?>"/>
                             </td>
                         </tr>
@@ -363,7 +389,7 @@ include '../requestFunctionsJavascript.php';
                         <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                             <td>Codigo Glosa</td>
                             <td>
-                                <input type="text" id="autoc-idglosa4" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas3)?$glosas3['codigo'] . '-' . $glosas3['item'] . ' ' . $glosas3['descripcion']:''; ?>"/>
+                                <input type="text" id="autoc-idglosa4" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas3) ? $glosas3['codigo'] . '-' . $glosas3['item'] . ' ' . $glosas3['descripcion'] : ''; ?>"/>
                                 <input type="hidden" name="glosa_idglosa_3" id="idglosa4" class="validate[custom[numberP]]" value="<? echo $Glosa3['glosa_idglosa_3']; ?>"/>
                             </td>
                         </tr>
@@ -429,7 +455,7 @@ include '../requestFunctionsJavascript.php';
 
             $('#myModal2').modal('show');
         })
-        $('.option-glosa').click(function(){
+        $('.option-glosa').click(function() {
             $('.glosa1_tr').hide();
             $('.glosa2_tr').hide();
             $('.glosa3_tr').hide();

@@ -17,26 +17,38 @@ class auMedica extends BD {
 
         return $sql;
     }
-    
-    public function updateGlosaValue($data){
-        $sql = "update ValoresGlosas set valor='".$data[valor]."', descripcion='".$data[description]."', id_factura=$data[id_factura], step=$data[step], userid=$_SESSION[usrid])";
-        return $this->ejecutar($sql);
-    }
-    
-    public function saveGlosaValue($data){
-        $sql = "insert into ValoresGlosas (valor, descripcion, id_factura, step, userid) values($data[valor], '".$data[description]."', $data[id_factura],$data[step], $_SESSION[usrid])";
+
+    public function updateGlosaValue($data) {
+        $sql = "update ValoresGlosas set valor='" . $data[valor] . "', descripcion='" . $data[description] . "', id_factura=$data[id_factura], step=$data[step], userid=$_SESSION[usrid])";
         return $this->ejecutar($sql);
     }
 
-    public function getAllListsGlosasByFacturaId($id, $step=0){
+    public function getAllFacturasConAuditoriaFinancieraConAntiguedadXDias($dias='20') {
+        $sql = "SELECT f.*, af.* FROM auditoria_financiera as af, factura as f where af.fecha_auditoria < (NOW() - INTERVAL $dias DAY) and f.idFactura = af.idfactura and af.idFactura not in(select idFactura from auditoria_medica where id_auditor = $_SESSION[usrid] )";
+        return $this->consultar($sql);
+        
+    }
+
+    public function getAllFacturasConDevolucion() {
+        echo $sql = "SELECT am.*, f.* FROM `factura` as f, auditoria_medica as am where f.idFactura = am.idFactura and am.devoluciones_fecha_devolucion < (NOW() - INTERVAL 20 DAY) and am.devoluciones_iddevolucion > 0 and am.id_auditor = " . $_SESSION['usrid'];
+        return $this->consultar($sql);
+    }
+
+    public function saveGlosaValue($data) {
+        $sql = "insert into ValoresGlosas (valor, descripcion, id_factura, step, userid) values($data[valor], '" . $data[description] . "', $data[id_factura],$data[step], $_SESSION[usrid])";
+        return $this->ejecutar($sql);
+    }
+
+    public function getAllListsGlosasByFacturaId($id, $step = 0) {
         $sql = "SELECT * FROM ValoresGlosas vg WHERE vg.id_factura = $id and userid = $_SESSION[usrid] ";
         return $this->consultar($sql);
     }
-    
-    public function getAllListsGlosas($id){
+
+    public function getAllListsGlosas($id) {
         $sql = "SELECT * FROM auditoria_medica am, ValoresGlosas vg WHERE am.idFactura = vg.id_factura and vg.id_factura = $id";
         return $this->consultar($sql);
     }
+
     public function getAllGlosasAuditoria($campos = "*", $where = "", $groupby = "", $orderby = "") {
         $sql = "SELECT " . $campos . "
 		FROM glosa_auditoria ga " .
@@ -51,7 +63,7 @@ class auMedica extends BD {
         return $this->consultar($this->_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC"));
     }
 
-    public function getGlosaByIdAuditoriaStep($id_auditoria, $step=1) {
+    public function getGlosaByIdAuditoriaStep($id_auditoria, $step = 1) {
         if (isset($id_auditoria)) {
             $sql = "SELECT * FROM glosa_auditoria where auditoria_glosa = $id_auditoria and step_glosa = $step limit 1";
             $rs = $this->consultar($sql);
@@ -60,7 +72,7 @@ class auMedica extends BD {
             return false;
         }
     }
-    
+
     public function getLastGlosaByIdAuditoria($id_auditoria) {
         if (isset($id_auditoria)) {
             $sql = "SELECT * FROM glosa_auditoria where auditoria_glosa = $id_auditoria order by step_glosa DESC limit 1";
@@ -70,7 +82,7 @@ class auMedica extends BD {
             return false;
         }
     }
-    
+
     public function getAllGlosaByIdAuditoria($id_auditoria) {
         if (isset($id_auditoria)) {
             $sql = "SELECT * FROM glosa_auditoria where auditoria_glosa = $id_auditoria order by step_glosa DESC limit 1";

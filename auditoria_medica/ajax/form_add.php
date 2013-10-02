@@ -22,7 +22,7 @@ $auFinanciera = new auditoria_financiera($conexion['local']);
 <div id="contenido" class="dividido">
     <div class="partes">
         <fieldset>
-            <legend>Auditoría Médica</legend>
+            <legend><b>Auditoría Médica (Factura N° <?php echo $_REQUEST['id']; ?>)</b></legend>
             <form id="addAuditoria" class="formulario">
                 <input type="hidden" name="idFactura" id="idFactura" value="<?= $_REQUEST['id'] ?>" />
                 <input type="hidden" name="id_auditor" id="id_auditor" value="<?= $_SESSION['usrid'] ?>" />

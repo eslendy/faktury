@@ -3971,3 +3971,10 @@ padding: 0px 0;
     margin-top: 1px;
     margin-left: 11px;
 }
+
+.links-sin-devoluciones a{
+    color: #FBFF91 !important;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #353535;
+    cursor: pointer;
+}
