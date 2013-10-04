@@ -79,14 +79,14 @@ if (count($AlarmaGlosa1) > 0) {
     <div class="alert alert-inverse" style="padding: 20px;margin: 11px;">
 
         <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
-        <strong>Han pasado 10 dias y hay glosas iniciales pendientes: </strong>
+        <strong>Han pasado 7 dias y hay glosas con primera respuesta pendientes: </strong>
 
         <?php
         // var_dump($AlarmaDevolucion);
         foreach ($AlarmaGlosa1 as $key => $ad) {
             ?>
             <div class="links-sin-devoluciones">
-                <a class="agregarNuevaGlosa link-<?php echo $ad['idFactura'] ?>"  role="button" data-auditoria='<?php echo $ad['idauditoria_medica']; ?>' data-toggle="modal" href="#agregarNuevaGlosa" data-record="<? echo $ad['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><?php echo ($key + 1); ?>. Auditoria Medica con glosa inicial realizada el <?php echo $ad['glosa_fecha_glosa'] ?> para la Factura N° <?php echo $ad['numero_factura'] ?></a>
+                <a class="agregarNuevaGlosa link-<?php echo $ad['idFactura'] ?>"  role="button" data-auditoria='<?php echo $ad['idauditoria_medica']; ?>' data-toggle="modal" href="#agregarNuevaGlosa" data-record="<? echo $ad['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><?php echo ($key + 1); ?>. Auditoria Medica con glosa inicial realizada el <?php echo $ad['glosa_fecha_glosa_1'] ?> para la Factura N° <?php echo $ad['numero_factura'] ?></a>
             </div>
 
             <?php
