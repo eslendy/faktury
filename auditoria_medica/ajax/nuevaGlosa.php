@@ -155,9 +155,6 @@ $rs_au['idauditoria_medica'] = $_REQUEST['idauditoria_medica'];
                 </tr>
 
 
-<? //var_dump($Glosa3); ?>
-
-
                 <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
                     <td>Codigo Glosa</td>
                     <td>

@@ -83,7 +83,7 @@ if (count($AlarmaGlosa1) > 0) {
 
         <?php
         // var_dump($AlarmaDevolucion);
-        foreach ($AlarmaGlosaInicial as $key => $ad) {
+        foreach ($AlarmaGlosa1 as $key => $ad) {
             ?>
             <div class="links-sin-devoluciones">
                 <a class="agregarNuevaGlosa link-<?php echo $ad['idFactura'] ?>"  role="button" data-auditoria='<?php echo $ad['idauditoria_medica']; ?>' data-toggle="modal" href="#agregarNuevaGlosa" data-record="<? echo $ad['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><?php echo ($key + 1); ?>. Auditoria Medica con glosa inicial realizada el <?php echo $ad['glosa_fecha_glosa'] ?> para la Factura N° <?php echo $ad['numero_factura'] ?></a>
