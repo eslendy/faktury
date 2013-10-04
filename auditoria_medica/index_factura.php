@@ -76,7 +76,7 @@ if (count($AlarmaGlosaInicial) > 0) {
 $AlarmaGlosa1 = $auMedica->getAllFacturasConGlosaPrimeraConAntiguedadXDias();
 if (count($AlarmaGlosa1) > 0) {
     ?>
-    <div class="alert alert-success" style="padding: 20px;margin: 11px;">
+    <div class="alert alert-adminflare" style="padding: 20px;margin: 11px;">
 
         <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
         <strong>Han pasado 10 dias y hay glosas iniciales pendientes: </strong>

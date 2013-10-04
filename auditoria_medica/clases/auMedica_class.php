@@ -30,13 +30,13 @@ class auMedica extends BD {
     }
     
     public function getAllFacturasConGlosaInicialConAntiguedadXDias($dias='10'){
-         $sql = "SELECT f.*, am.* FROM auditoria_medica am, factura f where am.glosa_idglosa > 0 and am.glosa_fecha_glosa < (NOW() - INTERVAL $dias DAY) and am.idFactura = f.idFactura and am.idauditoria_medica not in(select auditoria_glosa from glosa_auditoria where step_glosa = 1 )";
+         echo $sql = "SELECT f.*, am.* FROM auditoria_medica am, factura f where am.glosa_idglosa > 0 and am.glosa_fecha_glosa < (NOW() - INTERVAL $dias DAY) and am.idFactura = f.idFactura and am.idauditoria_medica not in(select auditoria_glosa from glosa_auditoria where step_glosa = 1 )";
         return $this->consultar($sql);
     }
     
-    public function getAllFacturasConGlosaPrimeraConAntiguedadXDias($dias='10'){
-       // $sql = "SELECT f.*, am.* FROM auditoria_medica am, factura f where am.glosa_fecha_glosa < (NOW() - INTERVAL $dias DAY) and am.idFactura = f.idFactura and am.idauditoria_medica not in(select auditoria_glosa from glosa_auditoria where step_glosa = 1 )";
-        //return $this->consultar($sql);
+    public function getAllFacturasConGlosaPrimeraConAntiguedadXDias($dias='7'){
+        $sql = "SELECT f.*, am.*, ag.* FROM auditoria_medica am, factura f, glosa_auditoria ag where am.glosa_idglosa > 0 and ag.glosa_fecha_glosa_1 < (NOW() - INTERVAL $dias DAY) and am.idFactura = f.idFactura and ag.auditoria_glosa = am.idauditoria_medica and am.idauditoria_medica not in(select auditoria_glosa from glosa_auditoria where step_glosa = 2 )";
+        return $this->consultar($sql);
     }
 
     public function getAllFacturasConDevolucion() {
