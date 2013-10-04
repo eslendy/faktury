@@ -30,7 +30,7 @@ class auMedica extends BD {
     }
     
     public function getAllFacturasConGlosaInicialConAntiguedadXDias($dias='10'){
-        echo $sql = "SELECT f.*, am.* FROM auditoria_medica am, factura f where am.glosa_idglosa > 0 and am.glosa_fecha_glosa < (NOW() - INTERVAL $dias DAY) and am.idFactura = f.idFactura and am.idauditoria_medica not in(select auditoria_glosa from glosa_auditoria where step_glosa = 1 )";
+         $sql = "SELECT f.*, am.* FROM auditoria_medica am, factura f where am.glosa_idglosa > 0 and am.glosa_fecha_glosa < (NOW() - INTERVAL $dias DAY) and am.idFactura = f.idFactura and am.idauditoria_medica not in(select auditoria_glosa from glosa_auditoria where step_glosa = 1 )";
         return $this->consultar($sql);
     }
     
