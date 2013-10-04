@@ -28,6 +28,16 @@ class auMedica extends BD {
         return $this->consultar($sql);
         
     }
+    
+    public function getAllFacturasConGlosaInicialConAntiguedadXDias($dias='10'){
+        $sql = "SELECT f.*, am.* FROM auditoria_medica am, factura f where am.glosa_fecha_glosa < (NOW() - INTERVAL $dias DAY) and am.idFactura = f.idFactura and am.idauditoria_medica not in(select auditoria_glosa from glosa_auditoria where step_glosa = 1 )";
+        return $this->consultar($sql);
+    }
+    
+    public function getAllFacturasConGlosaPrimeraConAntiguedadXDias($dias='10'){
+       // $sql = "SELECT f.*, am.* FROM auditoria_medica am, factura f where am.glosa_fecha_glosa < (NOW() - INTERVAL $dias DAY) and am.idFactura = f.idFactura and am.idauditoria_medica not in(select auditoria_glosa from glosa_auditoria where step_glosa = 1 )";
+        //return $this->consultar($sql);
+    }
 
     public function getAllFacturasConDevolucion() {
         echo $sql = "SELECT am.*, f.* FROM `factura` as f, auditoria_medica as am where f.idFactura = am.idFactura and am.devoluciones_fecha_devolucion < (NOW() - INTERVAL 20 DAY) and am.devoluciones_iddevolucion > 0 and am.id_auditor = " . $_SESSION['usrid'];

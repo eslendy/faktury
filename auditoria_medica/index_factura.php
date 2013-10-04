@@ -28,7 +28,7 @@ include '../requestFunctionsJavascript.php';
 $AlarmaDevolucion = $auMedica->getAllFacturasConAuditoriaFinancieraConAntiguedadXDias();
 if (count($AlarmaDevolucion) > 0) {
     ?>
-    <div class="alert alert-error" style="padding: 20px;margin: 11px;">
+    <div class="alert alert-info" style="padding: 20px;margin: 11px;">
 
         <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
         <strong>Han pasado 20 dias y no se ha hecho auditoria medica a las facturas: </strong>
@@ -47,8 +47,55 @@ if (count($AlarmaDevolucion) > 0) {
     </div>
     <?php
 }
-?>
 
+
+
+$AlarmaGlosaInicial = $auMedica->getAllFacturasConGlosaInicialConAntiguedadXDias();
+if (count($AlarmaGlosaInicial) > 0) {
+    ?>
+    <div class="alert alert-success" style="padding: 20px;margin: 11px;">
+
+        <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+        <strong>Han pasado 10 dias y hay glosas iniciales pendientes: </strong>
+
+        <?php
+        // var_dump($AlarmaDevolucion);
+        foreach ($AlarmaGlosaInicial as $key => $ad) {
+            ?>
+            <div class="links-sin-devoluciones">
+                <a class="agregarNuevaGlosa link-<?php echo $ad['idFactura'] ?>"  role="button" data-auditoria='<?php echo $ad['idauditoria_medica']; ?>' data-toggle="modal" href="#agregarNuevaGlosa" data-record="<? echo $ad['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><?php echo ($key + 1); ?>. Auditoria Medica con glosa inicial realizada el <?php echo $ad['glosa_fecha_glosa'] ?> para la Factura N° <?php echo $ad['numero_factura'] ?></a>
+            </div>
+
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+}
+
+$AlarmaGlosa1 = $auMedica->getAllFacturasConGlosaPrimeraConAntiguedadXDias();
+if (count($AlarmaGlosa1) > 0) {
+    ?>
+    <div class="alert alert-success" style="padding: 20px;margin: 11px;">
+
+        <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+        <strong>Han pasado 10 dias y hay glosas iniciales pendientes: </strong>
+
+        <?php
+        // var_dump($AlarmaDevolucion);
+        foreach ($AlarmaGlosaInicial as $key => $ad) {
+            ?>
+            <div class="links-sin-devoluciones">
+                <a class="agregarNuevaGlosa link-<?php echo $ad['idFactura'] ?>"  role="button" data-auditoria='<?php echo $ad['idauditoria_medica']; ?>' data-toggle="modal" href="#agregarNuevaGlosa" data-record="<? echo $ad['idFactura']; ?>" <? echo (($_REQUEST['section'])) ? 'data-section="' . $_REQUEST['section'] . '"' : ''; ?> <? echo (($_REQUEST['action'])) ? 'data-action="' . $_REQUEST['action'] . '"' : ''; ?>><?php echo ($key + 1); ?>. Auditoria Medica con glosa inicial realizada el <?php echo $ad['glosa_fecha_glosa'] ?> para la Factura N° <?php echo $ad['numero_factura'] ?></a>
+            </div>
+
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+}
+?>
 <div class="collapse in" id="content_">
     <div class="table-option clearfix">
 
@@ -170,50 +217,26 @@ if (count($AlarmaDevolucion) > 0) {
 <script type="text/javascript">
     $(document).ready(function() {
         $('.agregarNuevaGlosa').click(function() {
+            
             $('.guardarNuevaGlosa').attr('data-record', $(this).attr('data-record'))
             $('.auditoria_glosa').val($(this).attr('data-auditoria'));
-        })
-        _autocompletar("#autoc-idglosa2", init.XNG_WEBSITE_URL + "auditoria_medica/ajax/busqueda.php?case=glosas&tipo=-1", function(ui) {
-            $("#idglosa2").val(ui.item.id);
-        }, function(ul, item) {
-            return $("<li></li>")
-                    .data("item.autocomplete", item)
-                    .append("<a>" + item.icon + "</a>")
-                    .appendTo(ul);
-        })
 
-
-        _autocompletar("#autoc-idglosa3", init.XNG_WEBSITE_URL + "auditoria_medica/ajax/busqueda.php?case=glosas&tipo=-1", function(ui) {
-            $("#idglosa3").val(ui.item.id);
-        }, function(ul, item) {
-            return $("<li></li>")
-                    .data("item.autocomplete", item)
-                    .append("<a>" + item.icon + "</a>")
-                    .appendTo(ul);
+            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/nuevaGlosa.php', {idauditoria_medica: $(this).attr('data-auditoria'), idFactura: $(this).attr('data-record')}, function(data){
+                $('.modal-add-glosa').html(data);
+            })
+            
         })
-
-
-        _autocompletar("#autoc-idglosa4", init.XNG_WEBSITE_URL + "auditoria_medica/ajax/busqueda.php?case=glosas&tipo=-1", function(ui) {
-            $("#idglosa4").val(ui.item.id);
-        }, function(ul, item) {
-            return $("<li></li>")
-                    .data("item.autocomplete", item)
-                    .append("<a>" + item.icon + "</a>")
-                    .appendTo(ul);
-        })
+        
+        
 
         $('.verGlosasAgregadas').click(function() {
             $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/consultaGlosas.php', {auditoria_glosa: $(this).attr('data-auditoria'), id: $(this).attr('data-record')}, function(data) {
                 $('#verGlosa .modal-body').html(data);
             })
         })
-        $('.guardarNuevaGlosa').click(function() {
-            $.post(init.XNG_WEBSITE_URL + 'auditoria_medica/ajax/save.php?type=addNewGlosa&idFactura=' + $(this).attr('data-record'), $('.addOtherGlosa').serialize(), function(data) {
-                alert('Se ha agregado una nueva glosa para esta auditoria.')
-                $('#agregarNuevaGlosa').modal('hide');
-                window.location = init.XNG_WEBSITE_URL + 'auditoria_medica';
-            })
-        })
+
+
+
     })
 </script>
 <!-- Modal -->
@@ -236,192 +259,9 @@ if (count($AlarmaDevolucion) > 0) {
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel">Agregar Nueva Glosa</h3>
     </div>
-    <div class="modal-body" style="max-height: 482px;">
-        <form class='addOtherGlosa' method="post" >
+    <div class="modal-body modal-add-glosa" style="max-height: 482px;">
 
 
-            <input type="hidden" value="" name='auditoria_glosa' class='auditoria_glosa' />
-            <fieldset>
-                <table width="100%" class="responsive">
-                    <tbody>
-                        <tr>
-                            <td width="200">Tipo Glosa</td>
-                            <td>
-                                <?php
-                                $LastGlosa = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica']);
-                                $glosa = new glosas_devoluciones($conexion['local']);
-
-
-                                $Glosa1 = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica'], 1);
-                                if ($Glosa1) {
-                                    $glosas1 = $glosa->getOne($Glosa1['glosa_idglosa_1']);
-                                }
-
-
-
-                                $Glosa2 = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica'], 2);
-                                if ($Glosa2) {
-                                    $glosas2 = $glosa->getOne($Glosa2['glosa_idglosa_2']);
-                                }
-
-                                $Glosa3 = $auMedica->getLastGlosaByIdAuditoria($rs_au['idauditoria_medica'], 3);
-                                if ($Glosa3) {
-                                    $glosas3 = $glosa->getOne($Glosa3['glosa_idglosa_3']);
-                                }
-
-
-                                //var_dump($LastGlosa);
-                                if (isset($LastGlosa)) {
-                                    $LastGlosa = $LastGlosa;
-                                } else {
-                                    $LastGlosa['step_glosa'] = 0;
-                                }
-                                //echo $LastGlosa['step_glosa'];
-                                ?>
-
-                                <select name="step_glosa" class="step_glosa" size="3" multiple>
-                                    <option class="option-glosa" value="1" data-selected=".glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 0) ? ' style="color:#D1D1D1;"' : ''; ?>>Primera respuesta de Glosa</option>
-                                    <option class="option-glosa" value="2" data-selected=".glosa2_tr" <?php echo ($LastGlosa['step_glosa'] > 0) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 1) ? ' style="color:#D1D1D1;"' : ''; ?>>Segunda respuesta de Glosa</option>
-                                    <option class="option-glosa" value="3" data-selected=".glosa3_tr" <?php echo ($LastGlosa['step_glosa'] > 1) ? ' selected="selected" ' : ''; ?><?php echo ($LastGlosa['step_glosa'] > 2) ? 'selected="selected" style="color:#D1D1D1;"' : ''; ?>>Glosa de conciliacion</option>
-                                </select>
-                            </td>
-                        </tr>
-
-
-
-
-
-                        <tr class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Codigo Glosa</td>
-                            <td>
-                                <input type="text" id="autoc-idglosa2" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas1) ? $glosas1['codigo'] . '-' . $glosas1['item'] . ' ' . $glosas1['descripcion'] : ''; ?>"/>
-                                <input type="hidden" name="glosa_idglosa_1" id="idglosa2" class="validate[custom[numberP]]" value="<? echo $Glosa1['glosa_idglosa_1']; ?>"/>
-                            </td>
-                        </tr>
-                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Fecha de Glosa</td>
-                            <td>
-                                <input type="text" name="glosa_fecha_glosa_1" value="<? echo $Glosa1['glosa_fecha_glosa_1']; ?>" class="fecha validate[custom[date2]]" />
-                            </td>
-                        </tr>
-                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Fecha Recepcion de Glosa</td>
-                            <td>
-                                <input type="text" name="glosa_fecha_recepcion_glosa_1" value="<? echo $Glosa1['glosa_fecha_recepcion_glosa_1']; ?>" class="fecha validate[]" />
-                            </td>
-                        </tr>
-
-                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Valor aceptado por la IPS</td>
-                            <td>
-                                <input type="number" name="glosa_valor_aceptado_ips_1" value="<? echo $Glosa1['glosa_valor_aceptado_ips_1']; ?>" id="valor_glosa-chk_2" class=" pesos" />
-                            </td>
-                        </tr>
-
-                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Valor levantado</td>
-                            <td>
-                                <input type="number" name="glosa_valor_glosa_levantado_1" value="<? echo $Glosa1['glosa_valor_glosa_levantado_1']; ?>" id="valor_glosa-chk_2" class=" pesos" />
-                            </td>
-                        </tr>
-                        <tr  class="glosa1_tr" <?php echo ($LastGlosa['step_glosa'] == 0) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Observaciones </td>
-                            <td>
-                                <textarea name="glosa_observaciones_1" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $Glosa1['glosa_observaciones_1']; ?></textarea>
-                            </td>
-                        </tr>
-
-
-
-
-
-
-
-                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Codigo Glosa</td>
-                            <td>
-                                <input type="text" id="autoc-idglosa3" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas2) ? $glosas2['codigo'] . '-' . $glosas2['item'] . ' ' . $glosas2['descripcion'] : ''; ?>"/>
-                                <input type="hidden" name="glosa_idglosa_2" id="idglosa3" class="validate[custom[numberP]]" value="<? echo $Glosa2['glosa_idglosa_2']; ?>"/>
-                            </td>
-                        </tr>
-                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Fecha de Glosa</td>
-                            <td>
-                                <input type="text" name="glosa_fecha_glosa_2"  class="fecha validate[custom[date2]]" value="<? echo $Glosa2['glosa_fecha_glosa_2']; ?>"/>
-                            </td>
-                        </tr>
-
-                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Fecha de recepcion de Glosa</td>
-                            <td>
-                                <input type="text" name="glosa_fecha_recepcion_glosa_2"  class="fecha validate[]" value="<? echo $Glosa2['glosa_fecha_recepcion_glosa_2']; ?>"/>
-                            </td>
-                        </tr>
-                        <?php
-                        $data_glosas_ = $auMedica->getAllListsGlosasByFacturaId($fac['idFactura']);
-                        // var_dump($data_glosas_);
-                        $total___ = 0;
-                        ?>
-
-                        <?
-                        foreach ($data_glosas_ as $data___) {
-                            $total___ += $data___['valor'];
-                        }
-                        //echo $LastGlosa['glosa_valor_aceptado_ips_1'];
-                        ?>
-                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Valor de Glosa Pendiente</td>
-                            <td>
-                                <input type="number" name="glosa_valor_glosa_2" id="valor_glosa-chk_2" class=" pesos" readonly="true" value="<? echo abs($total___ - $LastGlosa['glosa_valor_aceptado_ips_1'] - $LastGlosa['glosa_valor_glosa_levantado_1']); ?>"/>
-                            </td>
-                        </tr>
-                        <tr class="glosa2_tr" <?php echo ($LastGlosa['step_glosa'] == 1) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Observaciones </td>
-                            <td>
-                                <textarea name="glosa_observaciones_2" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $Glosa2['glosa_observaciones_2']; ?></textarea>
-                            </td>
-                        </tr>
-
-
-
-
-
-                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Codigo Glosa</td>
-                            <td>
-                                <input type="text" id="autoc-idglosa4" class="validate[required,funcCall[_validarHiddenAutoC]] autoc_txt" value="<? echo ($glosas3) ? $glosas3['codigo'] . '-' . $glosas3['item'] . ' ' . $glosas3['descripcion'] : ''; ?>"/>
-                                <input type="hidden" name="glosa_idglosa_3" id="idglosa4" class="validate[custom[numberP]]" value="<? echo $Glosa3['glosa_idglosa_3']; ?>"/>
-                            </td>
-                        </tr>
-                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Fecha de Glosa</td>
-                            <td>
-                                <input type="text" name="glosa_fecha_glosa_3"  class="fecha validate[custom[date2]]" value="<? echo $Glosa3['glosa_fecha_glosa_3']; ?>"/>
-                            </td>
-                        </tr>
-                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Fecha de recepcion de Glosa</td>
-                            <td>
-                                <input type="text" name="glosa_fecha_recepcion_glosa_3"  class="fecha validate[]" value="<? echo $Glosa3['glosa_fecha_recepcion_glosa_3']; ?>"/>
-                            </td>
-                        </tr>
-                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Valor definitivo</td>
-                            <td>
-                                <input type="number" name="glosa_valor_glosa_3" id="valor_glosa-chk_2" class=" pesos" value="<? echo $Glosa3['glosa_valor_glosa_3']; ?>"/>
-                            </td>
-                        </tr>
-                        <tr class="glosa3_tr" <?php echo ($LastGlosa['step_glosa'] == 2) ? 'style="table-row"' : 'style="display:none;"'; ?>>
-                            <td>Observaciones </td>
-                            <td>
-                                <textarea name="glosa_observaciones_3" id="observaciones-chk_2" class="validate[funcCall[_validarGlosas]]" ><? echo $Glosa3['glosa_observaciones_3']; ?></textarea>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </fieldset>
-        </form>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -455,12 +295,7 @@ if (count($AlarmaDevolucion) > 0) {
 
             $('#myModal2').modal('show');
         })
-        $('.option-glosa').click(function() {
-            $('.glosa1_tr').hide();
-            $('.glosa2_tr').hide();
-            $('.glosa3_tr').hide();
-            $($(this).data('selected')).show();
-        })
+       
     })
 
 </script>
