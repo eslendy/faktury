@@ -13,9 +13,8 @@ class reportes extends BD {
     }
 
     public function getAuditoresIds($total = 10) {
-        $sql = 'SELECT * FROM usuarios u, usuarios_perfil up, perfil p where up.idusuarios = u.idusuarios and p.idperfil = up.idperfil and p.idperfil in(3)';
+        $sql = 'SELECT * FROM usuarios u, usuarios_perfil up, perfil p where up.idusuarios = u.idusuarios and p.idperfil = up.idperfil and p.idperfil in(4)';
         $rs = $this->consultar($sql);
-
         return $rs;
     }
 
