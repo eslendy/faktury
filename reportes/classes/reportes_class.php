@@ -97,7 +97,7 @@ class reportes extends BD {
     }
 
     public function getTotalPrimeraAuditoriaPorCadaAuditor() {
-        $sql = 'SELECT count(*) as TotalValor, id_auditor FROM `auditoria_medica` where glosa_idglosa > 0 group by id_auditor';
+        $sql = 'SELECT sum(glosa_valor_glosa) as TotalValor, id_auditor FROM `auditoria_medica` where glosa_idglosa > 0 group by id_auditor';
         $rs = $this->consultar($sql);
         return $rs;
     }
@@ -105,13 +105,19 @@ class reportes extends BD {
     public function getTotalPrimeraAuditoria() {
         $sql = 'SELECT count(*) as total FROM `auditoria_medica` where glosa_idglosa > 0';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['total'];
+    }
+    
+    public function getTotalPagosPrimeraAuditoria() {
+        $sql = 'SELECT count(*) as total FROM `auditoria_medica` where glosa_idglosa > 0';
+        $rs = $this->consultar($sql);
+        return $rs[0]['total'];
     }
 
     public function getTotalValorPagosPrimeraAuditoria() {
         $sql = 'SELECT sum(glosa_valor_pagar_primera_glosa) as TotalValor FROM `auditoria_medica` where glosa_idglosa > 0';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['TotalValor'];
     }
 
     public function getTotalValorPrimeraAuditoriaPorCadaAuditor() {
@@ -121,21 +127,21 @@ class reportes extends BD {
     }
 
     public function getTotalGlosasLevantadasPorAuditor() {
-        $sql = 'SELECT count(*) as TotalValor, am.id_auditor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 1 and ga.auditoria_glosa = am.idauditoria_medica group by am.id_auditor';
+        $sql = 'SELECT count(*) as TotalValor, am.id_auditor as id_auditor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 1 and ga.auditoria_glosa = am.idauditoria_medica group by am.id_auditor';
         $rs = $this->consultar($sql);
         return $rs;
     }
 
     public function getTotalGlosasLevantadas() {
-        $sql = 'SELECT count(*) as TotalValor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 1 and ga.auditoria_glosa = am.idauditoria_medica ';
+        $sql = 'SELECT count(*) as total FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 1 and ga.auditoria_glosa = am.idauditoria_medica ';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['total'];
     }
 
     public function getTotalValorGlosasLevantadas() {
         $sql = 'SELECT sum(ga.glosa_valor_glosa_levantado_1) as TotalValor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 1 and ga.auditoria_glosa = am.idauditoria_medica ';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['TotalValor'];
     }
 
     public function getTotalValorGlosasLevantadasPorCadaAuditor() {
@@ -147,7 +153,7 @@ class reportes extends BD {
     public function getTotalValorGlosasPendientes() {
         $sql = 'SELECT sum(ga.glosa_valor_glosa_2) as TotalValor, am.id_auditor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 2 and ga.auditoria_glosa = am.idauditoria_medica ';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['TotalValor'];
     }
 
     public function getTotalValorGlosasPendientesPorCadaAuditor() {
@@ -163,15 +169,15 @@ class reportes extends BD {
     }
 
     public function getTotalGlosasPendientes() {
-        $sql = 'SELECT count(*) as TotalValor, am.id_auditor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 2 and ga.auditoria_glosa = am.idauditoria_medica ';
+        $sql = 'SELECT count(*) as total, am.id_auditor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 2 and ga.auditoria_glosa = am.idauditoria_medica ';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['total'];
     }
 
     public function getTotalGlosasDefinitivas() {
-        $sql = 'SELECT count(*) as TotalValor, am.id_auditor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 3 and ga.auditoria_glosa = am.idauditoria_medica';
+        $sql = 'SELECT count(*) as total, am.id_auditor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 3 and ga.auditoria_glosa = am.idauditoria_medica';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['total'];
     }
 
     public function getTotalGlosasDefinitivasPorCadaAuditor() {
@@ -183,7 +189,7 @@ class reportes extends BD {
     public function getTotalValorGlosasDefinitivas() {
         $sql = 'SELECT sum(ga.glosa_valor_glosa_3) as TotalValor, am.id_auditor FROM `auditoria_medica` am, glosa_auditoria ga where am.glosa_idglosa > 0 and ga.step_glosa = 3 and ga.auditoria_glosa = am.idauditoria_medica';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['TotalValor'];
     }
 
     public function getTotalValorGlosasDefinitivasPorCadaAuditor() {
@@ -193,13 +199,19 @@ class reportes extends BD {
     }
 
     public function getTotalAuditadoAuditoriaMedica() {
-        $sql = 'SELECT sum(f.valor) FROM `auditoria_medica` am, factura f where f.idFactura = am.idFactura';
+        $sql = 'SELECT count(*) as total FROM `auditoria_medica` am, factura f where f.idFactura = am.idFactura';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['total'];
+    }
+    
+     public function getTotalValorAuditadoAuditoriaMedica() {
+        $sql = 'SELECT sum(f.valor) as TotalValor FROM `auditoria_medica` am, factura f where f.idFactura = am.idFactura';
+        $rs = $this->consultar($sql);
+        return $rs[0]['TotalValor'];
     }
 
     public function getTotalAuditadoAuditoriaMedicaPorCadaAuditor() {
-        $sql = 'SELECT sum(f.valor) FROM `auditoria_medica` am, factura f where f.idFactura = am.idFactura and am.id_auditor = 1';
+        $sql = 'SELECT sum(f.valor) as TotalValor, id_auditor FROM `auditoria_medica` am, factura f where f.idFactura = am.idFactura and am.id_auditor = 1';
         $rs = $this->consultar($sql);
         return $rs;
     }

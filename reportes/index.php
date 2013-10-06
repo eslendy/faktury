@@ -206,9 +206,9 @@ $reportes = new reportes($conexion['local']);
                         ?>
                         <tr>
                             <td>
-                                <?php 
-                                  $ContratoInfo =  $reportes->getContratoById($value['contrato']); 
-                                  echo 'Numero de Contrato '.$ContratoInfo['numero_contrato'];
+                                <?php
+                                $ContratoInfo = $reportes->getContratoById($value['contrato']);
+                                echo 'Numero de Contrato ' . $ContratoInfo['numero_contrato'];
                                 ?>
                             </td>
                             <td>
@@ -229,7 +229,7 @@ $reportes = new reportes($conexion['local']);
                 Total Facturado por Proveedores
             </td>
             <td>
-                 <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover">
                     <?php
                     $FacProveedor = $reportes->getSumatoriaTotalFacturadoXCadaProveedor();
                     $FacProveedorTotales = $reportes->getTotalFacturadoXCadaProveedor();
@@ -237,13 +237,13 @@ $reportes = new reportes($conexion['local']);
                         ?>
                         <tr>
                             <td>
-                                <?php 
-                                  $ProovedorInfo =  $reportes->getProveedorById($value['idproveedor']); 
-                                  echo 'Nombre Proveedor: '.$ProovedorInfo['nombre'];
+                                <?php
+                                $ProovedorInfo = $reportes->getProveedorById($value['idproveedor']);
+                                echo 'Nombre Proveedor: ' . $ProovedorInfo['nombre'];
                                 ?>
                             </td>
                             <td>
-                                <?php echo $FacProveedorTotales[$key]['total'];?> facturas
+                                <?php echo $FacProveedorTotales[$key]['total']; ?> facturas
                             </td>
                             <td>
                                 $ <?php echo $value['TotalValor']; ?>
@@ -269,21 +269,21 @@ $reportes = new reportes($conexion['local']);
                 Total Valor Glosas por Auditor
             </td>
             <td>
-                
+
                 <table class="table table-striped table-hover">
                     <?php
                     $GlosasPorAu = $reportes->getTotalValorGlosasPorAuditor();
-                   
-                    foreach ($GlosasPorAu as $key => $value) { 
+
+                    foreach ($GlosasPorAu as $key => $value) {
                         ?>
                         <tr>
                             <td>
-                                <?php 
-                                  $Au =  $reportes->getAuditorById($value['id_auditor']); 
-                                  echo 'Nombre Auditor: '.$Au['nombres'].' '.$Au['apellidos'];
+                                <?php
+                                $Au = $reportes->getAuditorById($value['id_auditor']);
+                                echo 'Nombre Auditor: ' . $Au['nombres'] . ' ' . $Au['apellidos'];
                                 ?>
                             </td>
-                           
+
                             <td>
                                 $ <?php echo $value['TotalValor']; ?>
                             </td>
@@ -301,8 +301,18 @@ $reportes = new reportes($conexion['local']);
                 Total Valor Glosas con primera respuesta
             </td>
             <td>
-
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <td>
+                            <?php echo $reportes->getTotalPagosPrimeraAuditoria(); ?> facturas
+                        </td>
+                        <td>
+                            $ <?php echo $reportes->getTotalValorPagosPrimeraAuditoria(); ?>
+                        </td>
+                    </tr>
+                </table>
             </td>
+
         </tr>
         <tr>
             <td>
@@ -310,6 +320,243 @@ $reportes = new reportes($conexion['local']);
             </td>
             <td>
 
+                <table class="table table-striped table-hover">
+                    <?php
+                    $PrimAu = $reportes->getTotalValorPrimeraAuditoriaPorCadaAuditor();
+
+                    foreach ($PrimAu as $key => $value) {
+                        ?>
+                        <tr>
+                            <td>
+                                <?php
+                                $Au = $reportes->getAuditorById($value['id_auditor']);
+                                echo 'Nombre Auditor: ' . $Au['nombres'] . ' ' . $Au['apellidos'];
+                                ?>
+                            </td>
+
+                            <td>
+                                $ <?php echo $value['TotalValor']; ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Valor Glosas Levantadas
+            </td>
+            <td>
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <td>
+                            <?php echo $reportes->getTotalGlosasLevantadas(); ?> facturas
+                        </td>
+                        <td>
+                            $ <?php echo (int) $reportes->getTotalValorGlosasLevantadas(); ?>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Valor Glosas Levantadas por auditor
+            </td>
+            <td>
+                <table class="table table-striped table-hover">
+                    <?php
+                    $GloLev = $reportes->getTotalGlosasLevantadasPorAuditor();
+                    if (count($GloLev) > 0) {
+                        foreach ($GloLev as $key => $value) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php
+                                    $Au = $reportes->getAuditorById($value['id_auditor']);
+                                    echo 'Nombre Auditor: ' . $Au['nombres'] . ' ' . $Au['apellidos'];
+                                    ?>
+                                </td>
+
+                                <td>
+                                    $ <?php echo $value['TotalValor']; ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    } else {
+                        echo '<td colspan=2>no hay registros</td>';
+                    }
+                    ?>
+
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Glosas Pendientes
+            </td>
+            <td>
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <td>
+                            <?php echo $reportes->getTotalGlosasPendientes(); ?> facturas
+                        </td>
+                        <td>
+                            $ <?php echo (int) $reportes->getTotalValorGlosasPendientes(); ?>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr> 
+        <tr>
+            <td>
+                Total Glosas Pendientes por Auditor
+            </td>
+            <td>
+                <table class="table table-striped table-hover">
+                    <?php
+                    $GloPen = $reportes->getTotalValorGlosasPendientesPorCadaAuditor();
+                    if (count($GloPen) > 0) {
+                        foreach ($GloPen as $key => $value) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php
+                                    $Au = $reportes->getAuditorById($value['id_auditor']);
+                                    echo 'Nombre Auditor: ' . $Au['nombres'] . ' ' . $Au['apellidos'];
+                                    ?>
+                                </td>
+
+                                <td>
+                                    $ <?php echo $value['TotalValor']; ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    } else {
+                        echo '<td colspan=2>no hay registros</td>';
+                    }
+                    ?>
+
+                </table>
+            </td>
+        </tr>
+        
+        
+        
+        
+        <tr>
+            <td>
+                Total Glosas Definitivas
+            </td>
+            <td>
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <td>
+                            <?php echo $reportes->getTotalGlosasDefinitivas(); ?> facturas
+                        </td>
+                        <td>
+                            $ <?php echo (int) $reportes->getTotalValorGlosasDefinitivas(); ?>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr> 
+        <tr>
+            <td>
+                Total Glosas Definitivas por Auditor
+            </td>
+            <td>
+                <table class="table table-striped table-hover">
+                    <?php
+                    $GloDef = $reportes->getTotalValorGlosasDefinitivasPorCadaAuditor();
+                    if (count($GloDef) > 0) {
+                        foreach ($GloDef as $key => $value) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php
+                                    $Au = $reportes->getAuditorById($value['id_auditor']);
+                                    echo 'Nombre Auditor: ' . $Au['nombres'] . ' ' . $Au['apellidos'];
+                                    ?>
+                                </td>
+
+                                <td>
+                                    $ <?php echo $value['TotalValor']; ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    } else {
+                        echo '<td colspan=2>no hay registros</td>';
+                    }
+                    ?>
+
+                </table>
+            </td>
+        </tr>
+        
+        
+        
+        
+        <tr>
+            <td>
+                Total Auditado (Auditoria Medica)
+            </td>
+            <td>
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <td>
+                            <?php echo $reportes->getTotalAuditadoAuditoriaMedica(); ?> facturas
+                        </td>
+                        <td>
+                            $ <?php echo (int) $reportes->getTotalValorAuditadoAuditoriaMedica(); ?>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr> 
+        <tr>
+            <td>
+                Total Auditado por cada Auditor (Auditoria Medica)
+            </td>
+            <td>
+                <table class="table table-striped table-hover">
+                    <?php
+                    $AuMe = $reportes->getTotalAuditadoAuditoriaMedicaPorCadaAuditor();
+                    if (count($AuMe) > 0) {
+                        foreach ($AuMe as $key => $value) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php
+                                    $Au = $reportes->getAuditorById($value['id_auditor']);
+                                    echo 'Nombre Auditor: ' . $Au['nombres'] . ' ' . $Au['apellidos'];
+                                    ?>
+                                </td>
+
+                                <td>
+                                    $ <?php echo $value['TotalValor']; ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    } else {
+                        echo '<td colspan=2>no hay registros</td>';
+                    }
+                    ?>
+
+                </table>
             </td>
         </tr>
 
