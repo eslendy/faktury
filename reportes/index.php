@@ -371,7 +371,7 @@ $reportes = new reportes($conexion['local']);
             <td>
                 <table class="table table-striped table-hover">
                     <?php
-                    $GloLev = $reportes->getTotalGlosasLevantadasPorAuditor();
+                    $GloLev = $reportes->getTotalValorGlosasLevantadasPorCadaAuditor();
                     if (count($GloLev) > 0) {
                         foreach ($GloLev as $key => $value) {
                             ?>
