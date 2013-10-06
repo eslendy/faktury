@@ -158,7 +158,7 @@ $reportes = new reportes($conexion['local']);
                     $ <?php
                     $total = $reportes->getTotalValorFacturasbyAuditor($au['idusuarios']);
                     echo $total['total'];
-                    ?> 
+                    ?>
                 </td>
 
             </tr>
@@ -180,7 +180,7 @@ $reportes = new reportes($conexion['local']);
             <td>
                 <?php
                 echo $reportes->getTotalFacturasRG();
-                ?>
+                ?> Facturas RG
             </td>
         </tr>
         <tr>
@@ -190,7 +190,7 @@ $reportes = new reportes($conexion['local']);
             <td>
                 <?php
                 echo $reportes->getTotalFacturasConContrato();
-                ?>
+                ?> Facturas con Contrato
             </td>
         </tr>
         <tr>
