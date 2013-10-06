@@ -3978,3 +3978,7 @@ padding: 0px 0;
     text-shadow: 1px 1px 1px #353535;
     cursor: pointer;
 }
+
+.text-center{
+    text-align: center !important;
+}

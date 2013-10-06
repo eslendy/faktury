@@ -12,12 +12,18 @@ class reportes extends BD {
         return $rs[0];
     }
 
-    public function getAuditoresIds($total = 10) {
+    public function getAuditoresIds() {
         $sql = 'SELECT * FROM usuarios u, usuarios_perfil up, perfil p where up.idusuarios = u.idusuarios and p.idperfil = up.idperfil and p.idperfil in(4)';
         $rs = $this->consultar($sql);
         return $rs;
     }
-
+    
+    public function getTotalValorFacturasbyAuditor($id) {
+        $sql = 'SELECT sum(f.valor) as total FROM `auditoria_financiera` af, factura f where af.idFactura = f.idFactura and id_auditor = ' . $id;
+        $rs = $this->consultar($sql);
+        return $rs[0];
+    }
+    
     public function getTotalFacturasbyAuditor($id) {
         $sql = 'SELECT count(*) as total FROM `auditoria_financiera` where id_auditor = ' . $id;
         $rs = $this->consultar($sql);
@@ -27,13 +33,13 @@ class reportes extends BD {
     public function getTotalFacturasRG() {
         $sql = 'SELECT count(*) as total FROM `factura` where contrato = 0';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['total'];
     }
 
     public function getTotalFacturasConContrato() {
         $sql = 'SELECT count(*) as total FROM `factura` where contrato > 0';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['total'];
     }
 
     public function getSumatoriaTotalValorFacturasXContrato() {
@@ -45,7 +51,7 @@ class reportes extends BD {
     public function getContratoById($id) {
         $sql = 'SELECT * FROM `contrato` where idcontrato = ' . $id;
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0];
     }
 
     public function getAllProveedores() {
@@ -53,7 +59,19 @@ class reportes extends BD {
         $rs = $this->consultar($sql);
         return $rs;
     }
+    
+    public function getProveedorById($id){
+        $sql = 'SELECT * FROM `proveedor` where estado = 1 and idproveedor = '.$id;
+        $rs = $this->consultar($sql);
+        return $rs[0];
+    }
 
+    public function getTotalFacturadoXCadaProveedor() {
+        $sql = 'SELECT count(*) as total, idproveedor FROM `factura` where 1=1 group by idproveedor ';
+        $rs = $this->consultar($sql);
+        return $rs;
+    }
+    
     public function getSumatoriaTotalFacturadoXCadaProveedor() {
         $sql = 'SELECT sum(valor) as TotalValor, idproveedor FROM `factura` where 1=1 group by idproveedor ';
         $rs = $this->consultar($sql);
@@ -69,7 +87,7 @@ class reportes extends BD {
     public function getTotalValorGlosas() {
         $sql = 'SELECT SUM(glosa_valor_glosa) as TotalValor, glosa_idglosa FROM `auditoria_medica` where glosa_idglosa>0';
         $rs = $this->consultar($sql);
-        return $rs;
+        return $rs[0]['TotalValor'];
     }
 
     public function getTotalValorGlosasPorAuditor() {

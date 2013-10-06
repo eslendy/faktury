@@ -116,14 +116,20 @@ $reportes = new reportes($conexion['local']);
 
 <div class="calendarios">
 
-    <table class="table table-striped ">
+    <table class="table table-striped table-hover" style="margin-bottom: 15px !important;">
         <thead>
+            <tr>
+                <td colspan="4" class="text-center"><b>Reporte Facturas por Auditor</b></td>
+            </tr>
             <tr>
                 <td>
                     ID
                 </td>
                 <td>
                     Nombre
+                </td>
+                <td>
+                    Total Facturas
                 </td>
                 <td>
                     Total Facturado
@@ -139,13 +145,19 @@ $reportes = new reportes($conexion['local']);
                 <td>
                     <?php echo $au['idusuarios']; ?>
                 </td>
-                 <td>
-                    <?php echo $au['nombres'].' '.$au['apellidos']; ?>
+                <td>
+                    <?php echo $au['nombres'] . ' ' . $au['apellidos']; ?>
+                </td>
+                <td>
+                    <?php
+                    $total = $reportes->getTotalFacturasbyAuditor($au['idusuarios']);
+                    echo $total['total'];
+                    ?> 
                 </td>
                 <td>
                     $ <?php
-                     $total = $reportes->getTotalFacturasbyAuditor($au['idusuarios']);
-                     echo $total['total'];
+                    $total = $reportes->getTotalValorFacturasbyAuditor($au['idusuarios']);
+                    echo $total['total'];
                     ?> 
                 </td>
 
@@ -154,6 +166,185 @@ $reportes = new reportes($conexion['local']);
         }
         ?>
     </table>
+
+
+    <table class="table table-striped table-hover" style="margin-bottom: 15px !important;">
+
+        <tr>
+            <td colspan="4" class="text-center"><b> </b></td>
+        </tr>
+        <tr>
+            <td>
+                Total Facturas RG
+            </td>
+            <td>
+                <?php
+                echo $reportes->getTotalFacturasRG();
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Facturas Con Contrato
+            </td>
+            <td>
+                <?php
+                echo $reportes->getTotalFacturasConContrato();
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Facturado en Contratos
+            </td>
+            <td>
+                <table class="table table-striped table-hover">
+                    <?php
+                    $FacContrato = $reportes->getSumatoriaTotalValorFacturasXContrato();
+
+                    foreach ($FacContrato as $key => $value) {
+                        ?>
+                        <tr>
+                            <td>
+                                <?php 
+                                  $ContratoInfo =  $reportes->getContratoById($value['contrato']); 
+                                  echo 'Numero de Contrato '.$ContratoInfo['numero_contrato'];
+                                ?>
+                            </td>
+                            <td>
+                                $ <?php echo $value['TotalValor']; ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                </table>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Facturado por Proveedores
+            </td>
+            <td>
+                 <table class="table table-striped table-hover">
+                    <?php
+                    $FacProveedor = $reportes->getSumatoriaTotalFacturadoXCadaProveedor();
+                    $FacProveedorTotales = $reportes->getTotalFacturadoXCadaProveedor();
+                    foreach ($FacProveedor as $key => $value) {
+                        ?>
+                        <tr>
+                            <td>
+                                <?php 
+                                  $ProovedorInfo =  $reportes->getProveedorById($value['idproveedor']); 
+                                  echo 'Nombre Proveedor: '.$ProovedorInfo['nombre'];
+                                ?>
+                            </td>
+                            <td>
+                                <?php echo $FacProveedorTotales[$key]['total'];?> facturas
+                            </td>
+                            <td>
+                                $ <?php echo $value['TotalValor']; ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Valor Glosas
+            </td>
+            <td>
+                <?php echo $reportes->getTotalValorGlosas(); ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Valor Glosas por Auditor
+            </td>
+            <td>
+                
+                <table class="table table-striped table-hover">
+                    <?php
+                    $GlosasPorAu = $reportes->getTotalValorGlosasPorAuditor();
+                   
+                    foreach ($GlosasPorAu as $key => $value) { 
+                        ?>
+                        <tr>
+                            <td>
+                                <?php 
+                                  $Au =  $reportes->getAuditorById($value['id_auditor']); 
+                                  echo 'Nombre Auditor: '.$Au['nombres'].' '.$Au['apellidos'];
+                                ?>
+                            </td>
+                           
+                            <td>
+                                $ <?php echo $value['TotalValor']; ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Valor Glosas con primera respuesta
+            </td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Valor Glosas por Auditor con primera respuesta
+            </td>
+            <td>
+
+            </td>
+        </tr>
+
+        <?php /*
+          $Auditores = $reportes->getAuditoresIds();
+
+          foreach ($Auditores as $au) {
+          ?>
+          <tr>
+          <td>
+          <?php echo $au['idusuarios']; ?>
+          </td>
+          <td>
+          <?php echo $au['nombres'].' '.$au['apellidos']; ?>
+          </td>
+          <td>
+          <?php
+          $total = $reportes->getTotalFacturasbyAuditor($au['idusuarios']);
+          echo $total['total'];
+          ?>
+          </td>
+          <td>
+          $ <?php
+          $total = $reportes->getTotalValorFacturasbyAuditor($au['idusuarios']);
+          echo $total['total'];
+          ?>
+          </td>
+
+          </tr>
+          <?php
+          } */
+        ?>
+    </table>
+
+
 
     <div class="partes">
         <div id="acordeon">
