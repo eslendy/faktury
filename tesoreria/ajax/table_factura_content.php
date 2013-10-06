@@ -1,9 +1,12 @@
 <?php
-if (!empty($dataTesoreria)) {
+if (empty($_REQUEST['page'])) {
+    $_REQUEST['page'] = 1;
+}
+if (!empty($dataTesoreria['data'])) {
 
 
     $i = 1;
-    foreach ($dataTesoreria as $fac) {
+    foreach ($dataTesoreria['data'] as $fac) {
 
         $HaveTesoreria = $tesoreria->getTesoreriaByFactura($fac['idFactura']);
         //var_dump($HaveContabilidad);
@@ -38,6 +41,8 @@ else {
 }
 ?>
 <script type="text/javascript" src="<? echo $SERVER_NAME; ?>tesoreria/js/tesoreria.js"></script>
+<input type="hidden" id="nombre_archivo" value="/tesoreria/index_tesoreria" />
 <script>
-    createPaginated();
-    </script>
+    var page_total = <?php echo ($dataTesoreria['total'] > 1) ? $dataTesoreria['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
+</script>

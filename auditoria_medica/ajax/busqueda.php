@@ -21,7 +21,9 @@ switch ($_REQUEST['case']) {
         echo $cie10->getallAutoC($_REQUEST['term'], $_REQUEST['tipo']);
         break;
     case 'auditoria_medica':
-        $dataFacturas = $facturas->getAllFacturasByTerm($_REQUEST, ' and f.estado=1 and f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor =  '. $_SESSION['usrid'] . ') ');
+        $where_ = (($_SESSION['perfil'] == 1)) ? " 1=1" : " id_auditor = " . $_SESSION["usrid"] . " ";
+
+        $dataFacturas = $facturas->getAllFacturasByTerm($_REQUEST, ' and f.estado=1 and f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE '.$where_.') ');
         include 'table_factura_content.php';
         include '../../requestFunctionsJavascript.php';
         break;

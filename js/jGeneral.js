@@ -370,7 +370,7 @@ function resetForm(idForm) {
 
 var createPaginated = function(pagina, total, section) {
     $('.section-page').val(section);
-    var registros_por_pagina = 5;
+    var registros_por_pagina = 7;
     var total_pages = Math.ceil(total / registros_por_pagina);
     //console.log('Total Paginas ' + total_pages)
     var paginado_append = '<div class="block-dark"><div class="pagination pagination-centered">\n\

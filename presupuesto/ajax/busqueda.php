@@ -14,8 +14,9 @@ $auMedica = new auMedica($conexion['local']);
 switch ($_REQUEST['case']) {
    
     case 'presupuesto':
-
-        $dataFacturas = $facturas->getAllFacturasByTerm($_REQUEST, ' and f.estado=1 and f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor =  '. $_SESSION['usrid'] . ') ', ' INNER JOIN auditoria_medica au ON (f.idFactura=au.idFactura) ');
+        $where_ = (($_SESSION['perfil'] == 1)) ? " 1=1" : " id_auditor = " . $_SESSION["usrid"] . " ";
+        
+        $dataFacturas = $facturas->getAllFacturasByTerm($_REQUEST, ' and f.estado=1 and f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE '.$where_.') ', ' INNER JOIN auditoria_medica au ON (f.idFactura=au.idFactura) ');
         //var_dump($dataFacturas);
         include 'table_factura_content.php';
         include '../../requestFunctionsJavascript.php';

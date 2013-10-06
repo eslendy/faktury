@@ -50,6 +50,8 @@ if ($_REQUEST['mode'] == 'days') {
     foreach ($data_['data'] as $key => $d) {
         $data[0]['TOTAL_FACTURAS_BY_DAY'][$key] = $d;
     }
+    
+   
     if (($data[0]['TOTAL_FACTURAS_BY_DAY'][0]['total'] > 0)) {
         $data[0]['result'] = TRUE; 
         die(json_encode($data[0]));

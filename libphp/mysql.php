@@ -7,7 +7,7 @@ class BD {
     private $password;
     private $database;
     private $conn;
-    public $total_items_per_page = 5;
+    public $total_items_per_page = 7;
 
     public function BD($c) {
         $this->host = $c['host'];
@@ -40,6 +40,7 @@ class BD {
     }
 
     public function consultar($sql) {
+        
         if ($rs = mysql_query($sql, $this->conn)) {
             $registros = array();
             while ($reg = mysql_fetch_array($rs)) {
@@ -51,7 +52,7 @@ class BD {
         }
     }
 
-    public function consultar_by_page($sql, $page, $total = FALSE) {
+    public function consultar_by_page($sql, $page = 1, $total = FALSE) {
         $registros = array();
         if ($total) {
             $this->total_items_per_page = $total;
@@ -61,9 +62,11 @@ class BD {
         } else {
             $limit = 'limit ' . ($page - 1) * $this->total_items_per_page . ',' . $this->total_items_per_page;
         }
-        // echo $sql;
+       
+        
         $result = mysql_query($sql);
         $registros['total'] = mysql_num_rows($result);
+        
         if ($rs = mysql_query($sql . ' ' . $limit, $this->conn)) {
             while ($reg = mysql_fetch_assoc($rs)) {
 
@@ -73,6 +76,7 @@ class BD {
         } else {
             throw new Exception("Error al ejecutar la consulta '" . $sql . "',  MySQL Error " . mysql_error());
         }
+        
     }
 
     public function consultar_total($sql) {

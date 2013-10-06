@@ -25,7 +25,8 @@ class facturas extends BD {
                 (($where != "") ? " WHERE " . $where : "") .
                 (($groupby != "") ? " GROUP BY " . $groupby : "") .
                 (($orderby != "") ? " ORDER BY " . $orderby : "");
-
+        //echo $sql;
+        //die;
         return $sql;
     }
 
@@ -49,7 +50,11 @@ class facturas extends BD {
         $where = $Params['type'] . ' like "%' . $Params['term'] . '%" ' . $where;
         $campos = "*, UPPER(CONCAT_WS(' ',pa.nombre, pa.apellidos)) AS  paciente_nombre, UPPER(pro.nombre) AS proveedor_nombre, f.estado AS estado_factura, f.idFactura AS idf,  IFNULL(COUNT(auf.idauditoria_financiera), 0) AS audFinanciera ";
         //echo $this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join);
-
+        //echo $this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join);
+        if(!isset($Params['page']))
+        {
+            $Params['page'] =1;        
+        }
         return $this->consultar_by_page($this->_modulo_sql($campos, $where, "f.idFactura", "f.fecha_radicacion DESC, f.prefijo ASC, f.numero_factura DESC", $inner_join), $Params['page']);
     }
 

@@ -1,5 +1,8 @@
 <?
 $i = 1;
+if (empty($_REQUEST['page'])) {
+    $_REQUEST['page'] = 1;
+}
 if (!empty($dataFacturas['data'])) {
     foreach ($dataFacturas['data'] as $fac) {
 
@@ -151,6 +154,8 @@ if (!empty($dataFacturas['data'])) {
         <button class="btn btn-primary guardarNuevaGlosa">guardar</button>
     </div>
 </div>
+    <input type="hidden" id="nombre_archivo" value="/auditoria_medica/index_factura" />
+
 <script>
     var page_total = <?php echo ($dataFacturas['total'] > 1) ? $dataFacturas['total'] : 1; ?>;
     createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');

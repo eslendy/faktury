@@ -1,3 +1,12 @@
+<?php
+include("../vigiaAjax.php");
+include("../libphp/config.inc.php");
+include("../libphp/mysql.php");
+include("classes/reportes_class.php");
+$reportes = new reportes($conexion['local']);
+?>
+
+
 <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
 <script language="javascript" type="text/javascript" src="js/jquery.jqplot.min.js"></script>
 <script type="text/javascript" src="js/plugins/jqplot.barRenderer.min.js"></script>
@@ -106,6 +115,46 @@
 
 
 <div class="calendarios">
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <td>
+                    ID
+                </td>
+                <td>
+                    Nombre
+                </td>
+                <td>
+                    Total Facturado
+                </td>
+            </tr>
+        </thead>
+        <?php
+        $Auditores = $reportes->getAuditoresIds();
+
+        foreach ($Auditores as $au) {
+            ?>
+            <tr>
+                <td>
+                    <?php echo $au['idusuarios']; ?>
+                </td>
+                 <td>
+                    <?php echo $au['nombres'].' '.$au['apellidos']; ?>
+                </td>
+                <td>
+                    $ <?php
+                     $total = $reportes->getTotalFacturasbyAuditor($au['idusuarios']);
+                     echo $total['total'];
+                    ?> 
+                </td>
+
+            </tr>
+            <?php
+        }
+        ?>
+    </table>
+
     <div class="partes">
         <div id="acordeon">
             <h3>Reporte por Año</h3>
@@ -240,12 +289,12 @@
                 $.each(TOTAL_, function(i, j) {
                     $('.detail-char-2').html('<div class=span12><b>' + j.MONTH_NUMBER + '</b>' + ' Total: $' + addCommas(parseInt(j.total)) + '</div>');
                 })
-var total_facturas =0;
+                var total_facturas = 0;
                 $.each(TOTAL_FACTURAS, function(i, j) {
-		total_facturas += parseInt(j.total)
+                    total_facturas += parseInt(j.total)
                     $('.detail-total-facturas-2').append('<p>Total de Facturas en el ' + j.DAY_NUMBER + ': <b>' + addCommas(parseInt(j.total)) + '</b></p>');
                 })
-		$('.detail-total-facturas-2').append('<p><em><b>Sumatoria total de facturas: '+total_facturas+'</b></em></p>');
+                $('.detail-total-facturas-2').append('<p><em><b>Sumatoria total de facturas: ' + total_facturas + '</b></em></p>');
 
 
             }
@@ -261,13 +310,13 @@ var total_facturas =0;
                     console.log(result);
                     $('.detail-char-1').html('<div class=span12><b>' + j.YEAR_NUMBER + '</b>' + ' Total: $' + addCommas(parseInt(j.total)) + '</div>');
                 })
-		var total_facturas =0;
+                var total_facturas = 0;
                 $.each(TOTAL_FACTURAS, function(i, j) {
- 			total_facturas += parseInt(j.total)
-       	                $('.detail-total-facturas-1').append('<p>Total de Facturas en el ' + j.MONTH_NUMBER + ': <b>' + addCommas(parseInt(j.total)) + '</b></p>');
+                    total_facturas += parseInt(j.total)
+                    $('.detail-total-facturas-1').append('<p>Total de Facturas en el ' + j.MONTH_NUMBER + ': <b>' + addCommas(parseInt(j.total)) + '</b></p>');
                 })
 
-		$('.detail-total-facturas-1').append('<p><em><b>Sumatoria total de facturas: '+total_facturas+'</b></em></p>');
+                $('.detail-total-facturas-1').append('<p><em><b>Sumatoria total de facturas: ' + total_facturas + '</b></em></p>');
 
 
             }
@@ -373,7 +422,7 @@ var total_facturas =0;
             total_facturas += parseInt(j.total)
             $('.detail-total-facturas-3').append('<p>Total de Facturas en el ' + j.DAY_NUMBER + ': <b>' + addCommas(parseInt(j.total)) + '</b></p>');
         })
-        $('.detail-total-facturas-3').append('<p><em><b>Sumatoria total de facturas: '+total_facturas+'</b></em></p>');
+        $('.detail-total-facturas-3').append('<p><em><b>Sumatoria total de facturas: ' + total_facturas + '</b></em></p>');
         console.log(result.DAY_NUMBER + ' ' + result.total)
 
         var s1 = [parseInt(result.total)];
@@ -447,9 +496,9 @@ var total_facturas =0;
 </style>
 
 <script>
-    
-    $(document).ready(function(){
+
+    $(document).ready(function() {
         $('.btn.btn-primary.nuevo').hide();
     })
-    
+
 </script>

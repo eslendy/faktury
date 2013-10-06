@@ -1,7 +1,11 @@
 <?php
-if (!empty($dataContabilidad)) {
+if (empty($_REQUEST['page'])) {
+    $_REQUEST['page'] = 1;
+}
+if (!empty($dataContabilidad['data'])) {
     $i = 1;
-    foreach ($dataContabilidad as $fac) {
+    
+    foreach ($dataContabilidad['data'] as $fac) {
 
         $HaveContabilidad = $contabilidad->getContabilidadByFactura($fac['idFactura']);
         //var_dump($HaveContabilidad);
@@ -35,4 +39,10 @@ else{
     echo '<tr><td colspan=8><em>No hay resultados...</em></td></tr>';
 }
 ?>
+<input type="hidden" id="nombre_archivo" value="/contabilidad/index_contabilidad" />
+
 <script type="text/javascript" src="<? echo $SERVER_NAME; ?>contabilidad/js/contabilidad.js"></script>
+<script>
+    var page_total = <?php echo ($dataContabilidad['total'] > 1) ? $dataContabilidad['total'] : 1; ?>;
+    createPaginated(<?php echo $_REQUEST['page']; ?>, page_total, '<? echo $_REQUEST['action'] ?>');
+</script>

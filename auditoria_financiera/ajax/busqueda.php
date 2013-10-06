@@ -14,7 +14,9 @@ $au = new auditoria_financiera($conexion['local']);
 try {
     switch ($_REQUEST['case']) {
         case 'auditoria_financiera':
+            //die('das');
             $dataFacturas = $facturas->getAllFacturasByTerm($_REQUEST, ' and f.estado=1 ');
+            
             include 'table_factura_content.php';
             include '../../requestFunctionsJavascript.php';
             break;

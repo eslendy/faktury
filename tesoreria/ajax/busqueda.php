@@ -1,4 +1,5 @@
 <?php
+
 include("../../vigiaAjax.php");
 include("../../libphp/config.inc.php");
 include("../../libphp/mysql.php");
@@ -10,9 +11,11 @@ $tesoreria = new tesoreria($conexion['local']);
 
 
 switch ($_REQUEST['case']) {
-   
+
     case 'tesoreria':
-        $dataTesoreria = $facturas->getAllFacturasByTerm($_REQUEST, ' and f.estado=1 and f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE id_auditor =  '. $_SESSION['usrid'] . ') ', '  INNER JOIN presupuesto pres ON (pres.idFactura=f.idFactura)
+        $where_ = (($_SESSION['perfil'] == 1)) ? " 1=1" : " id_auditor = " . $_SESSION["usrid"] . " ";
+
+        $dataTesoreria = $facturas->getAllFacturasByTerm($_REQUEST, ' and f.estado=1 and f.idFactura IN (SELECT idFactura FROM auditoria_financiera WHERE '.$where_.') ', '  INNER JOIN presupuesto pres ON (pres.idFactura=f.idFactura)
             INNER JOIN contabilidad con ON (con.idFactura = f.idFactura) ');
         //var_dump($dataTesoreria);
         include 'table_factura_content.php';
