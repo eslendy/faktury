@@ -89,6 +89,12 @@ class reportes extends BD {
         $rs = $this->consultar($sql);
         return $rs[0]['TotalValor'];
     }
+    
+     public function getTotalGlosas() {
+        $sql = 'SELECT count(*) as TotalValor, glosa_idglosa FROM `auditoria_medica` where glosa_idglosa>0';
+        $rs = $this->consultar($sql);
+        return $rs[0]['TotalValor'];
+    }
 
     public function getTotalValorGlosasPorAuditor() {
         $sql = 'SELECT SUM(glosa_valor_glosa) as TotalValor, id_auditor FROM `auditoria_medica` where glosa_idglosa > 0 group by id_auditor';

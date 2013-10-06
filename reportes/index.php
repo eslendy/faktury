@@ -261,7 +261,17 @@ $reportes = new reportes($conexion['local']);
                 Total Valor Glosas
             </td>
             <td>
-                <?php echo $reportes->getTotalValorGlosas(); ?>
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <td>
+                            <?php echo $reportes->getTotalGlosas(); ?> glosas
+                        </td>
+                        <td>
+                            $ <?php echo $reportes->getTotalValorGlosas(); ?>
+                        </td>
+                    </tr>
+                </table>
+                
             </td>
         </tr>
         <tr>
@@ -304,7 +314,7 @@ $reportes = new reportes($conexion['local']);
                 <table class="table table-striped table-hover">
                     <tr>
                         <td>
-                            <?php echo $reportes->getTotalPagosPrimeraAuditoria(); ?> facturas
+                            <?php echo $reportes->getTotalPagosPrimeraAuditoria(); ?> Glosas con primera Respuesta
                         </td>
                         <td>
                             $ <?php echo $reportes->getTotalValorPagosPrimeraAuditoria(); ?>
@@ -354,7 +364,7 @@ $reportes = new reportes($conexion['local']);
                 <table class="table table-striped table-hover">
                     <tr>
                         <td>
-                            <?php echo $reportes->getTotalGlosasLevantadas(); ?> facturas
+                            <?php echo $reportes->getTotalGlosasLevantadas(); ?> Glosas Levantadas
                         </td>
                         <td>
                             $ <?php echo (int) $reportes->getTotalValorGlosasLevantadas(); ?>
@@ -406,7 +416,7 @@ $reportes = new reportes($conexion['local']);
                 <table class="table table-striped table-hover">
                     <tr>
                         <td>
-                            <?php echo $reportes->getTotalGlosasPendientes(); ?> facturas
+                            <?php echo $reportes->getTotalGlosasPendientes(); ?> Glosas Pendientes
                         </td>
                         <td>
                             $ <?php echo (int) $reportes->getTotalValorGlosasPendientes(); ?>
@@ -461,7 +471,7 @@ $reportes = new reportes($conexion['local']);
                 <table class="table table-striped table-hover">
                     <tr>
                         <td>
-                            <?php echo $reportes->getTotalGlosasDefinitivas(); ?> facturas
+                            <?php echo $reportes->getTotalGlosasDefinitivas(); ?> Glosas Definitivas
                         </td>
                         <td>
                             $ <?php echo (int) $reportes->getTotalValorGlosasDefinitivas(); ?>
@@ -516,7 +526,7 @@ $reportes = new reportes($conexion['local']);
                 <table class="table table-striped table-hover">
                     <tr>
                         <td>
-                            <?php echo $reportes->getTotalAuditadoAuditoriaMedica(); ?> facturas
+                            <?php echo $reportes->getTotalAuditadoAuditoriaMedica(); ?> Auditorias Medicas
                         </td>
                         <td>
                             $ <?php echo (int) $reportes->getTotalValorAuditadoAuditoriaMedica(); ?>
